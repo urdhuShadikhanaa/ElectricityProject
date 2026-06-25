@@ -18,7 +18,7 @@ public with sharing class NGMCP_AMRBulkController {
         'Appointment-CA' => 'MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,Building Number,Building Name,Dependant Locality,Street,Postal Town,Postal Code',
         'Appointment-NEWCN' => 'MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,Building Number,Building Name,Dependant Locality,Street,Postal Town,Postal Code',
         'Appointment-FNDAS' => 'MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,Building Number,Building Name,Dependant Locality,Street,Postal Town,Postal Code,Manufacturer,Meter Model,Year of manufacture,Manufacturer serial number,Payment Type,Meter type,Location code,No. of digit,Multiplication factor'
-    };
+    }; 
 
     @AuraEnabled
     public static Id startBulkProcess(String payloadJson, String action, String mode, Id user) {

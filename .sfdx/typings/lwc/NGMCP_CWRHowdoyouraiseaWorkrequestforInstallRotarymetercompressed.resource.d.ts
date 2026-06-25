@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_CWRHowdoyouraiseaWorkrequestforInstallRotarymetercompressed" {
+    var NGMCP_CWRHowdoyouraiseaWorkrequestforInstallRotarymetercompressed: string;
+    export default NGMCP_CWRHowdoyouraiseaWorkrequestforInstallRotarymetercompressed;
+}

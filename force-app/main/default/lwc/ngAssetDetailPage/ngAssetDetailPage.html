@@ -1,0 +1,262 @@
+<template>
+    <div class="asset-container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class={overviewTabClass} onclick={handleTabClick} data-tab="Overview">OVERVIEW</div>
+            <div class={amrTabClass} onclick={handleTabClick} data-tab="AMR">AMR</div>
+            <div class={regulatorTabClass} onclick={handleTabClick} data-tab="Regulator">REGULATOR</div>
+            <div class={photosTabClass} onclick={handleTabClick} data-tab="Photos">PHOTOS</div>
+            <div class={jobsLogTabClass} onclick={handleTabClick} data-tab="JobsLog">JOBS</div>
+            <div class={queriesLogTabClass} onclick={handleTabClick} data-tab="QueriesLog">QUERIES</div>
+            <div class={meterHistoryTabClass} onclick={handleTabClick} data-tab="MeterHistory">HISTORY</div>
+        </div>
+
+        <!-- Overview Tab -->
+        <template if:true={isOverview}>
+            <div class="tab-content overview-tab">
+                <!-- <div class="image-container">
+                    <img src={assetImage} alt="Asset" />
+                    <div class="text-overlay">
+                        <p class="p-overview">Overview</p>
+                        <p class="p-overview-text">Make Plan to meet with your Manager and set priorities for the upcoming year.</p>
+                    </div>
+                </div> -->
+                <div class="asset-details">
+                    <h3>Asset Details</h3>
+
+                    <div class="field">
+                        <label>Name</label>
+                        <input type="text" readonly value={asset.Name} />
+                    </div>
+
+                    <div class="field">
+                        <label>Asset Status</label>
+                        <input type="text" readonly value={asset.FFA_Asset_Status__c} />
+                    </div>
+
+                    <div class="field">
+                        <label>Asset Type</label>
+                        <input type="text" readonly value={asset.FFA_Asset_Type__c} />
+                    </div>
+
+                    <div class="field">
+                        <label>Meter Type</label>
+                        <input type="text" readonly value={asset.FFA_Meter_Type__c} />
+                    </div>
+
+                    <div class="field">
+                        <label>Model</label>
+                        <input type="text" readonly value={asset.FFA_Model_Fix__c} />
+                    </div>
+
+                    <div class="field">
+                        <label>Manufacturer</label>
+                        <input type="text" readonly value={asset.FFA_Year_of_Manufacturer_Fix__c} />
+                    </div>
+<!--
+                    <div class="field">
+                        <label>Meter Link Status</label>
+                        <input type="text" readonly value={asset.FFA_Meter_Link_Status__c} />
+                    </div>
+
+                     <div class="field">
+                        <label>Meter Mechanism</label>
+                        <input type="text" readonly value={asset.FFA_Meter_Mechanism__c} />
+                    </div>
+
+                    <div class="field">
+                        <label>Date Installed</label>
+                        <input type="text" readonly value={asset.FFA_Date_Installed__c} />
+                    </div> -->
+                    
+                </div>
+            </div>
+        </template>
+
+        <!-- Placeholder for Other Tabs -->
+        <template if:true={isAMR}>
+            <div class="tab-content">
+                <template if:true={isAMRAvailable}>
+                    <table class="amr-table">
+                        <thead>
+                            <tr>
+                                <th>AMR Model</th>
+                                <th>AMR Manufacturer</th>
+                                <th>AMR Serial no.</th>
+                                <th>Timestamp</th>
+                                <th>AMR Read</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={amrList} for:item="amr">
+                                <tr key={amr.Id}>
+                                    <td>{amr.AMR_Model__c}</td>
+                                    <td>{amr.AMR_Manufacturer__c}</td>
+                                    <td>{amr.AMR_Serial_no__c}</td>
+                                    <td>{amr.Timestamp__c}</td>
+                                    <td>{amr.AMR_Read__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={isAMRAvailable}>
+                    <p class="placeholder-text">No AMR data available for this asset.</p>
+                </template>
+            </div>
+        </template>
+        <template if:true={isRegulator}>
+            <div class="regulator-container">
+                <template if:true={isRegulatorAvailable}>
+                    <template for:each={regulatorList} for:item="reg" for:index="index">
+                        <div class="regulator-box" key={reg.Id}>
+                            <div class="regulator-title">{reg.Name}</div>
+                            <div class="regulator-row">
+                                <div class="label">Manufacturer</div>
+                                <div class="value">{reg.Manufacturer__c}</div>
+                            </div>
+                            <div class="regulator-row">
+                                <div class="label">Model Number</div>
+                                <div class="value">{reg.Model_Number__c}</div>
+                            </div>
+                            <div class="regulator-row">
+                                <div class="label">Manufacturer Serial Number</div>
+                                <div class="value">{reg.Manufacturer_Serial_Number__c}</div>
+                            </div>
+                            <div class="regulator-row">
+                                <div class="label">Stream Number</div>
+                                <div class="value">{reg.Stream_Number__c}</div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={isRegulatorAvailable}>
+                    <p class="placeholder-text">No Regulator data available for this asset.</p>
+                </template>
+            </div>
+        </template>
+        
+        <template if:true={isPhotos}>
+            <div class="photo-grid">
+                <template for:each={assetFiles} for:item="file">
+                    <div class="photo-item" key={file.Id}>
+                        <a href={file.ContentDownloadUrl} target="_blank">
+                            <img src={file.ContentDownloadUrl} alt={file.Title} class="preview-img" />
+                        </a>
+                        <p class="file-title">{file.Title}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:true={isJobsLog}>
+            <div class="tab-content">
+                <template if:true={isJobLogAvailable}>              
+                    <table class="amr-table">
+                        <thead>       
+                            <tr>
+                                <th>Work Order #</th>
+                                <th>Service Notification #</th>
+                                <th>Job Code</th>
+                                <th>Job Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Completion Date</th>
+                                <th>Status Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={jobLogList} for:item="job">
+                                <tr key={job.Id}>
+                                    <td>{job.WorkOrderNumber}</td>
+                                    <td>{job.FFA_ServiceNotificationNumber__c}</td>
+                                    <td>{job.FFA_JobCode__c}</td>
+                                    <td>{job.FFA_JobDescription__c}</td>
+                                    <td>{job.formattedStart}</td>
+                                    <td>{job.formattedEnd}</td>
+                                    <td>{job.formattedCompletion}</td>
+                                    <td>{job.FFA_StatusReasonCode__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={isJobLogAvailable}>
+                    <p class="placeholder-text">No Job Logs available for this asset.</p>
+                </template>
+        
+            </div>
+        
+        </template>
+
+        <template if:true={isQueriesLog}>
+            <div class="tab-content">
+                <template if:true={isQueryAvailable}>
+                    <table class="amr-table">
+                        <thead>
+                            <tr>
+                                <th>Service Request #</th>
+                                <th>Query Type</th>
+                                <th>Description</th>
+                                <th>Target Start Date</th>
+                                <th>Target Finish Date</th>
+                                <th>Resolve Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={queryList} for:item="query">
+                                <tr key={query.Id}>
+                                    <td>{query.CaseNumber}</td>
+                                    <td>{query.CRM_Resolution_Description__c}</td>
+                                    <td>{query.Description}</td>
+                                    <td>{query.formattedStart}</td>
+                                    <td>{query.formattedFinish}</td>
+                                    <td>{query.formattedResolve}</td>
+                                    <td>{query.Status}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={isQueryAvailable}>
+                    <p class="placeholder-text">No Query Log data available for this asset.</p>
+                </template>
+            </div>
+        </template>
+        <template if:true={isMeterHistory}>
+            <div class="tab-content">
+                <template if:true={isHistoryAvailable}>
+                    <table class="amr-table">
+                        <thead>
+                            <tr>
+                                <th>Device Category</th>
+                                <th>Meter Manufacturer</th>
+                                <th>Meter Model</th>
+                                <th>Meter Serial Number</th>
+                                <th>Meter Status</th>
+                                <th>Installation Date</th>
+                                <th>Removal Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={assetHistoryList} for:item="item">
+                                <tr key={item.Id}>
+                                    <td>{item.Device_Category__c}</td>
+                                    <td>{item.Meter_Manufacturer__c}</td>
+                                    <td>{item.Meter_Model__c}</td>
+                                    <td>{item.Meter_Serial_Number__c}</td>
+                                    <td>{item.Meter_Status__c}</td>
+                                    <td>{item.formattedInstallDate}</td>
+                                    <td>{item.formattedRemovalDate}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={isHistoryAvailable}>
+                    <p class="placeholder-text">No meter log history available for this asset.</p>
+                </template>
+            </div>        
+        </template>
+    </div>
+</template>

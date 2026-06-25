@@ -1,0 +1,5 @@
+Customer,Trans Ref,Contract Ref,Job Type,MPRN,Service Level,Site Contact ,Contact Mechanism Value,Access Instructions,MAM ID,Building Number,Building Name,Street,Dependent Locality,Post Town,Post Code,Meter Manufacturer,Meter Model,Meter YOM,Meter Serial Number,Meter Dials,Meter Unit Of Measure,Converter Fitted Indicator,AMR Serial Number
+PZT,620280RSP,,STOP,10047807,C,SS,1234,Access Instructions,GTM,,ALLIED CARPETS LTD,GREAT CENTRAL ROAD,,MANSFIELD,NG18 2JD,ACTARIS,G4,2000,4484986S,6,UOM,N,AMR1234
+PZT,,PZT000001,STOP,,T,SS,121,Access Instructions,ECA,1234,sfass,dDD,dgee,LAURENCEKIRK,AB30 1BT,ACTARIS,G4,1990,13,31,SCMH,Y,AMR5678
+PZT,804221INK,PZT000001,STOP,10047807,T,SS,121,Access Instructions,ECA,1234,sfass,dDD,dgee,LAURENCEKIRK,AB30 1BT,ACTARIS,G4,1990,13,31,SCMH,Y,AMR9012
+PZT,804221INK,PZT000001,STOP,10047807,T,SS,121,Access Instructions,ECA,1234,sfass,dDD,dgee,LAURENCEKIRK,AB30 1BT,ACTARIS,G4,2000,13,31,SCMH,Y,AMR9012

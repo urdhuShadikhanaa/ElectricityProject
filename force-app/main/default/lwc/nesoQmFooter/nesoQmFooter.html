@@ -1,0 +1,92 @@
+<!--
+ * @description       : "NESO QmHelp Centre Footer"
+ * @author            : Vivek Kumar
+ * @last modified on  : 28-01-2025
+ * @last modified by  : Vivek Kumar
+ * Modifications Log
+ * Ver    Date        Author        Modification
+ * 1.0     Vivek Kumar   Initial Version
+--------------------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * @description       : DXP-13360  DXP Header and Footer visual alignment and screen size,DXP-11784 Query Closure Survey,DXP-13360 Provide updates to a query as an internal user,DXP-11779 My Queries dashboard filtering
+ * @author            : Pramod
+ * @last modified on  : 11-02-2025
+ * @last modified by  : Pramod
+ * Modifications Log
+ * Ver    Date        Author        Modification
+ * 1.0    20-01-2025  Pramod   Initial Version
+-->
+
+<template>
+    <div class="container">
+        <div class="footer-container">
+            <div class="slds-grid">
+                <!-- About Us Section -->
+                <div class="slds-col">
+                    <a href={label.NesoHCFooterLinksAboutNeso} class="link-style"><span>About National Gas</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksWhatWeDo} class="link-style"><span>Who we are</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksInvestors} class="link-style"><span>Operational information</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksCareersWithUs} class="link-style"><span>Careers</span></a>
+                </div>
+
+                <!-- Get in Touch Section -->
+                <div class="slds-col">
+                    <a href={label.NesoHelpCentreContactUs} class="link-style"><span>Contact us</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksReportPowerCut} class="link-style"><span>How to report a complaint</span></a>
+                    <br>
+                    <a href={label.NesoHelpCentreLandingPage} class="link-style"><span>Help centre</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksMediaCentre} class="link-style"><span>Media centre</span></a>
+                </div>
+
+                <!-- You may also be interested in Section -->
+                <div class="slds-col">
+                    <a href={label.NesoQmFooterLinksCorporateInformationLink} class="link-style"><span>Corporate information</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksOurStrategy} class="link-style"><span>Suppliers</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksNationalGridPLC} class="link-style"><span>Freedom of information</span></a>
+                    <br>
+                    <a href={label.NesoHCFooterLinksModernSlaveryStatement} class="link-style"><span>Modern Slavery Statement</span></a>
+                </div>
+            </div>
+
+            <!-- Footer Links Section -->
+            <div class="slds-col-footer footer-links">
+                <a href={label.NesoHCFooterLinksAccessibility} class="footer-link"><span class="footer-link">Accessibility</span></a>
+                <a href={label.NesoHCFooterLinksPrivacyPolicy} class="footer-link"><span class="footer-link">Privacy notice</span></a>
+                <a href={label.NesoHCFooterLinksCookiePolicy} class="footer-link"><span class="footer-link">Cookie policy</span></a>
+                <a href={label.NesoHCFooterLinksTermsAndConditions} class="footer-link"><span class="footer-link">Terms and conditions</span></a>
+                <a href={label.NesoHCFooterLinksSecurity} class="footer-link"><span class="footer-link">Security</span></a>
+            </div>
+
+            <!-- Social Media Icons Section -->
+            <div class="social-container">
+                <ul class="menu menu-level-0 social-icons">
+                    <li class="menu-item">
+                        <a href="https://x.com/NESO_energy" class="menu-link menu-link-social">
+                            <img src={TwitterIMG} class="icon icon--logo--twitter" />
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="https://www.linkedin.com/company/neso-energy" class="menu-link menu-link-social">
+                            <img src={LinkedInIMG} class="icon icon--logo--linkedin" />
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="https://www.youtube.com/@NESO_energy" class="menu-link menu-link-social">
+                            <img src={YoutubeIMG} class="icon icon--logo--youtube" />
+                        </a>
+                    </li>
+                </ul>
+                <span class="icon__wrapper">
+                    <img src={NGImageLogo} alt="Logo" width="150" class="company-logo">
+                </span>
+            </div>
+        </div>
+    </div>
+</template>

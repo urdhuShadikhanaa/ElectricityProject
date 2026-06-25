@@ -1,0 +1,337 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+.custom-usermgmt-container * {
+    font-family: 'Roboto', sans-serif
+}
+.section-header {
+    background: #00857A;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.headertitle,
+.header_subtitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #fff;
+}
+.header_subtitle {
+   color: #333;
+   padding: 0.5rem 1rem;
+}
+.card {
+   max-width: 520px;
+   margin: 24px auto;
+   padding: 20px;
+   background: #ffffff;
+   border-radius: 8px;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+/* Section spacing */
+.card p {
+   margin-bottom: 8px;
+   font-weight: 600;
+   color: #333;
+}
+/* Radio buttons alignment */
+.card label {
+   display: inline-flex;
+   align-items: center;
+   margin-right: 16px;
+   font-weight: 500;
+   cursor: pointer;
+}
+.card input[type="radio"] {
+   margin-right: 6px;
+   cursor: pointer;
+}
+/* Text inputs & dropdown */
+/*.card input[type="text"],
+.card input[type="email"],
+.card select {
+   width: 100%;
+   padding: 8px 10px;
+   margin-bottom: 12px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 14px;
+}*/
+/* File upload */
+.card input[type="file"] {
+   margin-top: 8px;
+   font-size: 14px;
+}
+/* Buttons section */
+/*.card button {
+   padding: 8px 16px;
+   font-size: 14px;
+   border-radius: 4px;
+   border: none;
+   cursor: pointer;
+   margin-right: 10px;
+}*/
+
+/* Responsive */
+@media (max-width: 600px) {
+   .card {
+       margin: 12px;
+       padding: 16px;
+   }
+}
+
+.custom-contact-details-section .custom-contact-field-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+.custom-usermgmt-container .custom-user-details-section .field.custom-contact-field-section.dual-listbox-wrapper {
+    margin-top: 1rem;
+}
+
+.custom-job-section-title,
+.custom-contact-details-section .section-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #333;
+}
+
+.section-card .custom-page-subheader-title {
+    padding: 0.5rem 0;
+}
+
+.custom-brand-button {
+    background: #00857a;
+    color: #fff;
+    border-radius: 8px;
+    border: 2px solid #00857a;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 0.5rem 1.5rem;
+}
+.custom-brand-button:hover {
+    background: #fff;
+    cursor: pointer;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-usermgmt-container {
+    padding: 15px;
+    width: 83vw;
+    background: #f5f6f9; 
+}
+.custom-input-form-wrapper {
+   border: 1px solid #DADADA;
+   padding: 0.5rem;
+   background: #fff;
+}
+.custom-usermgmt-container .custom-inner-container,
+.custom-user-details-section {
+    padding: 0.5rem 1rem;
+}
+.custom-usermgmt-container .custom-inner-container label {
+   padding-right: 1rem;
+}
+.custom-btn-section {
+   padding: 1rem;
+}
+
+.custom-question-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.custom-question-section > p {
+    margin: 0.5rem 0;
+    width: 350px;
+}
+
+.custom-user-details-section .custom-lightning-input-element {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+.custom-user-details-section .custom-lightning-input-element label,
+.custom-usermgmt-container .custom-user-details-section .custom-user-form-label {
+    flex: 0 auto;
+    width: 200px;
+    align-content: center;
+}
+.custom-user-details-section .custom-lightning-input-element label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #1A1B1E;
+    overflow-wrap: break-word;
+    margin-bottom: 0;
+}
+
+.custom-lightning-input-element input:not([type="radio"]), 
+.custom-lightning-input-element select {
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    letter-spacing: 0.1px;
+    padding: 0.25rem 0.5rem;
+    background: #fff;
+    align-items: center;
+    cursor: pointer;
+    width: 300px;
+    margin-right: 0.5rem;
+}
+.custom-lightning-input-element input::placeholder, 
+.custom-lightning-input-element select::placeholder {
+    color: #555;
+}
+.custom-usermgmt-container .custom-terms-conditions-section {
+    margin: 1rem 0;
+}
+.custom-bulk-fileupload-section {
+    width: 300px;
+}
+/*.custom-user-file-upload {
+    border: 2px dashed #DADADA;
+    border-radius: 4px;
+    background-color: #fafafa;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #555;
+    margin-top: 0.5rem;
+}
+.custom-user-file-upload > p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: normal;
+    color: #00857A;
+    text-decoration: underline;
+    position: relative;
+    min-height: 15vh;
+    align-content: center;
+}
+.custom-user-file-upload input.custom-user-form-input {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;    
+}*/
+.custom-usermgmt-container .custom-user-details-section .custom-slds-required label::after {
+    content: " *";
+    color: #c23934;
+    font-weight: 500;
+}
+.custom-usermgmt-container .custom-input-form-wrapper .custom-radio-input {
+    margin: 0.5rem 0.125rem;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-select-input {
+    display: flex;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-user-form-select {
+    margin-bottom: 0;
+}
+/************** Custom Modal Styles - User Management **************/
+.custom-usermgmt-container .custom-modal-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: #1D1B20;
+    text-align: center;
+}
+.custom-usermgmt-container .custom-modal-header {
+    border: none;
+	background-color: #fff;
+}
+.custom-usermgmt-container .custom-modal-footer, 
+.custom-usermgmt-container .custom-modal-header {
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+}
+.custom-usermgmt-container .custom-modal-footer,
+.custom-usermgmt-container .custom-modal-content-container {
+	background-color: #fff;
+}
+.custom-usermgmt-container .custom-modal-content {	
+    color: #49454F;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0.5px;
+	overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: middle;
+    overflow-x: auto; /* Enable horizontal scroll if content is too wide */
+    word-break: break-word; /* Break long words */
+    white-space: normal; /* Wrap text */
+}
+.custom-usermgmt-container .custom-modal-content-heading {
+    font-size: 13px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
+.custom-usermgmt-container .custom-modal-content-container {
+    display: flex;
+    flex-direction: column; 
+}
+.custom-usermgmt-container .custom-slds-modal-container {
+    max-width: 95vw;
+    width: 35%;
+}
+.custom-text-content-center {
+    display: flex;
+    justify-content: center;
+}
+.custom-usermgmt-container .custom-user-details-section .download-section {
+    margin: 1rem 0;
+}
+.custom-usermgmt-container .custom-user-details-section a,
+.custom-usermgmt-container .custom-user-details-section .download-section a {
+    color: #004C9D;
+}
+input[type="file"]::file-selector-button { 
+    background: none; 
+    color: #00857A; 
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer;  
+    text-decoration: underline;
+} 
+input[type="file"]::file-selector-button:hover { 
+    text-decoration: none;
+}
+input[type="file"]::-webkit-file-name-text {
+      color: #00857A; 
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+}

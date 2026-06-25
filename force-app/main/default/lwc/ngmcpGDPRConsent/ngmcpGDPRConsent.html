@@ -1,0 +1,16 @@
+<template>
+    <div class="popup">
+        <h2>Terms & Conditions & GDPR Consent</h2>
+        <p>{consentMessage}</p>
+        <lightning-input 
+            type="checkbox" 
+            label="I agree" 
+            onchange={handleCheckbox}>
+        </lightning-input>
+        <lightning-button 
+            label="Submit" 
+            onclick={handleSubmit}
+            disabled={isSubmitDisabled}>
+        </lightning-button>
+    </div>
+</template>

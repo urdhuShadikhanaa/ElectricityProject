@@ -1,0 +1,418 @@
+/* Container styling */
+:host {
+     font-family: 'Roboto', sans-serif;
+     background-color: #f5f6f9;
+}
+
+.mprn-detail-outer-container {
+     background-color: #f5f6f9;
+}
+
+/* Header */
+.mprn-detail-title {
+     font-weight: 500;
+     font-size: 28px;
+     line-height: 36px;
+     letter-spacing: 0;
+}
+
+.mprn-detail-status {
+     font-weight: 400;
+     font-size: 14px;
+     line-height: 16px;
+     letter-spacing: 0.4px;
+     vertical-align: middle;
+     color: #fff;
+     background: #004C9D;
+     border-radius: 50px;
+}
+
+.btn {
+     font-weight: 500;
+     font-size: 15px;
+     line-height: 24px;
+     letter-spacing: 0.15px;
+     vertical-align: middle;
+}
+
+.custom-btn {
+     background-color: #00857A;
+     color: #fff;
+     border: 2px solid #00857A;
+     border-radius: 8px;
+}
+
+.custom-btn:hover {
+     background-color: #fff;
+     color: #00857A;
+     border: 2px solid #00857A;
+     cursor: pointer;
+}
+
+.deappoint {
+     border: 2px solid #00857A;
+     background-color: transparent;
+     color: #00857A;
+     border-radius: 8px;
+}
+
+.deappoint:hover {
+     background-color: #00857A;
+     color: #fff;
+     cursor: pointer;
+}
+
+/* Tabs */
+.tab-header div {
+     font-weight: 500;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0.1px;
+     text-align: center;
+     vertical-align: middle;
+     color: #49454F;
+     cursor: pointer;
+     border-bottom: 1px solid #CAC4D0;
+}
+
+.tab-header div.active {
+     color: #00857A;
+     border-bottom: 2px solid #00857A;
+     font-weight: 600;
+}
+
+/* Titles */
+.mprn-detail-section-title {
+     font-weight: 600;
+     font-size: 16px;
+     line-height: 24px;
+     letter-spacing: 0.15px;
+     color: #fff;
+}
+
+/* Box Styling */
+.details-box {
+     background: white;
+     border-radius: 4px;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+     margin-bottom: 1rem;
+}
+
+.mprn-detail-label {
+     font-weight: 500;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0px;
+     color: #101828;
+     overflow-wrap: break-word;
+}
+
+.mprn-detail-value {
+     color: #475467;
+     font-weight: 400;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0px;
+     overflow-wrap: break-word;
+}
+
+.mprn-detail-row {
+     border-bottom: 1px solid #E4E7EC;
+     background-color: #fff;
+}
+
+/* Edit Icon */
+.mprn-detail-edit {
+     font-size: 14px;
+     cursor: pointer;
+     color: #fff;
+     font-weight: 500;
+     background: none;
+     border: 0;
+     line-height: 20px;
+     letter-spacing: 0.1px;
+     vertical-align: middle;
+}
+
+.mprn-detail-edit-icon {
+     position: relative;
+     width: 10px;
+     height: 5px;
+     background: #fff;
+     transform: rotate(140deg);
+     display: inline-block;
+}
+
+/* Pencil tip */
+.mprn-detail-edit-icon::before {
+     content: '';
+     position: absolute;
+     right: -3px;
+     top: -1px;
+     width: 0;
+     height: 0;
+     border-left: 2px solid #fff;
+     border-top: 3px solid transparent;
+     border-bottom: 4px solid transparent;
+}
+
+/* Eraser end */
+.mprn-detail-edit-icon::after {
+     content: '';
+     position: absolute;
+     left: -5px;
+     top: 0;
+     width: 5px;
+     height: 5px;
+     background: #fff;
+}
+
+/* Editable Fields */
+.form-field {
+     display: flex;
+     flex-direction: row;
+     padding: 0.5rem;
+     align-items: center;
+     border-bottom: 1px solid #DADADA;
+}
+
+.form-field label {
+     margin-bottom: 0.25rem;
+     font-weight: 500;
+     font-size: 14px;
+     width: 250px;
+}
+
+.form-field input {
+     height: 40px;
+     border: 2px solid #DADADA;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 500;
+     letter-spacing: 0.1px;
+     width: 300px;
+     max-width: 265px;
+}
+
+/* Full-page overlay to center the spinner */
+.custom-spinner-container {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: rgba(255, 255, 255, 0.6);
+     /* Optional overlay */
+     z-index: 9999;
+}
+
+/* Dotted spinner container */
+.custom-spinner {
+     position: relative;
+     width: 60px;
+     height: 60px;
+}
+
+/* Individual dots */
+.custom-spinner span {
+     position: absolute;
+     width: 10px;
+     height: 10px;
+     background: #0070d2;
+     /* Salesforce blue */
+     border-radius: 50%;
+     animation: dot-spin 1.2s linear infinite;
+}
+
+/* Position dots in a circle */
+.custom-spinner span:nth-child(1) {
+     top: 0;
+     left: 50%;
+     transform: translate(-50%, 0);
+     animation-delay: 0s;
+}
+
+.custom-spinner span:nth-child(2) {
+     top: 14%;
+     left: 85%;
+     transform: translate(-50%, -50%);
+     animation-delay: 0.15s;
+}
+
+.custom-spinner span:nth-child(3) {
+     top: 50%;
+     left: 100%;
+     transform: translate(-50%, -50%);
+     animation-delay: 0.3s;
+}
+
+.custom-spinner span:nth-child(4) {
+     top: 85%;
+     left: 85%;
+     transform: translate(-50%, -50%);
+     animation-delay: 0.45s;
+}
+
+.custom-spinner span:nth-child(5) {
+     top: 100%;
+     left: 50%;
+     transform: translate(-50%, -100%);
+     animation-delay: 0.6s;
+}
+
+.custom-spinner span:nth-child(6) {
+     top: 85%;
+     left: 14%;
+     transform: translate(-50%, -50%);
+     animation-delay: 0.75s;
+}
+
+.custom-spinner span:nth-child(7) {
+     top: 50%;
+     left: 0%;
+     transform: translate(0, -50%);
+     animation-delay: 0.9s;
+}
+
+.custom-spinner span:nth-child(8) {
+     top: 14%;
+     left: 14%;
+     transform: translate(-50%, -50%);
+     animation-delay: 1.05s;
+}
+
+/* Animation for pulsing effect */
+@keyframes dot-spin {
+
+     0%,
+     100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+     }
+
+     50% {
+          opacity: 1;
+          transform: scale(1.2);
+     }
+}
+
+.custom-success-message {
+     color: #007B34;
+     font-weight: 600;
+}
+
+.custom-error-message {
+     color: #FF0000;
+     font-weight: 600;
+}
+
+
+button.mprn-detail-expand-btn {
+     font-weight: 400;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0.25px;
+     vertical-align: middle;
+     background: none;
+     border: 0;
+     color: #00857A;
+}
+
+button.mprn-detail-expand-btn:hover {
+     text-decoration: underline;
+}
+
+.mprn-detail-toggle-arrow::before {
+     content: '';
+     margin: 0 5px;
+     width: 8px;
+     height: 8px;
+     border-right: 2px solid #00857A;
+     border-bottom: 2px solid #00857A;
+     transform: rotate(-45deg);
+     transition: transform 0.3s ease;
+     display: inline-block;
+     color: #00857A;
+}
+
+.mprn-detail-toggle-arrow::before .open {
+     transform: rotate(45deg);
+}
+
+.detail-row {
+     display: flex;
+     justify-content: space-between;
+     padding: 8px 0;
+     border-bottom: 1px solid #f5f5f5;
+}
+
+.detail-row:last-child {
+     border-bottom: none;
+}
+
+.expand-link {
+     width: 100%;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     gap: 8px;
+     cursor: pointer;
+}
+
+.link-text {
+     color: #00857A;
+     font-weight: 600;
+     font-size: 14px;
+}
+
+.arrow {
+     display: inline-block;
+     color: #00857A;
+     font-weight: 600;
+     transition: transform 0.3s ease;
+     font-size: 15px;
+}
+
+.arrow.down {
+     transform: rotate(90deg);
+}
+
+.actions {
+     display: flex;
+     justify-content: flex-end;
+     gap: 8px;
+}
+
+/*******************. Custom Styles - 01.12.2025 **********/
+.section-header {
+     background: #00857A;
+     border-top-left-radius: 20px;
+     border-top-right-radius: 20px;
+}
+
+.custom-input-element-section {
+     display: flex;
+     flex-direction: column;
+}
+
+.custom-input-element-section .error-msg {
+     font-size: 12px;
+     color: #c23934;
+}
+
+.masked-black {
+     color: transparent;
+     background-color: #00857A;
+     border-radius: 4px;
+     padding: 0 6px;
+     display: inline-block;
+     min-width: 60px;
+     user-select: none;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     cursor: default;
+}

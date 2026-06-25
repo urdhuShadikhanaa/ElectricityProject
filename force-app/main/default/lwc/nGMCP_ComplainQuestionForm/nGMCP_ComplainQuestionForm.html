@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Dynamic Question Form">
+        <template if:true={questions}>
+            <template for:each={questions} for:item="q">
+                <div key={q.Sort_Order__c} class="slds-m-around_medium">
+                    <label class="slds-form-element__label">{q.Question_Text__c}</label>
+
+                    <template if:true={q.isText}>
+                        <lightning-input type="text" name={q.Question_Text__c}></lightning-input>
+                    </template>
+
+                    <template if:true={q.isCheckbox}>
+                        <lightning-input type="checkbox" name={q.Question_Text__c}></lightning-input>
+                    </template>
+
+                    <template if:true={q.isRadio}>
+                        <lightning-radio-group 
+                            name={q.Question_Text__c}
+                            options={radioOptions}
+                            type="radio">
+                        </lightning-radio-group>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>

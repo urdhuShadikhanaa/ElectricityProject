@@ -1,0 +1,16 @@
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId" >
+    <aura:attribute name="PicklistField" type="object"/>
+    
+    <!--force:recordData to update picklist value-->
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.PicklistField}"
+                      mode="EDIT"/>
+    
+    <lightning:PicklistPath aura:id="PicklistPath" recordId="{!v.recordId}"
+        variant="linear"
+        picklistFieldApiName="Part_Medium_Risk__c"
+        onselect="{!c.handleSelect}">
+    </lightning:PicklistPath>
+</aura:component>

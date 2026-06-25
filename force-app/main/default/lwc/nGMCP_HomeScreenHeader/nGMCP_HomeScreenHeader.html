@@ -1,0 +1,24 @@
+<template>
+        <div class="breadcrumbs-container">
+            <div class="logo-section">
+                <img src={logoUrl} class="logo" alt="Logo"/>
+            </div>
+            <div class="portal-banner-alert-section">
+                <c-ngmcp-portal-banner></c-ngmcp-portal-banner>
+            </div>
+            <div class="breadcrumbs-right">
+                <c-n-g-m-c-p_-notifications>
+                    <img src={bellIconUrl} alt="Notifications" class="icon" />
+                </c-n-g-m-c-p_-notifications>
+                <!-- <img src={logoutUrl} alt="User" class="icon" /> -->
+                 <div class="custom-logout-icon-section">
+                        <img 
+                                src={logoutUrl} 
+                                alt="Logout" 
+                                class="icon-logout" 
+                                onclick={handleLogout} 
+                            />
+                </div>
+            </div>  
+        </div>
+</template>

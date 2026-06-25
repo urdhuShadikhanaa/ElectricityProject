@@ -1,0 +1,90 @@
+:host {
+  display: block;
+}
+
+/* ===== Section header (label + count only) ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem .75rem;
+  background: var(--slds-g-color-neutral-base-95, #f3f2f2);
+  border: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+  border-bottom: none;
+  border-radius: .25rem .25rem 0 0;
+}
+.section-header__left { display: flex; align-items: center; }
+
+/* ===== Table wrapper ===== */
+.dt-wrapper {
+  border: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+  border-radius: 0 0 .25rem .25rem;
+  overflow: hidden;
+}
+.dt-scroll { overflow-x: auto; position: relative; }
+
+/* ===== Rows (CSS Grid) ===== */
+.dt-row {
+  display: grid; /* grid-template-columns is applied inline via rl.gridTemplate */
+  align-items: center;
+  min-height: 2rem; /* compact density */
+}
+.dt-row--header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--slds-g-color-neutral-base-95, #f3f2f2);
+  border-bottom: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+}
+.dt-row--data {
+  border-bottom: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+}
+.dt-row--even { background: #fff; }
+.dt-row--odd  { background: var(--slds-g-color-neutral-base-100, #fafafa); }
+.dt-row--data:hover { background: var(--slds-g-color-neutral-base-95, #f3f2f2); }
+
+/* ===== Empty-state row under header ===== */
+.dt-row--empty {
+  background: #fff;
+  border-bottom: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+}
+.dt-cell--empty-message {
+  color: var(--slds-g-color-text-weak, #706e6b);
+}
+
+/* ===== Cells ===== */
+.dt-cell {
+  padding: 0 .75rem;
+  min-width: 0;
+  border-right: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+  font-size: .8125rem;
+  line-height: 1.5rem;
+}
+.dt-row .dt-cell:last-child { border-right: none; }
+
+.dt-cell--header {
+  font-weight: 600;
+  color: var(--slds-g-color-text-default, #3e3e3c);
+  display: flex;
+  align-items: center;
+}
+.dt-cell--sortable { cursor: pointer; }
+
+/* Link styling — dotted underline like datatable */
+.dt-cell--link .dt-link {
+  color: var(--sds-c-link-text-color, #0176D3);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+.dt-cell--link .dt-link:hover,
+.dt-cell--link .dt-link:focus {
+  text-decoration-style: solid;
+}
+
+/* Truncation */
+.slds-truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

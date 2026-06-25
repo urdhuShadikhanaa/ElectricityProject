@@ -1,0 +1,16 @@
+.compact {
+    font-size: 0.75rem;
+}
+
+.compact-card {
+    font-size: 0.75rem;
+}
+
+.compact-date {
+    font-size: 0.75rem;
+    width: 150px;
+}
+
+.white-bg {
+    background-color: white;
+}

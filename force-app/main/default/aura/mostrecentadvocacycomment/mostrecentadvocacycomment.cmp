@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	   <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+   <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="fields" type="String[]" default="['most_recent_advocacy_comment__c']" />
+    <article class="slds-card">
+        
+    <lightning:card iconName="standard:care_request_reviewer" >
+         <div class="slds-grid slds-wrap">
+             <div class="slds-col slds-size_12-of-12">
+            <h2>
+   <lightning:recordForm recordId="{!v.recordId}" 
+                          objectApiName="Account"
+                          mode="readonly"
+                          fields="{!v.fields}" />
+            </h2>
+        </div>
+        </div>
+    </lightning:card>
+        
+    </article>
+</aura:component>

@@ -1,0 +1,226 @@
+<template>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="tab-container">
+                <template for:each={tabs} for:item="tab">
+                    <div key={tab.name} data-tab={tab.name} class={tab.class} onclick={handleTabClick}>
+                        <img src={tab.icon} class="icon" alt={tab.label} />
+                        <span class="label">{tab.label}</span>
+                    </div>
+                </template>
+            </div>
+            <div class="footer">
+                @ National Gas. All rights reserved.
+            </div>
+        </div>
+        <div class="content-area">
+            <template if:true={isHomeTab}>
+                <div class="home-container" style={backgroundStyle}>
+                    <div class="welcome-text">
+                        <p>Welcome, {userName}!</p>
+                        <h1>In a Hurry? Insert your MPRN</h1>
+                    </div>
+                    <div class="form-and-buttons">
+                        <div class="search-section">
+                            <div class="input-group">
+                                <label>MPRN</label>
+                                <input type="text" id="mprn" class="mprn-input" onchange={handleInputChange}
+                                    placeholder="Enter MPRN" />
+                            </div>
+                            <div class="input-group">
+                                <label>Supplier Short Code</label>
+                                <!-- <input type="text" placeholder="Choose SCP" /> -->
+                                <!-- <lightning-combobox
+                            name="supplierShortCode"
+                            value={selectedCode}
+                            placeholder="Select Code"
+                            options={supplierOptions}
+                            onchange={handleCodeChange}>
+                        </lightning-combobox> -->
+                                <select id="supplierCode" class="custom-picklist" onchange={handleCodeChange}>
+
+                                    <option value="">-- Select Code --</option>
+
+                                    <option value="BGT">BGT</option>
+
+                                    <option value="BSA">BSA</option>
+
+                                    <option value="BGF">BGF</option>
+
+                                    <option value="BGB">BGB</option>
+
+                                    <option value="SCP">SCP</option>
+
+                                    <option value="SCT">SCT</option>
+
+                                    <option value="OCT">OCT</option>
+
+                                    <option value="OVO">OVO</option>
+
+                                    <option value="KIN">KIN</option>
+
+                                    <option value="EOD">EOD</option>
+
+                                </select>
+
+
+                            </div>
+                            <div class="input-group">
+                                <label>Serial Number</label>
+                                <input type="text" id="serialnumber" class="serialnumber-input"
+                                    onchange={handleserialnumberChage} placeholder="Enter Serial Number" />
+                            </div>
+                            <div class="input-group">
+                                <label>Postal Code Number</label>
+                                <input type="text" id="postalcode" class="postalcode-input"
+                                    onchange={handlePostalCodeChanges} placeholder="Enter Postal Code" />
+                            </div>
+                            <button class="search-button" onclick={handleSearch}>Search</button>
+                        </div>
+
+                        <div class="quick-links">
+                            <button class="quick-btn">Create Work Order</button>
+                            <button class="quick-btn">Appointment/Deappointment</button>
+                            <button class="quick-btn">Create Enquiry</button>
+                        </div>
+                    </div>
+                    <div class="appointment-panel">
+                        <c-ng-case-appointment></c-ng-case-appointment>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isModalOpen}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" style="max-width: 95vw;">
+                        <!-- Modal Header -->
+                        <header class="slds-modal__header">
+                            <h2 class="slds-modal__title slds-hyphenate">Short Code Results</h2>
+                        </header>
+
+                        <!-- Modal Body -->
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id"
+                            style="max-height: 400px; overflow-y: auto;">
+                            <template if:true={filteredRecords.length}>
+                                <div style="width: 100%;">
+                                    <!-- Header Row -->
+                                    <div
+                                        class="slds-grid slds-p-bottom_x-small slds-border_bottom slds-text-title_caps slds-text-color_weak">
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                        <div class="slds-col slds-size_2-of-12">MPRN</div>
+                                        <div class="slds-col slds-size_2-of-12">Customer</div>
+                                        <div class="slds-col slds-size_2-of-12">Appointment From Date</div>
+                                        <div class="slds-col slds-size_3-of-12">Address</div>
+                                        <div class="slds-col slds-size_1-of-12">Model</div>
+                                        <div class="slds-col slds-size_1-of-12">MSN</div>
+                                        <div class="slds-col slds-size_1-of-12"></div>
+                                    </div>
+
+                                    <!-- Record Rows -->
+                                    <template for:each={filteredRecords} for:item="record">
+                                        <div key={record.id}
+                                            class="slds-grid slds-p-vertical_x-small slds-border_bottom slds-align_absolute-center">
+                                            <div class="slds-col slds-size_1-of-12">
+                                                <input type="radio" name="recordSelection" value={record.appointmentDate}
+                                                    onchange={handleSelection} style="margin: auto;" />
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-12">
+                                                <span>{record.MPRN}</span>
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-12">
+                                                <span>{record.Customer}</span>
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-12">
+                                                <span>{record.AppointmentFromDate}</span>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-12">
+                                                <span>{record.Address}</span>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-12">
+                                                <span>{record.Model}</span>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-12">
+                                                <span>{record.MSN}</span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+
+                            <!-- No Records Message -->
+                            <template if:false={filteredRecords.length}>
+                                <div class="slds-text-align_center slds-text-color_weak slds-m-top_medium">
+                                    <p>No active supplier for this MPRN Number ({mprn}).</p>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <footer class="slds-modal__footer slds-grid slds-grid_align-end">
+                            <button class="slds-button slds-button_neutral slds-m-right_small"
+                                onclick={closeModal}>Close</button>
+                            <button class="slds-button slds-button_brand" onclick={confirmSelection}>Confirm
+                                Selection</button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+
+            <template if:true={isReportTab}>
+                <c-ng-report-dashboard></c-ng-report-dashboard>
+            </template>
+            <!-- <template if:true={isReportTab}>
+                <div class="home-container">
+                </div>
+                <div class="tab-content">
+                    <template if:true={hasAppointments}>
+                        <div class="report-tab-container">
+                            <div class="table-scroll-wrapper">
+                                <table class="amr-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Appointment Number</th>
+                                            <th>Subject</th>
+                                            <th>Status</th>
+                                            <th>Parent Record Id</th>
+                                            <th>Scheduled Hour</th>
+                                            <th>Scheduled Start</th>
+                                            <th>Scheduled End</th>
+                                            <th>FFA SP ID</th>
+                                            <th>FFA Work Order</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={appointments} for:item="appt" for:index="index">
+                                            <tr key={appt.Id}>
+                                                <td>{index}</td>
+                                                <td>{appt.AppointmentNumber}</td>
+                                                <td>{appt.Subject}</td>
+                                                <td>{appt.Status}</td>
+                                                <td>{appt.ParentRecordId}</td>
+                                                <td>{appt.Scheduled_Hour__c}</td>
+                                                <td>{appt.formattedStart}</td>
+                                                <td>{appt.formattedEnd}</td>
+                                                <td>{appt.FFA_SP_ID__c}</td>
+                                                <td>{appt.FFA_Work_Order__c}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:false={hasAppointments}>
+                        <p class="placeholder-text">No service appointments found.</p>
+                    </template>
+                </div>
+            </template>        -->
+        </div>
+    </div>
+</template>

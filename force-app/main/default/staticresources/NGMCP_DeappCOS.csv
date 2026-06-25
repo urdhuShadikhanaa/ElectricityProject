@@ -1,0 +1,4 @@
+MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,New Supplier Short Code,Market sector code
+1234,ABC,DEAPP,COS,23-05-2026,XYZ,I
+5678,DEF,DEAPP,COS,24-05-2026,XYZ,D
+9012,ABC,DEAPP,COS,25-05-2026,XYZ,D

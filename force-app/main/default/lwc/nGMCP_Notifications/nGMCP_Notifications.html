@@ -1,0 +1,119 @@
+<template>
+    <!-- <div class="bell-wrapper" onclick={togglePanel}> -->
+        <div class="bell-wrapper" onclick={handleBellClick}>
+        <img src={bellIcon} title="Notifications" class="bell-icon" />
+        <template if:true={hasUnread}>
+            <span class="notif-badge">{unreadCount}</span>
+        </template>
+    </div>
+    <template if:true={showFloatingMessage}>
+        <div class="floating-message">
+            {lastMessage}
+        </div>
+    </template>
+    <!-- <template if:true={openPanel}>
+        <div class="notif-popup">
+
+            <div class="popup-header">
+                <button
+                    class="custom-login-button"
+                    onclick={handleMarkAllRead}>
+                    Mark all as Read
+                </button>
+            </div>
+
+            <template if:true={notifications.length}>
+                <template for:each={notifications} for:item="notif">
+                    <div key={notif.id} class="notif-item">
+                        <div class="notif-text">
+                            {notif.text}
+                        </div>
+
+                        <div class="notif-footer">
+                            <span class="notif-date">
+                                {notif.createdDate}
+                            </span>
+                            <template if:true={notif.isServer}>
+                                <a
+                                    href="javascript:void(0);"
+                                    data-id={notif.id}
+                                    onclick={handleMarkRead}>
+                                    Mark as Read
+                                </a>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={notifications.length}>
+                <div class="no-notif">
+                    No unread notifications
+                </div>
+            </template>
+
+        </div>
+    </template> -->
+    <template if:true={openPanel}>
+    <div class="notif-popup" onclick={stopPropagation}>
+
+        <!-- HEADER -->
+        <div class="popup-header slds-grid slds-grid_align-spread slds-p-bottom_x-small">
+            <span class="popup-title">Notifications</span>
+
+            <button
+                class="close-btn"
+                title="Close"
+                onclick={togglePanel}>
+                ✕
+            </button>
+        </div>
+
+        <!-- MARK ALL -->
+        <div class="popup-actions slds-grid slds-grid_align-end">
+            <button
+                class="custom-notif-read-all-btn"
+                onclick={handleMarkAllRead}>
+                Mark all as Read
+            </button>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <template if:true={notifications.length}>
+            <div class="notif-list">
+                <template for:each={notifications} for:item="notif">
+                    <div key={notif.id} class="notif-item">
+                        <div class="notif-text">
+                            {notif.text}
+                        </div>
+
+                        <div class="notif-footer slds-grid slds-grid_align-spread">
+                            <span class="notif-date">
+                                {notif.createdDate}
+                            </span>
+
+                            <a
+                                href="javascript:void(0);"
+                                data-id={notif.id}
+                                onclick={handleMarkRead}>
+                                Mark as Read
+                            </a>
+
+
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- EMPTY STATE (Salesforce-like) -->
+        <template if:false={notifications.length}>
+            <div class="no-notif slds-text-align_center slds-p-around_small">
+                You don't have any notifications right now.
+            </div>
+        </template>
+
+    </div>
+</template>
+
+</template>

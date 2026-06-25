@@ -1,0 +1,33 @@
+<template>
+    <!-- Buttons -->
+    <!-- <template if:true={showProvideAdditionalButton}> -->
+    <lightning-button label="Provide Additional Information" onclick={openAdditionalInfoModal}>
+    </lightning-button>
+    <!-- </template>
+    <template if:true={showReopenQueryButton}> -->
+    <lightning-button label="Reopen Query" onclick={openReopenModal}>
+    </lightning-button>
+    <!-- </template> -->
+    <!-- Modal -->
+    <template if:true={isModalOpen}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">{modalHeader}</h2>
+                </header>
+                <div class="slds-modal__content">
+                    <!-- Mandatory Text -->
+                    <lightning-textarea label="Comments" value={comments} onchange={handleComments} required>
+                    </lightning-textarea>
+                    <!-- Optional File Upload -->
+                    <lightning-file-upload label="Upload Documents (Optional)" name="fileUploader" record-id={recordId}>
+                    </lightning-file-upload>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+                    <lightning-button label="Submit" variant="brand" onclick={handleSubmit}></lightning-button>
+                </footer>
+            </div>
+        </section>
+    </template>
+</template>

@@ -1,0 +1,46 @@
+<template>
+    <lightning-card>
+        <!-- Header -->
+        <div class="slds-p-around_medium slds-grid slds-wrap slds-border_bottom">
+            <div class="slds-col slds-size_1-of-2">
+                <h2 class="slds-text-heading_medium">MPRN: {mprn} - EOD</h2>
+                <lightning-badge label="Commercial"></lightning-badge>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                <lightning-button label="De-appoint" onclick={handleDeappoint}></lightning-button>
+                <lightning-button label="Create Query" onclick={handleCreateQuery}></lightning-button>
+                <lightning-button label="Create Job" onclick={handleCreateJob}></lightning-button>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <lightning-tabset>
+            <lightning-tab label="Overview">
+                <div class="slds-p-around_medium">
+                    <lightning-layout multiple-rows>
+                        <template for:each={assetFields} for:item="field">
+                            <lightning-layout-item key={field.label} size="6">
+                                <p><strong>{field.label}:</strong> {field.value}</p>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+
+                    <div class="slds-box slds-theme_shade slds-m-top_medium">
+                        <h3 class="slds-text-heading_small">Address Details</h3>
+                        <template for:each={addressFields} for:item="field">
+                            <p key={field.label}><strong>{field.label}:</strong> {field.value}</p>
+                        </template>
+                    </div>
+                </div>
+            </lightning-tab>
+
+            <lightning-tab label="Request Log">
+                <p class="slds-p-around_medium">Request log content goes here...</p>
+            </lightning-tab>
+
+            <lightning-tab label="AMR">
+                <p class="slds-p-around_medium">AMR content goes here...</p>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

@@ -1,0 +1,34 @@
+<template>
+    <template if:true={showRetrospectiveQuestion}>
+        <div class="slds-m-bottom_medium">
+            <p><strong>Please confirm if this is a retrospective job?</strong></p>
+            <label class="radio">
+                <input type="radio" name="retro" value="Yes" checked={isRetrospectiveYes} onchange={handleRetrospectiveChange}> Yes
+            </label>
+            <label class="radio">
+                <input type="radio" name="retro" value="No" checked={isRetrospectiveNo} onchange={handleRetrospectiveChange}> No
+            </label>
+        </div>
+    </template>
+
+    <template if:true={showAppointmentFields}>
+        <div class="slds-m-bottom_small">
+            <label>Appointment Date</label>
+            <!-- Dynamically set min/max based on selection -->
+            <input type="date" lang="en-GB" min={dateMin} max={dateMax} value={appointmentDate} onchange={handleDateChange} class="apec-input"/>
+            <template if:true={showDateError}>
+                <p style="color:red;font-size:12px;">Invalid date selection.</p>
+            </template>
+        </div>
+
+        <div class="slds-m-bottom_small">
+            <label>Appointment Slot</label>
+            <select onchange={handleSlotChange} class="apec-select">
+                <option value="">Select a slot</option>
+                <template for:each={availableSlots} for:item="slot">
+                    <option key={slot} value={slot}>{slot}</option>
+                </template>
+            </select>
+        </div>
+    </template>
+</template>

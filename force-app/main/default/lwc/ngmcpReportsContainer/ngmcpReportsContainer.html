@@ -1,0 +1,643 @@
+<template>
+    <template if:true={showListView}>
+        <!--Report List-->
+        <template if:false={showReportTable}>
+            <section class="container custom-reports-main-table">
+                <div class="grid">
+                    <div class="grid-row grid-header">
+                        <div class="grid-cell reports-header">Reports</div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="COMPLETED_PME" onclick={openReport}>
+                            Completed PME and Maintenance Jobs
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="INPROGRESS_PME" onclick={openReport}>
+                            Inprogress PME and Maintenance Jobs
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="ADDINFO_ENQ" onclick={openReport}>
+                            Enquiries Requiring Additional Information
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="ADDINFO_WO" onclick={openReport}>
+                            Work Orders Requiring Additional Information
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="COMP_WO" onclick={openReport}>
+                            Completed Work Order
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="INPROGRESS_WO" onclick={openReport}>
+                            Upcoming Site Visits
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="USER_DETAILS" onclick={openReport}>
+                            User Details
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="TECHNICAL_QUERIES" onclick={openReport}>
+                            All Technical Enquiries
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="DATA_QUERIES" onclick={openReport}>
+                            All Data Enquiries
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="OPEN_TECHNICAL_QUERIES" onclick={openReport}>
+                            All Open Technical Enquiries
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="OPEN_DATA_QUERIES" onclick={openReport}>
+                            All Open Data Enquiries
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="WR_AND_ENQ" onclick={openReport}>
+                            All Customer Work Requests and Enquiries
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="WORKORDERS" onclick={openReport}>
+                            All Customer Work Requests
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="APP_AND_DEAPP" onclick={openReport}>
+                            All Appointments and Deappointment Requests
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="QUOTE_STATUS" onclick={openReport}>
+                            All Quotation Status Report
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="ALL_AMR" onclick={openReport}>
+                            All AMR Work Requests
+                        </div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell" data-id="ALL_OPEN_AMR" onclick={openReport}>
+                            All Open AMR Work Requests
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <!-- ================= User Report ================= -->
+        <!-- ================= REPORT TABLE ================= -->
+        <template if:true={showReportTable}>
+            <template if:true={isUserReport}>
+                <div class="custom-reports-main-title">{reportTitle}</div>
+                <div class="container custom-user-details-table">
+                    <!--<div class="table-wrapper" role="table" aria-label="Reports">-->
+                    <div class="grid">
+                        <div class="grid-row grid-header" role="row">
+                            <div class="grid-cell" role="columnheader" data-key="FirstName" onclick={handleSort}>
+                                FirstName
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="LastName" onclick={handleSort}>LastName
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="Email" onclick={handleSort}>Email</div>
+                            <div class="grid-cell" role="columnheader" data-key="UserName" onclick={handleSort}>UserId
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="Profile" onclick={handleSort}>Profile
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="supplierGroup" onclick={handleSort}>
+                                Supplier Group</div>
+                            <div class="grid-cell" role="columnheader" data-key="suppliercode" onclick={handleSort}>
+                                Supplier
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="IsActive" onclick={handleSort}>Is
+                                Active
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="LastLoginDate" onclick={handleSort}>
+                                LastLoginDate</div>
+                        </div>
+                        <!--body-->
+                        <template if:true={rows.length}>
+                            <template for:each={rows} for:item="row">
+                                <div class="grid-row" role="row" key={row.recordId}>
+                                    <div class="grid-cell" role="cell">{row.FirstName} </div>
+                                    <div class="grid-cell" role="cell">{row.LastName}</div>
+                                    <div class="grid-cell" role="cell">{row.Email}</div>
+                                    <div class="grid-cell" role="cell">{row.UserName}</div>
+                                    <div class="grid-cell" role="cell">{row.Profile}</div>
+                                    <div class="grid-cell" role="cell">{row.supplierGroup}</div>
+                                    <div class="grid-cell" role="cell">{row.suppliercode}</div>
+                                    <div class="grid-cell" role="cell">{row.IsActive}</div>
+                                    <div class="grid-cell" role="cell">{row.LastLoginDate}</div>
+                                </div>
+                            </template>
+                        </template>
+                        <template if:false={rows.length}>
+                            <div class="grid-row empty">
+                                <div class="grid-cell">
+                                    No records found.
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <!-- ================= Other Report ================= -->
+            <template if:true={isOtherReports}>
+                <div class="custom-reports-main-title">{reportTitle}</div>
+
+                <div class="container custom-additional-info-table">
+                    <div class="grid">
+
+                        <!-- ================= HEADER ================= -->
+                        <div class="grid-row grid-header" role="row">
+
+                            <!-- Work Order -->
+                            <div class="grid-cell" role="columnheader" data-key="name" onclick={handleSort}>
+                                Work Order
+                            </div>
+
+                            <div class="grid-cell" role="columnheader" data-key="status" onclick={handleSort}>
+                                Status
+                            </div>
+
+                            <div class="grid-cell" role="columnheader" data-key="mprn" onclick={handleSort}>
+                                MPRN
+                            </div>
+
+                            <!-- COMPLETED -->
+                            <template if:true={completed}>
+                                <div class="grid-cell" role="columnheader" data-key="JobDescription"
+                                    onclick={handleSort}>
+                                    Job Code Description
+                                </div>
+
+                                <div class="grid-cell" role="columnheader" data-key="CompletionDate"
+                                    onclick={handleSort}>
+                                    Completion Date
+                                </div>
+                            </template>
+
+                            <!-- IN PROGRESS -->
+                            <template if:true={inprogress}>
+                                <div class="grid-cell" role="columnheader" data-key="JobCode" onclick={handleSort}>
+                                    Job Code
+                                </div>
+
+                                <div class="grid-cell" role="columnheader" data-key="JobDescription"
+                                    onclick={handleSort}>
+                                    Job Code Description
+                                </div>
+                            </template>
+
+                            <div class="grid-cell" role="columnheader" data-key="suppliercode" onclick={handleSort}>
+                                Supplier Code
+                            </div>
+                        </div>
+
+                        <!-- ================= BODY ================= -->
+                        <template if:true={rows.length}>
+                            <template for:each={rows} for:item="row">
+                                <div class="grid-row" role="row" key={row.recordId}>
+
+                                    <!-- Work Order -->
+                                    <div class="grid-cell link-cell" role="cell">
+                                        <a href="javascript:void(0)" data-id={row.recordId} onclick={openRecord}>
+                                            {row.name}
+                                        </a>
+                                    </div>
+
+                                    <div class={row.statusCellClass} role="cell">
+                                        {row.status}
+                                    </div>
+
+                                    <div class="grid-cell" role="cell">
+                                        {row.mprn}
+                                    </div>
+
+                                    <!-- COMPLETED -->
+                                    <template if:true={completed}>
+                                        <div class="grid-cell" role="cell">
+                                            {row.JobDescription}
+                                        </div>
+
+                                        <div class="grid-cell" role="cell">
+                                            {row.CompletionDate}
+                                        </div>
+                                    </template>
+
+                                    <!-- IN PROGRESS -->
+                                    <template if:true={inprogress}>
+                                        <div class="grid-cell" role="cell">
+                                            {row.JobCode}
+                                        </div>
+
+                                        <div class="grid-cell" role="cell">
+                                            {row.JobDescription}
+                                        </div>
+                                    </template>
+
+                                    <div class="grid-cell" role="cell">
+                                        {row.suppliercode}
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+
+                        <!-- ================= EMPTY STATE ================= -->
+                        <template if:false={rows.length}>
+                            <div class="grid-row empty">
+                                <div class="grid-cell">
+                                    No records found.
+                                </div>
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+            </template>
+
+            <!--================Appointment/Deappointment Reports=============-->
+            <template if:true={isAppReports}>
+                <div class="custom-reports-main-title">{reportTitle}</div>
+                <div class="container custom-appoint-requests-table">
+                    <div class="grid">
+                        <!-- ================= HEADER ================= -->
+                        <div class="grid-row grid-header" role="row">
+                            <div class="grid-cell" role="columnheader" data-key="name" onclick={handleSort}>Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="mprn" onclick={handleSort}>MPRN</div>
+                            <div class="grid-cell" role="columnheader" data-key="suppliercode" onclick={handleSort}>
+                                Supplier
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="status" onclick={handleSort}>Status
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="ReasonCode" onclick={handleSort}>Reason
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="TypeCode" onclick={handleSort}>Type
+                                Code
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="CreatedDate" onclick={handleSort}>
+                                Created
+                                Date</div>
+                            <div class="grid-cell" role="columnheader" data-key="fromDate" onclick={handleSort}>From
+                                Date
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="toDate" onclick={handleSort}>To Date
+                            </div>
+                        </div>
+                        <!-- ================= BODY ================= -->
+                        <template if:true={rows.length}>
+                            <template for:each={rows} for:item="row">
+                                <div class="grid-row" role="row" key={row.recordId}>
+                                    <div class="grid-cell link-cell" role="cell">
+                                        <a href="javascript:void(0)" data-id={row.recordId} onclick={openRecord}>
+                                            {row.name} </a>
+                                    </div>
+                                    <div class="grid-cell" role="cell">{row.mprn}</div>
+                                    <div class="grid-cell" role="cell">{row.suppliercode}</div>
+                                    <div class="grid-cell" role="cell">{row.status}</div>
+                                    <div class="grid-cell" role="cell">{row.ReasonCode}</div>
+                                    <div class="grid-cell" role="cell">{row.TypeCode}</div>
+                                    <div class="grid-cell" role="cell">{row.CreatedDate}</div>
+                                    <div class="grid-cell" role="cell">{row.fromDate}</div>
+                                    <div class="grid-cell" role="cell">{row.toDate}</div>
+                                </div>
+                            </template>
+                        </template>
+                        <!-- ================= EMPTY STATE ================= -->
+                        <template if:false={rows.length}>
+                            <div class="grid-row empty">
+                                <div class="grid-cell">
+                                    No records found.
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <!-- =================  Enquiry REPORTS ================= -->
+            <!-- <template if:true={showListView}> -->
+            <template if:true={isEnquiryReports}>
+                <div class="custom-reports-main-title">{reportTitle}</div>
+                <div class="container custom-enquiry-reports-table">
+                    <!--<div class="table-wrapper" role="table" aria-label="Reports">-->
+                    <div class="grid">
+                        <!-- ================= HEADER ================= -->
+                        <div class="grid-row grid-header" role="row">
+                            <div class="grid-cell" role="columnheader" data-key="name" onclick={handleSort}>Name</div>
+                            <template if:false={isshowJobCategory}>
+                                <div class="grid-cell" role="columnheader" data-key="SRnumber" onclick={handleSort}>
+                                    Service
+                                    Request</div>
+                            </template>
+                            <div class="grid-cell" role="columnheader" data-key="status" onclick={handleSort}>Status
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="mprn" onclick={handleSort}>MPRN</div>
+                            <template if:true={isshowJobCategory}>
+                                <div class="grid-cell" role="columnheader" data-key="jobcategory" onclick={handleSort}>
+                                    Job
+                                    Category</div>
+                            </template>
+                            <div class="grid-cell" role="columnheader" data-key="suppliercode" onclick={handleSort}>
+                                Supplier
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="EnquiryType" onclick={handleSort}>
+                                Enquiry
+                                Type</div>
+                            <div class="grid-cell" role="columnheader" data-key="EnquiryCategorydescprition"
+                                onclick={handleSort}>
+                                Enquiry Category</div>
+                            <div class="grid-cell" role="columnheader" data-key="ReasonDescription"
+                                onclick={handleSort}>
+                                Reason
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="Startdate" onclick={handleSort}>Start
+                                Date
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="Enddate" onclick={handleSort}>
+                                End Date</div>
+                            <div class="grid-cell" role="columnheader" data-key="BuildingName" onclick={handleSort}>
+                                Building
+                                Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="BuildingNumber" onclick={handleSort}>
+                                Building Number</div>
+                            <div class="grid-cell" role="columnheader" data-key="Street" onclick={handleSort}>Street
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="DependentLocality"
+                                onclick={handleSort}>
+                                Dependent Locality</div>
+                            <div class="grid-cell" role="columnheader" data-key="Town" onclick={handleSort}>Town</div>
+                            <div class="grid-cell" role="columnheader" data-key="PostCode" onclick={handleSort}>PostCode
+                            </div>
+                            <!-- <div class="grid-cell" role="columnheader" data-key="CustomerName" onclick={handleSort}>Customer
+                                Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="CustomerNumber" onclick={handleSort}>
+                                Customer Number</div> -->
+                        </div>
+                        <!-- ================= BODY ================= -->
+                        <template if:true={rows.length}>
+                            <template for:each={rows} for:item="row">
+                                <div class="grid-row" role="row" key={row.recordId}>
+                                    <div class="grid-cell link-cell" role="cell">
+                                        <a href="javascript:void(0)" data-id={row.recordId} onclick={openRecord}>
+                                            {row.name} </a>
+                                    </div>
+                                    <template if:false={isshowJobCategory}>
+                                        <div class="grid-cell" role="cell">{row.SRnumber}</div>
+                                    </template>
+                                    <div class={row.statusCellClass} role="cell">{row.status}</div>
+                                    <div class="grid-cell" role="cell">{row.mprn}</div>
+                                    <template if:true={isshowJobCategory}>
+                                        <div class="grid-cell" role="cell">{row.jobcategory}</div>
+                                    </template>
+                                    <div class="grid-cell" role="cell">{row.suppliercode}</div>
+                                    <div class="grid-cell" role="cell">{row.EnquiryType}</div>
+                                    <div class="grid-cell" role="cell">{row.EnquiryCategorydescprition}</div>
+                                    <div class="grid-cell" role="cell">{row.ReasonDescription}</div>
+                                    <div class="grid-cell" role="cell">{row.Startdate}</div>
+                                    <div class="grid-cell" role="cell">{row.Enddate}</div>
+                                    <div class="grid-cell" role="cell">{row.BuildingName}</div>
+                                    <div class="grid-cell" role="cell">{row.BuildingNumber}</div>
+                                    <div class="grid-cell" role="cell">{row.Street}</div>
+                                    <div class="grid-cell" role="cell">{row.DependentLocality}</div>
+                                    <div class="grid-cell" role="cell">{row.Town}</div>
+                                    <div class="grid-cell" role="cell">{row.PostCode}</div>
+                                    <!-- <div class="grid-cell" role="cell">{row.CustomerName}</div>
+                                    <div class="grid-cell" role="cell">{row.CustomerNumber}</div> -->
+                                </div>
+                            </template>
+                            <!-- <template if:true={showDetailView}>
+                                    <c-n-g-m-c-p_dynamic-request-pages record-id={recordId} object-api-name={objectApiName}
+                                        record-type-name={recordTypeName}>
+                                    </c-n-g-m-c-p_dynamic-request-pages>
+                                </template> -->
+                        </template>
+                        <!-- <template if:true={showDetailView}>
+                            <c-n-g-m-c-p_dynamic-request-pages record-id={recordId} object-api-name={objectApiName}
+                                record-type-name={recordTypeName}>
+                            </c-n-g-m-c-p_dynamic-request-pages>
+                        </template> -->
+                        <!-- </template> -->
+                        <!-- ================= EMPTY STATE ================= -->
+                        <template if:false={rows.length}>
+                            <div class="grid-row empty">
+                                <div class="grid-cell">
+                                    No records found.
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <!-- </template> -->
+            </template>
+            <!-- =================  AMR REPORTS ================= -->
+            <template if:true={isAMRReports}>
+                <div class="custom-reports-main-title">{reportTitle}</div>
+                <div class="container custom-enquiry-reports-table">
+                    <!--<div class="table-wrapper" role="table" aria-label="Reports">-->
+                    <div class="grid">
+                        <!-- ================= HEADER ================= -->
+                        <div class="grid-row grid-header" role="row">
+                            <div class="grid-cell" role="columnheader" data-key="name" onclick={handleSort}>Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="mprn" onclick={handleSort}>MPRN</div>
+                            <div class="grid-cell" role="columnheader" data-key="suppliercode" onclick={handleSort}>
+                                Supplier
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="SRnumber" onclick={handleSort}>Service
+                                Request</div>
+                            <div class="grid-cell" role="columnheader" data-key="status" onclick={handleSort}>Status
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="jobcategory" onclick={handleSort}>Job
+                                Category</div>
+                            <div class="grid-cell" role="columnheader" data-key="AppointmentStartDate"
+                                onclick={handleSort}>
+                                AppointmentStartDate</div>
+                            <div class="grid-cell" role="columnheader" data-key="MAMID" onclick={handleSort}>MAM ID
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="ServiceLevel" onclick={handleSort}>
+                                Service
+                                Level</div>
+                            <div class="grid-cell" role="columnheader" data-key="AnnualConsumption"
+                                onclick={handleSort}>
+                                Annual Consumption</div>
+                            <div class="grid-cell" role="columnheader" data-key="Address" onclick={handleSort}>Address
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="Town" onclick={handleSort}>Town</div>
+                            <div class="grid-cell" role="columnheader" data-key="PostCode" onclick={handleSort}>PostCode
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="CustomerName" onclick={handleSort}>
+                                Customer
+                                Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="CustomerNumber" onclick={handleSort}>
+                                Customer Number</div>
+                            <div class="grid-cell" role="columnheader" data-key="CustomerEmail" onclick={handleSort}>
+                                Customer Email</div>
+                        </div>
+                        <!-- ================= BODY ================= -->
+                        <template if:true={rows.length}>
+                            <template for:each={rows} for:item="row">
+                                <div class="grid-row" role="row" key={row.recordId}>
+                                    <div class="grid-cell link-cell" role="cell">
+                                        <a href="javascript:void(0)" data-id={row.recordId} onclick={openRecord}>
+                                            {row.name} </a>
+                                    </div>
+                                    <div class="grid-cell" role="cell">{row.mprn}</div>
+                                    <div class="grid-cell" role="cell">{row.suppliercode}</div>
+                                    <div class="grid-cell" role="cell">{row.SRnumber}</div>
+                                    <div class={row.statusCellClass} role="cell">{row.status}</div>
+                                    <div class="grid-cell" role="cell">{row.jobcategory}</div>
+                                    <div class="grid-cell" role="cell">{row.AppointmentStartDate}</div>
+                                    <div class="grid-cell" role="cell">{row.MAMID}</div>
+                                    <div class="grid-cell" role="cell">{row.ServiceLevel}</div>
+                                    <div class="grid-cell" role="cell">{row.AnnualConsumption}</div>
+                                    <div class="grid-cell" role="cell">{row.Address}</div>
+                                    <div class="grid-cell" role="cell">{row.Town}</div>
+                                    <div class="grid-cell" role="cell">{row.PostCode}</div>
+                                    <div class="grid-cell" role="cell">{row.CustomerName}</div>
+                                    <div class="grid-cell" role="cell">{row.CustomerNumber}</div>
+                                    <div class="grid-cell" role="cell">{row.CustomerEmail}</div>
+                                </div>
+                            </template>
+                        </template>
+                        <!-- ================= EMPTY STATE ================= -->
+                        <template if:false={rows.length}>
+                            <div class="grid-row empty">
+                                <div class="grid-cell">
+                                    No records found.
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- ================= Workorders Report ================= -->
+            <template if:true={isWORKORDERSReport}>
+                <div class="custom-reports-main-title">{reportTitle}</div>
+                <div class="container custom-workorder-reports-table">
+                    <!--<div class="table-wrapper" role="table" aria-label="Reports">-->
+                    <div class="grid">
+                        <!-- ================= HEADER ================= -->
+                        <div class="grid-row grid-header" role="row">
+                            <div class="grid-cell" role="columnheader" data-key="name" onclick={handleSort}>Request
+                                Number
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="SRnumber" onclick={handleSort}>SR
+                                Number
+                            </div>
+                            <template if:false={isshowQuoteStatus}>
+                                <div class="grid-cell" role="columnheader" data-key="status" onclick={handleSort}>Status
+                                </div>
+                            </template>
+                            <template if:true={isshowQuoteStatus}>
+                                <div class="grid-cell" role="columnheader" data-key="QuotationStatus"
+                                    onclick={handleSort}>
+                                    Quotation Status</div>
+                            </template>
+                            <div class="grid-cell" role="columnheader" data-key="mprn" onclick={handleSort}>MPRN</div>
+                            <div class="grid-cell" role="columnheader" data-key="jobcategory" onclick={handleSort}>Job
+                                Category</div>
+                            <div class="grid-cell" role="columnheader" data-key="subcategory" onclick={handleSort}>Sub
+                                Category</div>
+                            <div class="grid-cell" role="columnheader" data-key="suppliercode" onclick={handleSort}>
+                                Supplier
+                                Code</div>
+                            <div class="grid-cell" role="columnheader" data-key="CreatedOn" onclick={handleSort}>Created
+                                On
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="BuildingName" onclick={handleSort}>
+                                Building
+                                Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="BuildingNumber" onclick={handleSort}>
+                                Building Number</div>
+                            <div class="grid-cell" role="columnheader" data-key="Street" onclick={handleSort}>Street
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="DependentLocality"
+                                onclick={handleSort}>
+                                Dependent Locality</div>
+                            <div class="grid-cell" role="columnheader" data-key="Town" onclick={handleSort}>Town</div>
+                            <div class="grid-cell" role="columnheader" data-key="PostCode" onclick={handleSort}>PostCode
+                            </div>
+                            <div class="grid-cell" role="columnheader" data-key="CustomerName" onclick={handleSort}>
+                                Customer
+                                Name</div>
+                            <div class="grid-cell" role="columnheader" data-key="CustomerNumber" onclick={handleSort}>
+                                Customer Number</div>
+                        </div>
+
+                        <!-- ================= BODY ================= -->
+                        <template if:true={rows.length}>
+                            <template for:each={rows} for:item="row">
+                                <div class="grid-row" role="row" key={row.recordId}>
+                                    <div class="grid-cell link-cell" role="cell">
+                                        <a href="javascript:void(0)" data-id={row.recordId} onclick={openRecord}>
+                                            {row.name} </a>
+                                    </div>
+                                    <div class="grid-cell" role="cell">{row.SRnumber}</div>
+                                    <template if:false={isshowQuoteStatus}>
+                                        <div class={row.statusCellClass} role="cell">{row.status}</div>
+                                    </template>
+                                    <template if:true={isshowQuoteStatus}>
+                                        <div class={row.statusCellClass} role="cell">{row.QuotationStatus}</div>
+                                    </template>
+                                    <div class="grid-cell" role="cell">{row.mprn}</div>
+                                    <div class="grid-cell" role="cell">{row.jobcategory}</div>
+                                    <div class="grid-cell" role="cell">{row.subcategory}</div>
+                                    <div class="grid-cell" role="cell">{row.suppliercode}</div>
+                                    <div class="grid-cell" role="cell">{row.CreatedOn}</div>
+                                    <div class="grid-cell" role="cell">{row.BuildingName}</div>
+                                    <div class="grid-cell" role="cell">{row.BuildingNumber}</div>
+                                    <div class="grid-cell" role="cell">{row.Street}</div>
+                                    <div class="grid-cell" role="cell">{row.DependentLocality}</div>
+                                    <div class="grid-cell" role="cell">{row.Town}</div>
+                                    <div class="grid-cell" role="cell">{row.PostCode}</div>
+                                    <div class="grid-cell" role="cell">{row.CustomerName}</div>
+                                    <div class="grid-cell" role="cell">{row.CustomerNumber}</div>
+                                </div>
+                            </template>
+                        </template>
+                        <!-- ================= EMPTY STATE ================= -->
+                        <template if:false={rows.length}>
+                            <div class="grid-row empty">
+                                <div class="grid-cell">
+                                    No records found.
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Pagination -->
+            <div class="pagination slds-grid slds-grid_vertical-align-center slds-grid_align-spread">
+                <div class="slds-col">
+                    <button class="page-btn" onclick={goBack}> Back </button>
+                    <button class="page-btn slds-m-horizontal_small" onclick={exportToCSV}
+                        disabled={isExportDisabled}>Export</button>
+                </div>
+
+                <div class="slds-col">
+                    <button class="page-btn" onclick={prevPage} disabled={isPrevDisabled}>Prev</button>
+                    <span class="page-info slds-m-horizontal_small">Page {page} of {totalPages}</span>
+                    <button class="page-btn" onclick={nextPage} disabled={isNextDisabled}>Next</button>
+                </div>
+            </div>
+        </template>
+    </template>
+    <template if:true={showDetailView}>
+        <div class="detail-wrapper">
+            <c-n-g-m-c-p_dynamic-request-pages onreportback={handleReportsController} record-id={recordId}
+                object-api-name={objectApiName} record-type-name={recordTypeName} report-container-flag=true>
+            </c-n-g-m-c-p_dynamic-request-pages>
+        </div>
+    </template>
+</template>

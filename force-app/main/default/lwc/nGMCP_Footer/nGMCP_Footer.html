@@ -1,0 +1,109 @@
+<!--
+ * @description       : "NESO QmHelp Centre Footer"
+ * @author            : Vivek Kumar
+ * @last modified on  : 28-01-2025
+ * @last modified by  : Vivek Kumar
+ * Modifications Log
+ * Ver    Date        Author        Modification
+ * 1.0     Vivek Kumar   Initial Version
+--------------------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * @description       : DXP-13360  DXP Header and Footer visual alignment and screen size,DXP-11784 Query Closure Survey,DXP-13360 Provide updates to a query as an internal user,DXP-11779 My Queries dashboard filtering
+ * @author            : Pramod
+ * @last modified on  : 11-02-2025
+ * @last modified by  : Pramod
+ * Modifications Log
+ * Ver    Date        Author        Modification
+ * 1.0    20-01-2025  Pramod   Initial Version
+ * 1.0    25-11-2025  Ashwin   Final Version
+-->
+
+<template>
+
+  <footer class="slds-p-around_xx-large ngmcp-footer-container slds-grid">
+    <!-- Top 4-column footer -->
+    <div class="slds-grid slds-grid_vertical slds-size_1-of-1">
+      <div class="slds-grid slds-grid_align-spread slds-col slds-p-vertical_medium">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-6">
+          <!--<h3 class="footer-header-title slds-p-around_x-small">About Us Section </h3>-->
+          <ul class="slds-list_vertical slds-has-block-links_space">
+            <li><a class="footer-text" onclick={handlehelpcentre}>Help Centre</a></li>
+          </ul>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-6">
+          <!--<h3 class="footer-header-title slds-p-around_x-small">Get in Touch Section</h3>-->
+          <ul class="slds-list_vertical slds-has-block-links_space">
+            <li><a class="footer-text" href={labels.FAQs} target="_blank">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-6">
+          <!--<h3 class="footer-header-title slds-p-around_x-small">Useful Links Section</h3>-->
+          <ul class="slds-list_vertical slds-has-block-links_space">
+            <li><a class="footer-text" href={labels.Contact_us} target="_blank">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-6">
+          <!--<h3 class="footer-header-title slds-p-around_x-small">Legal Section</h3>-->
+          <ul class="slds-list_vertical slds-has-block-links_space">
+            <li><a class="footer-text" href="javascript:void(0);" onclick={openPdfInNewTab}> Terms and Conditions </a>
+            </li>
+          </ul>
+        </div>
+
+        <template if:true={showRaiseComplaint}>
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-6 custom-complaint-btn-section">
+            <!--<h3 class="footer-header-title slds-p-around_x-small">Useful Links Section</h3>-->
+            <ul class="slds-list_vertical slds-has-block-links_space">
+              <li>
+                <button class="custom-complaint-btn" onclick={handlecomplaint}> Raise a Complaint </button>
+              </li>
+            </ul>
+          </div>
+        </template>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-6">
+          <!--<h3 class="footer-header-title slds-p-around_x-small">Useful Links Section</h3>-->
+          <ul class="slds-list_vertical slds-has-block-links_space">
+            <li><a class="footer-text" href={labels.View_AMR_Reads} target="_blank">AMR Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <!-- Bottom social footer -->
+      <div
+        class="ngmcp-sub-footer-block slds-p-top_xx-large slds-col slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+        <div class="slds-col">
+          <ul class="slds-list_horizontal slds-has-inline-block-links_space">
+            <li class="menu-item">
+              <div class="footer-logo-section">
+                <img src={logoUrl} class="logo" alt="Logo" />
+              </div>
+            </li>
+
+            <li class="menu-item">
+              <span class="ng-website-link-text"> Our Metering website - </span><a href={labels.Meterting_Web_Site}
+                class="ng-website-link" target="_blank">nationalgas.com/metering</a>
+            </li>
+          </ul>
+        </div>
+        <div class="slds-col sub-footer">
+          <div class="slds-grid slds-grid_align-end slds-grid_vertical-align-center">
+            <div class="slds-col">
+              <p class="sub-footer-text">National Gas Emergency Service (24 hours service)</p>
+            </div>
+            <div class="slds-col slds-m-horizontal_medium">
+              <p class="sub-footer-text slds-p-around_x-small ngmcp-footer-call-section"><a
+                  href={labels.emergency_service} class="ngmcp-footer-call-link" target="_blank">Call: 0800 111 999</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>

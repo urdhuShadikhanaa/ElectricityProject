@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<div class="slds-section slds-is-closed animate" aura:id="Invalid">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="SentId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Invalid">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Sent">Invalid Emails</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="InvalidId">
+            <lightning:listView aura:id="listViewAPInvalid"
+    objectApiName="AP_Email__c"
+    listName="Invalid_Emails"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+</aura:component>

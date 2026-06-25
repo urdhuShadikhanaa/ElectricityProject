@@ -1,0 +1,36 @@
+/*
+** Description: This class is used in CRM**
+02/01/2024 : Updated by Surya (Remediation Project)
+Description: updated Short code, work order fields and finance fileds are hiding from Complaint page
+*/
+public class complaintcontroller {
+    Case case1;
+    
+    public PageReference save() {
+        try{
+            update case1;
+        }
+        catch(DmlException ex){
+            ApexPages.addMessages(ex);
+        }
+        return null;
+    }
+    
+    public String getName() {
+        return 'complaintcontroller';
+    }
+    
+    public Case getCase() {
+        if(case1 == null){
+			case1 = [select FIELDS(STANDARD),Account.Supplier_ID__c, CRM_Work_order__c, Account.Supplier_No__c , Accepted_by_Finance__c,Finance_Acceptance_Date__c,Acknowledge_Datestamp__c,Acknowledgment_SLA__c,Agent_Actions__c,Age_of_case_number__c,Age_of_Complaint__c,Any_Action_required__c,Automation_Date_Time__c,Closure_Reason__c,Code_Group__c,Code__c,Complaint_resolved_first_time__c,CRM_1_business_day__c,CRM_Account_Manager__c,CRM_Account_Number__c,CRM_Account_text__c,CRM_Acknowledge_SLA_Status__c,CRM_Amalgam_subject__c,CRM_Approval_Required__c,CRM_Area__c,CRM_Call_Duration__c,CRM_Call_Result__c,CRM_Call_Type__c,CRM_Case_Closed__c,CRM_Case_Reference_Number_HyperLink__c,CRM_City_County__c,CRM_Closed_Date__c,CRM_Closed_Within_5_Days__c,CRM_Commercial_Residential__c,CRM_Complaint_Description__c,CRM_Complaint_is_Valid_Invalid__c,CRM_complaint_or_grumble__c,CRM_Complaint_Reference__c,CRM_Complaint_response__c,CRM_Complaint_Subject__c,CRM_Created_Datestamp__c,CRM_Current_time__c,CRM_Days_since_creation__c,CRM_Description__c,CRM_End_Consumer_Contact_Number__c,CRM_End_Consumer_Email_Address__c,CRM_End_Consumer_Name__c,CRM_End_Consumer_Title__c,CRM_Goodwill_Recuperated__c,CRM_Goodwill_Required__c,CRM_Goodwill_Value__c,CRM_House_Name_Number_Site_Name__c,CRM_Interim_Sent_Not_True__c,CRM_Interim_Sent__c,CRM_Interim_Set_SLA_Status__c,CRM_Investigation_Date__c,CRM_Investigation_Type__c,CRM_MPRN_Summary__c,CRM_MPRN__c,CRM_Not_Acknowledged__c,CRM_Origin_of_Issue__c,CRM_Other_Complaint_Subject__c,CRM_Other_SP_Name__c,CRM_Owner_Changed__c,CRM_Pending_since__c,CRM_Post_code__c,CRM_Queries_did_not_meet_SLA__c,CRM_Reference_Number__c,CRM_Related_Job_Number__c,CRM_Resolution_Description__c,CRM_Resolution__c,CRM_Resolved_First_Time__c,CRM_Searchable_ref_version__c,CRM_ServicePartner_replied_within_2_days__c,CRM_Site_Visit_attended_within_SLA__c,CRM_Site_Visit_Required__c,CRM_SLA_to_Acknowledge__c,CRM_SLA_to_Set_Interim__c,CRM_Street__c,CRM_today__c,CRM_Unique_Case_Number__c,CRM_Which_action__c,Datestamp_complete__c,Datestamp_investigation_customer__c,Datestamp_investigation_NGM__c,Datestamp_investigation_SP__c,Datestamp_working_on__c,Date_finished_investigating__c,Date_of_Event__c,Date_Sent_to_Finance__c,Date_site_visit_attended__c,Date_site_visit_planned__c,Date_SP_asked_to_provide_a_response__c,Days_spent_escalating__c,Days_spent_investigating_with_customer__c,Days_spent_investigating_with_NGM__c,Days_spent_investigating_with_SP__c,Days_spent_working_on__c,Escalation_Change_Datestamp__c,Escalation_Datestamp__c,escalation_holding_number__c,finished_customer__c,finished_ngm__c,finished_sp__c,Good_Will_Cheque_Sent__c,Interim_Datestamp__c,Interim_sent__c,Interim_SLA__c,IsClosed__c,Is_Automation_Bypassed__c,is_legacy_complaint__c,Is_Maximum_Priority__c,Number_of_days_to_site_visit__c,Original_Email__c,Other_Code_Reason_please_state__c,SP_Responded_within_SLA__c,SP_Response_indicator__c,SP_Response_within_2_days__c,Total_Days_Investigating__c,Total_number_of_days_query_open__c,Type_of_Activity__c,X1_business_day__c from Case where id = :ApexPages.currentPage().getParameters().get('id') LIMIT 1];
+            
+        }
+        else{
+            case1 = [select FIELDS(STANDARD),Account.Supplier_ID__c, CRM_Work_order__c,Account.Supplier_No__c, Accepted_by_Finance__c,Finance_Acceptance_Date__c,Acknowledge_Datestamp__c,Acknowledgment_SLA__c,Agent_Actions__c,Age_of_case_number__c,Age_of_Complaint__c,Any_Action_required__c,Automation_Date_Time__c,Closure_Reason__c,Code_Group__c,Code__c,Complaint_resolved_first_time__c,CRM_1_business_day__c,CRM_Account_Manager__c,CRM_Account_Number__c,CRM_Account_text__c,CRM_Acknowledge_SLA_Status__c,CRM_Amalgam_subject__c,CRM_Approval_Required__c,CRM_Area__c,CRM_Call_Duration__c,CRM_Call_Result__c,CRM_Call_Type__c,CRM_Case_Closed__c,CRM_Case_Reference_Number_HyperLink__c,CRM_City_County__c,CRM_Closed_Date__c,CRM_Closed_Within_5_Days__c,CRM_Commercial_Residential__c,CRM_Complaint_Description__c,CRM_Complaint_is_Valid_Invalid__c,CRM_complaint_or_grumble__c,CRM_Complaint_Reference__c,CRM_Complaint_response__c,CRM_Complaint_Subject__c,CRM_Created_Datestamp__c,CRM_Current_time__c,CRM_Days_since_creation__c,CRM_Description__c,CRM_End_Consumer_Contact_Number__c,CRM_End_Consumer_Email_Address__c,CRM_End_Consumer_Name__c,CRM_End_Consumer_Title__c,CRM_Goodwill_Recuperated__c,CRM_Goodwill_Required__c,CRM_Goodwill_Value__c,CRM_House_Name_Number_Site_Name__c,CRM_Interim_Sent_Not_True__c,CRM_Interim_Sent__c,CRM_Interim_Set_SLA_Status__c,CRM_Investigation_Date__c,CRM_Investigation_Type__c,CRM_MPRN_Summary__c,CRM_MPRN__c,CRM_Not_Acknowledged__c,CRM_Origin_of_Issue__c,CRM_Other_Complaint_Subject__c,CRM_Other_SP_Name__c,CRM_Owner_Changed__c,CRM_Pending_since__c,CRM_Post_code__c,CRM_Queries_did_not_meet_SLA__c,CRM_Reference_Number__c,CRM_Related_Job_Number__c,CRM_Resolution_Description__c,CRM_Resolution__c,CRM_Resolved_First_Time__c,CRM_Searchable_ref_version__c,CRM_ServicePartner_replied_within_2_days__c,CRM_Site_Visit_attended_within_SLA__c,CRM_Site_Visit_Required__c,CRM_SLA_to_Acknowledge__c,CRM_SLA_to_Set_Interim__c,CRM_Street__c,CRM_today__c,CRM_Unique_Case_Number__c,CRM_Which_action__c,Datestamp_complete__c,Datestamp_investigation_customer__c,Datestamp_investigation_NGM__c,Datestamp_investigation_SP__c,Datestamp_working_on__c,Date_finished_investigating__c,Date_of_Event__c,Date_Sent_to_Finance__c,Date_site_visit_attended__c,Date_site_visit_planned__c,Date_SP_asked_to_provide_a_response__c,Days_spent_escalating__c,Days_spent_investigating_with_customer__c,Days_spent_investigating_with_NGM__c,Days_spent_investigating_with_SP__c,Days_spent_working_on__c,Escalation_Change_Datestamp__c,Escalation_Datestamp__c,escalation_holding_number__c,finished_customer__c,finished_ngm__c,finished_sp__c,Good_Will_Cheque_Sent__c,Interim_Datestamp__c,Interim_sent__c,Interim_SLA__c,IsClosed__c,Is_Automation_Bypassed__c,is_legacy_complaint__c,Is_Maximum_Priority__c,Number_of_days_to_site_visit__c,Original_Email__c,Other_Code_Reason_please_state__c,SP_Responded_within_SLA__c,SP_Response_indicator__c,SP_Response_within_2_days__c,Total_Days_Investigating__c,Total_number_of_days_query_open__c,Type_of_Activity__c,X1_business_day__c from Case where id = :case1.id LIMIT 1];
+
+        }            
+                    
+        return case1;
+        
+    }
+}

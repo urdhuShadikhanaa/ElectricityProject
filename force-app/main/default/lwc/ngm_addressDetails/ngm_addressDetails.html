@@ -1,0 +1,41 @@
+<template>
+    <!-- Header Buttons -->
+    <div class="slds-m-around_medium">
+        <lightning-button label="Deappoint" variant="brand" class="slds-m-right_small"></lightning-button>
+        <lightning-button label="Create Query" variant="neutral" class="slds-m-right_small"></lightning-button>
+        <lightning-button label="Create Job" variant="neutral"></lightning-button>
+    </div>
+
+    <!-- Tabs -->
+    <lightning-tabset>
+        <lightning-tab label="Overview">
+            <div class="slds-box">
+                <h2 class="slds-text-heading_medium">Asset Details</h2>
+                <lightning-record-view-form record-id={assetId} object-api-name="NGM_AssetDetails__c">
+                    <lightning-output-field field-name="Installation_Date__c"></lightning-output-field>
+                    <lightning-output-field field-name="Appointed_Date__c"></lightning-output-field>
+                   
+                </lightning-record-view-form>
+            </div>
+
+            <div class="slds-box slds-m-top_medium">
+                <h2 class="slds-text-heading_medium">Address Details</h2>
+                <lightning-record-edit-form record-id={addressId} object-api-name="NGM_EditAddress__c">
+                    <lightning-input-field field-name="Building_Name__c"></lightning-input-field>
+                    <lightning-input-field field-name="Postal_Town__c"></lightning-input-field>
+                    <lightning-input-field field-name="Postal_Code__c"></lightning-input-field>
+                  
+                </lightning-record-edit-form>
+            </div>
+        </lightning-tab>
+
+        <lightning-tab label="Request Log"></lightning-tab>
+        <lightning-tab label="AMR"></lightning-tab>
+    </lightning-tabset>
+
+    <!-- Footer Banner -->
+    <div class="slds-box slds-theme_alert-texture slds-m-top_medium">
+        File can only be viewed and commented on.
+        <lightning-button label="Start Editing" variant="brand" class="slds-m-left_small"></lightning-button>
+    </div>
+</template>

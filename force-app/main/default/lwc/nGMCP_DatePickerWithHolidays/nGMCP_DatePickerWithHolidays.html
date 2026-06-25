@@ -1,0 +1,37 @@
+<template>
+  <div class="dp-container">
+    <!-- Input field that toggles calendar -->
+    <div class="input-wrapper">
+      <lightning-input type="text" label="Select Date*"  value={selectedDateLabel} onclick={toggleCalendar}></lightning-input>
+    </div>
+ 
+    <template if:true={isCalendarOpen}>
+      <div class="calendar-popup">
+        <div class="dp-header">
+          <button class="nav" onclick={handlePrev}>Prev</button>
+          <span class="month-label">{monthLabel}</span>
+          <button class="nav" onclick={handleNext}>Next</button>
+        </div>
+ 
+        <div class="week-days">
+          <template for:each={weekDays} for:item="wd">
+            <div key={wd} class="wd">{wd}</div>
+          </template>
+        </div>
+ 
+        <div class="days-grid">
+          <template for:each={calendarDays} for:item="cd">
+            <div key={cd.key}
+                 class={cd.cssClass}
+                 data-date={cd.iso}
+                 onclick={handleSelectDate}
+                 role="button"
+                 tabindex="0">
+              <span class="date-num">{cd.day}</span>
+            </div>
+          </template>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>

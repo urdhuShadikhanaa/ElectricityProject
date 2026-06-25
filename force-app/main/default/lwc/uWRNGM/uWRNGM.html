@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Urgent Work Request">
+        <lightning-radio-group
+            name="startImmediately"
+            label="Do you want this job to start immediately?"
+            options={yesNoOptions}
+            value={startImmediately}
+            onchange={handleStartImmediatelyChange}>
+        </lightning-radio-group>
+
+        <template if:true={showTypeSelection}>
+            <lightning-radio-group
+                name="jobType"
+                label="Select Job Type"
+                options={jobTypeOptions}
+                value={jobType}
+                onchange={handleJobTypeChange}>
+            </lightning-radio-group>
+        </template>
+
+        <lightning-button label="Submit" onclick={handleSubmit}></lightning-button>
+
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error slds-m-top_medium">
+                ⚠️ {errorMessage}
+            </div>
+        </template>
+    </lightning-card>
+</template>

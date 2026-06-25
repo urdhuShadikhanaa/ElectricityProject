@@ -1,0 +1,232 @@
+<template>
+    <div class="global-search-outer-container slds-grid slds-grid_align-center">
+        <div
+            class="global-search-container tab-container slds-grid slds-grid_vertical slds-size_9-of-12 slds-var-p-around_large">
+            <div class="tab-header slds-grid slds-col">
+                <button class={tabClass1} onclick={handleTabClick} data-tab="1"><span
+                        class="tab-title">MPRN</span></button>
+                <button class={tabClass2} onclick={handleTabClick} data-tab="2"><span class="tab-title">SR
+                        number</span></button>
+                <button class={tabClass3} onclick={handleTabClick} data-tab="3"><span class="tab-title">WO
+                        number</span></button>
+            </div>
+
+            <div class="tab-content slds-col slds-var-p-vertical_x-large">
+                <template if:true={isTab1}>
+                    <div class="tab-panel mprn-number-container ">
+                        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+
+                            <!-- MPRN Section -->
+                            <template if:true={isMPRNVisible}>
+                                <div class="slds-col mprn-search-container slds-size_5-of-12">                                    
+                                    <input type="text" id="mprnInput" class="mprn-search-input slds-var-p-around_medium "
+                                        placeholder="Enter MPRN number" value={NGMCP_mprn}
+                                        oninput={NGMCP_handlemprnChanges} onkeypress={handleKeyPress} onblur={validateMPRN} required/>
+                                </div>
+                            </template>
+
+                            <!-- Post Code Section -->
+                            <template if:true={isPostCodeVisible}>
+                                <div class="slds-col postcode-search-container slds-size_5-of-12">
+                                    <input type="text" id="postalCode" class="mprn-search-input slds-var-p-around_small"
+                                        placeholder="Enter Post code" value={NGMCP_postcode}
+                                        oninput={NGMCP_handlepostalcodeChanges} onkeypress={handleKeyPress}/>
+                                </div>
+                            </template>
+
+                            <!-- Serial Number Section -->
+                            <template if:true={isSNumberVisible}>
+                                <div class="slds-col serialnumber-search-container slds-size_5-of-12">
+                                    <input type="text" id="serialNumber"
+                                        class="mprn-search-input slds-var-p-around_small"
+                                        placeholder="Enter Serial number" value={NGMCP_serialNumber}
+                                        oninput={NGMCP_handleserialnmberChanges} onkeypress={handleKeyPress}/>
+                                </div>
+                            </template>
+
+                            <div class="slds-col slds-var-p-horizontal_small slds-size_6-of-12">
+                                <div class="select-wrapper slds-grid">
+                                    <select id="code-select" name="shortcodes"
+                                        class="shortcode-select-input slds-grid_align-center slds-var-p-around_small slds-size_1-of-1"
+                                        onchange={handleShortCodeChange} disabled={isLoading}>
+                                        <!-- Placeholder -->
+                                        <option value="">Select Short codes</option>
+                            
+                                        <!-- Dynamic options -->
+                                        <template if:true={options}>
+                                            <template for:each={options} for:item="opt">
+                                                <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                            </template>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-12">
+                                <button class="mprn-search-button slds-button" onclick={handleGlobalSearch} disabled={isSearchDisabled}><img
+                                        src={homepageAssets} class="mprn-search-img" /></button>
+                            </div>
+                        </div>
+                        <p
+                            class="mprn-sub-text slds-grid slds-grid_align-start slds-grid_vertical-align-center slds-var-m-vertical_small slds-var-p-horizontal_medium slds-var-m-horizontal_xx-large">
+                            Or search by
+
+                            <template if:true={isMPRNBtnVisible}><button
+                                    class="mprn-sub-text-link slds-var-p-horizontal_xx-small"
+                                    onclick={showMPRNSection}>MPRN</button><span class="mprn-search-or-text">or</span></template>
+
+                            <template if:true={isPCBtnVisible}><button
+                                    class="mprn-sub-text-link slds-var-p-horizontal_xx-small"
+                                    onclick={showPostCode}>Post Code</button></template> 
+
+                            <template if:true={isSRNumberBtnVisible}><span class="mprn-search-or-text">or</span><button
+                                    class="mprn-sub-text-link slds-var-p-horizontal_xx-small"
+                                    onclick={showSerialNumber}>Serial number</button></template>
+
+                        </p>
+                        <template if:true={NGMCP_errorMessage}>
+                            <div class="ngmcp-text-error slds-m-top_small">
+                                <div class="error-message">{NGMCP_errorMessage}</div>
+                            </div>
+                        </template>
+                        <template if:true={isLoading}>
+                            <div class="custom-spinner-container">
+                                <div class="custom-spinner">
+                                     <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="spinner-message">
+                               <p class="pulse-text"> {spinnerMessage}</p>
+                            </div>
+
+                        </template>
+
+                        <template if:true={isModalOpen}>
+                            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container custom-slds-modal-container">
+                                    <!-- Modal Header -->
+                                    <header class="custom-modal-header slds-p-around_large">
+                                        <h2 class="custom-modal-title">{headerLabel}</h2>
+                                    </header>
+
+                                    <!-- Modal Body -->
+                                    <div class="custom-modal-content-container slds-p-around_x-small" id="modal-content-id">
+                                        <template if:true={filteredRecords.length}>
+                                            <div class="">
+                                                <!-- Header Row -->
+                                                <div class="slds-grid slds-border_bottom">
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_small"></div>
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_xx-small slds-m-vertical_medium slds-size_2-of-12">MPRN</div> 
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_xx-small slds-m-vertical_medium slds-size_2-of-12">Customer</div> 
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_xx-small slds-m-vertical_medium slds-size_2-of-12">Appointment Date</div> 
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_xx-small slds-m-vertical_medium slds-size_2-of-12">Model</div>
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_xx-small slds-m-vertical_medium slds-size_2-of-12">MSN</div>                                                                                                                  
+                                                    <div class="custom-modal-content-heading slds-col slds-p-around_xx-small slds-m-vertical_medium slds-size_2-of-12">Address</div>                                                   
+                                                </div>
+
+                                                <!-- Record Rows -->
+                                                <template for:each={processedRecords} for:item="record">
+                                                    <div key={record.id}
+                                                        class="slds-grid slds-p-around_x-small slds-border_bottom">
+                                                        <div class="slds-col slds-p-around_xx-small slds-m-top_xx-small">
+                                                            <input type="radio" name="recordSelection"
+                                                                value={record.appointmentDate}
+                                                                onchange={handleSelection} />
+                                                        </div>
+                                                        <div class="custom-modal-content slds-col slds-p-around_xx-small slds-size_2-of-12">
+                                                            <span>{record.MPRN}</span>
+                                                        </div>
+                                                        <div class="custom-modal-content slds-col slds-p-around_xx-small slds-size_2-of-12">
+                                                            <span>{record.Customer}</span>
+                                                        </div>
+                                                        <div class="custom-modal-content slds-col slds-p-around_xx-small slds-size_2-of-12">
+                                                            <span>{record.AppointmentFromDate}</span>
+                                                        </div>
+                                                        <div class="custom-modal-content slds-col slds-p-around_xx-small slds-size_2-of-12">
+                                                           <span>{record.assetModel}</span>
+                                                       </div>
+                                                        <div class="custom-modal-content slds-col slds-p-around_xx-small slds-size_2-of-12">
+                                                            <span>{record.assetMSN}</span>
+                                                        </div>                                                                                   
+                                                        <div class="custom-modal-content slds-col slds-p-around_xx-small slds-size_2-of-12">
+                                                            <span>{record.Address}</span>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+
+                                        <!-- No Records Message 
+                                        <template if:false={filteredRecords.length}>
+                                            <div class="slds-text-align_center slds-text-color_weak slds-m-top_medium">
+                                                <p>No active supplier for this MPRN Number ({mprn}).</p>
+                                            </div>
+                                        </template>-->
+                                    </div>
+
+                                    <!-- Modal Footer -->
+                                    <footer class="custom-modal-footer slds-grid slds-grid_align-spread slds-p-around_large">
+                                        
+                                       <!-- <div class="slds-grid slds-grid_align-center slds-grid_align-spread">-->
+                                            <template if:true={isVisiableFooterMessage}>
+                                                <div class="slds-col slds-grid_vertical-align-center">
+                                                   <p class="ngmcp-text-error"> Please select at least one customer to proceed.</p>
+                                                </div>
+                                            </template>
+                                            <div class="slds-col slds-col_bump-left">
+                                                <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-base-button"
+                                                    onclick={closeModal}>Close</button>
+                                                    
+                                                <template if:true={isvisiableConfirmButton}>
+                                                    <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button" disabled={isDisabled} onclick={confirmSelection}>
+                                                        Confirm Selection
+                                                    </button>
+                                                </template>
+                                            </div>
+                                       <!-- </div>-->
+
+                                    </footer>
+                                </div>
+                            </section>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </template>
+                    </div>
+                </template>
+                <template if:true={isTab2}>
+                    <div class="tab-panel mprn-number-container ">
+                        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                <!-- SR Number Section -->
+                                    <div class="slds-col mprn-search-container slds-size_6-of-12">                                    
+                                        <input type="text" id="srInput" class="mprn-search-input slds-var-p-around_medium "
+                                            placeholder="Enter SR number" value={NGMCP_mprn}
+                                            oninput={handleSRNumberSearch} onkeypress={handleKeyPress} onblur={validateMPRN} required/>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1">
+                                    <button class="mprn-search-button slds-button" onclick={handleSRNumberSearch} disabled={isSearchDisabled}><img
+                                            src={homepageAssets} class="mprn-search-img" /></button>
+                                    </div>
+                        </div>
+                    </div>
+                </template>
+                <template if:true={isTab3}>
+                    <div class="tab-panel wo-number-container">Content for WO number</div>
+                </template>
+                
+            <template if:true={deatilPageFlag}>
+                <!-- Pass decodedData to child -->
+                
+                <c-dummy-assetpage-component decoded-data={comWrapper}></c-dummy-assetpage-component>
+            </template>
+
+            </div>
+        </div>
+    </div>
+</template>

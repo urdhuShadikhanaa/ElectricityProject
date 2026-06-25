@@ -1,0 +1,142 @@
+<template>
+    <!-- Error banner -->
+    <template if:true={errorMessage}>
+        <div class="slds-notify_alert slds-theme_error" role="alert">
+            <h2 class="slds-text-color_error">{errorMessage}</h2>
+        </div>
+    </template>
+    <template if:true={selectedRecordId}>
+        <c-n-g-m-c-p_dynamicpage record-id={selectedRecordId}
+            ></c-n-g-m-c-p_dynamicpage>
+    </template>
+    <template if:false={selectedRecordId}>
+        <lightning-card title="Dynamic Related Lists" icon-name="utility:related_list">
+            <div class="slds-p-around_medium">
+
+                <!-- Ready: record sections -->
+                <template if:true={ready}>
+                    <lightning-card title={title} icon-name="utility:settings">
+                        <div class="slds-p-around_medium">
+                            <template if:true={recordDisplayName}>
+                                <p class="slds-text-title_caps slds-m-bottom_small">{recordDisplayName}</p>
+                            </template>
+
+                            <template for:each={activeSections} for:item="section">
+                                <section key={section.key} class="slds-m-bottom_large">
+                                    <h3 class="slds-text-title_bold slds-m-bottom_small">{section.label}</h3>
+
+                                    <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
+                                        <div class="slds-grid slds-wrap">
+                                            <template for:each={section.fields} for:item="fld">
+                                                <div key={fld}
+                                                    class="slds-size_1-of-1 slds-large-size_1-of-2 slds-p-right_small slds-m-bottom_small">
+                                                    <lightning-output-field field-name={fld}></lightning-output-field>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </lightning-record-view-form>
+                                </section>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </template>
+
+                <!-- Spinner while metadata/records are loading -->
+                <template if:true={loading}>
+                    <lightning-spinner alternative-text="Loading related lists" size="small"></lightning-spinner>
+                </template>
+
+                <!-- Lists -->
+                <template if:true={lists}>
+                    <template for:each={lists} for:item="rl">
+                        <section key={rl.id} class="slds-card slds-m-bottom_large">
+
+                            <!-- SECTION HEADER: keep visible always -->
+                            <header class="section-header">
+                                <div
+                                    class="section-header__left slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <lightning-icon icon-name={rl.iconName} size="x-small"
+                                        variant="brand"></lightning-icon>
+                                    <h2 class="slds-text-heading_small slds-truncate slds-m-left_x-small"
+                                        title={rl.label}>
+                                        {rl.label}
+                                        <!-- Show count only when > 0 -->
+                                        <template if:true={rl.count}>
+                                            <span class="slds-text-title_caps slds-m-left_x-small">({rl.count})</span>
+                                        </template>
+                                    </h2>
+                                </div>
+                                <!-- Removed New button intentionally -->
+                            </header>
+
+                            <!-- TABLE-LIKE AREA -->
+                            <div class="dt-wrapper">
+                                <div class="dt-scroll">
+
+                                    <!-- Column headers: render only when rl.count > 0 -->
+                                    <template if:true={rl.count}>
+                                        <div class="dt-row dt-row--header" role="row" style={rl.gridTemplate}>
+                                            <!-- Name header (icon removed) -->
+                                            <div class="dt-cell dt-cell--header dt-cell--sortable" role="columnheader"
+                                                tabindex="0" aria-sort={rl.firstColumnAriaSort} data-sort-key="__link__"
+                                                data-rlid={rl.id} onclick={handleSortClick}
+                                                onkeydown={handleSortKeydown}>
+                                                <span class="slds-truncate" title="Name">Name</span>
+                                            </div>
+
+                                            <!-- Dynamic headers (icons removed) -->
+                                            <template for:each={rl.columns} for:item="col">
+                                                <div key={col.fieldName}
+                                                    class="dt-cell dt-cell--header dt-cell--sortable"
+                                                    role="columnheader" tabindex="0" aria-sort={col.ariaSort}
+                                                    data-sort-key={col.fieldName} data-rlid={rl.id} title={col.label}
+                                                    onclick={handleSortClick} onkeydown={handleSortKeydown}>
+                                                    <span class="slds-truncate">{col.label}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+
+                                    <!-- Data rows: only when rl.count > 0 -->
+                                    <template if:true={rl.count}>
+                                        <template for:each={rl.rows} for:item="row">
+                                            <div key={row.Id} class={row.rowClass} role="row" style={rl.gridTemplate}>
+                                                <!-- Link cell (first column) -->
+                                                <div class="dt-cell dt-cell--link" role="cell">
+                                                    <a href={row.recordUrl} class="slds-truncate dt-link"
+                                                        title={row.linkLabel} data-id={row.Id}
+                                                        onclick={handleLinkClick}>
+                                                        {row.linkLabel}
+                                                    </a>
+                                                </div>
+
+                                                <!-- Value cells (middle columns) -->
+                                                <template for:each={row.cells} for:item="cell">
+                                                    <div key={cell.api} class="dt-cell" role="cell" title={cell.value}>
+                                                        <span class="slds-truncate">{cell.value}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </template>
+
+                                    <!-- Empty state: when rl.count = 0; still looks like a table -->
+                                    <template if:false={rl.count}>
+                                        <div class="dt-empty" role="row" style={rl.gridTemplate}>
+                                            <div class="dt-cell dt-cell--empty" role="cell" title="No records">
+                                                <span class="slds-truncate">No records</span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                </div> <!-- /dt-scroll -->
+                            </div> <!-- /dt-wrapper -->
+
+                        </section>
+                    </template>
+                </template>
+
+            </div> <!-- /slds-p-around_medium -->
+        </lightning-card>
+    </template>
+</template>

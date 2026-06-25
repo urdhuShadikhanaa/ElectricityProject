@@ -1,0 +1,229 @@
+<template>
+    <div class="custom-complaint-outer-container slds-m-horizontal_large">
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Saving..." size="medium">
+            </lightning-spinner>
+        </template>
+        <!-- <lightning-card title="Complaint Form" class="custom-complaint-form-section">-->
+        <h2 class="slds-card__header-title">Complaint Form</h2>
+        <div class="custom-complaint-form-section slds-grid slds-grid_vertical">
+            <div class="slds-p-horizontal_medium slds-col custom-complaint-query-section">
+                <div>
+                    <lightning-radio-group name="caseType" class="custom-lightning-input-element custom-slds-required"
+                        label="What type of case do you wish to create?" options={casetypeoptions} value={caseType}
+                        onchange={handleChange} required>
+                    </lightning-radio-group>
+                </div>
+                <!-- Question 1 -->
+                <lightning-combobox name="q1" class="custom-lightning-input-element custom-slds-required"
+                    label="What would you like to contact us about?" value={q1} options={question1Options}
+                    onchange={handleChange} required>
+                </lightning-combobox>
+                <!-- Confirm Meter Size (Engineer Hire) -->
+                <template if:true={showQuestion3}>
+                    <lightning-combobox name="q3" class="custom-lightning-input-element custom-slds-required"
+                        label="Confirm Meter Size" value={q3} options={showQuestion3} onchange={handleChange} required>
+                    </lightning-combobox>
+                </template>
+                <!-- Question 2 (conditional) -->
+                <!-- <template if:true={showQuestion2}>
+                    <lightning-combobox name="q2" class="custom-lightning-input-element custom-slds-required"
+                        label="Sub category" value={q2} options={question2Options} onchange={handleChange} required>
+                    </lightning-combobox>
+                </template> -->
+                <!-- Radio Button -->
+                <div>
+                    <lightning-radio-group name="radioVal" class="custom-lightning-input-element custom-slds-required"
+                        label="Do you know the MPRN or Job number" options={question3options} value={radioVal}
+                        onchange={handleChange} required>
+                    </lightning-radio-group>
+                </div>
+                <!-- Input + Search -->
+                <div>
+                    <lightning-input name="NGMCP_mprn" type="text" class="custom-lightning-input-element"
+                        label="Please provide an MPRN or Job number" value={NGMCP_mprn}
+                        onchange={NGMCP_handlemprnChanges}>
+                    </lightning-input>
+                    <!--<p class="slds-m-top_small">Current: {NGMCP_mprn}</p>-->
+
+                    <!--<lightning-button label="Search" variant="brand"></lightning-button>-->
+                </div>
+                <lightning-combobox name="inputResidence" class="custom-lightning-input-element custom-slds-required"
+                    label="Commercial/Residential" value={inputResidence} options={ResidenceOptions}
+                    onchange={handleChange} required>
+                </lightning-combobox>
+                <!-- Sample message + Download link -->
+                <template if:true={message}>
+                    <div class="sample-message">
+                        <b>Sample Query Description :</b>
+                        <lightning-formatted-text class="custom-lightning-input-element"
+                            value={message}></lightning-formatted-text>
+                    </div>
+                    <!-- HTML anchor that forces download when clicked -->
+                    <template if:true={downloadLink}>
+                        <div class="download-section">
+                            <!-- download attribute forces browser to save as file -->
+                            <a class="download-link" href={downloadLink} download>
+                                {downloadlabel}
+                            </a>
+                        </div>
+                    </template>
+                </template>
+                <!-- Text Area -->
+                <template if:true={showQuestion2}>
+                    <lightning-textarea name="textVal" class="custom-lightning-input-element custom-slds-required"
+                        label="Tell us more about your query ?" value={textVal} onchange={handleChange} required>
+                    </lightning-textarea>
+                </template>
+
+            </div>
+
+
+            <h3 class="custom-complaint-subheader-title slds-m-around_medium slds-grid slds-grid_align-start">Customer
+                Address Details</h3>
+            <div
+                class="slds-p-horizontal_medium custom-complaint-address-section slds-grid slds-grid_align-spread slds-col">
+
+                <div class="slds-col slds-size_6-of-12">
+                    <lightning-combobox name="inputTitle"
+                        class="custom-lightning-input-element custom-combobox-customer-title custom-slds-required"
+                        label="End Customer Title" value={inputTitle} options={titleOptions}
+                        onchange={handleTitleChange} required> </lightning-combobox>
+
+                    <!-- <div class="custom-lightning-input-element custom-slds-required slds-form-element">
+                        <div part="input-text">
+                            <label class="slds-form-element__label" for="inputName">End Customer Name</label>
+                            <div class="slds-form-element__control" part="input-container">
+                                <input id="inputName" name="inputName" class="slds-input" type="text" value={inputName}
+                                    onchange={handleChangename} maxlength="30" pattern="[a-zA-Z\s]+" required />
+                                <span class="ngmcp-text-error" if:true={showPatternError}>Please enter only
+                                    alphabets.</span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <lightning-input name="inputName" class="custom-lightning-input-element custom-slds-required"
+                        label="End Customer Name" type="text" value={inputName} maxlength="30" pattern="[a-zA-Z\s]+"
+                        message-when-pattern-mismatch="Please enter only alphabets." onchange={handleChangename}
+                        required>
+                    </lightning-input>
+
+                    <lightning-input name="inputNumber" class="custom-lightning-input-element custom-slds-required"
+                        label="End Customer Number" value={inputPhone} onchange={handleChangephone} maxlength="11"
+                        type="tel" required> </lightning-input>
+
+                    <lightning-input name="inputEmail" class="custom-lightning-input-element"
+                        label="End Customer Email Address" value={inputEmail} maxlength="'30"
+                        onchange={handleChangeEmail}>
+                    </lightning-input>
+
+                    <!-- File Upload (native read for base64) -->
+                    <template if:true={showQuestion2}>
+                        <div class="upload-section">
+                            <label class="upload-label">Upload Files (Optional)</label>
+                            <!-- Upload Box -->
+                            <div class="upload-box" ondragover={handleDragOver} ondragleave={handleDragLeave}
+                                ondrop={handleFileDrop}>
+                                <p>Drag & Drop files here</p>
+                                <p>
+                                    <span class="browse-text" onclick={handleBrowseClick}>
+                                        Select Files from Device
+                                    </span>
+                                </p>
+                                <!-- Hidden Input -->
+                                <input type="file" multiple class="file-input" onchange={handleFileChange}
+                                    style="display:none" />
+                            </div>
+                            <!-- Error Message -->
+                            <template if:true={fileError}>
+                                <p class="error-text">{fileError}</p>
+                            </template>
+                            <!-- Preview List -->
+                            <template if:true={hasUploadedFiles}>
+                                <div class="file-preview-list">
+                                    <template for:each={uploadedFiles} for:item="file">
+                                        <div key={file.name} class="file-preview-item">
+                                            <!-- Image Preview -->
+                                            <template if:true={file.isImage}>
+                                                <img src={file.previewUrl} class="thumbnail" />
+                                            </template>
+                                            <!-- Non Image -->
+                                            <template if:false={file.isImage}>
+                                                <div class="file-icon">📄</div>
+                                            </template>
+                                            <div class="file-info">
+                                                <span class="file-name">{file.name}</span>
+                                                <span class="file-size">({file.sizeDisplay})</span>
+                                            </div>
+                                            <button class="delete-btn" data-name={file.name} onclick={handleFileDelete}>
+                                                ✕
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="slds-col slds-size_6-of-12">
+                    <lightning-input name="inputHouse" class="custom-lightning-input-element custom-slds-required"
+                        label="House Name/Number/Site Name" value={inputHouse} onchange={handleChange} maxlength="40"
+                        required>
+                    </lightning-input>
+                    <lightning-input name="inputStreet" class="custom-lightning-input-element custom-slds-required"
+                        label="Street" value={inputStreet} onchange={handleChange} maxlength="40" required>
+                    </lightning-input>
+                    <lightning-input name="inputCity" class="custom-lightning-input-element custom-slds-required"
+                        label="City/Country" value={inputCity} onchange={handleChange} maxlength="40" required>
+                    </lightning-input>
+                    <lightning-input name="inputPostcode" class="custom-lightning-input-element custom-slds-required"
+                        label="Postcode" value={inputPostcode} onchange={handleChangecode} maxlength="10" required>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <!-- </lightning-card>-->
+        </div>
+        <!-- Button(s) section -->
+        <div class="slds-grid slds-grid_align-spread slds-p-around_large custom-complaints-btn-section">
+
+            <div class="button-container">
+                <button class="btn custom-btn" onclick={handleSubmit}>Submit </button>
+                <button class="btn custom-btn-base" onclick={handleCancel}>Cancel</button>
+            </div>
+
+            <!-- <div class="custom-complaints-list-btn">
+                            <lightning-button label="Complaints List" onclick={openPreviousComplaints}
+                                class="btn custom-btn-base slds-m-bottom_small">
+                            </lightning-button>
+                        </div> -->
+            <!-- <template if:true={showQuestion2}> -->
+            <template if:true={showModal}>
+                <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container custom-slds-modal-container">
+                        <!-- HEADER -->
+                        <header class="custom-modal-header slds-p-around_large">
+                            <h2 class="custom-modal-title">
+                                {modalTitle}
+                            </h2>
+                        </header>
+                        <!-- BODY -->
+                        <div class="custom-modal-content-container slds-p-around_large">
+                            <p class="custom-modal-content slds-col slds-p-around_xx-small">{modalMessage}</p>
+                        </div>
+                        <!-- FOOTER -->
+                        <footer class="custom-modal-footer slds-grid slds-grid_align-end slds-p-around_medium">
+                            <lightning-button label="Ok"
+                                class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button"
+                                onclick={closeModal}>
+                            </lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <!-- Backdrop -->
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        </div>
+    </div>
+</template>

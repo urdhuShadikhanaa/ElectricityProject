@@ -1,0 +1,32 @@
+<template>
+        <div class="table-wrapper" role="table">
+             <div class="custom-outer-container">
+                 <div class="custom-inner-container section-header">
+                    <h2 class="headertitle">Documents</h2>
+                </div>
+
+                <template if:true={rows.length}>
+                    <ul class="file-list">
+                        <template for:each={rows} for:item="row">
+                            <li key={row.documentId}>
+                                <div class="grid-row" role="row">
+                                <div class="grid-cell link-cell" role="cell">
+                                <a href={row.downloadUrl} target="_blank">
+                                    {row.title}
+                                </a>
+                                </div>
+                                <!--<span class="meta">
+                                    ({row.fileType})
+                                </span>-->
+                                </div>
+                                </li>
+                        </template>
+                    </ul>
+                </template>
+        
+                <template if:false={rows.length}>
+                    <p class="no-files">No documents available</p>
+                </template>
+                </div>
+        </div>
+</template>

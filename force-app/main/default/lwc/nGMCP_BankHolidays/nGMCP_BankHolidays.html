@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Holiday Calendar" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <div class="calendar-grid">
+                <template for:each={calendarDays} for:item="day">
+                    <div key={day.date} class={day.cssClass}>
+                        {day.label}
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,116 @@
+<!-- This is Salesforce Standard Functionality -->
+
+<apex:page lightningstylesheets="true" standardController="Task"  showHeader="true">
+
+ 
+    
+<apex:sectionHeader title="Call Task Details" />
+<apex:form >
+
+<apex:pageBlock id="Edittask" mode="Edit">
+<apex:pageMessages />
+
+<apex:pageBlockSection columns="2" title="Call Info" collapsible="true">
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Call Reference"/>
+<apex:inputField value="{!Task.CRM_Call_Reference__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="MPRN"/>
+<apex:inputField value="{!Task.CRM_MPRN__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Type of Caller"/>
+<apex:inputField value="{!Task.CRM_Type_of_Caller__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Job Reference"/>
+<apex:inputField value="{!Task.CRM_Job_Reference__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+  <apex:outputLabel value="Account"/>
+<apex:inputField value="{!Task.CRM_Account__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Contact Name"/>
+<apex:inputField value="{!Task.CRM_Supplier_Contact__c}"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageBlockSection columns="2" title="Call Outcome" collapsible="false">
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Valid or Invalid"/>
+<apex:inputField value="{!Task.CRM_Valid_or_Invalid__c}"/>
+
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+ 
+<apex:outputLabel value="Invalid Reason"/>
+            <apex:inputField value=" 
+    {!Task.CRM_Invalid_Reason__c}"/>
+ </apex:pageBlockSectionItem>  
+    
+
+<apex:pageBlockSectionItem >
+
+<apex:outputLabel value="Valid reason"/>
+
+            <apex:inputField value=" 
+    {!Task.CRM_Valid_Reason__c}"/>
+   
+</apex:pageBlockSectionItem>
+    
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="FCR?"/>
+
+<apex:inputField value="{!Task.CRM_FCR__c}"/>
+
+</apex:pageBlocksectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="FCR Comments"/>
+
+            <apex:inputField value=" 
+    {!Task.CRM_FCR_Comments__c}"/>
+   
+      
+        </apex:pageBlockSectionItem>
+  
+</apex:pageBlockSection>
+<apex:pageBlockSection columns="3" title="Comments" collapsible="true" >
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Comments"/>
+<apex:inputField value="{!Task.CRM_Comments__c}"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+
+<apex:pageBlockSection columns="1" title="Task Info"  collapsible="true">
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Call Type"/>
+<apex:inputField value="{!Task.CallType}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Call Duration"/>
+<apex:inputField value="{!Task.CallDurationInSeconds}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Related To"/>
+<apex:inputField value="{!Task.WhatId}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Call Object Identifier"/>
+<apex:inputField value="{!Task.CallObject}"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageblockSection>
+
+
+<apex:pageBlockButtons >
+<apex:commandButton value="Save" action="{!save}"/>
+<apex:commandButton value="Cancel" action="{!cancel}"/>
+</apex:PageBlockButtons>
+</apex:pageBlock>
+
+</apex:form>
+
+
+</apex:page>

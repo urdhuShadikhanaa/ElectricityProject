@@ -1,0 +1,48 @@
+<apex:page lightningStylesheets="true" controller="getmatrix">
+<apex:form >
+
+        <apex:actionPoller action="{!incrementCounter}" rerender="counter" interval="5"/>
+       
+  <apex:pageBlock title="Full Team Capability Matrix">
+  <apex:pageBlockTable value="{!List}" var="a">
+   <apex:column >
+    <apex:facet name="header"> Name</apex:facet>
+    <apex:outputText value="{!a.Name}"/>
+   </apex:column>
+ 
+    
+   <apex:column >
+ <apex:facet name="header"> Commerciality</apex:facet>
+    <apex:outputText value="{!a.Commercialityim__c}" escape="false"/>
+   </apex:column>
+  
+   <apex:column >
+     <apex:facet name="header"> Contract Management</apex:facet>
+    <apex:outputText value="{!a.Contract_Managementim__c}" escape="false" />
+   </apex:column>
+   <apex:column >
+    <apex:facet name="header"> Customer</apex:facet>
+    <apex:outputText value="{!a.Customerim__c}" escape="false" />
+   </apex:column>
+   <apex:column >
+    <apex:facet name="header"> Data Management</apex:facet>
+    <apex:outputText value="{!a.Data_Managementim__c}" escape="false" />
+   </apex:column>
+   <apex:column >
+    <apex:facet name="header"> Performance Excellence</apex:facet>
+    <apex:outputText value="{!a.Performance_Excellenceim__c}" escape="false" />
+   </apex:column>
+   <apex:column >
+    <apex:facet name="header"> Project Management</apex:facet>
+    <apex:outputText value="{!a.Project_Managementim__c}" escape="false" />
+   </apex:column>
+    <apex:column >
+    <apex:facet name="header"> Stakeholder</apex:facet>
+    <apex:outputText value="{!a.Stakeholderim__c}" escape="false" />
+   </apex:column>
+   
+  </apex:pageBlockTable>
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>

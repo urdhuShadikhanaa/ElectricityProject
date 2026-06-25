@@ -1,0 +1,353 @@
+<template>
+    <div class="custom-appoint-deappoint-container">
+        <!-- Main Options -->
+        <p class="field-label custom-type-section-label">Select Job Type</p>
+        <div class="radio-grid">
+            <template iterator:opt={mainOptionsWithClass}>
+                <div key={opt.value.value} class={opt.value.className} onclick={handleCardClick}
+                    data-value={opt.value.value} style={opt.value.hiddenStyle}>
+                    <div class="radio-header">
+                        <input type="radio" name="mainOptions" value={opt.value.value} checked={opt.value.checked} />
+                        <label>{opt.value.label}</label>
+                    </div>
+
+                    <p class="radio-desc">{opt.value.helpText}</p>
+
+                    <template if:true={opt.value.isSelected}>
+                        <div class="recommend-tag">Selected</div>
+                    </template>
+                </div>
+            </template>
+        </div>
+        <template if:true={isLoading}>
+            <div class="custom-spinner-container">
+                <div class="custom-spinner">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </template>
+
+        <!-- Deappointment Section -->
+       <template if:true={isDeappointment}>
+
+  <!-- ✅ ADD THIS WRAPPER so CSS used for Appointment also applies here -->
+  <div class="custom-appointment-outer-container"> <!-- NEW: start wrapper -->
+
+    <p class="field-label custom-type-section-label">Select Deappointment Type</p>
+    <div class="radio-grid">
+      <template for:each={deappointmentOptionsWithClass} for:item="option">
+        <div key={option.value} class={option.className} onclick={handleDeCardClick}>
+          <div class="radio-header">
+            <input type="radio" name="deappointmentType" value={option.value} checked={option.checked} />
+            <label>{option.label}</label>
+          </div>
+          <p class="radio-desc">{option.helpText}</p>
+          <template if:true={option.isSelected}>
+            <div class="recommend-tag">Selected</div>
+          </template>
+        </div>
+      </template>
+
+      <div class="error-text" data-error-for="deappointmentType" hidden>
+        Please select any Deappointment Type.
+      </div>
+    </div>
+
+    <template if:true={showCommonFields}>
+      <div class="custom-datepicker-input-section">
+        <div class="appointment-input custom-datepicker-component-section">
+          <label> Effective Date:<span class="required">*</span></label>
+
+          <!-- Your calendar component -->
+          <c-ngmcp-appoint-calender
+            label="Effective Date"
+            required
+            name="effectiveDate"
+            value={effectiveDate}
+            mindate={minDate}
+            maxdate={maxDate}
+            holidays={holidays}
+            disableweekends
+            ondateselected={handleDateSelected}
+            class="compact-input">
+          </c-ngmcp-appoint-calender>
+
+          <div class="error-text" data-error-for="effectiveDate" hidden>
+            This field is required.
+          </div>
+        </div>
+
+        <div class="appointment-slot appointment-input custom-timeslot-section">
+          <div class="custom-contact-field-section custom-question-section">
+            <label> Meter Link Code:<span class="required">*</span></label>
+            <lightning-combobox
+              class="compact-input text-input"
+              data-field="meterLinkCode"
+              value={meterLinkCode}
+              options={meterLinkOptions}
+              onchange={handleMeterLinkChange}>
+            </lightning-combobox>
+
+            <div class="error-text" data-error-for="meterLinkCode" hidden>
+              This field is required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- COS Specific -->
+    <template if:true={isCOSDe}>
+      <div class="custom-contact-field-section custom-question-section">
+        <label> New Supplier Short Code:<span class="required">*</span></label>
+        <lightning-combobox
+          name="newSupplierShortCode"
+          value={newSupplierShortCode}
+          placeholder="Select new supplier short code"
+          options={newSupplierShortCodeOptions}
+          class="compact-input text-input"
+          data-field="newSupplierShortCode"
+          data-required="true"
+          onchange={handleNewSupplierShortCodeChange}
+          required>
+        </lightning-combobox>
+
+        <div class="error-text" data-error-for="newSupplierShortCode" hidden>
+          This field is required.
+        </div>
+      </div>
+    </template>
+
+    <section class="section-btn">
+      <button class="btn custom-btn" type="button" onclick={handleSubmitDeappointment}>Submit Request</button>
+      <button class="btn custom-btn-base" onclick={handleCancelClick}>Cancel</button>
+    </section>
+
+  </div> <!-- NEW: end wrapper -->
+
+</template>
+
+
+        <!-- Appointment Section -->
+        <template if:true={isAppointment}>
+            <div class="custom-appointment-outer-container">
+                <p class="field-label custom-type-section-label">Select Appointment Type</p>
+                <div class="radio-grid">
+                    <template for:each={appointmentOptionsWithClass} for:item="option">
+                        <div key={option.value} class={option.className} onclick={handleAppCardClick}>
+                            <div class="radio-header">
+                                <input type="radio" name="appointmentType" value={option.value}
+                                    checked={option.checked} />
+                                <label>{option.label}</label>
+                            </div>
+                            <p class="radio-desc">{option.helpText}</p>
+                            <template if:true={option.checked}>
+                                <div class="recommend-tag">Selected</div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <div class="error-text" data-error-for="appointmentType" hidden>Please Select any Appointment Type.
+                    </div>
+                </div>
+
+
+
+
+                <template if:true={showCommonFields}>
+                    <div class="custom-datepicker-input-section">
+                        <div class="appointment-input custom-datepicker-component-section">
+                            <label> Effective Date:<span class="required">*</span></label>
+                            <c-ngmcp-appoint-calender label="Effective Date" required name="effectiveDate"
+                                value={effectiveDate} mindate={minDate} maxdate={maxDate} holidays={holidays}
+                                disableweekends ondateselected={handleDateSelected} class="compact-input">
+                            </c-ngmcp-appoint-calender>
+
+
+                            <div class="error-text" data-error-for="effectiveDate" hidden>
+                                This field is required.
+                            </div>
+
+
+                        </div>
+                        <div class="appointment-slot appointment-input custom-timeslot-section">
+                            <div class="custom-contact-field-section custom-question-section">
+                                <label> Meter Link Code:<span class="required">*</span></label>
+                                <lightning-combobox class="compact-input text-input" data-field="meterLinkCode"
+                                    value={meterLinkCode} options={meterLinkOptions} onchange={handleMeterLinkChange}>
+                                </lightning-combobox>
+
+
+                                <div class="error-text" data-error-for="meterLinkCode" hidden>
+                                    This field is required.
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+
+                <!-- FIX Type -->
+
+
+                <!-- FNDAS Type -->
+                <template if:true={isFNDAS}>
+                    <!-- Address Details -->
+
+
+                    <!-- Asset Details -->
+
+
+                    <!-- Meter Details -->
+                    <section class="section custom-contact-details-section">
+
+                        <!-- <p class="field-label custom-type-section-label">Meter details</p> -->
+                        <div class="slds-grid">
+                            <!-- Section 1 -->
+                            <div class="slds-col slds-size_1-of-2">
+                                <!-- <div class="field custom-contact-field-section">
+                                <label> Meter Type Code:<span class="required">*</span></label>
+                                <lightning-combobox options={meterTypeOptions} class="compact-input text-input" data-field="meterTypeCode" data-required="true" placeholder="Meter Type Code" onchange={handlePlainTyping}></lightning-combobox>
+                                <div class="error-text" data-error-for="meterTypeCode" hidden>This field is required.</div>
+            </div> -->
+                                <!-- <div class="field custom-contact-field-section">
+                                <label> Measuring Capacity:<span class="required">*</span></label>
+                                <lightning-combobox options={capacityOptions} class="compact-input text-input" data-field="measuringCapacity" data-required="true" placeholder="Measuring Capacity" onchange={handlePlainTyping}></lightning-combobox>
+                                <div class="error-text" data-error-for="measuringCapacity" hidden>This field is required.</div>
+            </div> -->
+
+                                <!-- <div class="field custom-contact-field-section">
+                                <label> Year of Manufacture:<span class="required">*</span></label>
+                                <lightning-input class="compact-input text-input" data-field="yearOfManufacture" data-required="true" placeholder="Year of Manufacture" onchange={handlePlainTyping}></lightning-input>
+                                <div class="error-text" data-error-for="yearOfManufacture" hidden>This field is required.</div>
+            </div> -->
+
+
+                                <div class="field custom-contact-field-section">
+                                    <label> Location Code:<span class="required">*</span></label>
+                                    <lightning-combobox options={locationOptions} class="compact-input text-input"
+                                        data-field="locationCode" data-required="true" placeholder="Location Code"
+                                        onchange={handlePlainTyping}></lightning-combobox>
+                                    <div class="error-text" data-error-for="locationCode" hidden>This field is required.
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Section 2 -->
+                            <div class="slds-col slds-size_1-of-2">
+                                <!-- <div class="field custom-contact-field-section">
+                                <label> Mechanism Code:<span class="required">*</span></label>
+                                <lightning-combobox options={mechanismOptions} class="compact-input text-input" data-field="mechanismCode" data-required="true" placeholder="Mechanism Code" onchange={handlePlainTyping}></lightning-combobox>
+                                <div class="error-text" data-error-for="mechanismCode" hidden>This field is required.</div>
+                            </div> -->
+                                <!-- <div class="field custom-contact-field-section">
+                                <label> Collar Status Code:<span class="required">*</span></label>
+                                <lightning-combobox options={collarOptions} class="compact-input text-input" data-field="collarStatusCode" data-required="true" placeholder="Collar Status Code" onchange={handlePlainTyping}></lightning-combobox>
+                                <div class="error-text" data-error-for="collarStatusCode" hidden>This field is required.</div>
+                            </div> -->
+                                <!-- <div class="field custom-contact-field-section">
+                                <label> Asset Status Code:<span class="required">*</span></label>
+                                <lightning-combobox options={statusOptions} class="compact-input text-input" data-field="assetStatusCode" data-required="true" placeholder="Asset Statue Code" onchange={handlePlainTyping}></lightning-combobox>
+                                <div class="error-text" data-error-for="assetStatusCode" hidden>This field is required.</div>
+            </div> -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Register Details -->
+                    <section class="section custom-contact-details-section">
+
+                        <p class="field-label custom-type-section-label">Register Details</p>
+                        <div class="slds-grid">
+                            <!-- Section 1 -->
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="field custom-contact-field-section">
+                                    <label> No. of Digits:<span class="required">*</span></label>
+                                    <lightning-combobox options={digitOptions} class="compact-input text-input"
+                                        data-field="numberOfDigits" data-required="true" placeholder="No. of Digits"
+                                        onchange={handlePlainTyping}></lightning-combobox>
+                                    <div class="error-text" data-error-for="numberOfDigits" hidden>This field is
+                                        required.</div>
+                                </div>
+                                <div class="field custom-contact-field-section">
+                                    <label> Multiplication Factor:<span class="required">*</span></label>
+                                    <lightning-combobox options={factorOptions} class="compact-input text-input"
+                                        data-field="multiplicationFactor" data-required="true"
+                                        placeholder="Multiplication Factor"
+                                        onchange={handlePlainTyping}></lightning-combobox>
+                                    <div class="error-text" data-error-for="multiplicationFactor" hidden>This field is
+                                        required.</div>
+                                </div>
+                                <div class="field custom-contact-field-section">
+                                    <label> Unit of Measure:<span class="required">*</span></label>
+                                    <lightning-combobox options={unitOptions} class="compact-input text-input"
+                                        data-field="unitOfMeasure" data-required="true" placeholder="Unit of Measure"
+                                        onchange={handlePlainTyping}></lightning-combobox>
+                                    <div class="error-text" data-error-for="unitOfMeasure" hidden>This field is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </template>
+
+                <section class="section-btn">
+
+
+
+
+                    <button class="btn custom-btn" onclick={handleSubmitDeappointment}>Submit Request</button>
+                    <button class="btn custom-btn-base" onclick={handleCancelClick}>Cancel</button>
+                    <!-- Submit Button -->
+                    <!--<div class="submit-row">
+                                    <lightning-button variant="brand" label="Submit Appointment" onclick={handleSubmitDeappointment}></lightning-button>
+                                    <lightning-button variant="brand" label="Cancel" onclick={handleCancelClick}></lightning-button>                   
+                                </div>-->
+                </section>
+            </div>
+        </template>
+
+
+        <template if:true={isModal}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_large">
+                        <h2 class="custom-modal-title">{requestHeader}</h2>
+                    </header>
+
+                    <!-- Body -->
+                    <div class="custom-modal-content-container slds-p-around_large">
+                        <div class="custom-modal-content slds-col slds-p-around_xx-small">{successMessage} <span
+                                class="custom-modal-content-bold"></span>
+                        </div>
+                        <div class="custom-modal-content slds-col slds-p-around_xx-small">{serviceTicketid} <span
+                                class="custom-modal-content-bold">{srNumber}</span>
+                        </div>
+                        <!--template if:true={engineerVisitMessageFlag}>
+              <div class="custom-modal-content slds-col slds-p-around_xx-small">{engineerVisitMessage}
+              </div>
+            </template>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{investigationMessage}
+            </div-->
+                    </div>
+                    <!-- Footer -->
+                    <footer class="custom-modal-footer slds-grid slds-grid_align-end slds-p-around_large">
+                        <button
+                            class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button"
+                            disabled={isDisabled} onclick={handleCancelClick}> Ok </button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

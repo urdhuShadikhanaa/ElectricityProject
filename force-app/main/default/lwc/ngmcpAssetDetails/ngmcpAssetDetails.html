@@ -1,0 +1,107 @@
+<template>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="left">
+                <span class="mprn">MPRN: {mprn}</span>
+                <span class="status">Commercial</span>
+            </div>
+            <div class="right">
+                <button class="btn deappoint">De-appoint</button>
+                <button class="btn custom-btn">Create query</button>
+                <button class="btn custom-btn">Create job</button>
+            </div>
+        </div>
+
+        <!-- Tab Header -->
+        <div class="tab-header">
+            <div class={overviewClass} onclick={selectOverview}>Overview</div>
+            <div class={requestLogClass} onclick={selectRequestLog}>Request log</div>
+            <div class={workOrderLogClass} onclick={selectWorkOrderLog}>Work order log</div>
+            <div class={amrClass} onclick={selectAMR}>AMR</div>
+        </div>
+
+        <!-- Selected Tab Content -->
+        <template if:true={isOverview}>
+            <div class="row-layout">
+                <!-- Asset Details -->
+                <div class="details-column">
+                    <h3 class="section-title">Asset details</h3>
+                    <div class="details-box">
+                        <template for:each={assetDetails} for:item="item">
+                            <div class="row with-border" key={item.label}>
+                                <div class="label">{item.label}</div>
+                                <div class="value">{item.value}</div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Address Details -->
+                <div class="details-column">
+                    <div class="section-header">
+                        <h3 class="section-title">Address details</h3>
+                        <button class="edit-icon" onclick={handleEdit}>Edit</button>
+                    </div>
+                    <div class="details-box">
+                        <template if:true={isEditing}>
+                            <div class="form-field">
+                                <label>Building number</label>
+                                <input type="text" value={address.buildingNumber} oninput={handleInputChange} data-field="buildingNumber" />
+                            </div>
+                            <div class="form-field">
+                                <label>Building name</label>
+                                <input type="text" value={address.buildingName} oninput={handleInputChange} data-field="buildingName" />
+                            </div>
+                            <div class="form-field">
+                                <label>Street</label>
+                                <input type="text" value={address.street} oninput={handleInputChange} data-field="street" />
+                            </div>
+                            <div class="form-field">
+                                <label>Dependent locality</label>
+                                <input type="text" value={address.dependentLocality} oninput={handleInputChange} data-field="dependentLocality" />
+                            </div>
+                            <div class="form-field">
+                                <label>Postal town</label>
+                                <input type="text" value={address.postalTown} oninput={handleInputChange} data-field="postalTown" />
+                            </div>
+                            <div class="form-field">
+                                <label>Postal code</label>
+                                <input type="text" value={address.postalCode} oninput={handleInputChange} data-field="postalCode" />
+                            </div>
+                            <button class="btn custom-btn" style="margin: 10px;" onclick={handleSave}>Save</button>
+                            <button class="btn deappoint" onclick={handleCancel}>Cancel</button>
+                        </template>
+
+                        <template if:false={isEditing}>
+                            <div class="row with-border">
+                                <div class="label">Building number</div>
+                                <div class="value">{address.buildingNumber}</div>
+                            </div>
+                            <div class="row with-border">
+                                <div class="label">Building name</div>
+                                <div class="value">{address.buildingName}</div>
+                            </div>
+                            <div class="row">
+                                <div class="label">Street</div>
+                                <div class="value">{address.street}</div>
+                            </div>
+                            <div class="row with-border">
+                                <div class="label">Dependent locality</div>
+                                <div class="value">{address.dependentLocality}</div>
+                            </div>
+                            <div class="row with-border">
+                                <div class="label">Postal town</div>
+                                <div class="value">{address.postalTown}</div>
+                            </div>
+                            <div class="row with-border">
+                                <div class="label">Postal code</div>
+                                <div class="value">{address.postalCode}</div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

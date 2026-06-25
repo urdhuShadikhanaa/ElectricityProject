@@ -1,0 +1,257 @@
+<apex:page standardController="Stock_Order__c" contentType="application/msword#Proforma.doc" sidebar="false" standardStylesheets="true"
+applyHtmlTag="false" applyBodyTag="false" showHeader="false">
+<table style="height: 1733px;" width="auto">
+<tbody>
+<tr style="height: 10px;">
+<td style="width: auto; height: 10px; border-style: solid; background-color: #e6e6ff; border-color: #000000;" colspan="6">
+<p style="text-align: center;"><strong>NGM - Proforma</strong></p>
+</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: auto; height: 10px; border-style: solid; background-color: #e6e6ff; border-color: #000000;" colspan="6">
+<p style="text-align: center;"><strong>ORD Ref: {!Stock_Order__c.Name} </strong></p>
+</td>
+</tr>
+<tr style="height: 15px;">
+<td style="width: auto; height: 21px; border-style: solid; background-color: #e6e6ff; border-color: #000000;" colspan="6">
+<p style="text-align: center;"><strong>Query Details</strong></p>
+</td>
+</tr>
+<tr style="height: 47px;">
+<td style="width: 60%; height: 47px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Requestor Name and Telephone Number :</strong></p>
+</td>
+<td style="width: 40%; height: 47px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Originatorformula__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Date of request :</strong></p>
+</td>
+<td style="width: 40%; height: 48px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Date_Request_Created__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Type of Request :</strong></p>
+</td>
+<td style="width: 40%; height: 48px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Type_of_Request__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: auto; height: 10px; background-color: #e6e6ff; border-style: solid; border-color: #000000;" colspan="6">
+<p><strong></strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: auto; height: 48px; border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="6">
+<p style="text-align: center;"><strong>Collection Details</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Requested Collection Date :</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Requested_Collection_Date__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Company name and full address (including post code) :</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Collection_Company_Name_and_Address__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Site Loading Hours:</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Site_Loading_Hours_collection__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Site Contact Name and Telephone Number :</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Collection_Site_Contact_name_and_no__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: auto; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="6">
+<p><strong>Total Number of Required Items for Collection</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 17%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;">
+<p><strong>Magnums:</strong></p>
+</td>
+<td style="width: 17%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;">
+<p><strong>{!Stock_Order__c.Magnums__c}</strong></p>
+</td>
+<td style="width: 17%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;">
+<p><strong>Pallets:</strong></p>
+</td>
+<td style="width: 17%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;">
+<p><strong>{!Stock_Order__c.Pallets__c}</strong></p>
+</td>
+<td style="width: 17%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;">
+<p><strong>Boxes:</strong></p>
+</td>
+<td style="width: 17%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;">
+<p><strong>{!Stock_Order__c.Boxes__c}</strong></p>
+</td>
+</tr>
+
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Does the site have MHE (such as Forklift Truck) to load vehicles?</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Does_the_collection_site_have_MHE__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 96px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3" >
+<p><strong>Does the site have the capacity to safely accommodate vehicles up to 44FT in size?</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Collection_Site_can_accommodate_44T__c}</strong></p>
+</td>
+
+</tr>
+<tr style="height: 48px;">
+<td style="60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Sap Code :</strong></p>
+</td>
+<td style="40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.newsapcode__c}</strong></p>
+</td>
+</tr>
+
+<tr style="height: 48px;">
+<td style="60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Cost Code :</strong></p>
+</td>
+<td style="40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Cost_Code__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: auto; height: 10px;background-color: #e6e6ff; border-style: solid; border-color: #000000;" colspan="6">
+<p><strong></strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: auto; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="6">
+<p style="text-align: center;"><strong>DELIVERY DETAILS</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Requested Delivery Date :</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Requested_Delivery_Date__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Company name and full address (including post code) :</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Delivery_Name_and_Address__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Site Loading Hours:</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Site_Loading_Hours_delivery__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Site Contact Name and Telephone Number :</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Site_Contact__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Does the site have MHE (such as Forklift Truck) to load vehicles?</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.np_Does_the_site_have_MHE__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 96px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Does the site have the capacity to safely accommodate vehicles up to 32T in size?</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.np_capacity_to_safely_accommodate__c}</strong></p>
+</td>
+
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>Return Trip</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000; background-color: #ffff33;" colspan="3">
+<p><strong>{!Stock_Order__c.Return_Trip__c}</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: auto; height: 48px;background-color: #e6e6ff; border-style: solid; border-color: #000000;" colspan="6">
+<p style="text-align: center;"><strong>Operational Details</strong></p>
+</td>
+</tr>
+<tr style="height: 67px;">
+<td style="width: 60%; height: 67px;border-style: solid; border-color: #000000;" colspan="3">
+<p><strong>Authorised By</strong></p>
+</td>
+<td style="width: 40%; height: 67px;border-style: solid; border-color: #000000;" colspan="3">
+<p>please provide a signed POD</p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000;" colspan="3">
+<p><strong>Date</strong></p>
+</td>
+<td style="width:40%; height: 48px;border-style: solid; border-color: #000000;" colspan="3">
+<p></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: auto; height: 48px;background-color: #e6e6ff; border-style: solid; border-color: #000000;" colspan="6">
+<p style="text-align: center;"><strong>Courier Details</strong></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000;" colspan="3">
+<p><strong>Transport Cost</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000;" colspan="3">
+<p></p>
+</td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 60%; height: 48px;border-style: solid; border-color: #000000;" colspan="3">
+<p><strong>Courier Authorisation</strong></p>
+</td>
+<td style="width: 40%; height: 48px;border-style: solid; border-color: #000000;" colspan="3">
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</apex:page>

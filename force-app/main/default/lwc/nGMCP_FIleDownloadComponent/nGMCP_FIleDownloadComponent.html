@@ -1,0 +1,64 @@
+<template>
+  <div class="slds-box slds-theme_default">
+    <h2 class="slds-text-heading_small">Documents for SR {srNumber}</h2>
+
+    <!-- Loading -->
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+
+    <!-- Error -->
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-bottom_small">{error}</div>
+    </template>
+
+    <!-- Table -->
+    <template if:true={hasRows}>
+      <!-- Table Header Row -->
+      <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small slds-border_bottom slds-p-bottom_x-small">
+        
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-p-horizontal_xx-small">
+          <strong>Doc Type </strong>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-p-horizontal_xx-small">
+          <strong>Description</strong>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-horizontal_xx-small">
+          <strong>Document</strong>
+        </div>
+
+      </div>
+
+      <!-- Data Rows -->
+      <div class="slds-m-bottom_small">
+        <template for:each={viewRows} for:item="row">
+          <div key={row.key} class="slds-grid slds-grid_vertical-align-center slim-row slds-m-bottom_small">
+
+            <!-- Short Code -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-p-horizontal_xx-small">
+              <strong>{row.shortCode}</strong>
+            </div>
+
+            <!-- Description -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-12 slds-p-horizontal_xx-small">
+              <strong>{row.description}</strong>
+            </div>
+
+            <!-- File Name -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-horizontal_xx-small">
+              <a href="javascript:void(0);"  data-key={row.key} onclick={handleDownload}>{row.fileName}</a> 
+            </div>
+
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <!-- No Rows -->
+    <template if:false={hasRows}>
+      <div class="slds-text-color_weak">No documents found.</div>
+    </template>
+  </div>
+  </template>

@@ -1,0 +1,140 @@
+<template>
+    <section class="container custom-view-workorder-container">
+        <template if:true={selectedRecordId}>            
+            <!--<c-n-g-m-c-p-_view-request-record-page record-id ={selectedRecordId}></c-n-g-m-c-p-_view-request-record-page>-->
+            <c-n-g-m-c-p_dynamic-request-pages record-id={selectedRecordId}
+                record-type-name={recordTypeName} onbackbutton ={handleBackResponse} ondownloadrams={handleDownloadresponse} rams={showdownloadRams}></c-n-g-m-c-p_dynamic-request-pages>
+        </template>
+        <template if:false={selectedRecordId}>
+            <!-- Filter Bar -->
+            <template if:false={filltersFlag}>
+                <div class="filters">
+                    <div class="chip">
+                        <input type="text" class="chip-input" placeholder="Enter MPRN number" value={filters.mprn}
+                            data-key="mprn" oninput={handleInput} />
+                    </div>
+                    <span class="or">or</span>
+
+                    <div class="chip">
+                        <input type="text" class="chip-input" placeholder="Enter WO number" value={filters.wo}
+                            data-key="wo" oninput={handleInput} />
+                    </div>
+                    <span class="or">or</span>
+                    <!-- Created From -->
+                    <div class="chip chip-date" data-key="createdFrom" onclick={openCalendar}>
+                        <input type="date" class="chip-input chip-input-date" value={filters.createdFrom}
+                            data-key="createdFrom" oninput={handleInput} onfocus={handleFocusDate}
+                            onblur={handleBlurDate} />
+                        <span class="placeholder">Select created from</span>
+                    </div>
+
+                    <!-- Created To -->
+                    <div class="chip chip-date" data-key="createdTo" onclick={openCalendar}>
+                        <input type="date" class="chip-input chip-input-date" value={filters.createdTo}
+                            data-key="createdTo" oninput={handleInput} onfocus={handleFocusDate}
+                            onblur={handleBlurDate} />
+                        <span class="placeholder">Select created to</span>
+                    </div>
+
+
+                    <div class="chip">
+                        <select class="chip-input" data-key="shortCode" onchange={handleInput}
+                            value={filters.shortCode}>
+                            <option value="">Select Short codes</option>
+                            <template for:each={shortCodes} for:item="sc">
+                                <option key={sc} value={sc}>{sc}</option>
+                            </template>
+                        </select>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-12">
+                        <button class="mprn-search-button slds-button" onclick={handleSearch}><img src={homepageAssets}
+                                class="mprn-search-img" /></button>
+                    </div> -->
+                </div>
+            </template>
+
+            <template if:true={isTableLoading}>
+                <div class="table-loading">
+                    <lightning-spinner alternative-text="Loading work orders..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+            <template if:false={isTableLoading}>
+            <div class="grid" role="table" aria-label="Requests">
+                <!-- Header row -->
+                <div class="grid-row grid-header" role="row">
+                    <template for:each={columns} for:item="col">
+                        <div class="grid-cell" role="columnheader" key={col.key}>
+                            <button class="th-btn" data-key={col.key} onclick={handleSort}>
+                                {col.label}
+                                <span if:true={col.isSortedAsc}>↓</span>
+                                <span if:true={col.isSortedDesc}>↑</span>
+                            </button>
+                        </div>
+                    </template>
+                    <!---- <div class="grid-cell actions-col" role="columnheader">Actions</div>-->
+                </div>
+
+                <!-- Body rows -->
+
+                <template if:true={rows.length}>
+                    <template for:each={rows} for:item="row">
+                        <div class="grid-row" role="row" key={row.id}>
+                            <!-- Column: Work Order Number (link) -->
+                            <div class="grid-cell" role="cell">
+                                <a href="javascript:void(0);"  data-id={row.id} onclick={handleSelectRecord}>{row.WorkOrderNumber}</a>
+                            </div>
+
+                            <!-- Column: Job Code (correct binding) -->
+                            <div class="grid-cell" role="cell">{row.jobCode}</div>
+
+                            <!-- Column: Job Description -->
+                            <div class="grid-cell" role="cell">{row.jobDescription}</div>
+
+                            <!-- Column: MPRN -->
+                            <div class="grid-cell" role="cell">{row.mprn}</div>
+
+                            <!-- Column: Supplier Code -->
+                            <div class="grid-cell" role="cell">{row.SupplierId}</div>
+
+                            <!-- Column: Supplier Name
+                            <div class="grid-cell" role="cell">{row.SupplierName}</div> -->
+
+                            <!-- Column: Status -->
+                            <div class={row.statusCellClass} role="cell">{row.status}</div>
+
+                            <!-- Column: Created Date -->
+                            <div class="grid-cell" role="cell">{row.createdDateFormatted}</div>
+                        </div>
+                    </template>
+                </template>
+
+
+                <template if:false={rows.length}>
+                    <div class="grid-row empty" role="row">
+                        <div class="grid-cell" role="cell" style="grid-column: 1 / -1;">
+                            No records found. Adjust filters and search again.
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+
+            <!-- Pagination -->
+            <div class="pager-bar">
+                <template if:true={requestLoggerFlag}>
+                    <div class="leftpagination">
+                        <button class="page-btn" onclick={handleBackBUtton}>Back</button>
+                    </div>
+                </template>
+                <div class="pagination">
+                    <button class="page-btn" onclick={prevPage} disabled={isPrevDisabled}>Prev</button>
+                    <span class="page-info">Page {page} of {totalPages}</span>
+                    <button class="page-btn" onclick={nextPage} disabled={isNextDisabled}>Next</button>
+                </div>
+            </div>
+            </template>
+        </template>
+    </section>
+
+</template>

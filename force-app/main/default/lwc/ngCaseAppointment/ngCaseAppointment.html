@@ -1,0 +1,25 @@
+<template>
+    <div class="section">
+        <div class="up-appointment">
+            <h2 class="section-title">UPCOMING APPOINTMENTS</h2>
+        </div>
+        <table class="updates-table">
+            <thead>
+                <tr>
+                    <th>JOB NAME</th>
+                    <th>SITE NAME</th>
+                    <th>DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={upcomingCases} for:item="c">
+                    <tr key={c.Id}>
+                        <td>{c.Subject}</td>
+                        <td>{c.Site_Name}</td>
+                        <td>{c.formattedTimeSlot}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

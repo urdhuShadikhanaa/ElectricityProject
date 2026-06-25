@@ -1,0 +1,76 @@
+<apex:page lightningStylesheets="true" >
+  <table width="100%">
+<tbody>
+<tr>
+<td width="85">Material</td>
+<td width="266">Material Description</td>
+<td width="85">Volume m3</td>
+<td width="67">&nbsp;</td>
+<td width="89">Width(cm)</td>
+<td width="89">Depth(cm)</td>
+<td width="90">Length(cm)</td>
+<td width="89">Weight(kg)</td>
+</tr>
+<tr>
+<td>6000000</td>
+<td>MDA16MPS, DRW MDA16MPSREV0&nbsp;&nbsp;</td>
+<td>0.134</td>
+<td>Box</td>
+<td>50</td>
+<td>37</td>
+<td>38</td>
+<td>10</td>
+</tr>
+<tr>
+<td>6000001</td>
+<td>MDA25MPS, DRW MDA25MPSREVA&nbsp;&nbsp;</td>
+<td>0.167</td>
+<td>Box</td>
+<td>60</td>
+<td>47</td>
+<td>41</td>
+<td>25</td>
+</tr>
+<tr>
+<td>6000002</td>
+<td>MDA40MPS, DRW MDA40MPSREVA.&nbsp;</td>
+<td>&nbsp;</td>
+<td>box</td>
+<td>62</td>
+<td>46</td>
+<td>47</td>
+<td>20</td>
+</tr>
+<tr>
+<td>6000003</td>
+<td>MDA65MPS, DRW MDA65MPSREVA&nbsp;&nbsp;</td>
+<td>0.262</td>
+<td>pallet</td>
+<td>120</td>
+<td>80</td>
+<td>50</td>
+<td>60</td>
+</tr>
+<tr>
+<td>6000004</td>
+<td>MDA100MPS, DRW MDA100MPSREVA</td>
+<td>0.944</td>
+<td>pallet</td>
+<td>120</td>
+<td>80</td>
+<td>50</td>
+<td>75</td>
+</tr>
+<tr>
+<td>6000005</td>
+<td>MDA160MPS, DRW MDA160MPSREV0</td>
+<td>0.714</td>
+<td>pallet</td>
+<td>120</td>
+<td>80</td>
+<td>50</td>
+<td>105</td>
+</tr>
+</tbody>
+</table>
+</apex:page>

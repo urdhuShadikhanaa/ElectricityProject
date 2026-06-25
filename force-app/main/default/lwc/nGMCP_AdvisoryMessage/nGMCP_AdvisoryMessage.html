@@ -1,0 +1,19 @@
+<template>
+    <div style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+
+        <label style="font-weight: 500; display:block; margin-bottom: 4 px;">Do you want housing?</label>
+        <div style="display: flex; gap: 10px; margin-bottom: 12 px;">
+        <label><input type="radio" name="housing" value="Yes" onchange={handleHousingChange}> Yes</label>
+        <label><input type="radio" name="housing" value="No" onchange={handleHousingChange}> No</label>
+        </div>
+        
+         <label style="font-weight: 500; display:block; margin-bottom: 4 px;">Appointment Date</label>
+         <input type="date" onchange={handleDateChange} style="padding:6px; border:1px solid #ccc; border-radius:4px" />
+        
+        
+        <template if:true={showAdvisory}>
+            <p style="font-size: 12px; margin-top: 6px; font-style: italic;"> *Date may be subject to change
+
+            </p></template>     
+    </div>
+</template>

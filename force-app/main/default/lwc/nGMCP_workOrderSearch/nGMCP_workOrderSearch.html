@@ -1,0 +1,23 @@
+<template>
+    <template if:false={woRecordId}>
+    <div class="tab-panel mprn-number-container ">
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <!-- WO Number Section -->
+            <div class="slds-col mprn-search-container slds-size_6-of-12">
+                <input type="text" id="woInput" class="mprn-search-input slds-var-p-around_medium"
+                    placeholder="Enter WO number" value={woNumber} data-type="wo" oninput={handleNumberInput}
+                    required />
+            </div>
+            <div class="slds-col slds-size_1-of-1">
+                <button class="mprn-search-button slds-button" data-type="wo" onclick={handleSearchClick}
+                    disabled={isSearchDisabled}>
+                    <img src={homepageAssets} class="mprn-search-img" />
+                </button>
+            </div>
+        </div>
+    </div>
+    </template>
+     <template if:true={woRecordId}>
+        <c-n-g-m-c-p_dynamic-request-pages record-id={woRecordId}  record-type-name ={recordTypeName}></c-n-g-m-c-p_dynamic-request-pages>
+     </template>
+</template>

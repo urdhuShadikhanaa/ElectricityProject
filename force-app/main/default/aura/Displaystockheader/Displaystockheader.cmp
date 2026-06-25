@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+
+     <body>
+        <div class="card" align ="center">
+            <div class="card-header">
+                <img src="https://ngmetering--c.visualforce.com/resource/NGMStockbanner?" class="img-fluid" alt="Responsive image" />
+	</div>
+        </div>
+ </body>
+</aura:component>

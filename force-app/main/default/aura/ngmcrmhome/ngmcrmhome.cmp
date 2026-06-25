@@ -1,0 +1,48 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	 <body>
+         <div class="slds-grid slds-gutters">
+             <div class="slds-col">
+        <div class="card" align ="center">
+            <div class="card-header">
+                <h4><a href="https://nationalgridplc.sharepoint.com/_layouts/15/sharepoint.aspx" target="_blank">Sharepoint Pages</a></h4>
+                <br></br><a href="https://nationalgridplc.sharepoint.com/_layouts/15/sharepoint.aspx" target="_blank">
+                <img src="https://ngmetering--c.visualforce.com/resource/1635761865000/sharepoint?" class="img-fluid" alt="Image 1"/></a>
+	</div>
+                 </div></div><br></br>
+                
+             <div class="slds-col">
+         <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="https://nationalgrid.service-now.com/ksp" target="_blank" >IT Portal</a></h4>
+                <br></br><a href="https://nationalgrid.service-now.com/ksp" target="_blank" >
+                <img src="https://ngmetering--c.visualforce.com/resource/1635761727000/itportal?" class="img-fluid" alt="Image 2" /></a>
+	</div>
+                 </div></div><br></br>
+                 
+             <div class="slds-col">
+           <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="https://appreciateatnationalgrid.com/home.php" target="_blank" >Appreciate</a></h4>
+                <br></br><a href="https://appreciateatnationalgrid.com/home.php" target="_blank" >
+                <img src="https://ngmetering--c.visualforce.com/resource/1635761592000/appreciate?" class="img-fluid" alt="Image 3" /></a>
+	</div>
+                 </div></div></div><br></br>
+         <div class="slds-grid slds-gutters">
+             <div class="slds-col">
+         <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="http://nationalgridmysap.uk.corporg.net/irj/portal" target="_blank" >My Services</a></h4>
+                <br></br><a href="http://nationalgridmysap.uk.corporg.net/irj/portal" target="_blank" >
+                <img src="https://ngmetering--c.visualforce.com/resource/1635761797000/myservices?" class="img-fluid" alt="Image 5" /></a>
+	</div>
+                 </div></div><br></br>
+          <div class="slds-col">
+                   <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="https://ukims.uk.corporg.net/UKIMS/welcome.aspx" target="_blank" >Go to IMS</a></h4>
+                <br></br><a href="https://ukims.uk.corporg.net/UKIMS/welcome.aspx" target="_blank" >
+                <img src="https://ngmetering--c.visualforce.com/resource/1635761573000/ims?" class="img-fluid" alt="Image 5" /></a>
+	</div>
+              </div></div></div><br></br>
+ </body>
+</aura:component>

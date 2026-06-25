@@ -1,0 +1,16 @@
+<template>
+    <div class="outerdiv">
+    <div class="landing-page">
+            <div class="logo-container">
+                <img src={companyLogo} alt="Company Logo" class="company-logo" onclick={handleLogoClick}/>
+            </div>
+            <div class="button-container">
+                <div class="search-container">
+                    <span class={searchLabelClass} onclick={handleSearchLabelClick}>Notifications</span>
+                    <img src={searchIcon} alt="" class="search-icon" onclick={redirectToSearchUrl} />
+                    {userName}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

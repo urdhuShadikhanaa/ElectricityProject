@@ -1,0 +1,79 @@
+<template>
+    <div class="custom-complaints-list-container">
+        <template if:true={hideOnRecordPage}>
+            
+        <!--<lightning-card title="Complaint Status Tracker" icon-name="standard:case">-->
+            <div class="slds-grid slds-grid_align-spread slds-var-p-around_medium">
+                <h2 class="custom-complaint-list-header">Complaint Status Tracker</h2>
+            </div>
+            <!-- Filters Section -->
+            <div class="slds-grid slds-wrap slds-p-around_small slds-grid_vertical-align-center custom-filter-option-secion">
+                <div class="slds-col slds-size_1-of-4 slds-p-around_x-small">
+                    <lightning-combobox name="statusFilter" label="Filter by Status" class="custom-filter-option-input" value={selectedStatus}
+                        placeholder="Select Status" options={statusOptions} onchange={handleFilterChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-around_x-small">
+                    <lightning-input type="date" placeholder="Select From Date" class="custom-filter-option-input" label="From Date" value={fromDate}
+                        onchange={handleDateChange}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-around_x-small">
+                    <lightning-input type="date" placeholder="Select To Date" class="custom-filter-option-input" label="To Date" value={toDate}
+                        onchange={handleDateChange}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-around_x-small">
+                    <lightning-input label="Search Complaint / MPRN" value={searchKey} placeholder="Search Complaint / MPRN" class="custom-filter-option-input" type="search"
+                        onchange={handleSearchChange}>
+                    </lightning-input>
+                </div>
+            </div>
+            <!-- Datatable Section -->
+            <template if:true={complaints}>
+                <lightning-datatable key-field="Id" class="custom-datatable-section" data={complaints} columns={columns} onrowaction={handleRowAction}
+                    hide-checkbox-column show-row-number-column>
+                </lightning-datatable>
+            </template>
+            <template if:true={error}>
+                <div class="ngmcp-text-error slds-p-around_medium">
+
+                    {error.body.message}
+                </div>
+            </template>
+            <template if:false={complaints}>
+                <div class="slds-p-around_medium">
+                    <lightning-spinner alternative-text="Loading complaints..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+       <!-- </lightning-card>-->
+        <!-- Complaint Details Modal -->
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Complaint Details</h2>
+                        <button class="slds-button slds-button_icon slds-modal__close" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        </button>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p><b>Complaint Number:</b> {selectedRecord.CaseNumber}</p>
+                        <p><b>Status:</b> {selectedRecord.Status}</p>
+                        <p><b>Category:</b> {selectedRecord.Category__c}</p>
+                        <p><b>Subcategory:</b> {selectedRecord.Sub_Category__c}</p>
+                        <p><b>End Customer:</b> {selectedRecord.CRM_End_Consumer_Name__c}</p>
+                        <p><b>Address:</b> {selectedRecord.CRM_House_Name_Number_Site_Name__c},
+                            {selectedRecord.CRM_Street__c}, {selectedRecord.CRM_City_County__c},
+                            {selectedRecord.CRM_Post_code__c}</p>
+                        <p><b>Created Date:</b> {selectedRecord.CreatedDate}</p>
+                        <p><b>Created By:</b> {selectedRecord.CreatedByName}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        </template>
+    </div>
+</template>

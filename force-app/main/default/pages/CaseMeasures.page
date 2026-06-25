@@ -1,0 +1,27 @@
+<!-- This page is related to CRM -->
+
+<apex:page lightningstylesheets="true" standardController="Case"  showHeader="true">
+
+ 
+    
+
+<apex:form >
+
+<apex:pageBlock id="ViewComplaint1" mode="maindetail">
+<apex:pageMessages />
+
+<apex:pageBlockSection columns="2" title="Complaint Metrics" collapsible="true">
+<apex:outputField value="{!case.CRM_Pending_since__c}"/>
+<apex:outputField value="{!case.Days_spent_investigating_with_SP__c}"/>
+<apex:outputField value="{!case.Total_Days_Investigating__c}"/>
+            <apex:outputField value="{!case.Days_spent_investigating_with_NGM__c}"/>
+            <apex:outputField value="{!case.Days_spent_escalating__c}"/>
+            <apex:outputField value="{!case.Days_spent_investigating_with_customer__c}"/>
+           
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+</apex:form>
+
+
+</apex:page>

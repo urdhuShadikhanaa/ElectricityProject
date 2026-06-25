@@ -1,0 +1,19 @@
+<template>
+    <template if:true={isOpen}>
+        <div class="popup-overlay" onclick={handleClose}></div>
+        <div class="popup-container">
+            <div class="popup-header">
+                <button class="popup-close-button" onclick={handleClose}>&#10005;</button>
+                <h2 class="popup-title">{modalTitle}</h2>
+            </div>
+            <div class="popup-content">
+                <div class={messageClass}>
+                    <p>{modalMessage}</p>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="popup-cancel-button" onclick={handleClose}>Cancel</button>
+            </div>
+        </div>
+    </template>
+</template>

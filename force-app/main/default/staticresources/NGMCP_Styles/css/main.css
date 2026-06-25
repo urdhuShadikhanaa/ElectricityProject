@@ -1,0 +1,1222 @@
+@font-face {
+      font-family: 'Roboto', sans-serif;
+      /* Replace myFonts with your resource name */
+      src: url('{ basePath }/sfsites/c/resource/NGMCPCustomFont') format('woff2');
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+body * {
+    font-family: 'Roboto', sans-serif;
+}
+
+community_layout-section {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+community_layout-hidden-region {
+    display: none;
+}
+
+/*********** Form Editable Fields *****************/
+/**********. UWR Custom Input Styles Overrides *************/
+
+.dp-container .input-wrapper label {
+     margin-bottom: 0.25rem;
+     font-weight: 500;
+     font-size: 14px;
+}
+ 
+.dp-container .input-wrapper input,
+.custom-lightning-card-block .custom-lightning-input-block lightning-input input,
+.custom-question-section .custom-lightning-input input {
+     height: 40px;
+     border: 2px solid #DADADA;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 500;
+     color: #555;
+     letter-spacing: 0.15px;
+     width: 300px;
+     max-width: 300px;
+     font-family: 'Roboto', sans-serif;
+}
+
+.custom-lightning-card-block .custom-lightning-input-block lightning-button button,
+.custom-complaint-outer-container lightning-button.custom-lightning-input-element button {
+    background-color: #00857A;
+     color: #fff;
+     border: 2px solid #00857A;
+     border-radius: 8px;
+     padding: 10px 35px;
+}
+
+.custom-lightning-card-block .custom-lightning-input-block lightning-button button:hover,
+.custom-complaint-outer-container lightning-button.custom-lightning-input-element button:hover {
+    background-color: #fff;
+     color: #00857A;
+     cursor: pointer;
+}
+
+.custom-lightning-card-block .custom-lightning-input-block lightning-button button:focus,
+.custom-complaint-outer-container lightning-button.custom-lightning-input-element button:focus {
+    border-color: unset;
+     transition: none;
+     box-shadow: unset;
+     transform: none;
+}
+/*************.  Custom Button Styles ***************************/
+.custom-complaint-outer-container lightning-button.custom-lightning-input-element button,
+.custom-complaint-view-container lightning-button.custom-lightning-input-element button {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/*************************. Complaint Form Style overrides *************************/
+.custom-complaint-outer-container h2.slds-card__header-title,
+.custom-complaint-view-container h2.slds-card__header-title {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 36px;
+    letter-spacing: 0;
+    display: block;
+    margin: 1rem 1rem 0;
+}
+
+.custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control,
+.custom-complaint-form-section .custom-lightning-input-element > fieldset > .slds-form-element__control,
+.custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] > div[part="input-container"] {
+    flex: 1 1 auto;
+    width: 50%;
+    max-width: 300px;
+}
+
+.custom-complaint-form-section .custom-lightning-input-element > div,
+.custom-complaint-form-section .custom-lightning-input-element > fieldset,
+.custom-complaint-form-section .custom-lightning-input-element > fieldset > .slds-form-element__control,
+.custom-complaint-form-section .custom-lightning-input-element div[part="input-text"],
+.custom-complaint-form-section lightning-textarea.custom-lightning-input-element {
+    display: flex;
+}
+/*.custom-complaint-form-section .custom-lightning-input-element > div > span,
+.custom-complaint-form-section .custom-lightning-input-element > fieldset > legend,
+.custom-complaint-form-section .custom-lightning-input-element > label,
+.custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] > label {
+    flex: 1 1 auto;
+    width: 50%;
+    max-width: 350px;
+}*/
+.custom-complaint-form-section .custom-complaint-address-section .custom-lightning-input-element > div > span,
+.custom-complaint-form-section .custom-complaint-address-section .custom-lightning-input-element > fieldset > legend,
+.custom-complaint-form-section .custom-complaint-address-section.custom-lightning-input-element > label,
+.custom-complaint-form-section .custom-complaint-address-section .custom-lightning-input-element div[part="input-text"] > label {
+    flex: 0 auto;
+    width: 250px;
+    align-content: center;
+}
+.custom-complaint-form-section .custom-complaint-query-section .custom-lightning-input-element > div > span,
+.custom-complaint-form-section .custom-complaint-query-section .custom-lightning-input-element > fieldset > legend,
+.custom-complaint-form-section .custom-complaint-query-section .custom-lightning-input-element > label,
+.custom-complaint-form-section .custom-complaint-query-section .custom-lightning-input-element div[part="input-text"] > label {
+    flex: 0 auto;
+    width: 300px;
+    align-content: center;
+}
+
+.custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control .slds-combobox__input,
+.custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] .slds-input,
+.custom-complaint-form-section .custom-lightning-input-element > .textarea-container textarea {
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    letter-spacing: 0.1px;
+    padding: 0.5rem;
+    line-height: normal;
+    background: #fff;
+    align-items: center;
+    cursor: pointer;
+    width: 300px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.custom-complaint-form-section .custom-lightning-input-element .slds-form-element__label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #1A1B1E;
+    overflow-wrap: break-word;
+    margin-bottom: 0;
+}
+
+.custom-complaint-form-section .custom-lightning-input-element > .textarea-container {
+    font-size: 14px;
+    font-weight: 400;
+    color: #1A1B1E;
+    letter-spacing: 0.1px;
+    align-items: center;
+    height: auto;
+    flex: 1 1 auto;
+    max-width: 300px;
+}
+.custom-complaint-outer-container .custom-complaint-form-section .custom-lightning-input-element > .textarea-container textarea {
+    min-height: 15vh;
+}
+.custom-complaint-form-section article {
+    border: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.custom-complaint-address-section .custom-lightning-input-element .slds-form-element__help {
+    display: flex;
+    justify-content: end;
+    padding: 0.25rem;
+    margin-left: auto !important;
+    width: 50%;
+    flex-direction: column;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element,
+.custom-complaint-view-container .custom-complaint-form-section .custom-complaint-query-section lightning-textarea.custom-lightning-input-element {
+    margin: 0;
+    border-bottom: 1px solid #DADADA;
+    padding: 0.125rem 1rem;
+}
+.custom-complaint-form-section .custom-complaint-query-section lightning-textarea.custom-lightning-input-element {
+    margin-bottom: 0;
+}
+.custom-complaint-form-section .custom-lightning-input-element div[role="status"]  {
+    align-content: center;
+    padding-left: 1rem;
+}
+.custom-complaint-form-section div.slds-form-element__help:empty,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element div[role="status"],
+.custom-contact-details-section.custom-amrinstall-contact-section div.slds-form-element__help:empty,
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element .slds-form-element__help:empty,
+.slds-form-element__help:empty  {
+    display: none;
+}
+.custom-complaints-btn-section .custom-complaints-list-btn button {
+     font-weight: 500;
+     font-size: 15px;
+     line-height: 24px;
+     letter-spacing: 0.15px;
+     vertical-align: middle;
+}
+.custom-complaints-btn-section .custom-complaints-list-btn button {
+     border: 2px solid #00857A;
+     background-color: transparent;
+     color: #00857A;
+     border-radius: 8px;
+     padding: 10px 24px;
+}
+.custom-complaints-btn-section .custom-complaints-list-btn button:hover,
+.custom-complaints-btn-section .custom-complaints-list-btn button:focus{
+     background-color: #00857A;
+     color: #fff;
+     cursor: pointer;
+     border-color: unset;
+     transition: none;
+     transform: none;
+     box-shadow: unset;
+}
+.custom-complaint-address-section .custom-combobox-customer-title div[role="status"] .slds-form-element__help {
+    position: absolute;
+    right: 85px;
+    top: -10px;
+    left: 25px;
+    padding: 0.25rem;
+    width: 50%;
+    height: 0;
+    margin: 0;
+    bottom: auto;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control .slds-combobox__input, 
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] .slds-input {
+    background: none;
+    border: 0;
+    text-align: right;
+}
+.custom-lightning-input-element .slds-card .slds-card__header {
+    padding-left: 0;
+}
+/* Remove the default SLDS asterisk */
+.custom-lightning-input-element.custom-slds-required .slds-form-element__label .slds-required,
+.custom-site-contact-details .custom-modal-content-container label.slds-form-element__label .slds-required,
+.custom-modal-lightning-textarea .slds-form-element__label .slds-required,
+.custom-usermgmt-container .custom-user-details-section .custom-terms-conditions-section .slds-form-element__control .slds-checkbox .slds-required,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="combobox"] label .slds-required,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="input-text"] label .slds-required,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-textarea-element label .slds-required,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="input-text"] label .slds-required,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="combobox"] label .slds-required,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element fieldset[part="input-radio-group"] > legend .slds-required,
+.custom-usermgmt-container .custom-input-form-wrapper .custom-radiogroup-lightning-input fieldset[part="input-radio-group"] > legend .slds-required {
+    display: none;
+}
+
+/* Add your own asterisk after the label text */
+.custom-lightning-input-element.custom-slds-required label.slds-form-element__label::after,
+.custom-lightning-input-element.custom-slds-required legend.slds-form-element__label::after,
+.custom-site-contact-details .custom-modal-content-container label::after,
+.custom-modal-lightning-textarea .slds-form-element__label::after,
+.custom-usermgmt-container .custom-user-details-section .custom-terms-conditions-section .slds-form-element__control .slds-checkbox::after,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="combobox"] label::after,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="input-text"] label::after,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-textarea-element label::after,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="input-text"] label::after,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="combobox"] label::after,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element fieldset[part="input-radio-group"] > legend::after,
+.custom-usermgmt-container .custom-input-form-wrapper .custom-inner-container .question-label::after {
+    content: " *";
+    color: #c23934;
+    font-weight: 500;
+    display: inline-block;
+    font-size: 12px;
+}
+
+/* Error message */
+.ngmcp-text-error,
+.form-group.custom-question-section .inline-error,
+.custom-contact-field-section.custom-question-section .inline-error {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+.custom-complaint-form-section .custom-lightning-input-element > .textarea-container textarea,
+.custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control .slds-combobox__input,
+.custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] .slds-input {
+    color: #1A1B1E
+}
+.custom-complaint-form-section input.custom-lightning-input-element[type="file"] {
+    font-size: 14px;
+}
+.custom-complaint-form-section .custom-lightning-input-element > fieldset .slds-form-element__control .slds-radio {
+    align-content: center;
+}
+.custom-slds-modal-container .custom-modal-brand-button .slds-button.slds-button_neutral {
+    background: #00857A;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #00857A;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 7px 24px;
+}
+.custom-slds-modal-container .custom-modal-brand-button .slds-button.slds-button_neutral:hover {
+    background: #fff;
+    color: #00857A;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/****************** Complaints List View - Custom Styles *******************/
+.custom-complaints-list-container .dt-outer-container .slds-table_header-fixed_container {
+    padding-top: 0;
+}
+
+.custom-complaints-list-container .dt-outer-container .slds-has-button-menu .slds-th__action {
+    height: auto;
+    padding: 0.25rem;
+    justify-content: center;
+}
+.custom-complaints-list-container .dt-outer-container .slds-table_header-fixed_container th[role="columnheader"] > .slds-cell-fixed{
+    position: static;
+}
+/*.custom-complaints-list-container .dt-outer-container .slds-has-button-menu .slds-th__action span.slds-truncate {
+    overflow: visible;
+    text-wrap: auto;
+}*/
+
+.appointment-slot button[name="appointmentSlot"],
+.custom-dynamic-page-container .custom-slds-modal-container .custom-modal-content-container input,
+.custom-dynamic-page-container .custom-slds-modal-container .custom-modal-content-container select,
+.custom-dynamic-page-container .custom-slds-modal-container .custom-modal-content-container textarea {
+/*.custom-filter-option-secion .custom-filter-option-input .slds-combobox__input,
+.custom-filter-option-secion .custom-filter-option-input .slds-input {*/
+    width: 300px;
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.1px;
+    align-items: center;
+    padding: 0.5rem;
+    line-height: normal;
+    font-family: 'Roboto', sans-serif;
+}
+.custom-dynamic-page-container .custom-slds-modal-container .custom-modal-content-container textarea {
+    min-height: 20vh;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.custom-dynamic-page-container .custom-slds-modal-container .custom-modal-content-container input[type="file"] {
+    height: auto;
+}
+.custom-datepicker-input-section .custom-datepicker-component-section label,
+.custom-datepicker-input-section .appointment-slot.custom-timeslot-section label {
+    font-size: 14px;
+    color: #111;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.section-card .question.custom-question-section > label[for^="gt1Error-"] {
+    margin: 0;
+    width: auto;
+}
+
+.appointment-slot .slds-combobox_container .slds-listbox .slds-listbox__option,
+.appointment-slot .slds-combobox_container .slds-listbox .slds-listbox__option .slds-media__body {
+    font-size: 14px;
+    color: #555;
+}
+
+/****************. Custom Dynamic Request Pages - Styles. ****************/
+.custom-dynamic-btn-section .btn button,
+.custom-dynamic-btn-section .custom-btn-plain {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 8px 24px;
+    margin-right: 0.5rem;
+} 
+.custom-dynamic-btn-section .btn button:focus,
+.custom-dynamic-btn-section .custom-btn-plain:focus {
+    transition: none;
+    box-shadow: none;
+}
+
+.custom-dynamic-btn-section .custom-btn button,
+.custom-dynamic-btn-section .custom-btn-plain {
+    background-color: #00857A;
+    color: #fff;
+    border: 2px solid #00857A;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.custom-dynamic-btn-section .custom-btn button:hover,
+.custom-dynamic-btn-section .custom-btn-plain:hover {
+    background-color: #fff;
+    color: #00857A;
+    cursor: pointer;
+    transform: none;
+}
+
+/* Box Styling */
+.details-box {
+     background: #fff;
+     border-radius: 4px;
+     box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+.details-box .mprn-detail-row .mprn-detail-label {
+    display: flex;
+    margin: 0;
+}
+.mprn-detail-label span.slds-form-element__label {
+     font-weight: 500;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0px;
+     color: #101828;
+     overflow-wrap: break-word;
+     font-family: 'Roboto', sans-serif;
+     width: 48%;
+     text-align: left;
+     flex-grow: 0;
+     flex: none;
+     display: inline-flex;
+     max-width: none;
+}
+.mprn-detail-label .slds-form-element__control {
+     color: #475467;
+     font-weight: 400;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0px;
+     overflow-wrap: break-word;
+     width: 52%;
+     text-align: right;
+     display: inline-flex;
+     padding: 0;
+}
+.custom-dynamic-content-section .mprn-detail-row,
+.custom-dynamic-detailpage-container .mprn-detail-row {
+     border-bottom: 1px solid #DADADA;
+     background-color: #fff;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .mprn-detail-title,
+.custom-dynamic-detailpage-container .mprn-detail-title {
+     font-weight: 600;
+     font-size: 28px;
+     line-height: 36px;
+     letter-spacing: 0;
+    display: inline-block;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: #00857A;
+}
+.details-box .mprn-detail-row .mprn-detail-label a {
+    color: #475467;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+}
+.details-box .mprn-detail-row .mprn-detail-label a:hover {
+    text-decoration: none;
+}
+.details-box .mprn-detail-row .mprn-detail-label lightning-helptext {
+    height: 0;
+    width: 0;
+}
+
+.custom-dynamic-content-section .mprn-detail-section-title,
+.custom-dynamic-detailpage-container .mprn-detail-section-title,
+.custom-related-list-section .section-header h2,
+.custom-related-list-section .section-header h2 span {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #00857A;
+}
+.custom-dynamic-content-section .slds-card.custom-related-list-section {
+    /*border: 0;
+    background: none;
+    box-shadow: none;*/
+    background: #fff;
+    margin: 1rem 0;
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    box-shadow: 3px 1px 3px 2px rgba(0, 0, 0, 0.1);
+}
+.custom-dynamic-content-section .custom-related-list-section .dt-wrapper {
+    border: 0;
+    background: #fff;
+}
+.custom-related-list-section .dt-wrapper .dt-row--header .dt-cell--header > span {
+     font-weight: 500;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0px;
+     color: #101828;
+     font-family: 'Roboto', sans-serif;
+}
+
+.custom-related-list-section .dt-wrapper .dt-row--data .dt-cell .slds-truncate,
+.custom-related-list-section .dt-wrapper .dt-row--data .dt-cell a.dt-link {
+    color: #004C9D;
+    font-weight: 400;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0px;
+     overflow-wrap: break-word;
+     font-family: 'Roboto', sans-serif;
+}
+.custom-related-list-section .dt-wrapper .dt-row--data .dt-cell .slds-truncate {
+    color: #475467;
+}
+.custom-related-list-section .dt-wrapper .dt-row--data .dt-cell a:hover {
+    text-decoration: none;
+}
+
+/************** Custom Modal Styles -Dynamic Request Pages **************/
+.custom-dynamic-page-container .custom-modal-footer .custom-modal-brand-button button.slds-button  {
+    background: #00857a;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #00857a;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 7px 24px;
+}
+.custom-dynamic-page-container .custom-modal-footer .custom-modal-brand-button button.slds-button:hover {
+    background: #fff;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-dynamic-page-container .custom-modal-footer .custom-modal-base-button button.slds-button {
+    background: #fff;
+    color: #00857a; 
+    border: 2px solid #00857a;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 7px 24px;
+}
+.custom-dynamic-page-container .custom-modal-footer .custom-modal-base-button button.slds-button:hover {
+    background: #00857a;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-dynamic-page-container .custom-modal-footer .custom-modal-brand-button button.slds-button[disabled], 
+.custom-dynamic-page-container .custom-modal-footer .custom-modal-brand-button button.slds-button:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--dxp-g-neutral-2);
+    cursor: default;
+}
+
+.custom-dynamic-page-container .custom-modal-content-container .appointment-slot,
+.enquiry-details-outer-container .form-group.custom-question-section .compact-input .dp-container .input-wrapper div[part="input-text"] .slds-form-element__control {
+    width: 300px;
+}
+.custom-dynamic-page-container .custom-dynamic-btn-section,
+.custom-view-workorder-container .custom-dynamic-btn-section {
+    position: absolute;
+    right: 0;
+}
+.custom-dynamic-page-container .custom-modal-content-container label,
+.custom-site-contact-details .custom-modal-content-container .slds-form-element__label,
+.custom-modal-content-container .custom-modal-lightning-fileupload .slds-form-element__label,
+.custom-modal-lightning-fileupload .slds-form-element__label,
+.custom-modal-lightning-fileupload .slds-file-selector_files .slds-file-selector__button {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    font-family: 'Roboto', sans-serif;
+}
+
+/***********************. Login Page - Passwordless section updates *****************/
+.custom-otp--section .input-container .slds-form-element__control .slds-input {
+    height: 45px;
+     border: 2px solid #DADADA;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 500;
+     color: #000;
+     letter-spacing: 0.15px;
+     margin: 0.5rem 0;
+}
+.custom-otp--section .input-container .slds-form-element__label {
+    font-size: 16px;
+     font-weight: 400;
+     color: #1A1B1E;
+     line-height: 24px;
+}
+
+.login-container button:focus {
+    box-shadow: none;
+}   
+
+.custom-otp--section .input-container div[part="input-text"] {
+    text-align: center;
+}
+.custom-modal-lightning-textarea label,
+.custom-modal-lightning-fileupload .slds-form-element__label {
+    padding: 0.25rem;
+}
+
+/*****************. Custom Styles - Complaint List - 17.12.25. ***********************/
+.custom-datatable-section .slds-table--header-fixed thead th, 
+.custom-datatable-section .slds-table_header-fixed thead th,
+.custom-datatable-section .slds-table--header-fixed tbody td {
+    background: #00857A;
+    color: #fff;
+    font-size: 14px;
+}
+.custom-datatable-section .slds-table_header-fixed tbody th {
+    font-size: 14px;
+}
+.custom-datatable-section thead tr th:first-of-type {
+    border-top-left-radius: 20px;
+}
+.custom-datatable-section thead tr th:last-of-type {
+    border-top-right-radius: 20px;
+}
+
+.custom-complaints-list-container .dt-outer-container .slds-has-button-menu .slds-th__action:hover,
+.custom-datatable-section .slds-table_header-fixed_container {
+    background-color: transparent;
+}
+.custom-datatable-section .slds-table--header-fixed, 
+.custom-datatable-section .slds-table_header-fixed {
+    border: 0;
+    background: #fff;
+}
+.custom-datatable-section .slds-table.slds-table_header-fixed tbody td,  
+.custom-datatable-section .slds-table.slds-table_header-fixed tbody th {
+    border: 0.5px solid #DADADA;
+    padding: 0.75rem 0.5rem;
+    font-size: 14px;
+}
+.custom-datatable-section .slds-table.slds-table_header-fixed tbody td .slds-grid.slds-grid_align-spread,
+.custom-datatable-section .slds-table.slds-table_header-fixed tbody th .slds-grid.slds-grid_align-spread {
+    justify-content: center;
+}
+.custom-datatable-section .slds-table--bordered thead th, 
+.custom-datatable-section .slds-table_bordered thead th {
+    padding: 5px 0;
+    font-size: 14px;
+    border-right: 0.5px solid #DADADA;
+}
+.custom-datatable-section .slds-table--bordered:not(.slds-no-row-hover) tbody tr:focus>td:not(.slds-has-focus), 
+.custom-datatable-section .slds-table--bordered:not(.slds-no-row-hover) tbody tr:focus>th:not(.slds-has-focus), 
+.custom-datatable-section .slds-table--bordered:not(.slds-no-row-hover) tbody tr:hover>td:not(.slds-has-focus), 
+.custom-datatable-section .slds-table--bordered:not(.slds-no-row-hover) tbody tr:hover>th:not(.slds-has-focus), 
+.custom-datatable-section .slds-table_bordered:not(.slds-no-row-hover) tbody tr:focus>td:not(.slds-has-focus), 
+.custom-datatable-section .slds-table_bordered:not(.slds-no-row-hover) tbody tr:focus>th:not(.slds-has-focus), 
+.custom-datatable-section .slds-table_bordered:not(.slds-no-row-hover) tbody tr:hover>td:not(.slds-has-focus), 
+.custom-datatable-section .slds-table_bordered:not(.slds-no-row-hover) tbody tr:hover>th:not(.slds-has-focus) {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.custom-datatable-section .slds-table_header-fixed thead th lightning-primitive-header-actions,
+.custom-datatable-section .slds-table_header-fixed thead th lightning-primitive-resize-handler,
+.custom-datatable-section .slds-table_header-fixed_container > .slds-scrollable_y::before {
+    display: none;
+}
+
+.custom-datatable-section .slds-table_header-fixed.slds-table th.slds-has-focus, 
+.custom-datatable-section .slds-table_header-fixed.slds-table th:focus {
+    box-shadow: none;
+}
+.custom-datatable-section .slds-table_header-fixed_container .slds-th__action:focus, 
+.custom-datatable-section .slds-table_header-fixed_container .slds-th__action:hover {
+    background-color: transparent;
+}
+.custom-filter-option-secion .custom-filter-option-input .slds-combobox__input,
+.custom-filter-option-secion .custom-filter-option-input .slds-input {
+    width: 100%;
+}
+.custom-complaints-list-container .dt-outer-container .slds-has-button-menu .slds-th__action:focus {
+    box-shadow: none;
+    background-color: transparent;
+}
+.custom-complaints-list-container .dt-outer-container .slds-table_header-fixed_container th[role="columnheader"] > .slds-cell-fixed:focus-visible {
+    outline: 0;
+}
+.custom-filter-option-secion .custom-filter-option-input .slds-combobox__input,
+.custom-filter-option-secion .custom-filter-option-input .slds-input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    min-width: 220px;
+    background: transparent;
+}
+.custom-filter-option-secion .custom-filter-option-input .slds-form-element__control {
+    border: 2px solid #00857A;
+    border-radius: 28px;
+    padding: 0;
+    background: #fff;
+}
+.custom-filter-option-secion .custom-filter-option-input .slds-form-element__control:focus {
+    box-shadow: var(--slds-g-shadow-outline-focus-1, 1px 0px 0px #0176d3);
+}
+.custom-complaints-list-container .custom-filter-option-secion {
+    padding: 0 0.75rem;
+}
+.custom-filter-option-secion .custom-filter-option-input .slds-form-element__label {
+    padding: 0.5rem;
+}
+
+.custom-filter-option-secion .custom-filter-option-input .slds-form-element__control .slds-input-has-icon .slds-input__icon {
+    margin-top: -0.5rem;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element .slds-form-element__label,
+.custom-usermgmt-container .custom-lightning-input-element .custom-user-form-input .slds-form-element__label,
+.custom-usermgmt-container .field.custom-contact-field-section.dual-listbox-wrapper .custom-user-form-input .slds-dueling-list .slds-dueling-list__column.slds-dueling-list__column_responsive .slds-form-element__label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #1a1b1E;
+    overflow-wrap: break-word;
+    text-align: left;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > .textarea-container {
+    color: #475467;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    overflow-wrap: break-word;
+    text-align: right;
+    padding: 0;
+    max-width: none;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > .textarea-container textarea {
+    background-color: transparent;
+    border: 0;
+    text-align: right;
+    resize: unset;
+    height: 35px;
+    overflow: hidden;
+}
+.custom-complaint-outer-container .custom-complaint-form-section .custom-lightning-input-element.slds-form-element {
+    margin-bottom: 0.5rem;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > fieldset > .slds-form-element__control,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] > div[part="input-container"] {
+    max-width: none;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control .slds-combobox__input,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] .slds-input,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > .textarea-container textarea {
+    height: 35px;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-complaint-address-section .custom-lightning-input-element > div > span,
+.custom-complaint-view-container .custom-complaint-form-section .custom-complaint-address-section .custom-lightning-input-element > fieldset > legend,
+.custom-complaint-view-container .custom-complaint-form-section .custom-complaint-address-section.custom-lightning-input-element > label,
+.custom-complaint-view-container .custom-complaint-form-section .custom-complaint-address-section .custom-lightning-input-element div[part="input-text"] > label {
+    width: 50%;
+}
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > div .slds-form-element__control .slds-combobox__input,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element div[part="input-text"] .slds-input,
+.custom-complaint-view-container .custom-complaint-form-section .custom-lightning-input-element > .textarea-container textarea {
+    width: 100%;
+}
+
+/******************************. Custom In Need of Attention Dashboards *************************/
+.custom-sitevisit-container .custom-outer-container .grid.grid-header,
+.custom-sitevisit-container .custom-outer-container .grid .grid-row {
+    grid-template-columns: 1.2fr 1.2fr 1.2fr 1.2fr;
+}
+
+.section-card .question.custom-question-section > label[for^="smartMeterOfmatError-"] {
+    width: 100%;
+    color: #c23934;
+}
+
+/************************ Enquiry Details - Custom Styles. ***********************************/
+.enquiry-details-outer-container .custom-lightning-input-element > div .slds-form-element__control,
+.enquiry-details-outer-container .custom-lightning-input-element > fieldset > .slds-form-element__control,
+.enquiry-details-outer-container .custom-lightning-input-element div[part="input-text"] > div[part="input-container"] {
+    flex: 1 1 auto;
+    /*width: 50%;*/
+    max-width: 300px;
+}
+
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element > div .slds-form-element__control .slds-combobox__input,
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element div[part="input-text"] .slds-input,
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element > .textarea-container textarea,
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-select-input .custom-user-form-select .slds-form-element__control .slds-combobox__input,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="combobox"] .slds-form-element__control .slds-combobox__input,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="input-text"] .slds-form-element__control .slds-input,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="input-text"] .slds-form-element__control .slds-input,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="combobox"] .slds-form-element__control .slds-combobox__input,
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element__control .slds-input,
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="combobox"] .slds-form-element__control .slds-combobox__input {
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    letter-spacing: 0.1px;
+    padding: 0.5rem;
+    line-height: normal;
+    align-items: center;
+    cursor: pointer;
+    width: 300px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element .slds-form-element__label,
+.enquiry-details-outer-container .custom-contact-field-section .upload-label,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="combobox"] > span label,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="input-text"] label,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-textarea-element label {
+    margin: 0.5rem 0;
+    width: 250px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+}
+
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element > .textarea-container,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-textarea-element .textarea-container {
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    letter-spacing: 0.1px;
+    align-items: center;
+    height: auto;
+    flex: 1 1 auto;
+    max-width: 300px;
+}
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element > .textarea-container textarea,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-textarea-element .textarea-container textarea,
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input .textarea-container textarea {
+    min-height: 15vh;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+    width: 300px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.1px;
+    align-items: center;
+    padding: 0.5rem;
+    line-height: normal;
+}
+
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element div[part="input-text"],
+.enquiry-details-outer-container .form-group.custom-question-section .compact-input .dp-container .input-wrapper div[part="input-text"],
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element div[part="combobox"],
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="combobox"],
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="input-text"],
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="input-text"],
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="combobox"],
+.custom-appoint-deappoint-container .compact-input.custom-radio-input-section .slds-form-element__control,
+.custom-amr-component-container .custom-amrinstall-input-section .form-group.custom-question-section .custom-radio-input-section .slds-form-element__control,
+.custom-amr-component-container .custom-amrinstall-input-section .form-group.custom-question-section .custom-radio-input-section.slds-form-element fieldset[part="input-radio-group"],
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="input-text"],
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="combobox"] {
+    display: flex;
+}
+
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element div[part="combobox"] div[role="status"],
+.custom-amrinstall-contact-section .custom-contact-field-section .custom-lightning-textarea-element div[role="status"],
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="combobox"] div[role="status"],
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="combobox"] div[role="status"] {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-top: -4px;
+    width: 50%;
+    text-align: right;
+}
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element div[part="input-text"] .slds-form-element__help,
+.enquiry-details-outer-container .custom-contact-field-section .custom-lightning-input-element .slds-form-element__help,
+.custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .custom-lightning-input-element div[part="input-text"] .slds-form-element__help,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="input-text"] .slds-form-element__help,
+.custom-amrinstall-contact-section .custom-question-section .slds-form-element .slds-form-element__help {
+    text-align: right;
+}
+
+/* Remove the default SLDS asterisk */
+.enquiry-details-outer-container .custom-contact-details-section .custom-lightning-input-element.custom-slds-required .slds-form-element__label .slds-required {
+    display: none;
+}
+
+/* Add your own asterisk after the label text */
+.enquiry-details-outer-container .custom-contact-details-section .custom-lightning-input-element.custom-slds-required label.slds-form-element__label::after,
+.enquiry-details-outer-container .custom-contact-details-section .custom-lightning-input-element.custom-slds-required legend.slds-form-element__label::after {
+    content: " *";
+    color: #c23934;
+    font-weight: 500;
+    font-size: 12px;
+}
+.enquiry-details-outer-container .custom-contact-details-section *,
+.custom-appoint-deappoint-container * {
+    font-family: 'Roboto', sans-serif;
+}
+.enquiry-details-outer-container .custom-contact-details-section .upload-box .browse-text button {
+    color: #00857A;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0.25rem 0;
+}
+.enquiry-details-outer-container .custom-contact-details-section .upload-box .browse-text button:hover {
+    text-decoration: none;
+}
+.enquiry-details-outer-container .custom-contact-details-section .upload-box .browse-text button:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+.custom-usermgmt-container .field.custom-contact-field-section.dual-listbox-wrapper .custom-user-form-input .slds-dueling-list .slds-dueling-list__column.slds-dueling-list__column_responsive {
+    max-width: 10rem;
+    width: 10rem;
+}
+.custom-usermgmt-container .field.custom-contact-field-section.dual-listbox-wrapper .custom-user-form-input .slds-dueling-list .slds-dueling-list__column.slds-dueling-list__column_responsive .slds-dueling-list__options {
+    border: 2px solid #DADADA;
+}
+.custom-usermgmt-container .field.custom-contact-field-section.dual-listbox-wrapper .custom-user-form-input .slds-dueling-list .slds-dueling-list__column.slds-dueling-list__column_responsive .slds-dueling-list__options .slds-listbox_vertical .slds-listbox__option .slds-truncate {
+    font-size: 14px;
+}
+.custom-usermgmt-container .custom-terms-conditions-section .slds-checkbox__label .slds-form-element__label {
+    font-size: 12px;
+    color: #333;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-terms-conditions-section .slds-checkbox_faux {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 2.5px;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-select-input .custom-user-form-select label:empty,
+.custom-usermgmt-container .field.custom-contact-field-section.dual-listbox-wrapper .custom-user-form-input div[part="dual-listbox"] .slds-form-element__label {
+    display: none;
+}
+
+/**********************. Custom Styles - Appoint/Deappoint - 14.01.26  ********************/
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input label.slds-form-element__label,
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input div[part="combobox"] > span,
+.enquiry-details-outer-container .form-group.custom-question-section .compact-input .dp-container .input-wrapper div[part="input-text"] label,
+.custom-appoint-deappoint-container .custom-datepicker-input-section .appointment-input.custom-datepicker-component-section .compact-input .dp-container .input-wrapper div[part="input-text"] label,
+.custom-usermgmt-container .custom-user-details-section .custom-usermgmt-create-section .custom-supplier-group-input div[part="combobox"] > span label {
+    display: none;
+}
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input .slds-form-element__control input:not([type="radio"]),
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input .slds-form-element__control .slds-combobox__form-element .slds-combobox__input,
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input .slds-form-element__control .slds-input,
+.comm-forgot-password .comm-forgot-password__container .slds-form-element__control .comm-forgot-password__username-input div[part="input-text"] .slds-input {
+    width: 300px;
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.1px;
+    padding: 0.5rem;
+    line-height: normal;
+    font-family: 'Roboto', sans-serif;
+}
+.enquiry-details-outer-container .form-group.custom-datepicker-component-section .datepicker-container,
+.custom-thirdparty-editable-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container,
+.custom-thirdparty-editable-container .appointment-slot.custom-timeslot-section div[part="combobox"],
+.custom-create-jobrequest-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container,
+.custom-create-jobrequest-container .appointment-slot.custom-timeslot-section div[part="combobox"],
+.custom-thirdparty-request-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container, 
+.custom-thirdparty-request-container .appointment-slot.custom-timeslot-section div[part="combobox"],
+.custom-appoint-deappoint-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container,
+.custom-appoint-deappoint-container .custom-datepicker-input-section .custom-datepicker-component-section .compact-input .dp-container .slds-form-element div[part="input-text"],
+.custom-appoint-deappoint-container .custom-datepicker-input-section .appointment-input.custom-datepicker-component-section {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+.custom-thirdparty-editable-container .appointment-slot.custom-timeslot-section div[part="combobox"] > span,
+.custom-create-jobrequest-container .appointment-slot.custom-timeslot-section div[part="combobox"] > span,
+.custom-thirdparty-request-container .appointment-slot.custom-timeslot-section div[part="combobox"] > span,
+.enquiry-details-outer-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container label,
+.custom-create-jobrequest-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container label,
+.custom-thirdparty-request-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container label,
+.custom-thirdparty-editable-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container label,
+.custom-appoint-deappoint-container .custom-datepicker-input-section .custom-datepicker-component-section .compact-input .dp-container .slds-form-element div[part="input-text"] label,
+.custom-appoint-deappoint-container .custom-datepicker-input-section .appointment-input.custom-datepicker-component-section label,
+.custom-appoint-deappoint-container .custom-contact-field-section.custom-question-section label {
+    min-width: 300px;
+}
+
+.enquiry-details-outer-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container .calendar-popup,
+.custom-create-jobrequest-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container .calendar-popup,
+.custom-thirdparty-request-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container .calendar-popup,
+.custom-thirdparty-editable-container .custom-datepicker-input-section .custom-datepicker-component-section .datepicker-container .calendar-popup {
+    top: 50%;
+    left: 50%;
+    margin-top: 18px;
+    margin-left: -8px;
+}
+
+/***********************. Custom Styles - AMR - Appoint/DeAppoint - 20.01.26 ******************************/
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="input-text"] label,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element div[part="combobox"] > span label,
+.custom-amrinstall-input-section .custom-question-section .slds-form-element fieldset[part="input-radio-group"] > legend,
+.custom-usermgmt-container .custom-input-form-wrapper .custom-radiogroup-lightning-input .slds-form-element__control .slds-radio .slds-radio__label .slds-form-element__label,
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="input-text"] label,
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="combobox"] > span label {
+    margin: 0.5rem 0;
+    width: 350px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #111;
+}
+.custom-appoint-deappoint-container .compact-input.custom-radio-input-section .slds-form-element__control .slds-radio label .slds-radio_faux,
+.custom-amr-component-container .custom-amrinstall-input-section .form-group.custom-question-section .custom-radio-input-section .slds-form-element__control .slds-radio label .slds-radio_faux,
+.custom-usermgmt-container .custom-input-form-wrapper .custom-radiogroup-lightning-input .slds-form-element__control .slds-radio label .slds-radio_faux {
+    width: 15px;
+    height: 15px;
+}
+
+.custom-appoint-deappoint-container .compact-input.custom-radio-input-section .slds-form-element__control .slds-radio label .slds-form-element__label,
+.custom-amr-component-container .custom-amrinstall-input-section .form-group.custom-question-section .custom-radio-input-section .slds-form-element__control .slds-radio label .slds-form-element__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+    background-color: #f4f4f4;;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-label .slds-form-element__control {
+    text-align: left;
+    padding-left: 2rem;
+}
+.enquiry-details-outer-container .form-group.custom-question-section .compact-input .dp-container .input-wrapper .slds-form-element,
+.custom-appoint-deappoint-container .custom-datepicker-input-section .appointment-input.custom-datepicker-component-section .compact-input .dp-container .input-wrapper .slds-form-element {
+    margin-bottom: 0;
+}
+
+/**********************. Custom Styles - User Management - 27.01.26  ********************/
+
+.custom-usermgmt-container .custom-input-form-wrapper .custom-radiogroup-lightning-input .slds-form-element__control {
+    display: flex;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="input-text"] label,
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="combobox"] > span label {
+    width: 250px;
+}
+
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element .slds-form-element__help {
+    width: 50%;
+    text-align: right;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-usermgmt-change-section .custom-lightning-input-element .slds-form-element .slds-form-element__help {
+    width: 100%;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="combobox"] div[role="status"] {
+    position: absolute;
+    left: -6px;
+    top: 36px;
+    width: 50%;
+}
+.custom-usermgmt-container .custom-user-details-section .custom-lightning-input-element .slds-form-element div[part="combobox"] div[role="status"] .slds-form-element__help {
+    width: 100%;
+    text-align: right;
+}
+
+.custom-usermgmt-container .custom-user-details-section .custom-terms-conditions-section .slds-form-element .slds-form-element__help {
+    position: absolute;
+    width: max-content;
+}
+
+/****************************** Custom Styles - Forgot Password/Check Password **************************/
+community_login-forgot-password.comm-forgot-password,
+community_login-check-email.comm-check-email {
+    background-image: url('/resource/National_Gas_Login_Banner_Img5');
+    background-size: cover;
+    background-position: center;
+    min-height: 60vh;
+}
+.comm-forgot-password .comm-forgot-password__container.slds-card.slds-card_inner,
+.comm-check-email .comm-check-email__container.slds-card.slds-card_inner {
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    padding: 1.5rem;
+    margin: 0 10rem;
+    border-radius: 0;
+    border: 0;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .slds-button,
+.comm-check-email .comm-check-email__container .slds-button {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 0.75rem 1rem;
+    margin: 0 0.5rem;
+    width: 45%;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .comm-forgot-password__submit-button,
+.comm-check-email .comm-check-email__container .slds-form-element .comm-check-email_return-button {
+    background: #00857a;
+    color: #fff;
+    border-radius: 8px;
+    border: 2px solid #00857A;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .comm-forgot-password__submit-button:hover,
+.comm-check-email .comm-check-email__container .slds-form-element .comm-check-email_return-button:hover {
+    background: none;
+    color: #00857a;
+    cursor: pointer;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .comm-forgot-password__cancel-button {
+    border: 2px solid #00857A;
+    background-color: transparent;
+    color: #00857A;
+    border-radius: 8px;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .comm-forgot-password__cancel-button:hover {
+    background-color: #00857A;
+    color: #fff;
+    cursor: pointer;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .comm-forgot-password__submit-button:focus,
+.comm-forgot-password .comm-forgot-password__container .slds-form-element .comm-forgot-password__cancel-button:focus,
+.comm-check-email .comm-check-email__container .slds-form-element .comm-check-email_return-button:focus {
+    border-color: unset;
+     transition: none;
+     box-shadow: unset;
+     transform: none;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element,
+.comm-check-email .comm-check-email__container .slds-form-element {
+    margin: 1rem 0.25rem 0.5rem;
+}
+
+.comm-forgot-password .comm-forgot-password__title,
+.comm-check-email .comm-check-email__title {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 500;
+    border-radius: 0px;
+    margin: 3rem 10rem 0;
+    border-bottom: 1px solid #DADADA;
+    padding: 16px 58.7px;
+    background: rgba(255, 255, 255, 0.7);
+}
+.comm-check-email .comm-check-email__title {
+    padding: 16px 64.4px;
+}
+.comm-forgot-password .comm-forgot-password__container .slds-form-element__control .comm-forgot-password__username-input div[part="input-text"] .slds-input {
+    width: 330px;
+    height: 45px;
+}
+.comm-check-email .comm-check-email__container .slds-form-element .slds-form-element__control {
+    text-align: center;
+}
+
+/**********************. Custom Styles - 29.01.26 ************************/
+.custom-create-jobrequest-container .field.custom-contact-field-section .custom-instruction-textarea-block,
+.custom-thirdparty-request-container .field.custom-contact-field-section .custom-instruction-textarea-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+.custom-amr-component-container .custom-amrinstall-contact-section .custom-contact-field-section.custom-question-section .inline-error {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    margin: 0 1rem;
+}
+.custom-thirdparty-request-container .section.custom-contact-details-section .field.custom-contact-field-section .custom-instruction-textarea-block .error-text {
+    text-align: left;
+    margin-right: 0;
+    margin-top: 0;
+}
+.mprn-detail-outer-container .details-box .form-field .custom-input-element-section .error-msg {
+     font-size: 12px;
+     color: #c23934;
+}
+
+.custom-appointment-outer-container .custom-datepicker-input-section  .compact-input .dp-container .calendar-popup { left: 0; }

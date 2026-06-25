@@ -1,0 +1,239 @@
+<template>
+    <section class="container custom-view-request-container">
+        <template if:true={selectedRecordId}>
+            <template if:true={wororderNumber}>
+                <template if:true={showdownloadRams}>
+                    <div class="button-bar custom-dynamic-btn-section slds-grid slds-grid_align-end">
+                        <button class="btn custom-btn-plain" onclick={handleDownloadFiles}>
+                            Download RAMS
+                        </button>
+                    </div>
+                </template>
+            </template>
+            <!-- <c-n-g-m-c-p-_view-request-record-page record-id={selectedRecordId}></c-n-g-m-c-p-_view-request-record-page> -->
+            <c-n-g-m-c-p_dynamic-request-pages record-id={selectedRecordId} record-type-name={recordTypeName}
+                onbackbutton={handleBackResponse}></c-n-g-m-c-p_dynamic-request-pages>
+        </template>
+        <template if:false={selectedRecordId}>
+            <!-- Filter Bar -->
+            <template if:false={filltersFlag}>
+                <div class="filters">
+                    <div class="chip">
+                        <input type="text" class="chip-input" placeholder="Enter MPRN number" value={filters.mprn}
+                            data-key="mprn" oninput={handleInput} />
+                    </div>
+                    <span class="or">or</span>
+
+                    <div class="chip">
+                        <input type="text" class="chip-input" placeholder="Enter SR number" value={filters.sr}
+                            data-key="sr" oninput={handleInput} />
+                    </div>
+                    <span class="or">or</span>
+                    <!-- Created From -->
+                    <div class="chip chip-date" data-key="createdFrom" onclick={openCalendar}>
+                        <input type="date" class="chip-input chip-input-date" value={filters.createdFrom}
+                            data-key="createdFrom" oninput={handleInput} onfocus={handleFocusDate}
+                            onblur={handleBlurDate} />
+                        <span class="placeholder">Select created from</span>
+                    </div>
+
+                    <span class="or">or</span>
+
+                    <!-- Created To -->
+                    <div class="chip chip-date" data-key="createdTo" onclick={openCalendar}>
+                        <input type="date" class="chip-input chip-input-date" value={filters.createdTo}
+                            data-key="createdTo" oninput={handleInput} onfocus={handleFocusDate}
+                            onblur={handleBlurDate} />
+                        <span class="placeholder">Select created to</span>
+                    </div>
+
+
+                    <div class="chip">
+                        <select class="chip-input" data-key="shortCode" onchange={handleInput}
+                            value={filters.shortCode}>
+                            <option value="">Select Short codes</option>
+                            <template for:each={shortCodes} for:item="sc">
+                                <option key={sc} value={sc}>{sc}</option>
+                            </template>
+                        </select>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-12">
+                        <button class="mprn-search-button slds-button" onclick={handleSearch}><img src={homepageAssets}
+                                class="mprn-search-img" /></button>
+                    </div> -->
+                </div>
+            </template>
+            <!-- Table 
+        <div class="table-wrapper">
+            <table class="table" role="table" aria-label="Requests">
+                <thead>
+                    <tr>
+                        <th>
+                            <button class="th-btn" data-key="name" onclick={handleSort}>
+                                NGMCP_Request Name
+                                <span if:true={isSortedNameAsc}>↓</span>
+                                <span if:true={isSortedNameDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="recordType" onclick={handleSort}>
+                                Record Type
+                                <span if:true={isSortedRecordTypeAsc}>↓</span>
+                                <span if:true={isSortedRecordTypeDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="mprn" onclick={handleSort}>
+                                MPRN
+                                <span if:true={isSortedMprnAsc}>↓</span>
+                                <span if:true={isSortedMprnDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="jobCode" onclick={handleSort}>
+                                Job Code
+                                <span if:true={isSortedJobCodeAsc}>↓</span>
+                                <span if:true={isSortedJobCodeDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="jobSubCode" onclick={handleSort}>
+                                Job Sub Code
+                                <span if:true={isSortedJobSubCodeAsc}>↓</span>
+                                <span if:true={isSortedJobSubCodeDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="shortCode" onclick={handleSort}>
+                                Supplier Code
+                                <span if:true={isSortedshortCodeAsc}>↓</span>
+                                <span if:true={isSortedshortCodeDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="status" onclick={handleSort}>
+                                Callout Status
+                                <span if:true={isSortedStatusAsc}>↓</span>
+                                <span if:true={isSortedStatusDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th>
+                            <button class="th-btn" data-key="createdDate" onclick={handleSort}>
+                                Created Date
+                                <span if:true={isSortedCreatedAsc}>↓</span>
+                                <span if:true={isSortedCreatedDesc}>↑</span>
+                            </button>
+                        </th>
+                        <th style="width:40px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={rows.length}>
+                        <template for:each={rows} for:item="row">
+                            <tr key={row.id}>
+                                <td>
+                                    <a href={row.nameUrl} target="_blank" rel="noopener">
+                                        {row.name}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href={row.recordTypeUrl} target="_blank" rel="noopener">
+                                        {row.recordType}
+                                    </a>
+                                </td>
+                                <td>{row.mprn}</td>
+                                <td>{row.jobCode}</td>
+                                <td>{row.jobSubCode}</td>
+                                <td>{row.shortCode}</td>
+                                <td class={row.statusClass}>{row.status}</td>
+                                <td>{row.createdDateFormatted}</td>
+                                <td>
+                                    <button class="row-action" title="More" data-id={row.id} onclick={handleRowAction}
+                                        aria-label="Row actions">▾</button>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                    <template if:false={rows.length}>
+                        <tr>
+                            <td colspan="7" class="empty">
+                                No records found. Adjust filters and search again.
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>-->
+            <template if:true={isTableLoading}>
+                <div class="table-loading">
+                    <lightning-spinner alternative-text="Loading requests..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+            <template if:false={isTableLoading}>
+            <div class="grid" role="table" aria-label="Requests">
+                <!-- Header row -->
+                <div class="grid-row grid-header" role="row">
+                    <template for:each={columns} for:item="col">
+                        <div class="grid-cell" role="columnheader" key={col.key}>
+                            <button class="th-btn" data-key={col.key} onclick={handleSort}>
+                                {col.label}
+                                <span if:true={col.isSortedAsc}>↓</span>
+                                <span if:true={col.isSortedDesc}>↑</span>
+                            </button>
+                        </div>
+                    </template>
+                    <!-- <div class="grid-cell actions-col" role="columnheader">Actions</div>-->
+                </div>
+
+                <!-- Body rows -->
+                <template if:true={rows.length}>
+                    <template for:each={rows} for:item="row">
+                        <div class="grid-row" role="row" key={row.id} data-id={row.id}>
+                            <div class="grid-cell" role="cell">
+                                <a href="javascript:void(0);" data-id={row.id}
+                                    onclick={handleSelectRecord}>{row.name}</a>
+                            </div>
+                            <div class="grid-cell" role="cell">{row.srNumber}</div>
+                            <div class="grid-cell" role="cell">{row.recordType}</div>
+                            <div class="grid-cell" role="cell">{row.mprn}</div>
+                            <div class="grid-cell" role="cell">{row.jobCode}</div>
+                            <div class="grid-cell" role="cell">{row.jobSubCode}</div>
+                            <div class="grid-cell" role="cell">{row.shortCode}</div>
+                            <div class={row.statusCellClass} role="cell">{row.status}</div>
+                            <div class="grid-cell" role="cell">{row.createdDate}</div>
+                            <!-- <div class="grid-cell actions-col" role="cell">
+                        <button class="row-action" title="More" data-id={row.id} onclick={handleRowAction} aria-label="Row actions">▾</button>
+                    </div>-->
+                        </div>
+                    </template>
+                </template>
+
+                <template if:false={rows.length}>
+                    <div class="grid-row empty" role="row">
+                        <div class="grid-cell" role="cell" style="grid-column: 1 / -1;">
+                            No records found. Adjust filters and search again.
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+
+            <!-- Pagination -->
+            <div class="pager-bar">
+                <template if:true={requestLoggerFlag}>
+                    <div class="leftpagination">
+                        <button class="page-btn" onclick={handleBackBUtton}>Back</button>
+                    </div>
+                </template>
+                <div class="pagination">
+                    <button class="page-btn" onclick={prevPage} disabled={isPrevDisabled}>Prev</button>
+                    <span class="page-info">Page {page} of {totalPages}</span>
+                    <button class="page-btn" onclick={nextPage} disabled={isNextDisabled}>Next</button>
+                </div>
+            </div>
+            </template>
+        </template>
+    </section>
+
+</template>

@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_CWRHowdoyouraisespecificationchangewherethejobisfreeofchargecompressed" {
+    var NGMCP_CWRHowdoyouraisespecificationchangewherethejobisfreeofchargecompressed: string;
+    export default NGMCP_CWRHowdoyouraisespecificationchangewherethejobisfreeofchargecompressed;
+}

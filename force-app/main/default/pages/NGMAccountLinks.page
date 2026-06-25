@@ -1,0 +1,54 @@
+<!-- This page is related to CRM/FFA -->
+
+<apex:page readOnly="true" standardController="Account" 
+           lightningStylesheets="true" applyHtmlTag="true" applyBodyTag="false">
+<style>
+</style>
+    <body>
+        <apex:outputLink rendered="{! IF(AND(NOT(ISBLANK(account.id)),account.Domestic_Supplier__c),'true','false')}" title="Latest Account Pack" target="_blank" value="https://nationalgridplc.sharepoint.com/sites/GRP-INT-UK-CustomerTeamSharepoint/Shared%20Documents/Latest%20Account%20Packs/{! IF(
+( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01) )  - 
+
+(CASE(MOD( DATE(YEAR(TODAY()),MONTH(TODAY()),01) - DATE(1985,6,24),7), 
+0 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),1,0,2,0,3,0,4,0,5,1,6,2,0), 
+1 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,0,2,0,3,0,4,0,5,2,2), 
+2 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,0,2,0,3,1,2), 
+3 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,0,2,1,2), 
+4 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,1,2), 
+5 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,1,2), 
+6 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),6,2,1), 
+999) 
++ 
+(FLOOR(( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01) )/7)*2))
+< 11, 
+             IF(MONTH(TODAY()) < 3,
+               TEXT(YEAR(TODAY())-1) & TEXT(MONTH(TODAY())+10),
+               TEXT(YEAR(TODAY())) & IF(LEN(TEXT(MONTH(TODAY())-2)) = 1,LPAD(TEXT(MONTH(TODAY())-2),2,'0'),TEXT(MONTH(TODAY())-2))
+                ),
+             TEXT(YEAR(TODAY())) & IF(LEN(TEXT(MONTH(TODAY())-1)) = 1,LPAD(TEXT(MONTH(TODAY())-1),2,'0'),TEXT(MONTH(TODAY())-1))
+            ) 
+        }%20RES%20{! account.Supplier_Group__c}.pdf">Latest Residential Account Pack</apex:outputLink>
+        <apex:outputText rendered="{! IF(AND(NOT(ISBLANK(account.id)),account.Domestic_Supplier__c),'true','false')}"><br/><br/></apex:outputText>
+        <apex:outputLink rendered="{! IF(AND(NOT(ISBLANK(account.id)),account.I_C_Supplier__c),'true','false')}" title="Latest Account Pack" target="_blank" value="https://nationalgridplc.sharepoint.com/sites/GRP-INT-UK-CustomerTeamSharepoint/Shared%20Documents/Latest%20Account%20Packs/{! IF(
+( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01) )  - 
+
+(CASE(MOD( DATE(YEAR(TODAY()),MONTH(TODAY()),01) - DATE(1985,6,24),7), 
+0 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),1,0,2,0,3,0,4,0,5,1,6,2,0), 
+1 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,0,2,0,3,0,4,0,5,2,2), 
+2 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,0,2,0,3,1,2), 
+3 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,0,2,1,2), 
+4 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,0,1,1,2), 
+5 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),0,1,2), 
+6 , CASE( MOD( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01), 7),6,2,1), 
+999) 
++ 
+(FLOOR(( TODAY() - DATE(YEAR(TODAY()),MONTH(TODAY()),01) )/7)*2))                                                                                                                                                                    
+< 11, 
+             IF(MONTH(TODAY()) < 3,
+               TEXT(YEAR(TODAY())-1) & TEXT(MONTH(TODAY())+10),
+               TEXT(YEAR(TODAY())) & IF(LEN(TEXT(MONTH(TODAY())-2)) = 1,LPAD(TEXT(MONTH(TODAY())-2),2,'0'),TEXT(MONTH(TODAY())-2))
+                ),
+             TEXT(YEAR(TODAY())) & IF(LEN(TEXT(MONTH(TODAY())-1)) = 1,LPAD(TEXT(MONTH(TODAY())-1),2,'0'),TEXT(MONTH(TODAY())-1))
+            ) 
+        }%20BUS%20{! account.Supplier_Group__c}.pdf">Latest Business Account Pack</apex:outputLink>
+    </body>
+</apex:page>

@@ -1,0 +1,106 @@
+/* Page header */
+.custom-page-header-title {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+  padding-bottom: 0.5rem;
+}
+
+/* Subheader */
+.custom-page-subheader-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  padding: 1rem 0;
+}
+
+/* Cards layout */
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.card-content {
+  text-align: left;
+}
+.card-radio {
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  box-sizing: border-box;
+  position: relative;
+  border: 2px solid #d0d0d0;
+  gap: 8px;
+  background: #fff;
+  flex-direction: column;
+}
+.card-radio:hover { border-color: #00857A; }
+.card-radio.selected {
+  border: 2px solid #00857A;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+  font-weight: 600;
+}
+.card-title { font-weight: 500; font-size: 16px; color: #1D1B20; }
+.card-desc  { font-weight: 400; font-size: 14px; color: #625B71; }
+
+/* Selected subtype label */
+.selected-subtype-suggestion {
+  font-size: 24px;
+  padding-bottom: 1rem;
+  color: #00857A;
+}
+
+/* Questions grid */
+.custom-question-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.custom-question-section > label {
+  margin: 0.5rem 0;
+  width: 350px;
+}
+
+/* Inputs / selects */
+input:not([type="radio"]), select {
+  width: 50%;
+  max-width: 300px;
+  height: 40px;
+  border: 2px solid #DADADA;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* Horizontal radio options */
+.horizontal-radio {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.horizontal-radio label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Required asterisk */
+.req {
+  color: #b00020;
+  margin-left: 4px;
+  font-weight: 700;
+}

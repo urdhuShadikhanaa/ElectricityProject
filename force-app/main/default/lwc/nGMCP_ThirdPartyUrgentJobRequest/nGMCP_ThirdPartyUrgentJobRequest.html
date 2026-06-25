@@ -1,0 +1,100 @@
+<template>
+  <div class="container">
+  <div style="display: flex; gap: 20px;">
+    <!-- ADDRESS DETAILS (LEFT COLUMN) -->
+    <div class="section" style="width: 50%;">
+      <div class="section-header">
+        <h3 class="section-title">Address Details</h3>
+      </div>
+
+      <div class="form-field">
+        <c-ngmcp-addressflowcomponent onaddresschange={handleAddressFromChild}></c-ngmcp-addressflowcomponent>
+      </div>
+      <template for:each={addressDetails} for:item="item">
+        <div key={item.apiName} class="detail-row">
+          <span class="label">{item.label}</span>
+
+          <input
+            type="text"
+            class="input-field"
+            value={item.value}
+            data-field={item.apiName}
+            maxlength={item.maxLength} 
+            oninput={handleAddressEdit}
+          />
+        </div>
+      </template>
+    </div>
+
+    <!-- ASSET DETAILS (RIGHT COLUMN) -->
+    <div class="section" style="width: 50%;">
+      <div class="section-header">
+        <h3 class="section-title">Asset Details</h3>
+      </div>
+
+      <template for:each={assetDetails} for:item="item">
+        <div key={item.apiName} class="detail-row">
+          <span class="label">{item.label}</span>
+
+          <input
+            type="text"
+            class="input-field"
+            value={item.value}
+            data-field={item.apiName}
+            oninput={handleAssetEdit}
+          />
+        </div>
+      </template>
+    </div>
+
+  </div>
+
+    <!-- Job Required Section (unchanged) -->
+    <section class="section-job">
+      <h2 class="section-title">Job required</h2>
+      <p class="field-label">Select request type</p>
+      <div class="radio-grid">
+        <div class="radio-card" onclick={handleCardClick} data-value="work">
+          <input type="radio" name="requestType" value="work" />
+          <label>Work request</label>
+          <p>An ordinary request with several jobs type to choose from</p>
+        </div>
+
+        <div class="radio-card" onclick={handleCardClick} data-value="urgent">
+          <input type="radio" name="requestType" value="urgent" />
+          <label>Urgent Work request (Off gas)</label>
+          <p>An urgent work request for issues to be resolved fast.</p>
+        </div>
+
+        <div class="radio-card" onclick={handleCardClick} data-value="amr">
+          <input type="radio" name="requestType" value="amr" />
+          <label>AMR request</label>
+          <p>With AMR, you get automatic readings directly in the portal.</p>
+        </div>
+
+        <div class="radio-card" onclick={handleCardClick} data-value="deappoint">
+          <input type="radio" name="requestType" value="deappoint" />
+          <label>De-Appoint</label>
+          <p>Supporting line text lorem ipsum dolor sit amet.</p>
+        </div>
+      </div>
+
+      <div class="consent-box">
+        <input type="checkbox" name="consent" onchange={handleInputChange} />
+        <span class="consent-text">
+          Please tick here to confirm that consent has been obtained from the
+          named individual for their personal data to be passed to third
+          parties, for the purposes of performing the specified works, by means
+          of a suitable Data Privacy Notice and explicit consent agreement.
+        </span>
+      </div>
+
+      <div class="button-row">
+        <section class="section-btn">
+        <button class="submit-btn" onclick={handleSubmitUrgentWorkrequest}>Submit Request</button>
+        <button class="submit-btn" onclick={handleCancelClick}>Cancel</button>
+        </section>
+      </div>
+    </section>
+  </div>
+</template>

@@ -1,0 +1,318 @@
+<template>
+    <div class="button-bar slds-text-align_right">
+        <!-- <template if:true={showReplan}> -->
+        <lightning-button variant="brand" label="Replan" class="slds-m-right_small"
+            onclick={handleReplanJob}></lightning-button>
+        <!-- </template>
+        <template if:true={showCancel}> -->
+        <lightning-button variant="brand" label="Cancel" class="slds-m-right_small"
+            onclick={handleCancelJob}></lightning-button>
+        <!-- </template> -->
+        <template if:true={showCompletion}>
+            <lightning-button variant="neutral" label="Completion Details"></lightning-button>
+        </template>
+        <!-- <lightning-button variant="Brand" label="View Quotation"></lightning-button>
+        <template if:true={showAccpet/Reject}>
+        <button onclick={handleAcceptQuotation} name="Accept">Accept</button>
+        <button onclick={handleAcceptQuotation} name="Reject">Reject</button>
+        </template> -->
+    </div>
+    <template if:true={acceptRejectFlag}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Are you sure you want to {quotationStatus} Quotation?</h2>
+                </header>
+
+                <!-- Body -->
+                <div>
+                    <label>Please add a comment to proceed</label>
+                    <input type="text" name="comment" placeholder="Enter Comment" value={comment}
+                        onchange={handleComment} />
+                    <template if:true={commentFlag}>
+                        <p class="error-text">{commentError}</p>
+                    </template>
+                </div>
+                <template if:true={isAccept}>
+                    <div>
+                        <!--lightning-file-upload
+                        label="Upload File"
+                        name="fileUploader"
+                        record-id={requestid}
+                        accept={acceptedFormats}
+                        multiple
+                        onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload-->
+                        <label>Please uplaod a signed quotation document</label>
+                        <input type="file" multiple accept=".pdf,.png,.jpg,.docx,.xlsx" onchange={handleFileChange} />
+                    </div>
+                </template>
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+
+                    <lightning-button variant="brand" label="Submit" onclick={handleQuotation}></lightning-button>
+                    <lightning-button variant="neutral" label="Cancel"
+                        onclick={closeAcceptRejectModal}></lightning-button>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+
+    <!-- Cancel Modal -->
+    <template if:true={isCancelModalOpen}>
+
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Are you sure you want to cancel the job ?</h2>
+                </header>
+
+                <!-- Body -->
+                <div>
+                    <label>Please enter a reason to cancel</label>
+                    <input type="text" name="reason" placeholder="Enter Reason" value={reason}
+                        onchange={handleInputChange} />
+                    <template if:true={reasonFlag}>
+                        <p class="error-text">{reasonError}</p>
+                    </template>
+                </div>
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+
+                    <lightning-button variant="brand" label="Yes" onclick={handleCancel}></lightning-button>
+                    <lightning-button variant="neutral" label="No" onclick={closeCancelModal}></lightning-button>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+
+        <template if:true={cancelChargeFlag}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Header -->
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Cancellation/Termination charges will be applicable, Please
+                            confirm to cancel?</h2>
+                    </header>
+
+                    <!-- Body -->
+                    <!--div>
+                        <label>Reason</label>
+                        <input type="text" name="reason" placeholder="Enter Reason" value={reason}
+                        onchange={handleInputChange} />
+                        <template if:true={reasonFlag}>
+                    <p class="error-text">{reasonError}</p>
+                  </template>
+                        </div-->
+                    <!-- Footer -->
+                    <footer class="slds-modal__footer">
+
+                        <lightning-button variant="brand" label="Yes" onclick={handleYes}></lightning-button>
+                        <lightning-button variant="neutral" label="No" onclick={closeCancelModal}></lightning-button>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>
+
+    <!-- Replan Modal -->
+    <template if:true={isReplanModalOpen}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Please select the appointment date and slot to proceed</h2>
+                </header>
+
+                <!-- Body -->
+                <lightning-card>
+                    <div>
+                        <c-ngmcp-date-picker-with-holidays mode="future"
+                            ondateselected={handleDateChange}></c-ngmcp-date-picker-with-holidays>
+
+                        <template if:true={dateFlag}>
+                            <p class="error-text">{appointmentDateError}</p>
+                        </template>
+                    </div>
+
+                    <div>
+                        <template if:true={appointmentOptions}>
+                            <lightning-combobox name="appointmentSlot" label="Select Appointment slot"
+                                value={selectedSlot} options={appointmentOptions} onchange={handleSlotChange}
+                                class="appointment-slot" placeholder="Choose timeslot"></lightning-combobox>
+                        </template>
+                        <template if:true={slotFlag}>
+                            <p class="error-text">{appointmentSlotError}</p>
+                        </template>
+                    </div>
+                    <div>
+                        <label>Please enter a reason to replan</label>
+                        <input type="text" name="reason" placeholder="Enter Reason" value={reason}
+                            onchange={handleInputChange} />
+                        <template if:true={reasonFlag}>
+                            <p class="error-text">{reasonError}</p>
+                        </template>
+                    </div>
+                </lightning-card>
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+
+                    <lightning-button variant="brand" label="Submit" onclick={handleYes}></lightning-button>
+                    <lightning-button variant="neutral" label="Cancel" onclick={closeReplanModal}></lightning-button>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- Error banner -->
+    <template if:true={errorMessage}>
+        <div class="slds-notify_alert slds-theme_error" role="alert">
+            <h2 class="slds-text-color_error">{errorMessage}</h2>
+        </div>
+    </template>
+    <template if:true={selectedRecordId}>
+        <c-n-g-m-c-p_dynamicpage record-id={selectedRecordId} object-api-name={objectApiName}
+            record-type-name={objectApiName}></c-n-g-m-c-p_dynamicpage>
+    </template>
+    <template if:false={selectedRecordId}>
+        <lightning-card title="Dynamic Sections by Record Type" icon-name="utility:related_list">
+            <div class="slds-p-around_medium">
+
+                <!-- Ready: record sections -->
+                <template if:true={ready}>
+                    <lightning-card title={title} icon-name="utility:settings">
+                        <div class="slds-p-around_medium">
+                            <template if:true={recordDisplayName}>
+                                <p class="slds-text-title_caps slds-m-bottom_small">{recordDisplayName}</p>
+                            </template>
+
+                            <template for:each={activeSections} for:item="section">
+                                <section key={section.key} class="slds-m-bottom_large">
+                                    <h3 class="slds-text-title_bold slds-m-bottom_small">{section.label}</h3>
+
+                                    <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
+                                        <div class="slds-grid slds-wrap">
+                                            <template for:each={section.fields} for:item="fld">
+                                                <div key={fld}
+                                                    class="slds-size_1-of-1 slds-large-size_1-of-2 slds-p-right_small slds-m-bottom_small">
+                                                    <lightning-output-field field-name={fld}></lightning-output-field>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </lightning-record-view-form>
+                                </section>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </template>
+
+                <!-- Spinner while metadata/records are loading -->
+                <template if:true={loading}>
+                    <lightning-spinner alternative-text="Loading related lists" size="small"></lightning-spinner>
+                </template>
+
+                <!-- Lists -->
+                <template if:true={lists}>
+                    <template for:each={lists} for:item="rl">
+                        <section key={rl.id} class="slds-card slds-m-bottom_large">
+
+                            <!-- SECTION HEADER: keep visible always -->
+                            <header class="section-header">
+                                <div
+                                    class="section-header__left slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <lightning-icon icon-name={rl.iconName} size="x-small"
+                                        variant="brand"></lightning-icon>
+                                    <h2 class="slds-text-heading_small slds-truncate slds-m-left_x-small"
+                                        title={rl.label}>
+                                        {rl.label}
+                                        <!-- Show count only when > 0 -->
+                                        <template if:true={rl.count}>
+                                            <span class="slds-text-title_caps slds-m-left_x-small">({rl.count})</span>
+                                        </template>
+                                    </h2>
+                                </div>
+                                <!-- Removed New button intentionally -->
+                            </header>
+
+                            <!-- TABLE-LIKE AREA -->
+                            <div class="dt-wrapper">
+                                <div class="dt-scroll">
+
+                                    <!-- Column headers: render only when rl.count > 0 -->
+                                    <template if:true={rl.count}>
+                                        <div class="dt-row dt-row--header" role="row" style={rl.gridTemplate}>
+                                            <!-- Name header (icon removed) -->
+                                            <div class="dt-cell dt-cell--header dt-cell--sortable" role="columnheader"
+                                                tabindex="0" aria-sort={rl.firstColumnAriaSort} data-sort-key="__link__"
+                                                data-rlid={rl.id} onclick={handleSortClick}
+                                                onkeydown={handleSortKeydown}>
+                                                <span class="slds-truncate" title="Name">Name</span>
+                                            </div>
+
+                                            <!-- Dynamic headers (icons removed) -->
+                                            <template for:each={rl.columns} for:item="col">
+                                                <div key={col.fieldName}
+                                                    class="dt-cell dt-cell--header dt-cell--sortable"
+                                                    role="columnheader" tabindex="0" aria-sort={col.ariaSort}
+                                                    data-sort-key={col.fieldName} data-rlid={rl.id} title={col.label}
+                                                    onclick={handleSortClick} onkeydown={handleSortKeydown}>
+                                                    <span class="slds-truncate">{col.label}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+
+                                    <!-- Data rows: only when rl.count > 0 -->
+                                    <template if:true={rl.count}>
+                                        <template for:each={rl.rows} for:item="row">
+                                            <div key={row.Id} class={row.rowClass} role="row" style={rl.gridTemplate}>
+                                                <!-- Link cell (first column) -->
+                                                <div class="dt-cell dt-cell--link" role="cell">
+                                                    <a href={row.recordUrl} class="slds-truncate dt-link"
+                                                        title={row.linkLabel} data-id={row.Id}
+                                                        onclick={handleLinkClick}>
+                                                        {row.linkLabel}
+                                                    </a>
+                                                </div>
+
+                                                <!-- Value cells (middle columns) -->
+                                                <template for:each={row.cells} for:item="cell">
+                                                    <div key={cell.api} class="dt-cell" role="cell" title={cell.value}>
+                                                        <span class="slds-truncate">{cell.value}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </template>
+
+                                    <!-- Empty state: when rl.count = 0; still looks like a table -->
+                                    <template if:false={rl.count}>
+                                        <div class="dt-empty" role="row" style={rl.gridTemplate}>
+                                            <div class="dt-cell dt-cell--empty" role="cell" title="No records">
+                                                <span class="slds-truncate">No records</span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                </div> <!-- /dt-scroll -->
+                            </div> <!-- /dt-wrapper -->
+
+                        </section>
+                    </template>
+                </template>
+
+            </div> <!-- /slds-p-around_medium -->
+        </lightning-card>
+    </template>
+</template>

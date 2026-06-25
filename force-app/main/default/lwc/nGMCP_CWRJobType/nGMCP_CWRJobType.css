@@ -1,0 +1,44 @@
+.section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    display: inline-block;
+    cursor: pointer;
+    width: 180px;
+    text-align: center;
+}
+
+.card input[type="radio"] {
+    display: none;
+}
+
+.card label {
+    font-weight: bold;
+    display: block;
+}
+
+.question {
+    margin-bottom: 16px;
+}
+
+.question label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

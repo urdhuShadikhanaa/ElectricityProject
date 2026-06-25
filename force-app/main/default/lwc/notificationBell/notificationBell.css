@@ -1,0 +1,74 @@
+.bell-container {
+    position: relative;
+    display: inline-block;
+}
+
+.bell-icon {
+    cursor: pointer;
+    position: relative;
+}
+
+.bell-icon img {
+    width: 60px;
+    height: 60px;
+}
+
+.badge {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+    position: absolute;
+    top: -4px;
+    right: -6px;
+}
+
+.notif-popup {
+    position: absolute;
+    right: 0;
+    top: 36px;
+    width: 280px;
+    max-height: 340px;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    padding: 10px;
+    z-index: 200;
+}
+
+.notif-item {
+    border-bottom: 1px solid #eee;
+    padding: 8px 4px;
+}
+
+.notif-item:last-child {
+    border-bottom: none;
+}
+
+.message {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.link {
+    font-size: 12px;
+    color: #7A3864;
+}
+
+.empty {
+    text-align: center;
+    padding: 20px 0;
+    color: #999;
+}
+
+.bell-container { position: relative; display: inline-block; }
+.badge { background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; position: absolute; top: -4px; right: -6px; }
+.notif-popup { position: absolute; right: 0; top: 36px; width: 280px; max-height: 340px; overflow-y: auto; background: #fff; border-radius: 8px; border: 1px solid #dcdcdc; box-shadow: 0 4px 8px rgba(0,0,0,0.15); padding: 10px; z-index: 200; }
+.notif-item { border-bottom: 1px solid #eee; padding: 8px 4px; }
+.notif-item:last-child { border-bottom: none; }
+.message { font-size: 13px; margin-bottom: 4px; }
+.link { font-size: 12px; color: #7A3864; }
+.empty { text-align: center; padding: 20px 0; color: #999; }

@@ -1,0 +1,638 @@
+<template>
+  <!-- ====== Page header ====== -->
+    <section class="custom-amr-component-container">
+        <p class="field-label custom-type-section-label">Select Job Type</p>
+  <!-- ====== Type radio card (AMR) ====== -->
+          <div class="radio-grid">          
+      <label class={typeCardClassAMR}>
+                  <div class="radio-header">
+          <input type="radio" name="requestType" value="AMR" onchange={handleTypeSelect} checked={isAMRSelected}
+            required aria-required="true" />
+                      <span>AMR <span class="required"></span></span>       
+        </div>
+                  <p class="radio-desc">Automated Meter Reading</p>
+                  <template if:true={isAMRSelected}>
+                    <div class="recommend-tag">Selected</div>
+                  </template>
+      </label>
+    </div>
+    <template if:true={isLoading}>
+      <div class="custom-spinner-container">
+        <div class="custom-spinner">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </template>
+  <!-- ====== Subtypes ====== -->
+  <template if:true={selectedType}>
+                  <p class="field-label custom-type-section-label">Select Sub Type <span class="required"></span></p>
+                    <div class="radio-grid">
+        <template for:each={subTypesWithClass} for:item="sub">
+          <label key={sub.id} class={sub.cssClass}>
+                          <div class="radio-header">
+              <input type="radio" name="subType" value={sub.label} onchange={handleSubTypeSelect} />
+                            <label>{sub.label}</label>
+            </div>
+                          <p class="radio-desc">{sub.description}</p>
+                          <template if:true={sub.isSelected}>
+                            <div class="recommend-tag">Selected</div>
+                          </template>
+          </label>
+        </template>
+      </div>
+  </template>
+
+  <!-- ====== Static fields per subtype ====== -->
+  <template if:true={selectedSubType}>
+                    <p class="custom-page-subheader-title selected-subtype-suggestion">{selectedSubType.label}</p>
+    <!-- Install -->
+    <template if:true={isInstall}>
+            <!-- =========================================
+                CASE 2: Residential is Yes/No (Normal Install)
+                ========================================= -->
+            <template if:true={showInstallNormal}>
+                        <div class="custom-amrinstall-input-section">
+                              <!-- Service Level (dropdown) -->
+                               <!-- Is this meter pulsing? (Normal Install) -->
+        <div class="custom-amrinstall-input-section">
+  <div class="form-group custom-question-section">
+    <div class="slds-form-element slds-form-element_horizontal">
+      <label class="slds-form-element__label" for="isPulsing_yes">
+        Is this meter pulsing?
+      </label>
+
+      <div class="slds-form-element__control">
+        <div class="slds-grid slds-gutters_small slds-wrap slds-align-middle">
+          <!-- YES -->
+          <div class="slds-radio slds-m-right_medium">
+            <input
+              type="radio"
+              id="isPulsing_yes"
+              name="isPulsing_group"
+              value="YES"
+              data-key="isPulsing"
+              onchange={handleFieldChange}
+              checked={isPulsingYesChecked}
+              required
+              disabled
+              aria-disabled="true"
+              tabindex="-1"
+            />
+            <label class="slds-radio__label" for="isPulsing_yes">
+              <span class="slds-radio_faux"></span>
+              <span class="slds-form-element__label">Yes</span>
+            </label>
+          </div>
+
+          <!-- NO -->
+          <div class="slds-radio">
+            <input
+              type="radio"
+              id="isPulsing_no"
+              name="isPulsing_group"
+              value="NO"
+              data-key="isPulsing"
+              onchange={handleFieldChange}
+              checked={isPulsingNoChecked}
+              required
+              disabled
+              aria-disabled="true"
+              tabindex="-1"
+            />
+            <label class="slds-radio__label" for="isPulsing_no">
+              <span class="slds-radio_faux"></span>
+              <span class="slds-form-element__label">No</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                              <div class="form-group custom-question-section">
+              <lightning-combobox label="Service Level" field-level-help= {serviceLevelHelp} data-key="serviceLevel" options={serviceLevelOptions}
+                value={state.serviceLevel} placeholder="Service Level" onchange={handleFieldChange} required>
+                                    </lightning-combobox>                                    
+<template if:true={fieldErrors.serviceLevel}>
+    <div style="color:red;font-size:12px;margin-top:4px">
+        {fieldErrors.serviceLevel}
+    </div>
+</template>
+
+      </div>
+      </div>     
+              <div class="subtype remove section-job custom-contact-details-section" data-subtype="AMR_Remove">
+                      <h2 class="section-title">Contact details (on-site)</h2>
+                      <div class="slds-grid"> 
+                            <!-- Section 1 --> 
+                            <div class="slds-col slds-size_1-of-2">
+                                      <!-- Title (Dropdown) -->
+                    <div class="custom-contact-field-section custom-question-section">
+                      <label for="title">Title <span class="required">*</span></label>
+                <select id="title" data-key="title" value={state.title} onchange={handleFieldChange} required
+                  aria-required="true">
+                        <option value="" disabled selected hidden>Select Title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Company">Company</option>
+                      </select>                     
+<template if:true={fieldErrors.title}>
+        <div class="error-msg">
+            {fieldErrors.title}
+        </div>
+    </template>
+                                </div>
+                                <div class="custom-contact-field-section custom-question-section">      
+                        <label for="siteContactName">Site Contact Name <span class="required">*</span></label>
+        <input type="text" id="siteContactName" data-key="siteContactName"
+                  value={state.siteContactName} placeholder="Contact Name" onchange={handleFieldChange} required
+                  aria-required="true" />                 
+<template if:true={fieldErrors.siteContactName}>
+    <div class="error-msg">
+        {fieldErrors.siteContactName}
+    </div>
+</template>
+      </div>
+                      <!-- Title (NEW) -->
+                                 <div class="custom-contact-field-section custom-question-section">      
+                            <label for="sv_title">Access Instructions <span class="required">*</span></label>
+                <textarea data-key="accessInstructions" 
+                  placeholder="Access Instructions" id="accessInstructions" style="width: 300px; height: 96.3px;"
+                  onchange={handleFieldChange} required>{state.accessInstructions}</textarea>                 
+<template if:true={fieldErrors.accessInstructions}>
+    <div class="error-msg">
+        {fieldErrors.accessInstructions}
+    </div>
+</template>
+                                 </div>   
+      </div>
+                              <!-- Section 2 --> 
+                              <div class="slds-col slds-size_1-of-2">
+                                 <div class="custom-contact-field-section custom-question-section">        
+                        <label for="siteContactNumber">Contact Number <span class="required">*</span></label>
+                <input type="text" id="siteContactNumber" data-key="siteContactNumber" value={state.siteContactNumber}
+                  placeholder="Contact Number" onchange={handleFieldChange} required aria-required="true" />                
+<template if:true={fieldErrors.siteContactNumber}>
+    <div class="error-msg">
+        {fieldErrors.siteContactNumber}
+    </div>
+</template>
+                                 </div>     
+                                 <div class="custom-contact-field-section custom-question-section">   
+                        <label for="consumerEmail">End Consumer Email <span class="required">*</span></label>
+                <input type="text" id="consumerEmail" data-key="consumerEmail" value={state.consumerEmail}
+                  placeholder="Consumer Email" onchange={handleFieldChange} required aria-required="true" />              
+<template if:true={fieldErrors.consumerEmail}>
+    <div class="error-msg">
+        {fieldErrors.consumerEmail}
+    </div>
+</template>
+              </div>
+              <!-- Upload block (Remove) -->
+      </div>
+                              </div>
+      </div>
+            </template>
+            <!-- =========================================
+                CASE 1: Residential is NULL (Null-only set)
+                ========================================= -->
+                <div class="subtype" data-subtype="AMR_Install">
+            <template if:true={showInstallNullBlock}>
+              <div class="custom-amrinstall-input-section">
+
+                 <div class="custom-amrinstall-input-section">
+  <div class="form-group custom-question-section">
+    <div class="slds-form-element slds-form-element_horizontal">
+      <label class="slds-form-element__label" for="isPulsing_yes">
+        Is this meter pulsing?
+      </label>
+      <div class="slds-form-element__control">
+        <div class="slds-grid slds-gutters_small slds-wrap slds-align-middle">
+          <!-- YES -->
+          <div class="slds-radio slds-m-right_medium">
+            <input
+              type="radio"
+              id="isPulsing_yes1"
+              name="isPulsing_group"
+              value="YES"
+              data-key="isPulsing"
+              onchange={handleFieldChange}
+              disabled={isPulsingDerived}
+              checked={isPulsingYesChecked}
+              required
+            />
+            <label class="slds-radio__label" for="isPulsing_yes">
+              <span class="slds-radio_faux"></span>
+              <span class="slds-form-element__label">Yes</span>
+            </label>
+          </div>
+          <!-- NO -->
+          <div class="slds-radio">
+            <input
+              type="radio"
+              id="isPulsing_no1"
+              name="isPulsing_group"
+              value="NO"
+              data-key="isPulsing"
+              onchange={handleFieldChange}
+              disabled={isPulsingDerived}
+              checked={isPulsingNoChecked}
+              required
+            />
+            <label class="slds-radio__label" for="isPulsing_no">
+              <span class="slds-radio_faux"></span>
+              <span class="slds-form-element__label">No</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                <!-- Meter Dials & YOM -->
+              <div class="form-group custom-question-section">
+                <lightning-input label="Meter Dials" data-key="meterDials" type="number" value={state.meterDials}
+                  placeholder="Meter Dials" onchange={handleFieldChange} required>
+                  </lightning-input>
+      </div>
+                <div class="form-group custom-question-section">
+                <lightning-input label="Meter YOM" data-key="meterYom" type="number" maxlength="4" minlength="4"
+                  value={state.meterYom} placeholder="Meter YOM" onchange={handleFieldChange} required>
+                  </lightning-input>
+      </div>
+            <!-- Service Level (dropdown) -->
+              <div class="form-group custom-question-section">
+                <lightning-combobox label="Service Level" data-key="serviceLevel" options={serviceLevelOptions}
+                  value={state.serviceLevel} placeholder="Service Level" onchange={handleFieldChange} required>
+                </lightning-combobox>
+      </div>     
+                <!-- UOM, Reading & Correction -->
+                  <div class="form-group custom-question-section">
+                <lightning-combobox label="Meter Unit Of Measure" data-key="meterUom" options={meterUomOptions}
+                  value={state.meterUom} placeholder="Meter Unit Of Measure" onchange={handleFieldChange} required>
+                    </lightning-combobox>
+                </div>
+                 <div class="form-group custom-question-section">
+                <lightning-input label="Meter Reading Factor" data-key="meterReadingFactor" type="number"
+                  value={state.meterReadingFactor} placeholder="Meter Reading Factor" onchange={handleFieldChange}
+                      required>
+                  </lightning-input>
+      </div>
+                <div class="form-group custom-question-section">
+                <lightning-input label="Correction Factor" data-key="correctionFactor" type="number"
+                  value={state.correctionFactor} placeholder="Correction Factor" onchange={handleFieldChange} required>
+                  </lightning-input>
+      </div>
+              </div>
+             <div class="custom-amrinstall-input-section">
+                        <!-- MAM ID (dropdown) -->
+                      <div class="form-group custom-question-section">
+                <lightning-combobox label="MAM ID" data-key="mamId" options={mamIdOptions} value={state.mamId}
+                  placeholder="MAM ID" onchange={handleFieldChange} required>
+                            </lightning-combobox>
+                      </div>
+                        <!-- Converter Fitted Indicator (Yes/No) -->
+                        <div class="form-group custom-question-section">
+                <lightning-radio-group label="Converter Fitted Indicator" data-key="converterFitted"
+                  options={yesNoOptions} class="custom-radio-input-section" value={state.converterFitted}
+                  onchange={handleFieldChange} required>
+                              </lightning-radio-group>
+        </div>
+      </div>
+                    <!-- Render these ONLY when Converter Fitted = Yes -->
+      <template if:true={showConverterFields}>
+                    <div class="custom-amrinstall-input-section">
+                        <div class="form-group custom-question-section">
+                  <lightning-input label="Converter Serial Number" data-key="converterSerial"
+                    value={state.converterSerial} placeholder="Converter Serial Number" onchange={handleFieldChange}
+                                required>
+                            </lightning-input>
+        </div>
+                        <div class="form-group custom-question-section">
+                  <lightning-input label="Converter Dials" data-key="converterDials" type="number"
+                    value={state.converterDials} placeholder="Converter Dials" onchange={handleFieldChange} required>
+                              </lightning-input>
+        </div>
+                          <div class="form-group custom-question-section">
+                  <lightning-input label="Converter Reading Factor" data-key="converterReadingFactor" type="number"
+                    value={state.converterReadingFactor} placeholder="Converter Reading Factor"
+                    onchange={handleFieldChange} required>
+                              </lightning-input>
+                          </div>
+        </div>
+      </template>     
+       <div class="subtype remove section-job custom-contact-details-section" data-subtype="AMR_Remove">
+                  <h2 class="section-title">Contact details (on-site)</h2>
+                  <div class="slds-grid"> 
+                    <!-- Section 1 --> 
+                    <div class="slds-col slds-size_1-of-2">
+                            <!-- Title (Dropdown) -->
+                    <div class="custom-contact-field-section custom-question-section">
+                      <label for="title">Title <span class="required">*</span></label>
+                <select id="title1" data-key="sv_title" value={state.title} onchange={handleFieldChange} required
+                  aria-required="true">
+                        <option value="" disabled selected hidden>Select Title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Company">Company</option>
+                      </select>  
+                               
+                        </div>
+                        <div class="custom-contact-field-section custom-question-section">
+                        <label for="siteContactName">Site Contact Name <span class="required">*</span></label>
+        <input type="text" id="siteContactName1" data-key="siteContactName"
+                  value={state.siteContactName} placeholder="Contact Name" onchange={handleFieldChange} required
+                  aria-required="true" />                  
+                        </div>
+                      <!-- Title (NEW) -->
+                        <div class="custom-contact-field-section custom-question-section">
+                            <label for="sv_title">Access Instructions <span class="required">*</span></label>
+                <textarea data-key="accessInstructions" 
+                  placeholder="Access Instructions" id="accessInstructions1" style="width: 300px; height: 96.3px;"
+                  onchange={handleFieldChange} required>{state.accessInstructions}</textarea>
+                        </div>  
+                      </div>
+                        <!-- Section 2 --> 
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="custom-contact-field-section custom-question-section">
+                        <label for="siteContactNumber">Contact Number <span class="required">*</span></label>
+                <input type="text" id="siteContactNumber1" data-key="siteContactNumber" value={state.siteContactNumber}
+                  placeholder="Contact Number" onchange={handleFieldChange} required aria-required="true" />
+                        </div>
+                         <div class="custom-contact-field-section custom-question-section">
+                        <label for="consumerEmail">End Consumer Email <span class="required">*</span></label>
+                <input type="text" id="consumerEmail1" data-key="consumerEmail" value={state.consumerEmail}
+                  placeholder="Consumer Email" onchange={handleFieldChange} required aria-required="true" />
+                        </div>
+              <!-- Upload block (Remove) -->
+            </div>
+          </div>
+        </div>
+          </template>
+        </div>
+    </template>
+    <!-- Site Visit -->
+    <template if:true={isSiteVisit}>
+                      <div class="subtype siteVisit section-job custom-contact-details-section" data-subtype="AMR_SiteVisit">
+                        <h2 class="section-title">Contact details (on-site)</h2>
+                      <div class="slds-grid"> 
+                            <!-- Section 1 --> 
+                            <div class="slds-col slds-size_1-of-2">
+                           <!-- Title (Dropdown) -->
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_title">Title <span class="required">*</span></label>
+                <select id="sv_title1" data-key="sv_title" value={state.sv_title} onchange={handleFieldChange} required
+                  aria-required="true">
+                                <option value="" disabled selected hidden>Select Title</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Company">Company</option>
+                              </select>                          
+                            </div>  
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_siteContactName">Site Contact Name <span class="required">*</span></label>
+        <input type="text" id="sv_siteContactName" data-key="sv_siteContactName"
+                  value={state.sv_siteContactName} placeholder="Contact Name" onchange={handleFieldChange} required
+                  aria-required="true" />                  
+      </div>
+                                              <!-- Access Instruction field (NEW) -->
+                          <div class="custom-contact-field-section custom-question-section">
+                            <label for="sv_title">Access Instructions <span class="required">*</span></label>
+                <textarea data-key="accessInstructions" 
+                  placeholder="Access Instructions" id="sv_accessInstruction" style="width: 300px; height: 96.3px;"
+                  onchange={handleFieldChange} required>{state.sv_accessInstruction}</textarea>
+      </div>
+                 </div>
+                   <!-- Section 2 --> 
+                       <div class="slds-col slds-size_1-of-2">
+
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_consumerEmail2">Contact Number <span class="required">*</span></label>
+                <input type="text" id="sv_consumerEmail2" data-key="sv_consumerEmail2" value={state.sv_consumerEmail2}
+                  placeholder="Contact Number" onchange={handleFieldChange} required aria-required="true" />
+                            </div>
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_consumerEmail1">End Consumer Email <span class="required">*</span></label>
+                <input type="text" id="sv_consumerEmail1" data-key="sv_consumerEmail1" value={state.sv_consumerEmail1}
+                  placeholder="Consumer Email" onchange={handleFieldChange} required aria-required="true" />
+              </div>
+              <!-- Upload block (Site Visit) -->
+                        </div> 
+                    </div>  
+      </div>
+    </template>
+    <!-- Remove -->
+    <template if:true={isRemove}>
+              <div class="subtype remove section-job custom-contact-details-section" data-subtype="AMR_Remove">
+              <h2 class="section-title">Contact details (on-site)</h2>
+             <div class="slds-grid"> 
+                            <!-- Section 1 --> 
+                            <div class="slds-col slds-size_1-of-2">
+                    <!-- Title (Dropdown) -->
+                    <div class="custom-contact-field-section custom-question-section">
+                      <label for="sv_title">Title <span class="required">*</span></label>
+                <select id="sv_title" data-key="sv_title" value={state.sv_title} onchange={handleFieldChange} required
+                  aria-required="true">
+                        <option value="" disabled selected hidden>Select Title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Company">Company</option>
+                      </select>                 
+                    </div>
+                      <div class="custom-contact-field-section custom-question-section">
+                        <label for="rm_siteContactName">Site Contact Name <span class="required">*</span></label>
+        <input type="text" id="rm_siteContactName" data-key="rm_siteContactName"
+                  value={state.rm_siteContactName} placeholder="Contact Name" onchange={handleFieldChange} required
+                  aria-required="true" />              
+      </div>
+                      <!-- Title (NEW) -->
+                          <div class="custom-contact-field-section custom-question-section">
+                            <label for="sv_title">Access Instructions <span class="required">*</span></label>
+                <textarea data-key="accessInstructions" 
+                  placeholder="Access Instructions" id="sv_accessInstruction1" style="width: 300px; height: 96.3px;"
+                  onchange={handleFieldChange} required>{state.sv_accessInstruction}</textarea>
+      </div>
+                  </div>        
+              <!-- Section 2 --> 
+                <div class="slds-col slds-size_1-of-2">      
+                    <div class="custom-contact-field-section custom-question-section">
+                        <label for="rm_consumerEmail2">Contact Number <span class="required">*</span></label>
+                <input type="text" id="rm_consumerEmail2" data-key="rm_consumerEmail2" value={state.rm_consumerEmail2}
+                  placeholder="Contact Number" onchange={handleFieldChange} required aria-required="true" />
+                      </div>
+                      <div class="custom-contact-field-section custom-question-section">
+                        <label for="rm_consumerEmail1">End Consumer Email <span class="required">*</span></label>
+                <input type="text" id="rm_consumerEmail1" data-key="rm_consumerEmail1" value={state.rm_consumerEmail1}
+                  placeholder="Consumer Email" onchange={handleFieldChange} required aria-required="true" />
+              </div>
+              <!-- Upload block (Remove) -->
+            </div>
+          </div>
+        </div>
+      </template>
+      <template if:true={isStop}>
+                      <div class="subtype siteVisit section-job custom-contact-details-section" data-subtype="AMR_SiteVisit">
+                        <h2 class="section-title">Contact details (on-site)</h2>
+                      <div class="slds-grid"> 
+                            <!-- Section 1 --> 
+                            <div class="slds-col slds-size_1-of-2">
+                           <!-- Title (Dropdown) -->
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_title">Title <span class="required">*</span></label>
+                <select id="sv_title2" data-key="sv_title" value={state.sv_title} onchange={handleFieldChange} required
+                  aria-required="true">
+                                <option value="" disabled selected hidden>Select Title</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Company">Company</option>
+                              </select>
+                             <template if:true={fieldErrors.sv_title}>
+        <div class="error-msg">
+            {fieldErrors.sv_title}
+        </div>
+    </template>
+                            </div>  
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_siteContactName2">Site Contact Name <span class="required">*</span></label>
+        <input type="text" id="sv_siteContactName3" data-key="sv_siteContactName2"
+                  value={state.sv_siteContactName2} placeholder="Contact Name" onchange={handleFieldChange} required
+                  aria-required="true" />
+                  <template if:true={fieldErrors.sv_siteContactName2}>
+    <div class="error-msg">
+        {fieldErrors.sv_siteContactName2}
+    </div>
+</template>          
+      </div>
+                                              <!-- Access Instruction field (NEW) -->
+                        <div class="custom-contact-field-section custom-question-section">
+    <label for="sv_accessInstruction4">Access Instructions <span class="required">*</span></label>
+    <textarea id="sv_accessInstruction4"
+              data-key="sv_accessInstruction4"
+              placeholder="Access Instructions"
+              style="width: 300px; height: 96.3px;"
+              onchange={handleFieldChange}
+              required
+              aria-required="true">{state.sv_accessInstruction4}</textarea>
+    <template if:true={fieldErrors.sv_accessInstruction4}>
+        <div class="error-msg">
+            {fieldErrors.sv_accessInstruction4}
+        </div>
+    </template>
+</div>
+                 </div>
+                   <!-- Section 2 --> 
+                       <div class="slds-col slds-size_1-of-2">
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_consumerEmail2">Contact Number <span class="required">*</span></label>
+                <input type="text" id="sv_consumerEmail3" data-key="sv_consumerEmail2" value={state.sv_consumerEmail2}
+                  placeholder="Contact Number" onchange={handleFieldChange} required aria-required="true" />              
+                                <template if:true={fieldErrors.sv_consumerEmail2}>
+    <div class="error-msg">
+        {fieldErrors.sv_consumerEmail2}
+    </div>
+</template>
+                            </div>
+                            <div class="custom-contact-field-section custom-question-section">
+                              <label for="sv_consumerEmail1">End Consumer Email <span class="required">*</span></label>
+                <input type="text" id="sv_consumerEmail4" data-key="sv_consumerEmail1" value={state.sv_consumerEmail1}
+                  placeholder="Consumer Email" onchange={handleFieldChange} required aria-required="true" />          
+                              <template if:true={fieldErrors.sv_consumerEmail1}>
+    <div class="error-msg">
+        {fieldErrors.sv_consumerEmail1}
+    </div>
+</template>
+              </div>
+              <!-- Upload block (Site Visit) -->
+                        </div> 
+                    </div>  
+      </div>
+    </template>
+    </template>
+  </section>
+    <template if:true={jobTypeError}>
+    <div class="slds-text-color_error slds-m-bottom_small">
+        Please select a Job Type
+    </div>
+</template>           
+<template if:true={subTypeError}>
+    <div class="slds-text-color_error slds-m-bottom_small">
+        Please select a Sub Type
+    </div>
+</template>
+  <div class="consent-box">
+    <input type="checkbox" name="consent" checked={consent} onchange={handleInputChange} />
+    <span class="consent-text"> Please tick here to confirm that consent has been obtained from the named individual
+      for their personal data to be passed to third parties, for the purposes of performing the specified works, by
+      means of a suitable Data Privacy Notice and explicit consent agreement.</span>
+  </div>
+  <template if:true={consentMessageFlag}>
+    <p class="error-text">{consentMessage}</p>
+  </template>
+<div class="submit-row">
+                    <button class="btn custom-btn" onclick={handleAmrSubmit}>Submit Request</button>
+                    <button class="btn custom-btn-base" onclick={handleCancelClick}>Cancel</button>                  
+  </div>
+  <template if:true={isModal}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container custom-slds-modal-container">
+        <!-- Header -->
+        <header class="custom-modal-header slds-p-around_large">
+          <h2 class="custom-modal-title">{requestHeader}</h2>
+        </header>
+          <!-- Body -->
+        <template if:true={successMessage}>
+          <div class="custom-modal-content-container slds-p-around_large">
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{successMessage} <span
+                class="custom-modal-content-bold"></span>
+            </div>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{serviceTicketid} <span
+                class="custom-modal-content-bold">{srNumber}</span>
+            </div>
+            <template if:true={nonPulsingInstallorRemove}>
+              <div class="custom-modal-content slds-col slds-p-around_xx-small">{relatedSuccessMessage} <span
+                  class="custom-modal-content-bold"></span>
+              </div>
+              <div class="custom-modal-content slds-col slds-p-around_xx-small">{relatedServiceTicketMessage} <span
+                  class="custom-modal-content-bold">{relatedSRnumber}</span>
+              </div>
+            </template>
+          </div>
+        </template>
+        <template if:true={duplicateMessage}>
+          <div class="custom-modal-content-container slds-p-around_large">
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{duplicateMessage}
+            </div>
+          </div>
+        </template>
+        <!-- Footer -->
+        <footer class="custom-modal-footer slds-grid slds-grid_align-end slds-p-around_large">
+          <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button"
+            disabled={isDisabled} onclick={handleCancelClick}> Ok </button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

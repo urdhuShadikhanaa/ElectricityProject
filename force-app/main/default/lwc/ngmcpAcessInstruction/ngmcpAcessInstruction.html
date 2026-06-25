@@ -1,0 +1,14 @@
+<template>
+<lightning-textarea
+       label="Access Instructions"
+       value={accessInstructions}
+       onchange={handleChange}
+       maxlength="255"
+       message-when-too-long="Maximum 255 characters allowed."
+></lightning-textarea>
+<template if:true={showError}>
+<div class="slds-text-color_error slds-m-top_small">
+          Access Instructions cannot exceed 255 characters.
+</div>
+</template>
+</template>

@@ -1,0 +1,69 @@
+<template>
+    <lightning-card>
+        <!-- Header Section -->
+        <div class="slds-p-around_medium slds-grid slds-wrap slds-border_bottom">
+            <div class="slds-col slds-size_1-of-2">
+                <span class="slds-badge slds-theme_success">Commercial</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                <lightning-button label="De-appoint" variant="neutral"></lightning-button>
+                <lightning-button label="Create Query" variant="neutral" class="slds-m-left_x-small"></lightning-button>
+                <lightning-button label="Create Job" variant="brand" class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <lightning-tabset>
+            <lightning-tab label="Overview">
+                <div class="slds-grid slds-wrap">
+                    <!-- Left Side -->
+                    <div class="slds-col slds-size_2-of-3 left-side-container">
+                        <lightning-card title="Meter Details">
+                            <p class="slds-p-horizontal_medium">Asset Type: Meter</p>
+                            <p class="slds-p-horizontal_medium">Meter Type: Diaphragm - synthetic</p>
+                            <p class="slds-p-horizontal_medium">Meter Model: U6 R5</p>
+                            <p class="slds-p-horizontal_medium">Manufacturer: Schlumberger Industries</p>
+                        </lightning-card>
+
+                        <lightning-card title="Converter Details" class="slds-m-top_medium">
+                            <p class="slds-p-horizontal_medium">Description: [Add details here]</p>
+                        </lightning-card>
+
+                        <lightning-card title="AMR Details" class="slds-m-top_medium">
+                            <p class="slds-p-horizontal_medium">Serial Number: [Add details]</p>
+                            <p class="slds-p-horizontal_medium">Installation Date: [Add details]</p>
+                            <p class="slds-p-horizontal_medium">Model Number: [Add details]</p>
+                        </lightning-card>
+                    </div>
+
+                    <!-- Right Side -->
+                    <div class="slds-col slds-size_1-of-3 right-side-address">
+                        <lightning-card title="Address Details">
+                            <div class="slds-p-around_medium">
+                                <lightning-input label="Building Name/Number" value={buildingName} onchange={handleChange} data-field="Building_Name_Number__c"></lightning-input>
+                                <lightning-input label="Dependent Locality" value={dependentLocality} onchange={handleChange} data-field="Dependent_Locally__c"></lightning-input>
+                                <lightning-input label="Postal Town" value={postalTown} onchange={handleChange} data-field="Postal_Town__c"></lightning-input>
+                                <lightning-input label="Postal Code" value={postalCode} onchange={handleChange} data-field="Postal_code__c"></lightning-input>
+                                <lightning-input label="Street" value={street} onchange={handleChange} data-field="Street__c"></lightning-input>
+
+                                <lightning-button label="Save Address" variant="brand" onclick={handleSave} class="slds-m-top_medium"></lightning-button>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </div>
+            </lightning-tab>
+
+            <lightning-tab label="Request Log">
+                <div class="slds-p-around_medium">[Request log content]</div>
+            </lightning-tab>
+
+            <lightning-tab label="Work Order Log">
+                <div class="slds-p-around_medium">[Work order log content]</div>
+            </lightning-tab>
+
+            <lightning-tab label="AMR">
+                <div class="slds-p-around_medium">[AMR tab content]</div>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

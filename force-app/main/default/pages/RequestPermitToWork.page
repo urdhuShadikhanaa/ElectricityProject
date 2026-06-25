@@ -1,0 +1,156 @@
+<apex:page standardController="Permit_To_Work__c" sidebar="false" showHeader="false" title="National Grid Metering - High Risk Activities" lightningStylesheets="true"
+           applyBodyTag="true" applyHtmlTag="true"  >
+    <apex:pageMessages ></apex:pageMessages>
+    <style type="text/css">
+        .fullWidth {};
+        .ngSubmitButton {};
+        
+        .ngm-help-content {
+          background-color: #fefefe;
+          margin: 15% auto; /* 15% from the top and centered */
+          padding: 20px;
+          border: 1px solid black;
+          width: 50%; /* Could be more or less, depending on screen size */
+          height: 50%;
+          height: 300px;
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 100px;
+          overflow: auto; /* Enable scroll if needed */        
+        }
+
+    </style>
+    <apex:form >
+        <script>
+        function showNGMHelp()
+        {
+            var helpDiv = document.getElementsByClassName("ngm-help-content")[0];
+            if (helpDiv.style.display == 'none')
+                {
+                helpDiv.style.display = 'block';
+                }
+             else
+                {
+                helpDiv.style.display = 'none';
+                }
+            return false;
+        }
+                
+      window.onload = function () 
+      {
+          var ngSelects = document.getElementsByClassName("fullWidth");
+          if (ngSelects && ngSelects.length > 0 && ngSelects[0].tagName == 'INPUT')
+          {
+              /* we are showing input page and not page after submission */
+          }
+          else
+              {
+                  var ngSubmits = document.getElementsByClassName("ngSubmitButton");
+                  if (ngSubmits && ngSubmits.length > 0)
+                  {
+                      ngSubmits[0].style = "display: none;";
+                      document.getElementById("ngThankYou").style = "width: 100%; text-align: center";
+                  }
+              }
+      }      
+
+    </script>
+    <div id="ngThankYou" style="display: none"><h2>Thank You for your request. We will review your request and respond by email to the email address provided.</h2></div>
+        
+    <apex:pageBlock title="National Grid Metering - High Risk Activity" mode="edit" >
+      <apex:pageBlockButtons location="bottom" >
+        <apex:commandButton action="{!quicksave}" value="Submit" styleClass="ngSubmitButton"/>
+      </apex:pageBlockButtons>
+      <apex:pageBlockSection columns="1" showHeader="false">
+          <apex:outputText >Please provide the details listed below and submit the form to us.</apex:outputText>
+          <apex:outputText >Any additional information we require will be requested by Email to the Contact Email address you provide below.</apex:outputText>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Service Partner Details" columns="2">
+        <apex:inputField value="{!Permit_To_Work__c.Our_Work_Order_Ref__c}" styleClass="fullWidth"/>
+        <apex:inputField value="{!Permit_To_Work__c.Service_Provider__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Contact_Email__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Confirm_Contact_Email__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Contact_Phone_Number__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Engineer" columns="2">
+        <apex:inputField value="{!Permit_To_Work__c.Engineers_Full_Name__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="MPRN and Site Details" columns="2">
+        <apex:inputField value="{!Permit_To_Work__c.MPRN__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Site_Name__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Site_Address__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Site_Postcode__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Expected Start and End Dates" columns="2">
+        <apex:inputField value="{!Permit_To_Work__c.Expected_Start_Date__c}"/>
+        <apex:inputField value="{!Permit_To_Work__c.Expected_End_Date__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="High Risk Activities" columns="2" >
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_asphyxiating__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_demolition_work__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_hazardous__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_pressure_testing__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_confined_spaces__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_lifting_operations__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_excavations__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_close_proximity_working__c}"/>
+        <apex:inputCheckbox value="{!Permit_To_Work__c.risk_hot_works__c}"/>
+      </apex:pageBlockSection>
+        Click <a onclick="showNGMHelp()" style="cursor:pointer" ><b>here</b></a> for help on High Risk Activities<br/><br/>
+              <div class="ngm-help-content" style="display:none">
+                <table border="1" width="80%" cellpadding="5">
+                    <tr>
+                        <td width="40%">1. Work in known asphyxiating atmospheres</td>
+                        <td>Where an asphyxiant gas (be it nontoxic or minimally toxic gas reduces or displaces the normal oxygen concentration in breathing air.</td>
+                    </tr>  
+                    <tr>
+                        <td>2. Work in potentially hazardous atmospheres</td>
+                        <td>A hazardous atmosphere is where the working atmosphere contains flammable, combustible, explosive agents or contaminants such as fumes, dusts or mists that could pose an immediate threat to life or interfere with a persons ability to escape unaided from a confined space </td>
+                    </tr>
+                    <tr>
+                        <td>3. Entry into confined spaces</td>
+                        <td>A ‘confined space’ must have both of the following defining features:
+<p>(a) it must be a space which is substantially (though not always entirely) enclosed;</p>
+and
+                            <p>(b) one or more of the specified risks must be present or reasonably foreseeable.</p><br/>
+                            <apex:image url="{!$Resource.PTW_Confined_Space_1}" width="398px" height="528px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4. Work in excavations where access or egress requires assistance or as required by a risk assessment</td>
+                        <td>This includes work that requires an escape plan or where the is a significant risk of personnel are prevented from accessing or escaping in an emergency. 
+Engulfment 
+falls from hight into the excavation 
+Protection of the excavation (suring of the sides)</td>
+                    </tr>
+                    <tr>
+                        <td>5. Hot works (burning, welding, grinding on live or decommissioned plant)</td>
+                        <td>Hot work is defined as operations requiring the use of open flames or the local application of heat or friction</td>
+                    </tr>
+                    <tr>
+                        <td>6. Demolition work</td>
+                        <td>Demolition work means any work that involves the demolition or dismantling of a structure or part of a structure that is load-bearing or is related to the physical integrity of the structure.</td>
+                    </tr>
+                    <tr>
+                        <td>7. Pressure testing as determined by company procedures and/or industry standards</td>
+                        <td>Pressure testing of any asset above 75 mbar</td>
+                    </tr>
+                    <tr>
+                        <td>8. Lifting operations over live plant by mechanical assisted lifting apparatus</td>
+                        <td>Includes Cranes, hiabs and any other electronically operated machinery </td>
+                    </tr>
+                    <tr>
+                        <td>9. Where there is knowledge of two parties working in close proximity of each other within the boundary of the meter compound </td>
+                        <td></td>
+                    </tr>
+                </table>
+              </div>
+      
+      <apex:pageBlockSection title="Further Information (if required)" columns="1">
+        <apex:inputTextarea label="" cols="150" rows="5" value="{!Permit_To_Work__c.Further_Detail__c}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+v1.6
+
+</apex:page>

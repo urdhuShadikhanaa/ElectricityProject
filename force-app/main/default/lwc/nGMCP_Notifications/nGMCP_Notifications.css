@@ -1,0 +1,144 @@
+.bell-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bell-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -6px;
+    right: 0;
+    background: #c23934;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+.notif-list {
+    max-height: 350px;
+    overflow: auto;
+}
+
+.notif-item {
+    padding: 10px;
+    margin-bottom: 1rem;
+    background: #f6f7f9;
+    border-radius: 6px;
+    border-left: 4px solid #00857A;
+}
+.notif-item:hover {
+    background: #DADADA;
+    border-left: 4px solid #878787;
+    cursor: pointer;
+}
+
+.notif-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.notif-date {
+    font-size: 12px;
+    color: #666;
+}
+
+/*  Floating message bubble */
+.floating-message {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: #00857A;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 260px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* smooth fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/*.custom-login-button {
+    background: #00857a;
+    color: #fff;
+    border-radius: 8px;
+    border: 2px solid #00857a;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.custom-login-button:hover {
+    background: #fff;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}*/
+.custom-notif-read-all-btn,
+.notif-footer a {
+    color: #004C9D;
+    border: 0;
+    background: none;
+    font-size: 14px;
+}
+.custom-notif-read-all-btn {
+    color: #004C9D;
+    background: none;
+    border: 0;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+}
+
+.bell-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Popup must NOT affect layout */
+.notif-popup {
+    position: absolute;
+    top: 60px;
+    right: 5px;
+    width: 360px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* Header */
+.popup-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #00857A;
+}
+
+/* Close button */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+.custom-notif-read-all-btn:hover {
+    text-decoration: underline;
+}

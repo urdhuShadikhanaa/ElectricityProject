@@ -1,0 +1,291 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<!--section 1-->
+        <div class="slds-section slds-is-closed animate" aura:id="Actioned">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="ActionedId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Actioned">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Dual Billing">Actioned</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="ActionedId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Actioned"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+
+     <!--section 1 end-->
+    <!--section 2 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="DualBilling">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="DualBillingId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="DualBilling">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Dual Billing">Dual Billing</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="DualBillingId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Dual_Billing"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 2 end-->
+     <!--section 3 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="Ellie">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="EllieId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Ellie">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Ellie">Ellie</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="EllieId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Ellie"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 3 end-->
+     <!--section 4 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="Robot_Emails">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="Robot_EmailsId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Robot_Emails">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Robot Emails">Robot Emails</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="Robot_EmailsId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Robot_Emails"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 4 end-->
+     <!--section 5 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="No_Longer_Trading">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="No_Longer_TradingId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="No_Longer_Trading">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="No Longer Trading">No Longer Trading</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="No_Longer_TradingId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="No_Longer_Trading"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 5 end-->
+     <!--section 6 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="PALD">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="PALDId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="PALD">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="PALD">PALD</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="PALDId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="PALD"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 6 end-->
+    <!--section 6.1 start-->
+     <div class="slds-section slds-is-closed animate" aura:id="PEMS">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="ActionedId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="PEMS">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Dual Billing">PEMS</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="PEMSId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="PEMS"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+     <!--section 6.1 end--> 
+    <!--section 7-1 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="Phil">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="PhilId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Phil">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Phil">Phil</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="PhilId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Phil"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 7-1 end-->
+    <!--section 7-2 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="Salima">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="SalimaId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Salima">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Salima">Salima</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="SalimaId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Salima"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 7 end-->
+         <!--section 7 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="Sam">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="SamId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Sam">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Sam">Sam</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="SamId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Sam"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 7 end-->
+         <!--section 8 start--> 
+    <div class="slds-section slds-is-closed animate" aura:id="Supplierless_S">
+        <!--section header-->
+        <h3 class="slds-section__title2" >
+            <button aria-controls="Supplierless_SId" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="Supplierless_S">
+                <lightning:icon iconName="utility:switch"
+                                alternativeText="button icon"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"/>
+                <span class="slds-truncate" title="Supplierless Sites">Supplierless Sites</span>
+            </button>
+        </h3>
+        <!--section body-->
+        <div class="slds-section__content" id="Supplierless_SId">
+            <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Supplierless_S"
+    rows="100"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+        </div>
+    </div>
+    <!--section 8 end-->
+   
+   
+</aura:component>

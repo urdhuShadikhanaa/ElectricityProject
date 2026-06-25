@@ -1,0 +1,53 @@
+<template>
+<!-- DEMO1 -->
+<div>
+<input type="radio" name="main" value="Demo1" onchange={handleMainSelect} />
+<label>Demo1</label>
+</div>
+ 
+    <!-- DEMO2 + DEMO3 -->
+<template if:true={showDemo2Demo3}>
+ 
+        <div style="margin-left: 20px;">
+<input type="radio" name="sub1" value="Demo2" onchange={handleSub1Select} />
+<label>Demo2</label>
+</div>
+ 
+        <div style="margin-left: 20px;">
+<input type="radio" name="sub1" value="Demo3" onchange={handleSub1Select} />
+<label>Demo3</label>
+</div>
+ 
+    </template>
+ 
+    <!-- DEMO4 -->
+<template if:true={showDemo4}>
+<div style="margin-left: 40px;">
+<input 
+                key={demo4Key} 
+                data-demo4 
+                type="radio" 
+                name={demo4InternalName}
+                value="Demo4" 
+                onchange={handleDemo4Select}
+            />
+<label>Demo4</label>
+</div>
+</template>
+ 
+    <!-- NAME QUESTION -->
+<template if:true={showNameQuestion}>
+<div style="margin-left: 60px;">
+<label>What is your name?</label>
+<input type="text" value={nameValue} onchange={handleNameChange} />
+</div>
+</template>
+ 
+    <!-- AGE QUESTION -->
+<template if:true={showAgeQuestion}>
+<div style="margin-left: 60px;">
+<label>What is your age?</label>
+<input type="number" value={ageValue} onchange={handleAgeChange} />
+</div>
+</template>
+</template>

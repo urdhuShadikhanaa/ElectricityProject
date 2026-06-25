@@ -1,0 +1,133 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+.grid.empty {
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+/* ===== GRID CONTAINER ===== */
+.section-header {
+    background: #00857A;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.headertitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #fff;
+    text-align: center;
+}
+.header-cell {
+    white-space: normal;
+}
+/*====grid wrapper === */
+.grid {
+    border-bottom: 1px solid #DADADA;
+    overflow: hidden;
+    background: #fff;
+    padding: 0 1rem;
+  }
+   /* ===== HEADER & ROW USE SAME GRID ===== */
+.grid-header,
+.grid-row {
+     gap: 0;
+     display: grid;
+     grid-template-columns: 1.2fr 1.2fr 2fr; /* EXACTLY 3 columns */
+     align-items: center;
+   }
+
+.grid-row .grid-cell{
+    padding: 10px 5px;
+    font-size: 13px;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+   
+.grid-header .grid-cell {
+   padding: 10px 5px;
+    font-size: 14px;
+    font-weight: 600;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+
+  }
+   
+.grid-header .grid-cell:last-child {
+    border-right: none;
+  }
+   
+.grid-row {
+    background: #fff;
+    border-bottom: 1px solid #DADADA;
+    min-height: 36px;
+
+  }
+.header-cell{
+    padding: 0.5rem 1rem;
+}
+  
+.grid-row .grid-cell a{
+    color:  #004c9d;
+    text-decoration: none;
+    font-weight: 400;
+}
+   
+  /* ===== STATUS COLORS ===== */
+  .status-completed {
+    color: #0c7d35;
+    font-weight: 200;
+  }
+   
+  .status-inprogress {
+    color: #004c9d;
+    font-weight: 200;
+  }
+   
+  .status-default {
+    color: #555;
+  }
+ 
+/* Pagination */
+.pagination {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    background: #fff;
+  }
+  .page-btn {
+      background-color: #00857A;
+      color: #fff;
+      border: 2px solid #00857A;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 7px 24px;
+  }
+  .page-btn:hover {
+      background-color: #fff;
+      color: #00857A;
+  }
+  .page-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .page-info {
+    color: #666;
+    font-size: 13px;
+    min-width: 90px;
+    text-align: center;
+  }

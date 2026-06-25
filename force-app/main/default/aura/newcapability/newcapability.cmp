@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,lightning:availableForFlowScreens,lightning:actionOverride,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="fields" type="String[]" default="['Name','Commerciality__c','Contract_Management__c','Customer__c','Data_Management__c','Performance_Excellence__c','Project_Management__c','Stakeholder__c']" />
+ <lightning:notificationsLibrary aura:id="notifLib"/>
+ <lightning:navigation aura:id="navService"/>   
+ <lightning:card iconName="custom:custom15" title="Team Member Capability">
+       <div class="slds-p-left_large slds-p-right_medium">	
+  <lightning:recordForm class ="form" aura:id="createnewcapability" recordId="{!v.recordId}"  objectApiName="Team_Capability_Matrix__c" fields="{!v.fields}" columns="2" mode="edit" onsuccess="{!c.handleSuccess}" />
+         
+     </div>
+    </lightning:card>
+
+</aura:component>

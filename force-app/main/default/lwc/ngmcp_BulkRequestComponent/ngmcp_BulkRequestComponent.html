@@ -1,0 +1,117 @@
+<template>
+    <div class="custom-usermgmt-container">
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Saving..." size="medium">
+            </lightning-spinner>
+        </template>
+        <div class="custom-inner-container section-header">
+            <h2 class="headertitle">Bulk Request</h2>
+        </div>
+        <div class="custom-input-form-wrapper">
+            <div class="custom-inner-container question custom-question-section">
+                <p class="question-label">Please confirm which request you want to raise in bulk</p>
+                <lightning-radio-group name="action" class="custom-radiogroup-lightning-input"  label="" options={actionOptions} value={action} type="radio"
+                    onchange={handleActionChange} required>
+                </lightning-radio-group>
+            </div>
+            <template if:true={showQ2}>
+                <div class="custom-inner-container question custom-question-section">
+                    <p class="question-label">Please confirm which request type you want to raise in bulk</p>
+                    <lightning-radio-group name="mode" class="custom-radiogroup-lightning-input" label="" options={modeOptions} value={mode} type="radio"
+                        onchange={handleModeChange} required>
+                    </lightning-radio-group>
+
+                </div>
+            </template>
+            <template if:true={PEMSAndTSCFlag}>
+                <div class="custom-inner-container question custom-question-section">
+                    <select id="code-select" name="shortcodes"
+                    class="shortcode-select-input slds-grid_align-center slds-var-p-around_small slds-size_1-of-1"
+                    onchange={handleShortCodeChange} disabled={isLoading}>
+                    <option value="">Select Short codes</option>
+                    <template if:true={options}>
+                        <template for:each={options} for:item="opt">
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        </template>
+                    </template>
+                    </select>
+                </div>
+            </template>
+            <section lwc-4sqniq9s5o1="" class="custom-user-details-section">
+              
+                <template if:true={showModal}>
+                    <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container custom-slds-modal-container">
+                            <!-- HEADER -->
+                            <header class="custom-modal-header slds-p-around_small">
+                                <h2 class="custom-modal-title">
+                                    {modalTitle}
+                                </h2>
+                            </header>
+                            <!-- BODY -->
+                            <div class="custom-modal-content-container slds-p-around_small">
+                                <p
+                                    class="custom-modal-content custom-text-content-center slds-col slds-p-around_xx-small">
+                                    {modalMessage}</p>
+                            </div>
+                            <!-- FOOTER -->
+                            <footer
+                                class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                                <lightning-button label="Ok" class="custom-modal-brand-button" onclick={closeModal}>
+                                </lightning-button>
+                            </footer>
+                        </div>
+                    </section>
+                    <!-- Backdrop -->
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </template>
+
+                <template if:true={downloadLink}>
+                    <template if:true={PEMSAndTSCFlag}>
+                        <!--accept=".pdf,.jpg,.png,.doc,.docx" -->
+                        <div class="slds-p-around_medium">
+                            <lightning-input type="file" label="Select File" 
+                            onchange={handleFileChange}>
+                            </lightning-input>
+                            <template if:true={pemsTscFile}>
+                                <p class="file-name">Selected File: {pemsTscFile}</p>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:false={PEMSAndTSCFlag}>
+                        <div class="custom-bulk-fileupload-section field custom-contact-field-section custom-slds-required">
+                            <label for="handleFileUpload" class="custom-user-form-label">Upload Request File</label>
+                            <input id="handleFileUpload" class="custom-user-form-input" type="file" accept=".csv"
+                                onchange={handleFileUpload} />
+                            <template if:true={fileName}>
+                                <p class="file-name">Selected File: {fileName}</p>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+                <!-- HTML anchor that forces download when clicked -->
+                <template if:true={downloadLink}>
+                    <div class="download-section">
+                        <!-- download attribute forces browser to save as file -->
+                        <p>Not Sure of file format to be used? Download Template from here</p>
+                        <a class="download-link" href={downloadLink} download={downloadlabel}>
+                            {downloadlabel}
+                        </a>
+                    </div>
+                </template>
+                <div class="custom-terms-conditions-section">
+                    <lightning-input type="checkbox" label="Please tick here to confirm that consent has been obtained from the named individual for their personal data to be passed to third parties, for the purposes of performing the specified works, by means of a suitable Data Privacy Notice and explicit consent agreement."
+                        onchange={handleConsentChange} data-field="terms" required>
+                    </lightning-input>
+                    <template if:true={consentError}>
+                       <p style="color: red;"> Please check consent to continue</p>
+                    </template>
+                </div>
+            </section>
+            <div class="custom-btn-section">
+                <button class="custom-brand-button" onclick={handleSubmit}>Submit</button>
+            </div>
+        </div>
+    </div>
+</template>

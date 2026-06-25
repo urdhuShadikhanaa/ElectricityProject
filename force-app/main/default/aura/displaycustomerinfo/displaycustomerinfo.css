@@ -1,0 +1,16 @@
+.THIS .slds-tile{
+   background-color:rgb(255, 255, 255,0.8);
+    padding: 1.5rem;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px lightgrey;
+}
+
+.THIS .slds-tile__title{
+    font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.THIS .slds-wrap{
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,28 @@
+<apex:page lightningstylesheets="true" standardController="Case"  showHeader="true">
+
+ 
+    
+
+<apex:form >
+
+<apex:pageBlock id="ViewComplaint" mode="maindetail">
+<apex:pageMessages />
+
+<apex:pageBlockSection columns="2" title="Complaint Overview" collapsible="true">
+<apex:outputField value="{!case.Age_of_case_number__c}"/>
+<apex:outputField value="{!case.Number_of_days_to_site_visit__c}"/>
+<apex:outputField value="{!case.CRM_Acknowledge_SLA_Status__c}"/>
+            <apex:outputField value="{!case.Interim_sent__c}"/>
+            <apex:outputField value="{!case.Site_Visit_Attendance__c}"/>
+            <apex:outputField value="{!case.SP_Responded_within_SLA__c}"/>
+            <apex:outputField value="{!case.Complaint_resolved_first_time__c}"/>
+    <!--  
+    <apex:outputField value="{!case.Accepted_by_Finance__c}"/>       -->
+
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+</apex:form>
+
+
+</apex:page>

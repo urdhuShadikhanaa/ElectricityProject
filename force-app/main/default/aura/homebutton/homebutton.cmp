@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+     <div id="aura-page">
+       
+        <div class="container">
+	 <lightning:button variant="brand-outline" label="Knowledge HomePage" title="home" onclick="{! c.navigate }"></lightning:button>
+               </div>
+    </div>
+</aura:component>

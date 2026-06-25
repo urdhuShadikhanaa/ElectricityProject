@@ -1,0 +1,25 @@
+public class demo {
+    
+    /* 
+
+LWC: 
+nGMCP_Passwordlessngmcp_LoginFormnGMCP_NotificationsnGMCP_HomeScreenHeader
+
+Apex:NGMCPPasswordlessLoginNGMCP_ServiceAppointmentTriggerHelperNGMCPNotificationControllerNGMCPNotificationControllerTest - 86%NGMCPRequestTriggerHandlerNGMCPRequestTriggerHandlerTest - 78%
+NGMCPNotificationEventHandler - 80%NGMCPNotificationEventTriggerTest
+
+Apex Trigger:NGMCPRequestTriggerserviceAppointmentTrigger
+NGMCPNotificationEventTriggerTestNGMCPNotificationEventTriggerNGMCPNotificationEventHandler
+NGMCPNotificationControllerNGMCPNotificationControllerTest
+Platform Event Object:NGMCP_Notification_Event__e
+Platform Event Object's felds:NGMCP_Request_Id__cNGMCP_Message__cNGMCP_User_Id__c
+
+Custom Label:NGMCP_CommunityPath
+Static Resource:NGMCP_CometD
+Post deployment steps:Go to custom Label NGMCP_CommunityPath.Add site path url name here like this: 	/customerportal/
+Give access to below classes to the external user's profiles  NGMCP_AMR end customer, NGMCP_Gas Supplier Agent,NGMCP_Gas Supplier Manager:
+NGMCPPasswordlessLoginNGMCP_ServiceAppointmentTriggerHelperNGMCPNotificationController
+
+*/
+
+}

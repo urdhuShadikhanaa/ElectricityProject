@@ -1,0 +1,232 @@
+<aura:component controller="submitFormCustomObjectController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+	<aura:attribute name="robotInfoAc" type="Robot_Tracking_Entry__c" default="{'sobjectType': 'Robot_Tracking_Entry__c'}"/>
+     <aura:attribute name="robotItrt" type="Robot_Tracking_Entry__c[]"/>    
+    <div class="slds">
+      <h1 align="center" > Add New Robot Performance Record - Overview</h1>   
+        <br></br>
+      
+            <div class="slds-grid slds-grid_align-center slds-gutters">
+                
+                    <div class="slds-col slds-size_6-of-12">
+
+                <h2>Performance Month</h2>
+                        <ui:inputDate displayDatePicker="true" aura:id="fName" value="{!v.robotInfoAc.Performance_Month__c}" class="slds-input" format="MM/dd/yyyy"/></div>
+                        <div class="slds-col slds-size_6-of-12">
+                              <h2>Working Days</h2>
+                       
+                            <ui:inputNumber aura:id="lName" value="{!v.robotInfoAc.Working_days__c}" class="slds-input" placeholder=""/>
+                            </div> </div>
+                     
+               
+           
+            
+               
+            <div class="slds-grid slds-grid_align-center slds-gutters">
+               <div class="slds-col slds-size_12-of-12">
+               <div aura:id="label" align="center"><h2>
+                   Comments</h2></div>
+                       
+                            <ui:inputTextArea aura:id="phone" value="{!v.robotInfoAc.Comments__c}" class="slds-input" placeholder=""/>
+                         </div>
+                  </div> 
+             
+                
+        <br></br>
+         <h1 align="center"> Add New Robot Performance Record - Details</h1>
+        <br></br>
+         <div class="slds-grid slds-grid_align-center slds-gutters"> 
+               <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>I to D</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.I_to_D__c}" class="slds-input" placeholder=""/>
+                         </div>
+                     <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>D to I</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.D_to_I__c}" class="slds-input" placeholder=""/>
+                         </div>
+                  
+                <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>NGM Report Distribution</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.NGM_Report_Distribution__c}" class="slds-input" placeholder=""/>
+                         </div>
+                <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>NGM TSE Creation</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.NGM_TSE_Creation__c}" class="slds-input" placeholder=""/>
+                         </div>
+        </div>
+        <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters"> 
+              
+                  <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>NGM TSE SLG 1</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.NGM_TSE_SLG_1__c}" class="slds-input" placeholder=""/>
+                         </div>
+                  <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>Supplying Invoice Supporting Info</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Supplying_invoice_supporting_information__c}" class="slds-input" placeholder=""/>
+                         </div>
+                  <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>Standard Work</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Standard_Work__c}" class="slds-input" placeholder=""/>
+                         </div>
+                  <div class="slds-col slds-size_3-of-12 ">
+                
+                        <h3>Site Husbandry Monitoring</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Site_Husbandry_Monitoring__c}" class="slds-input" placeholder=""/>
+                         </div>
+           
+        </div>
+         <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters"> 
+              
+                  <div class="slds-col slds-size_3-of-12 ">
+                                              <h3>Site Husbandry Remedials</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Site_Husbandry_Remedials__c}" class="slds-input" placeholder=""/>
+                         </div>
+            <div class="slds-col slds-size_3-of-12 ">
+                                              <h3>AMR Stop and Deap</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.AMR_Stop_Deap__c}" class="slds-input" placeholder=""/>
+                         </div>
+            <div class="slds-col slds-size_3-of-12 ">
+                                              <h3>AMR Certificate upload</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.AMR_Certificate_uploads__c}" class="slds-input" placeholder=""/>
+                         </div>
+            <div class="slds-col slds-size_3-of-12 ">
+                                              <h3>Meter Pick up</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Meter_Pick_up__c}" class="slds-input" placeholder=""/>
+                         </div>
+        </div>
+           <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters"> 
+              
+                  <div class="slds-col slds-size_3-of-12 ">
+                               <h3>GPS line Queue</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.GPS_line_Queue__c}" class="slds-input" placeholder=""/>
+                         </div>
+            <div class="slds-col slds-size_3-of-12 ">
+                                                        <h3>GPS Job Queue</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.GPS_Job_Queue__c}" class="slds-input" placeholder=""/>
+                         </div>
+            <div class="slds-col slds-size_3-of-12 ">
+                                                    <h3>Customer Invoicing (Billing)</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Customer_Invoicing_Billing__c}" class="slds-input" placeholder=""/>
+                         </div>
+            <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>DM Reads</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.DM_Reads__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+        </div>
+         <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters"> 
+
+                    <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>AMR Photos</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.AMR_Photos__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                                      <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>NGM-AMR Requests</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.NGM_AMR_Requests__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                                      <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>dual supplier deappoint process</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.dual_supplier_deappoint_process__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+
+                         
+
+                    <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>Aged Debt</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Aged_Debt__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+    </div>
+         <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters"> 
+                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>IMS</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.IMS__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TSEd2</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TSEd2__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TSEd4</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TSEd4__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TSE c and A</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TSE_c_A__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+    </div>
+        <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters">
+                                  <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TSE R+3</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TSE_R_3__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                  <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TSE R3</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TSE_R3__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                  <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>JVOD/JNOC</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.JVOD_JNOC__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                  <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TQ/TFM Power BI</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TQ_TFM_Power_BI__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+    </div>
+        <br></br>
+        <div class="slds-grid slds-grid_align-center slds-gutters">
+                                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>TQ/TFM</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.TQ_TFM__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>market sector changes</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.market_sector_changes__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+                                          <div class="slds-col slds-size_3-of-12 ">
+                                                <h3>Supplierless auto appoint/deappoint</h3>
+                            <ui:inputNumber aura:id="emailId" value="{!v.robotInfoAc.Supplierless_auto_appoint_deappoint__c}" class="slds-input" placeholder=""/>
+                         
+</div>
+    
+        </div><br></br>
+      
+        
+        <div class="slds-text-align--center slds-m-top--medium">
+            <button class="slds-button slds-button--brand" onclick="{!c.submitrobotInfo}">Submit</button>
+        </div>
+    
+<br/><br/>
+
+  
+
+          
+    </div>
+    
+          
+</aura:component>

@@ -1,0 +1,40 @@
+<aura:component controller="DisplayBasedOnPicklistC" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="PageHeading" type="String" default="Filter Flange Specifications based on Class"/>
+    <aura:attribute name="pickName" type="List" />
+    <aura:attribute name="picksel" type="String" />
+    <aura:attribute name="mydata" type="Object"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    
+    <div class="slds-m-top--xx-large">
+        <div class="slds-page-header">
+            <div class="slds-align--absolute-center">
+                <div class="slds-text-heading--large">       
+                    {!v.PageHeading}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/> <br/>
+    
+    <div class = "slds-size--3-of-8">
+        <lightning:select aura:id="PicklistId" label="Select Class" name="class" value="{!v.picksel}" onchange="{!c.onControllerFieldChange}">
+            <option value="" text="- None -" /> 
+            <aura:iteration items="{!v.pickName}" var="per">
+                <option value="{!per}" text="{!per}" />  
+            </aura:iteration>
+        </lightning:select>
+        <br/><br/>
+    </div>
+    <br/><br/>
+    
+    <div class="slds-p-left_large slds-p-right_medium">
+        
+        <lightning:datatable data="{! v.mydata }" 
+                             columns="{! v.mycolumns }" 
+                             keyField="Id" 
+                             hideCheckboxColumn="true"/>
+    </div>
+
+</aura:component>

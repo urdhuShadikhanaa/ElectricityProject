@@ -1,0 +1,205 @@
+<template>
+  <div class="enquiry-details-outer-container">
+      <div class="main-wrapper">
+        <!-- Job Required Section -->
+        
+<template if:true={createrequestFlag}>
+    <div class="section-card">
+        <h3 class="custom-page-subheader-title">Select Query Type</h3>
+        <div class="card-group">
+            <template for:each={mainQueryOptions} for:item="option">
+                <label key={option.value} class="card-radio">
+                    <div class="radio-header">
+                        <input type="radio" name="mainQuery" value={option.value} checked={option.isChecked}
+                            onchange={handleMainQueryChange} />
+                        <label>{option.label}</label>
+                    </div>
+                    <p class="radio-desc">{option.description}</p>
+                </label>
+            </template>
+        </div>
+    </div>
+</template>
+
+
+        <!-- Data Query Section -->
+        <template if:true={showDateQuerySection}>
+          <div class="section-card">
+            <h3 class="custom-page-subheader-title">Enquiry Reason Code</h3>
+            <div class="card-group">
+              <template for:each={dateQueryReasons} for:item="reason">
+                <label key={reason.value} class="card-radio">
+                <div class="radio-header">
+                    <input type="radio" name="reason" value={reason.value} checked={reason.isChecked} onchange={handleReasonChange}/>   
+                    <label>{reason.label}</label>
+                  </div>
+                  <p class="radio-desc">{reason.description}</p>
+                </label>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <!-- Asset Data Enquiry Category -->
+        <template if:true={showAssetDataOptions}>
+          <div class="section-card">
+            <h3 class="custom-page-subheader-title">Enquiry Category</h3>
+            <div class="card-group">
+              <template for:each={assetDataReasons} for:item="assetReason">
+                <label key={assetReason.value} class="card-radio">
+                <div class="radio-header">
+                    <input type="radio" name="assetReason" value={assetReason.value} checked={assetReason.isChecked} onchange={handleAssetReasonChange}/>    
+                    <label>{assetReason.label}</label>
+                  </div>
+                 <!-- <p class="radio-desc">{assetReason.description}</p>-->
+                </label>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <!-- Technical Query Section -->
+        <template if:true={showTechnicalQuerySection}>
+          <div class="section-card">
+            <h3 class="custom-page-subheader-title">Select Asset Type</h3>
+            <div class="card-group">
+              <template for:each={assetTypeOptions} for:item="type">
+                <label key={type.value} class="card-radio">
+                  <div class="custom-radio-card-block">
+                      <div class="custom-card-radio-btn">
+                        <input type="radio" name="assetType" value={type.value} checked={type.isChecked} onchange={handleAssetTypeChange}/>        
+                      </div>
+                      <div class="custom-card-text-block">
+                        <span class="card-title">{type.label}</span>
+                      </div>
+                  </div>
+                </label>
+              </template>
+            </div>
+          </div>
+
+          <!-- Meter Issues -->
+          <template if:true={isMeterSelected}>
+            <div class="section-card">
+              <h3 class="custom-page-subheader-title">Meter Issue Type</h3>
+              <div class="card-group">
+                <template for:each={meterIssues} for:item="issue">
+                  <label key={issue.value} class="card-radio">
+                    <div class="custom-radio-card-block">
+                      <div class="custom-card-radio-btn">
+                        <input type="radio" name="meterIssue" value={issue.value} onchange={handleAssetIssueChange}/>       
+                      </div>
+                      <div class="custom-card-text-block">
+                        <span class="card-title">{issue.label}</span>
+                      </div>
+                  </div>
+                  </label>
+                </template>
+              </div>
+            </div>
+          </template>
+
+          <!-- Converter Issues -->
+          <template if:true={isConverterSelected}>
+            <div class="section-card">
+              <h3 class="custom-page-subheader-title">Converter Issue Type</h3>
+              <div class="card-group">
+                <template for:each={converterIssues} for:item="issue">
+                  <label key={issue.value} class="card-radio">
+                    <div class="custom-radio-card-block">
+                      <div class="custom-card-radio-btn">
+                        <input type="radio" name="converterIssue" value={issue.value} onchange={handleAssetIssueChange}/>     
+                      </div>
+                      <div class="custom-card-text-block">
+                        <span class="card-title">{issue.label}</span>
+                      </div>
+                   </div>
+                  </label>
+                </template>
+              </div>
+            </div>
+          </template>
+        </template>
+
+        <!-- Form Section -->
+        <template if:true={showEnquiryForm}>
+          <div class="section-card custom-additional-info-section">
+            <h3 class="custom-page-subheader-title">Sample Enquiry Instruction</h3>
+            <p class="selected-subtype-suggestion">{instructionText}</p>
+
+            <!-- Dynamic Fields -->
+            <template for:each={dynamicFields} for:item="field">
+              <div class="form-group custom-question-section" key={field.label}>
+                <label>{field.label}</label>
+                <input type="text" data-field={field.label} placeholder={field.placeholder} onchange={handleInputChange}/>
+              </div>
+            </template>
+
+            <!-- Additional Information -->
+            <div class="form-group custom-question-section">
+              <label class="custom-additional-info-label">Additional Information</label>
+              <div class="custom-additional-info-input">
+                <textarea rows="4" data-field="additionalInfo" onchange={handleInputChange}>{formData.additionalInfo}</textarea>
+                <p class="char-limit-note">Maximum 1000 characters allowed.</p>
+              </div>
+            </div>
+
+            <!-- Additional Questions for Technical Query -->
+            <template if:true={showTechnicalQuerySection}>
+              <div class="section-card">
+                <h3 class="custom-page-subheader-title">Additional Questions for Technical Query</h3>
+
+        <!-- Question 1 -->
+    <div class="custom-question-section">
+        <label>Do you want the engineer to visit site on a specific date after 5 working days?</label>
+        <div class="horizontal-radio">
+            <input type="radio" name="visitSite" value="Yes" onchange={handleInputChange}/> Yes
+            <input type="radio" name="visitSite" value="No" onchange={handleInputChange}/> No
+        </div>
+    </div>
+
+    <!-- Appointment fields -->
+    <template if:true={showAppointmentFields}>
+        <div class="form-group">
+            <label>Select Appointment Date</label>
+            <input type="date" data-field="appointmentDate" onchange={handleInputChange}/>
+        </div>
+
+        <div class="form-group">
+            <label>Select Appointment Timeslot</label>
+            <select data-field="appointmentTimeslot" onchange={handleInputChange}>
+                <option value="">--Select--</option>
+                <option value="Morning">08:00-1300</option>
+                <option value="Afternoon">12:00-20:00 </option>
+                <option value="Evening">08:00-17:00</option>
+            </select>
+        </div>
+    </template>
+
+                <!-- Question 4 -->
+                <div class="custom-question-section">
+                  <label>Please advise if site requires Risk Assessments and Method Statements ahead of the site visit</label>
+                  <div class="horizontal-radio">
+                    <input type="radio" name="riskAssessment" value="Yes" onchange={handleInputChange}/> Yes
+                    <input type="radio" name="riskAssessment" value="No" onchange={handleInputChange}/> No
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+
+        <!-- Buttons -->
+         
+        <div class="custom-enquiry-btn-section slds-p-around_medium">
+            <button
+                class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                  onclick={handleSubmit}>Submit Request</button>
+            <button
+                class="btn custom-btn-base slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                  onclick={handleCancel}>Cancel</button>
+        </div>
+        
+      </div>
+  </div>
+</template>

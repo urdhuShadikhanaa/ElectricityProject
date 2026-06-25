@@ -1,0 +1,414 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+    background: #f4f6f9;
+}
+.card-group {
+   /*display: flex;
+    flex-wrap: wrap;
+    gap: 15px;*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.card-content {
+  text-align: left;
+}
+
+.section-card {
+    padding: 0.25rem;
+    padding-left: 0;
+}
+
+.card-desc {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #625B71;
+}
+
+.card-radio input[type="radio"]:checked + .card-content {
+  border: 2px solid #00857A;
+}
+
+.card-radio {
+    margin-left: 0;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #d0d0d0;
+    gap: 8px;
+    background: #fff;
+    flex-direction: column;
+}
+.card-radio.short-height{
+  min-height: 55px;
+}
+
+.card-radio:hover {
+    border-color: #00857A;
+}
+
+.card-radio.selected {
+    border: 2px solid #00857A;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+    font-weight: 600;
+}
+
+.card-radio input[type="radio"] {
+    accent-color: #00857A;
+}
+
+.card-radio.selected input[type="radio"]:checked {
+    accent-color: #00857A;
+}
+.card-radio.selected .card-title,
+.card-radio.selected .card-desc {
+    font-weight: 600;
+}
+
+.card-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-title {
+   font-weight: 500;        
+   font-size: 16px;
+   line-height: 24px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;          
+    color: #1D1B20;
+}
+
+.form-group label {
+    font-weight: 500;       
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;          
+    color: #1D1B20;
+}
+.form-group label {
+    display: inline-flex;
+    width: 250px;
+}
+.form-group textarea {
+    min-height: 15vh;
+    width: 75%;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+}
+.form-group input,
+.form-group select {
+     height: 35px;
+     border-radius: 4px;
+     font-size: 12px;
+     font-weight: 400;
+     color: #333;
+     letter-spacing: 0.1px;
+}
+.section-card.custom-additional-info-section {
+    padding: 1rem;
+}
+.consent-section {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    display: block; /* Ensure it doesn't use flex */
+    text-align: left; /* Align content to left */
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* space between items */
+    flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.appointment-fields {
+    display: flex;
+    flex-direction: column; /* stack date and timeslot vertically */
+    gap: 0.5rem;
+}
+
+.consent-label {
+    display: inline-flex; /* Keep checkbox and text together */
+    align-items: center;
+    justify-content: flex-start; /* Align to left */
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    width: 100%; /* Full width */
+}
+
+.consent-label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007a5e;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #007a5e;
+    color: #fff;
+}
+
+textarea, input:not([type="radio"]) {
+    width: 100%;
+    padding: 8px;
+}
+.horizontal-radio {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if too many options */
+}
+.horizontal-radio label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Question block */
+.custom-question-section {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Space between label and radio buttons */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+/* ✅ Make radio buttons inline */
+.custom-question-section input[type="radio"] {
+    display: inline-block;
+    height: auto;
+    width: auto;
+}
+
+.question lightning-radio-group {
+    display: inline-flex; /* Horizontal layout for LWC radio group */
+    gap: 16px; /* Space between Yes and No */
+    align-items: center;
+}
+
+.custom-question-section > label {
+    margin: 1rem 0;
+}
+
+/* Inputs and selects - make them shorter */
+input:not([type="radio"]), 
+select {
+    width: 50%; /* Half width */
+    max-width: 300px; /* Optional max size */
+    padding: 8px;
+}
+lightning-input {
+    width: 50%; /* Half width */
+}
+
+.custom-question-section input,
+.custom-question-section select {
+    height: 35px;
+     border: 1px solid #DADADA;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 400;
+     color: #000;
+     letter-spacing: 0.1px;
+}
+
+.custom-question-section label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+.char-limit-note {
+    font-size: 12px;
+    font-weight: 400;
+    color: #c23934;
+}
+
+.custom-question-section  .custom-additional-info-label {
+    display: inline-flex;
+    width: 250px;
+}
+.custom-question-section  .custom-additional-info-input {
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+}
+
+/* Error message */
+.ngmcp-text-error {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+.horizontal-radio {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if too many options */
+}
+.horizontal-radio label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.question {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+.question select,
+.question input[type="number"],
+.question lightning-input {
+    flex: 1;
+}
+
+/************** custom button styles **************/
+.custom-btn {
+     background-color: #00857A;
+     color: #fff;
+     border: 2px solid #00857A;
+     border-radius: 8px;
+     padding: 10px 24px;
+}
+.custom-btn:hover {
+     background-color: #fff;
+     color: #00857A;
+     cursor: pointer;
+}
+.custom-btn-base {
+     border: 2px solid #00857A;
+     background-color: transparent;
+     color: #00857A;
+     border-radius: 8px;
+     padding: 10px 24px;
+}
+.custom-btn-base:hover {
+     background-color: #00857A;
+     color: #fff;
+     cursor: pointer;
+}
+
+/****************. Custom Styles *******************/
+.custom-page-header-title {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+.custom-page-subheader-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+}
+.custom-radio-card-block {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.custom-card-text-block {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0 0.75rem;
+}
+.selected-subtype-suggestion {
+    font-size: 24px;
+    padding-bottom: 2rem;
+    color: #00857A;
+}
+
+.readonly-style {
+    background-color: #f4f4f4; /* Light gray background */
+    color: #555; /* Slightly dim text */
+    cursor: not-allowed; /* Show disabled cursor */
+    pointer-events: none; /* Prevent typing or clicking */
+}
+
+.radio-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.radio-header input[type="radio"] {
+  accent-color: #00796b;
+  cursor: pointer;
+  transform: scale(1.1); /* slightly larger radio circle */
+}
+
+.radio-header label {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.radio-desc {
+  color: #555;
+  font-size: 13.5px;
+  margin-left: 26px;
+  margin-top: 6px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.radio-desc {
+    margin-top: 4px;  
+}
+
+.radio-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #111;
+}
+.custom-success-message {
+     color: #007B34;
+     font-weight: 500;
+     font-size: 14px;
+     letter-spacing: 0.4px;
+}

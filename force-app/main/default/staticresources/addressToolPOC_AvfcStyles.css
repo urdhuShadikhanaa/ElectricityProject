@@ -1,0 +1,43 @@
+/* Show search panel only — hide address form fields and labels. */
+
+textarea,
+select,
+h3,
+.form-element-textarea,
+.form-element-select {
+    display: none !important;
+}
+
+.form-element-input,
+.form-element-label,
+input,
+label,
+.slds-form-element,
+.slds-input,
+.form-element-button {
+    display: none !important;
+}
+
+.powersearch {
+    display: block !important;
+    visibility: visible !important;
+}
+
+.powersearch .form-element-label,
+.powersearch .form-element-input,
+.powersearch input,
+.powersearch label,
+.powersearch .slds-form-element,
+.powersearch .slds-input {
+    display: block !important;
+}
+
+.powersearch .form-element-button,
+.powersearch button,
+.powersearch a {
+    display: inline-block !important;
+}
+
+a:not(.powersearch a) {
+    display: none !important;
+}

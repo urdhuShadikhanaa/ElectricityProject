@@ -1,0 +1,62 @@
+<template>
+  <div class="custom-card">
+    <!-- Header with Title and Action Buttons -->
+    <div class="header-row">
+      <div class="title">MPRN: 10010806 - EOD (Commercial)</div>
+      <div class="actions">
+        <lightning-button label="De-appoint" onclick={handleDeappoint} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Create Query" onclick={handleCreateQuery} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Create Job" onclick={handleCreateJob} class="slds-m-left_x-small"></lightning-button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <lightning-tabset>
+      <lightning-tab label="Overview">
+        <div class="slds-grid slds-wrap slds-p-around_medium">
+          <!-- Asset Details -->
+          <div class="slds-col slds-size_1-of-2">
+            <div class="table-card">
+              <div class="table-title">Asset Details</div>
+              <div class="slds-p-horizontal_small">
+                <template for:each={assetFields} for:item="field">
+                  <div key={field.label} class="slds-grid slds-wrap slds-m-bottom_x-small">
+                    <div class="slds-col slds-size_1-of-2 slds-text-title_bold">{field.label}</div>
+                    <div class="slds-col slds-size_1-of-2">{field.value}</div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Details -->
+          <div class="slds-col slds-size_1-of-2">
+            <div class="table-card">
+              <div class="table-title">Address Details</div>
+              <div class="slds-p-horizontal_small">
+                <template for:each={addressFields} for:item="field">
+                  <div key={field.label} class="slds-grid slds-wrap slds-m-bottom_x-small">
+                    <div class="slds-col slds-size_1-of-2 slds-text-title_bold">{field.label}</div>
+                    <div class="slds-col slds-size_1-of-2">{field.value}</div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </lightning-tab>
+
+      <lightning-tab label="Request Log">
+        <div class="slds-p-around_medium">
+          <p>This is the Request Log tab content.</p>
+        </div>
+      </lightning-tab>
+
+      <lightning-tab label="AMR">
+        <div class="slds-p-around_medium">
+          <p>This is the AMR tab content.</p>
+        </div>
+      </lightning-tab>
+    </lightning-tabset>
+  </div>
+</template>

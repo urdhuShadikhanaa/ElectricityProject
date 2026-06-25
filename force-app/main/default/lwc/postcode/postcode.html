@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Post Code Validator">
+        <lightning-input label="Enter Post Code" value={postCode} onchange={handleChange}></lightning-input>
+        <lightning-button label="Validate" onclick={handleValidate}></lightning-button>
+
+        <template if:true={showWarning}>
+            <div class="slds-text-color_error slds-m-top_medium">
+                ⚠️ Please validate the Post code provided, does not match with the Royal Mail.
+            </div>
+        </template>
+    </lightning-card>
+</template>

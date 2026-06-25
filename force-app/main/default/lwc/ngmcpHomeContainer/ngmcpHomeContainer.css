@@ -1,0 +1,81 @@
+/* Outer container with light grey background */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+.dashboard-container {
+    background-color: #f5f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /*min-height: 100vh;*/
+}
+
+/* Wrapper for layout: 2 columns */
+.dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Left column: single white card */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Right column: stack of smaller cards */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Common card styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        padding: 16px;
+    }
+}
+
+/* Welcome Greeting Styles */
+.welcome-greeting-container .custom-greeting {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 28px;
+}
+.custom-greeting .custom-greeting-message {
+    color: #00857A;
+    font-weight: 600;
+}
+
+.custom-greeting .custom-greeting-name {
+    color: #00857A;
+    text-transform: capitalize;
+}
+
+.custom-greeting-datetime {
+    color: #878787;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+}

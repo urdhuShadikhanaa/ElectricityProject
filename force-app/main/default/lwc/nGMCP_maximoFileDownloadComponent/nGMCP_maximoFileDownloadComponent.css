@@ -1,0 +1,30 @@
+/* Optional: make the row a bit tighter */
+
+.slim-row {
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+
+/* If you still see big gaps, remove any default padding/margins around the row */
+.slim-row > .slds-col {
+  /* Already reduced via slds-p-horizontal_xx-small, but you can force it too: */
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+
+.file-name {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.custom-quotation-header-title,
+.custom-quotation-table-header span {
+    color: #00857A;
+    font-weight: 600;
+}
+.custom-quotation-table-header,
+.custom-quotation-table-body {
+    border-bottom: 1px solid #DADADA;
+}

@@ -1,0 +1,9 @@
+<apex:page standardcontroller="Case" lightningstylesheets="true">
+<apex:pageBlock title="Call Info">
+   <apex:pageBlockSection >
+      <apex:outputField value="{!case.CRM_Call_Type__c}"/>
+      <apex:outputField value="{!case.CRM_Call_Result__c}"/>
+      <apex:outputField value="{!case.CRM_Call_Duration__c}"/>
+   </apex:pageBlockSection>
+</apex:pageBlock>
+</apex:page>

@@ -1,0 +1,18 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+/* Error message */
+.ngmcp-text-error {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+.custom-complaint-list-header {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0;
+    color: #333;
+}

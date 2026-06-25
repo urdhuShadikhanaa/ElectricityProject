@@ -1,0 +1,78 @@
+<template>
+<div class="wizard-container" style="display:flex; height:100%; flex-direction:column;">
+    <!-- Breadcrumbs / Top Bar (only on Home tab) -->
+    <template if:true={isHomeActive}>
+        <div class="breadcrumbs-container">
+            <div class="breadcrumbs-left">
+                <span>Home</span>
+                <span>/</span>
+                <span style="font-weight: 600;">MPRN:{mprnNumber}</span>
+            </div>
+            <div class="breadcrumbs-right">
+                <img src={bellIconUrl} alt="Notifications" class="icon" />
+                <img src={userIconUrl} alt="User" class="icon" />
+            </div>
+        </div>
+    </template>
+
+    <div style="display:flex; flex:1;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src={logoUrl} class="logo" alt="Logo"/>
+
+            <ul class="menu">
+                <!-- Home -->
+                <li class={homeClass} data-id="home" onclick={handleMenuClick}>
+                   Home
+                </li>
+                <!-- Requests -->
+                <li class={requestsClass} data-id="requests" onclick={handleMenuClick}>
+                    Requests 
+                    <img src={requestArrowIcon} alt="Toggle Requests" style="width:12px; height:12px; margin-left:5px;"/>
+                </li>
+
+                <!-- Requests submenus -->
+                <template if:true={isRequestOpen}>
+                    <li class={createRequestClass} data-id="createRequest" onclick={handleMenuClick}>
+                        Create Request
+                    </li>
+                    <li class={viewRequestClass} data-id="viewRequest" onclick={handleMenuClick}>
+                        View Request
+                    </li>
+                </template>
+
+                <!-- Reports -->
+                <li class={reportsClass} data-id="reports" onclick={handleMenuClick}>
+                    Reports
+                </li>
+
+                <!-- User -->
+                <li class={userClass} data-id="user" onclick={handleMenuClick}>
+                    User
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right-side content -->
+        <div class="content-area">
+            <template if:true={isHomeActive}>
+                <div class="home-content">
+                    <c-n-g-m-c-p_-mprn-detail decoded-data={decodedAssetData}></c-n-g-m-c-p_-mprn-detail>
+                </div>
+            </template>
+            <template if:true={isReportsActive}>
+                <p>Reports content goes here.</p>
+            </template>
+            <template if:true={isUserActive}>
+                <p>User profile content goes here.</p>
+            </template>
+            <template if:true={isCreateRequestActive}>
+                <p>Create Request form goes here.</p>
+            </template>
+            <template if:true={isViewRequestActive}>
+                <p>View Request details go here.</p>
+            </template>
+        </div>
+    </div>
+</div>
+</template>

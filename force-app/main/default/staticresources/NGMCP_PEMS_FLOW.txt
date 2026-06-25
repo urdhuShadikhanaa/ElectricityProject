@@ -1,0 +1,14 @@
+"HEADR","ONJOB","","MTWK","","SUP",,"","PN","PRDCT",,
+"TRANS","EMERG","ECR - EXCHANGED CREDIT METER-DTE - DUE TO ESCAPE","","","","","","COMLT","","",,"","",,
+"MTPNT","",,"","","","","",,,
+"ASSET","","REMVE","METER","","","","",,"","","","RE"
+"REGST","","METER",,"",1
+"READG",,,"       00000"
+"ASSET","","INSTL","METER","","","","",,"","","","LI"
+"METER","","","",,"","",,"",,
+"REGST","","METER",,"",1
+"READG",,,"       00000"
+"APPNT","",,,"","",""
+"TRAIL"
+
+

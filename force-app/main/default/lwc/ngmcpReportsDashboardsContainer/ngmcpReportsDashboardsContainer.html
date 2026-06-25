@@ -1,0 +1,20 @@
+<template>
+    <!--Tabs-->
+    <div class="tabs">
+        <button class={reportsTabclass} onclick={showReports}>
+        Reports
+    </button>
+        <button class={dashboardsTabClass} onclick={showDashboard}>
+            Dashboards
+        </button>
+    </div>
+
+    <!--Content-->
+    <div class="content">
+        <iframe 
+        src={iframeUrl}
+        width="100%"
+        height="900px"
+        frameborder="0"></iframe>
+    </div>
+</template>

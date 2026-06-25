@@ -1,0 +1,201 @@
+<template>
+    <div class="button-bar slds-text-align_right">
+        <template if:true={showReplan}>
+            <lightning-button variant="brand" label="Replan" class="slds-m-right_small"
+                onclick={handleReplanJob}></lightning-button>
+        </template>
+        <template if:true={showCancel}>
+            <lightning-button variant="brand" label="Cancel" class="slds-m-right_small"
+                onclick={handleCancelJob}></lightning-button>
+        </template>
+        <template if:true={showCompletion}>
+            <lightning-button variant="neutral" label="Completion Details"></lightning-button>
+        </template>
+        <lightning-button variant="Brand" label="View Quotation"></lightning-button>
+        <button onclick={handleAcceptQuotation} name="Accept">Accept</button>
+        <button onclick={handleAcceptQuotation} name="Reject">Reject</button>
+    </div>
+    <template if:true={acceptRejectFlag}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Are you sure you want to {quotationStatus} Quotation?</h2>
+                </header>
+
+                <!-- Body -->
+                <div>
+                    <label>Please add a comment to proceed</label>
+                    <input type="text" name="comment" placeholder="Enter Comment" value={comment}
+                        onchange={handleComment} />
+                    <template if:true={commentFlag}>
+                        <p class="error-text">{commentError}</p>
+                    </template>
+                </div>
+                <template if:true={isAccept}>
+                    <div>
+                        <!--lightning-file-upload
+                    label="Upload File"
+                    name="fileUploader"
+                    record-id={requestid}
+                    accept={acceptedFormats}
+                    multiple
+                    onuploadfinished={handleUploadFinished}>
+                    </lightning-file-upload-->
+                        <label>Please uplaod a signed quotation document</label>
+                        <input type="file" multiple accept=".pdf,.png,.jpg,.docx,.xlsx" onchange={handleFileChange} />
+                    </div>
+                </template>
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+
+                    <lightning-button variant="brand" label="Submit" onclick={handleQuotation}></lightning-button>
+                    <lightning-button variant="neutral" label="Cancel"
+                        onclick={closeAcceptRejectModal}></lightning-button>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+
+    <!-- Cancel Modal -->
+    <template if:true={isCancelModalOpen}>
+
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Are you sure you want to cancel the job ?</h2>
+                </header>
+
+                <!-- Body -->
+                <div>
+                    <label>Please enter a reason to cancel</label>
+                    <input type="text" name="reason" placeholder="Enter Reason" value={reason}
+                        onchange={handleInputChange} />
+                    <template if:true={reasonFlag}>
+                        <p class="error-text">{reasonError}</p>
+                    </template>
+                </div>
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+
+                    <lightning-button variant="brand" label="Yes" onclick={handleCancel}></lightning-button>
+                    <lightning-button variant="neutral" label="No" onclick={closeCancelModal}></lightning-button>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+
+        <template if:true={cancelChargeFlag}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Header -->
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Cancellation/Termination charges will be applicable, Please
+                            confirm to cancel?</h2>
+                    </header>
+
+                    <!-- Body -->
+                    <!--div>
+                    <label>Reason</label>
+                    <input type="text" name="reason" placeholder="Enter Reason" value={reason}
+                    onchange={handleInputChange} />
+                    <template if:true={reasonFlag}>
+                <p class="error-text">{reasonError}</p>
+              </template>
+                    </div-->
+                    <!-- Footer -->
+                    <footer class="slds-modal__footer">
+
+                        <lightning-button variant="brand" label="Yes" onclick={handleYes}></lightning-button>
+                        <lightning-button variant="neutral" label="No" onclick={closeCancelModal}></lightning-button>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>
+
+    <!-- Replan Modal -->
+    <template if:true={isReplanModalOpen}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Please select the appointment date and slot to proceed</h2>
+                </header>
+
+                <!-- Body -->
+                <lightning-card>
+                    <div>
+                        <c-ngmcp-date-picker-with-holidays mode="future"
+                            ondateselected={handleDateChange}></c-ngmcp-date-picker-with-holidays>
+
+                        <template if:true={dateFlag}>
+                            <p class="error-text">{appointmentDateError}</p>
+                        </template>
+                    </div>
+
+                    <div>
+                        <template if:true={appointmentOptions}>
+                            <lightning-combobox name="appointmentSlot" label="Select Appointment slot"
+                                value={selectedSlot} options={appointmentOptions} onchange={handleSlotChange}
+                                class="appointment-slot" placeholder="Choose timeslot"></lightning-combobox>
+                        </template>
+                        <template if:true={slotFlag}>
+                            <p class="error-text">{appointmentSlotError}</p>
+                        </template>
+                    </div>
+                    <div>
+                        <label>Please enter a reason to replan</label>
+                        <input type="text" name="reason" placeholder="Enter Reason" value={reason}
+                            onchange={handleInputChange} />
+                        <template if:true={reasonFlag}>
+                            <p class="error-text">{reasonError}</p>
+                        </template>
+                    </div>
+                </lightning-card>
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+
+                    <lightning-button variant="brand" label="Submit" onclick={handleYes}></lightning-button>
+                    <lightning-button variant="neutral" label="Cancel" onclick={closeReplanModal}></lightning-button>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={cards}>
+        <div class="slds-grid slds-wrap">
+            <!-- Loop through section cards -->
+            <template for:each={cards} for:item="card">
+                <div key={card.sectionName} class="slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_small">
+                    <lightning-card class="ngm-card">
+                        <div slot="title">{card.sectionName}</div>
+                        <div class="ngm-body">
+                            <template for:each={card.fields} for:item="fld">
+                                <div key={fld.api} class="ngm-row">
+                                    <div class="ngm-label">{fld.label}</div>
+                                    <div class="ngm-value">{fld.value}</div>
+                                </div>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:true={error}>
+        <div class="slds-text-color_error slds-p-around_medium">
+            {error}
+        </div>
+    </template>
+</template>

@@ -1,0 +1,136 @@
+<template>
+    <div class="wizard-container slds-grid">
+        <!-- Breadcrumbs / Top Bar (only on Home tab) -->
+        <!-- <template if:true={isHomeActive}>
+        <div class="breadcrumbs-container">
+            <div class="breadcrumbs-left">
+                <span>Home</span>
+                <span>/</span>
+                <span style="font-weight: 600;">MPRN:{mprnNumber}</span>
+            </div>
+            <div class="breadcrumbs-right">
+                <img src={bellIconUrl} alt="Notifications" class="icon" />
+                <img src={userIconUrl} alt="User" class="icon" />
+            </div>
+        </div>
+    </template> -->
+
+        <div class="wizard-inner-container slds-grid">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- <img src={logoUrl} class="logo" alt="Logo"/> -->
+
+                <ul class="menu">
+                    <!-- Home -->
+                    <li class={homeClass} data-id="home" onclick={handleMenuClick}>
+                        <img src={homeIcon} alt="Home" class="menu-icon" />
+                        <span>Home</span>
+                    </li>
+                    <!-- Requests -->
+                    <li class={requestsClass} data-id="requests" onclick={handleMenuClick}>
+                       <img src={requestsIcon} alt="Requests" class="menu-icon" />
+                        <span>Requests</span>
+                        <img src={requestArrowIcon} alt="Toggle Requests" class="toggle-arrow-icon" />
+                    </li>
+
+                    <!-- Requests submenus -->
+                    <template if:true={isRequestOpen}>
+                        <li class={createRequestClass} data-id="createRequest" onclick={handleMenuClick}>
+                            <img src={createIcon} class="menu-icon" />
+                            <span>Create Request</span>
+                        </li>
+                        <li class={bulkCreateClass} data-id="bulkCreate" onclick={handleMenuClick}>
+                            <img src={bulkIcon} class="menu-icon" />
+                            <span>Bulk Create</span>
+                        </li>
+                        <li class={viewRequestClass} data-id="viewRequest" onclick={handleMenuClick}>
+                            <img src={viewIcon} class="menu-icon" />
+                            <span>View Request</span>
+                            <img src={sWrequestArrowIcon} alt="Toggle View Request" class="toggle-arrow-icon" />
+                        </li>
+                    </template>
+                    <!-- Requests subsubmenus -->
+                    <template if:true={isrequestSubmenus}>
+                        <li class={sRRequestClass} data-id="SRNumber" onclick={handleMenuClick}>
+                            <img src={srIcon} class="menu-icon" />
+                            <span>SR Number</span>
+                        </li>
+                        <li class={wORequestClass} data-id="WONumber" onclick={handleMenuClick}>
+                            <img src={woIcon} class="menu-icon" />
+                            <span>WO Request</span>
+                        </li>
+                    </template>
+
+                    <!-- Reports -->
+                    <template if:true={showReportsTab}>
+                    <li class={reportsClass} data-id="reports" onclick={handleMenuClick}>
+                        <img src={reportsIcon} class="menu-icon" />
+                        <span>Reports</span>
+                    </li>
+                    </template>
+                    <!-- User -->
+                    <template if:true={showUserTab}>
+                    <li class={userClass} data-id="user" onclick={handleMenuClick}>
+                        <img src={userIcon} class="menu-icon" />
+                        <span>User</span>
+                    </li>
+                    </template>
+                     <!-- files -->
+                     <template if:true={showFilesTab}>
+                     <li class={fileClass} data-id="monthlypacks" onclick={handleMenuClick}>
+                       <img src={filesIcon} class="menu-icon" />
+                        <span>Monthly Packs</span>
+                    </li>
+                </template>
+                </ul>
+            </div>
+
+            <!-- Right-side content -->
+            <div class="content-area">
+                <template if:true={isHomeActive}>
+                    <div class="home-content">
+                        <c-ngmcp-home-container></c-ngmcp-home-container>
+                    </div>
+                </template>
+                <template if:true={isReportsActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-ngmcp-reports-container></c-ngmcp-reports-container>
+                    </div>
+                </template>
+                <template if:true={isMonthlyPacksActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-ngmcp-portal-files-container></c-ngmcp-portal-files-container>
+                    </div>
+                </template>
+                <template if:true={isUserActive}>
+                    <p><c-n-g-m-c-p_-User-Management></c-n-g-m-c-p_-User-Management></p>
+                </template>
+                <template if:true={isCreateRequestActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-n-g-m-c-p_-third-party-urent-work-request></c-n-g-m-c-p_-third-party-urent-work-request>
+                    </div>
+                </template>
+                <template if:true={isBulkCreateActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-ngmcp_-bulk-request-component></c-ngmcp_-bulk-request-component>
+                    </div>
+                </template>
+                <template if:true={isViewRequestActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-n-g-m-c-p_view-request-component></c-n-g-m-c-p_view-request-component>
+                    </div>
+                </template>
+                <template if:true={isSRNumberActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-n-g-m-c-p_view-request-component></c-n-g-m-c-p_view-request-component>
+                    </div>
+                </template>
+                <template if:true={isWONumberActive}>
+                    <div class="parent-wrapper custom-active-create-request-section">
+                        <c-n-g-m-c-p_view-work-order-component></c-n-g-m-c-p_view-work-order-component>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

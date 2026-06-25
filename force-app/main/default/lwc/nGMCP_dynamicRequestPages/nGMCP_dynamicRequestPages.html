@@ -1,0 +1,905 @@
+<template>
+    <div class="custom-dynamic-page-container">
+        <template if:true={isLoading}>
+            <div class="custom-spinner-container">
+                <div class="custom-spinner">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={Replanerror}>
+            <!-- Modal -->
+            <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+                        <h2 class="custom-modal-title">
+                            Replan Not Allowed
+                        </h2>
+                    </header>
+                    <!-- Body -->
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <p class="slds-text-color_error custom-modal-content slds-col slds-p-around_xx-small">
+                            Job is in progress and cannot be replanned. Please contact us on 0800 001 4340 for
+                            assistance
+                        </p>
+                    </div>
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Ok"
+                            onclick={closeReplanerror}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <!-- Backdrop -->
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:true={cancelerror}>
+            <!-- Modal -->
+            <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+                        <h2 class="custom-modal-title">
+                            Cancel Not Allowed
+                        </h2>
+                    </header>
+                    <!-- Body -->
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <p class="slds-text-color_error custom-modal-content slds-col slds-p-around_xx-small">
+                            Job is in progress and cannot be cancelled. Please contact us on 0800 001 4340 for
+                            assistance
+                        </p>
+                    </div>
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Ok"
+                            onclick={closeReplanerror}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <!-- Backdrop -->
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:true={acceptRejectFlag}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_large">
+                        <h2 class="custom-modal-title"><!--Are you sure you want to {quotationStatus} Quotation?--></h2>
+                    </header>
+
+                    <!-- Body -->
+                    <template if:true={acceptRejectInitialFlag}>
+                        <div class="custom-modal-content-container slds-p-around_small">
+                            <template if:true={isAccept}>
+                                <p
+                                    class="custom-modal-content custom-text-content-center slds-col slds-p-around_xx-small">
+                                    Acceptance of this quotation shall constitute confirmation that an active supply
+                                    contract exists with the end user,
+                                    which is a prerequisite for the works to proceed.
+                                    <br /><br />
+                                    Please confirm if you want to accept the quotation?
+                                </p>
+                            </template>
+                            <template if:false={isAccept}>
+                                <p
+                                    class="custom-modal-content custom-text-content-center slds-col slds-p-around_xx-small">
+                                    Are you sure you want to reject Quotation?
+                                </p>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:true={acceptRejectCommentFlag}>
+                        <div class="custom-modal-content-container slds-p-around_small">
+                            <label class="slds-p-around_xx-small">Please add a reason to {quotationStatusToDisplay}
+                                quotation </label>
+                            <textarea
+                                class="slds-col slds-m-around_xx-small slds-p-around_small custom-modal-comment-box"
+                                name="comment" placeholder="Enter Comment" onchange={handleComment}>{comment}</textarea>
+                            <template if:true={commentFlag}>
+                                <p class="ngmcp-text-error slds-p-around_xx-small">{commentError}</p>
+                            </template>
+                        </div>
+                        <template if:true={isAccept}>
+                            <div class="custom-modal-content-container slds-p-around_small">
+                                <label class="slds-col slds-p-around_xx-small">Upload the signed quotation</label>
+                                <div class="upload-box" ondragover={handleDragOver} ondragleave={handleDragLeave}
+                                    ondrop={handleFileDrop}>
+                                    <p>Drag & drop files here</p>
+                                    <p>
+                                        <span class="browse-text" onclick={handleBrowseClick}>Select photos from
+                                            device</span>
+                                    </p>
+                                    <input type="file" multiple accept=".csv, image/*" class="file-input"
+                                        onchange={handleFileChange} />
+                                </div>
+                                <template if:true={fileError}>
+                                    <p class="error-text" style="color:red">{fileError}</p>
+                                </template>
+                                <template if:true={uploadedFiles.length}>
+                                    <div class="file-preview-list">
+                                        <template for:each={uploadedFiles} for:item="file">
+                                            <div key={file.name} class="file-preview-item">
+                                                <template if:true={file.isImage}>
+                                                    <img src={file.previewUrl} alt={file.name} class="thumbnail" />
+                                                </template>
+                                                <template if:false={file.isImage}>
+                                                    <div class="file-icon">📄</div>
+                                                </template>
+                                                <div class="file-info">
+                                                    <span class="file-name">{file.name}</span>
+                                                    <span class="file-size">({file.sizeDisplay})</span>
+                                                </div>
+                                                <button class="delete-btn" data-name={file.name}
+                                                    onclick={handleFileDelete}>
+                                                    ✕
+                                                </button>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </template>
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <template if:true={acceptRejectInitialFlag}>
+                            <lightning-button label="Yes" onclick={handleAcceptRejectYes}
+                                class="custom-modal-brand-button slds-var-m-horizontal_small"></lightning-button>
+                            <lightning-button label="No" onclick={closeAcceptRejectModal}
+                                class="custom-modal-base-button"></lightning-button>
+                        </template>
+                        <template if:true={acceptRejectCommentFlag}>
+                            <lightning-button label="Submit" onclick={handleQuotation}
+                                class="custom-modal-brand-button slds-var-m-horizontal_small"></lightning-button>
+                            <lightning-button label="Cancel" onclick={closeAcceptRejectModal}
+                                class="custom-modal-base-button"></lightning-button>
+                        </template>
+                        <template if:true={showCancelConfirm}>
+                            <lightning-button label="Yes" onclick={handleCancelConfirm}
+                                class="custom-modal-brand-button slds-var-m-horizontal_small"></lightning-button>
+                            <lightning-button label="No" onclick={handleCancelNo}
+                                class="custom-modal-base-button"></lightning-button>
+                        </template>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:true={isCancelModalOpen}>
+
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_large">
+                        <h2 class="custom-modal-title"><!--Are you sure you want to cancel the job ?--></h2>
+                    </header>
+
+                    <!-- Body -->
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <template if:true={cancelInitialFlag}>
+                            <p class="custom-modal-content custom-text-content-center slds-col slds-p-around_xx-small">
+                                Are you sure you want to
+                                cancel the job?</p>
+                        </template>
+                        <template if:true={cancelReasonFlag}>
+                            <label class="slds-col slds-p-around_xx-small">Please enter a reason to cancel</label>
+                            <textarea
+                                class="slds-col slds-m-around_xx-small slds-p-around_small custom-modal-comment-box"
+                                name="comment" placeholder="Enter Comment"
+                                onchange={handleInputChange}>{reason}</textarea>
+                            <template if:true={reasonFlag}>
+                                <p class="ngmcp-text-error slds-p-around_xx-small">{reasonError}</p>
+                            </template>
+                        </template>
+                    </div>
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <template if:true={cancelInitialFlag}>
+                            <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Yes"
+                                onclick={handleCancelYes}></lightning-button>
+                            <lightning-button class="custom-modal-base-button" label="No"
+                                onclick={handleCancelNo}></lightning-button>
+                        </template>
+                        <template if:true={cancelReasonFlag}>
+                            <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small"
+                                label="Submit" onclick={handleCancel}></lightning-button>
+                            <lightning-button class="custom-modal-base-button" label="Cancel"
+                                onclick={closeCancelModal}></lightning-button>
+                        </template>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+
+            <template if:true={cancelChargeFlag}>
+                <section role="dialog" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container custom-slds-modal-container">
+                        <!-- Header -->
+                        <header class="custom-modal-header slds-p-around_large">
+                            <h2 class="custom-modal-title"></h2>
+                        </header>
+                        <div class="custom-modal-content-container slds-p-around_small">
+                            <p class="custom-modal-content slds-col">Cancellation/Termination charges will be
+                                applicable, Please
+                                confirm to cancel?
+                            </p>
+                        </div>
+                        <!-- Footer -->
+                        <footer
+                            class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+
+                            <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Yes"
+                                onclick={handleYes}></lightning-button>
+                            <lightning-button class="custom-modal-base-button" label="No"
+                                onclick={closeCancelModal}></lightning-button>
+
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        </template>
+
+        <!-- Replan Modal -->
+        <template if:true={isReplanModalOpen}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+                        <template if:true={replanInitialFlag}>
+                            <h2 class="custom-modal-title">Please select appointment details</h2>
+                        </template>
+                        <template if:true={replanReasonFlag}>
+                            <h2 class="custom-modal-title">Please enter a reason to replan</h2>
+                        </template>
+                    </header>
+                    <!-- Body -->
+                    <!--<lightning-card>-->
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <template if:true={replanInitialFlag}>
+                            <div class="slds-p-horizontal_small">
+                                
+                                <c-ngmcp-date-picker-with-holidays mode="future" work-request-flag={CWR}
+                                    working-day-offset={enquiryWorkingOffset} min-selectable-date={minAppointmentDate}
+                                    ondateselected={handleDateChange}>
+                                </c-ngmcp-date-picker-with-holidays>
+
+                                <template if:true={dateFlag}>
+                                    <p class="ngmcp-text-error slds-p-around_xx-small">{appointmentDateError}</p>
+                                </template>
+                            </div>
+
+                            <div class="slds-p-horizontal_small slds-m-top_small">
+                                <template if:true={appointmentOptions}>
+                                    <lightning-combobox name="appointmentSlot" label="Select Appointment slot"
+                                        value={selectedSlot} options={appointmentOptions} onchange={handleSlotChange}
+                                        class="appointment-slot" placeholder="Choose timeslot"></lightning-combobox>
+                                </template>
+                                <template if:true={slotFlag}>
+                                    <p class="ngmcp-text-error slds-p-around_xx-small">{appointmentSlotError}</p>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:true={replanReasonFlag}>
+                            <div class="slds-p-around_small">
+                                <label class="slds-col slds-p-around_xx-small">Reason</label>
+                                <input class="slds-col slds-m-around_xx-small slds-p-around_small" type="text"
+                                    name="reason" placeholder="Enter Reason" value={reason}
+                                    onchange={handleInputChange} />
+                                <template if:true={reasonFlag}>
+                                    <p class="ngmcp-text-error slds-p-around_xx-small">{reasonError}</p>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <template if:true={replanInitialFlag}>
+                            <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small"
+                                label="Proceed" onclick={proceedToReplanReason}></lightning-button>
+                            <lightning-button class="custom-modal-base-button" label="Cancel"
+                                onclick={closeReplanModal}></lightning-button>
+                        </template>
+                        <template if:true={replanReasonFlag}>
+                            <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small"
+                                label="Submit" onclick={handleYes}></lightning-button>
+                            <lightning-button class="custom-modal-base-button" label="Cancel"
+                                onclick={closeReplanModal}></lightning-button>
+                        </template>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={isModalOpen}>
+            <section class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+                        <h2 class="custom-modal-title">{modalHeader}</h2>
+                    </header>
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <!-- Mandatory Text -->
+                        <lightning-textarea label={commentLabel} value={comments} placeholder={commentPlaceholder}
+                            class="custom-modal-lightning-textarea" onchange={handleComments} required>
+                        </lightning-textarea>
+                        <label class="slds-col slds-p-around_xx-small">Upload an additional document</label>
+                        <div class="upload-box" ondragover={handleDragOver} ondragleave={handleDragLeave}
+                            ondrop={handleFileDrop}>
+                            <p>Drag & drop files here</p>
+                            <p>
+                                <span class="browse-text" onclick={handleBrowseClick}>Select photos from device</span>
+                            </p>
+                            <input type="file" multiple accept=".csv, image/*" class="file-input"
+                                onchange={handleFileChange} />
+                        </div>
+                        <template if:true={fileError}>
+                            <p class="error-text" style="color:red">{fileError}</p>
+                        </template>
+                        <template if:true={uploadedFiles.length}>
+                            <div class="file-preview-list">
+                                <template for:each={uploadedFiles} for:item="file">
+                                    <div key={file.name} class="file-preview-item">
+                                        <template if:true={file.isImage}>
+                                            <img src={file.previewUrl} alt={file.name} class="thumbnail" />
+                                        </template>
+                                        <template if:false={file.isImage}>
+                                            <div class="file-icon">📄</div>
+                                        </template>
+                                        <div class="file-info">
+                                            <span class="file-name">{file.name}</span>
+                                            <span class="file-size">({file.sizeDisplay})</span>
+                                        </div>
+                                        <button class="delete-btn" data-name={file.name} onclick={handleFileDelete}>
+                                            ✕
+                                        </button>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <lightning-button label="Submit" class="custom-modal-brand-button slds-var-m-horizontal_small"
+                            onclick={handleCommentSubmit} disabled={isLoading}></lightning-button>
+                        <lightning-button label="Cancel" class="custom-modal-base-button"
+                            onclick={closeModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:true={reOpenAdditionalInfoFlag}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_large">
+                    </header>
+
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <p class="custom-modal-content slds-col slds-p-around_xx-small">{reOpenAdditionalInfoMessage}
+                        </p>
+                    </div>
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Ok"
+                            onclick={closereOpenAdditionalInfoFlag}></lightning-button>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:true={replanCancelMessageFlag}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_large">
+                    </header>
+                    <!-- Body -->
+
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <p class="custom-modal-content slds-col slds-p-around_xx-small">{replanCancelMessage}</p>
+                    </div>
+
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Ok"
+                            onclick={closereplanCancelMessageFlag}></lightning-button>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <template if:true={quotationMessageFlag}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_large">
+                    </header>
+                    <!-- Body -->
+                    <div class="custom-modal-content-container slds-p-around_small">
+                        <p class="custom-modal-content slds-col slds-p-around_xx-small">{quotationMessage}</p>
+                    </div>
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Ok"
+                            onclick={closequotationMessageFlag}></lightning-button>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={isCompletionModalOpen}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-container custom-completion-details-container">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+
+                        <h2 class="custom-modal-title custom-completion-title">Completion Details</h2>
+
+                    </header>
+                    <!-- Body -->
+
+                    <div class="custom-modal-content-container slds-p-around_medium">
+                        <!--p class="custom-modal-content slds-col slds-p-around_xx-small"></p-->
+                        <template if:false={completionDetails}>
+                            <div>No data found.</div>
+                        </template>
+                        <template if:true={completionDetails}>
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer custom-table">
+                                <thead>
+                                    <tr>
+                                        <th class="custom-completion-header-title" scope="col">Notification Number</th>
+                                        <th class="custom-completion-header-title" scope="col">Notification status</th>
+                                        <th class="custom-completion-header-title" scope="col">Job type</th>
+                                        <th class="custom-completion-header-title" scope="col">Job Start/End date</th>
+                                        <th class="custom-completion-header-title" scope="col">Asset Class Code</th>
+                                        <th class="custom-completion-header-title" scope="col">Data Code</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Status Code</th>
+                                        <th class="custom-completion-header-title" scope="col">Conversion Factor</th>
+                                        <th class="custom-completion-header-title" scope="col">Installed on Stream</th>
+                                        <th class="custom-completion-header-title" scope="col">Model name</th>
+                                        <th class="custom-completion-header-title" scope="col">Manufacturer Serial
+                                            Number</th>
+                                        <th class="custom-completion-header-title" scope="col">Manufacturer Code</th>
+                                        <th class="custom-completion-header-title" scope="col">Manufacturer Year</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Type</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Imperial Indicator
+                                        </th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Mechanism/Payment
+                                            Type</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Num Dials</th>
+                                        <th class="custom-completion-header-title" scope="col">Qmax</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Location Code</th>
+                                        <th class="custom-completion-header-title" scope="col">Location Notes</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Reading Date</th>
+                                        <th class="custom-completion-header-title" scope="col">Meter Reading</th>
+                                        <th class="custom-completion-header-title" scope="col">Converter Read as
+                                            Converted (as found)</th>
+                                        <th class="custom-completion-header-title" scope="col">Converter Read as
+                                            Unconverted (as found)</th>
+                                        <th class="custom-completion-header-title" scope="col">Converter Read as
+                                            Converted (as left)</th>
+                                        <th class="custom-completion-header-title" scope="col">Converter Read as
+                                            Unconverted (as left)</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Iterate rows -->
+                                    <template for:each={completionDetails} for:item="row">
+                                        <tr key={row.key}>
+                                            <td>{row.ticketid}</td>
+                                            <td>{row.status}</td>
+                                            <td>{row.jobtype}</td>
+                                            <td>{row.statusdate}</td>
+                                            <td>{row.assetclass}</td>
+                                            <td>{row.datacode}</td>
+                                            <td>{row.meterstatus}</td>
+                                            <td>{row.conversion}</td>
+                                            <td>{row.is}</td>
+                                            <td>{row.modelname}</td>
+                                            <td>{row.serialno}</td>
+                                            <td>{row.manufcode}</td>
+                                            <td>{row.manufyear}</td>
+                                            <td>{row.metertype}</td>
+                                            <td>{row.metrictype}</td>
+                                            <td>{row.paytype}</td>
+                                            <td>{row.dialcount}</td>
+                                            <td>{row.qmax}</td>
+                                            <td>{row.loccode}</td>
+                                            <td>{row.locnotes}</td>
+                                            <td>{row.meterreadingdate}</td>
+                                            <td>{row.meterreading}</td>
+                                            <td>{row.confnd}</td>
+                                            <td>{row.unconfnd}</td>
+                                            <td>{row.conlft}</td>
+                                            <td>{row.unconlft}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Export"
+                            onclick={handleDetailExport}></lightning-button>
+                        <lightning-button class="custom-modal-base-button" label="Ok"
+                            onclick={handleCloseCompletionModal}></lightning-button>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={isQuotationModel}>
+            <section role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container custom-slds-modal-containerforquotaion">
+                    <!-- Header -->
+                    <header class="custom-modal-header slds-p-around_small">
+                        <h2 class="custom-modal-title custom-quotation-title">Documents for SR-{ticketId}</h2>
+                    </header>
+
+                    <!-- Body -->
+                    <div class="slds-modal__content slds-p-around_medium" role="document">
+                        <c-n-g-m-c-p_maximo-file-download-component
+                            sr-number={ticketId}></c-n-g-m-c-p_maximo-file-download-component>
+                    </div>
+
+                    <!-- Footer -->
+                    <footer
+                        class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                        <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small" label="Ok"
+                            onclick={handleCloseQuotationModal}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- Error banner -->
+        <template if:true={errorMessage}>
+            <div class="slds-notify_alert slds-theme_error" role="alert">
+                <h2 class="slds-text-color_error">{errorMessage}</h2>
+            </div>
+        </template>
+        <template if:true={selectedRecordId}>
+            <c-n-g-m-c-p_dynamicpage ondynamicbackbutton={handledynamicPageResponse} record-id={selectedRecordId}
+                object-api-name={objectApiName} relatedss={lists} record-type-name={objectApiName}
+                old-record-id={recordId} old-record-type-name={recordTypeName}></c-n-g-m-c-p_dynamicpage>
+        </template>
+        <template if:false={selectedRecordId}>
+            <!--<lightning-card title="Dynamic Sections by Record Type" icon-name="utility:related_list">-->
+            <div class="custom-dynamic-content-section">
+
+                <!-- Ready: record sections -->
+                <template if:true={ready}>
+                    <!-- <lightning-card title={title} icon-name="utility:settings">-->
+                    <div class="">
+                        <div class="button-bar custom-dynamic-btn-section slds-var-m-horizontal_medium slds-var-m-bottom_medium slds-grid
+                                                    slds-grid_align-end">
+                            <button class="btn custom-btn-plain" onclick={handleBackButton}>Back</button>
+                            <template if:true={showCompletion}>
+                                <lightning-button class="btn custom-btn" label="Completion Details"
+                                    onclick={handleCompletion}></lightning-button>
+                            </template>
+                            <template if:true={showReopenQueryButton}>
+                                <button class="btn custom-btn-plain" onclick={openReopenModal}>Reopen Query
+                                </button>
+                            </template>
+                            <!-- Show button only when flag = Yes -->
+                            <template if:true={showActionButton}>
+                                <lightning-button label="Provide Site Contact Details" class="btn custom-btn"
+                                    onclick={openFormModal}>
+                                </lightning-button>
+                            </template>
+                            <template if:true={rams}>
+                                <button class="btn custom-btn-plain" onclick={handleDownloadFiles}>Download
+                                    RAMS</button>
+                            </template>
+                            <template if:true={showProvideSupportingButton}>
+                                <button class="btn custom-btn-plain" onclick={openSupportingInfoModal}>Provide
+                                    Supporting Information
+                                </button>
+                            </template>
+                            <template if:true={showquotation}>
+                                <lightning-button class="btn custom-btn" label="View Quotation"
+                                    onclick={handleViewQuotation}></lightning-button>
+                            </template>
+                            <template if:true={showAcceptReject}>
+                                <button onclick={handleAcceptQuotation} class="btn custom-btn-plain"
+                                    name="Accept">Accept</button>
+                                <button onclick={handleAcceptQuotation} class="btn custom-btn-plain"
+                                    name="Reject">Reject</button>
+                            </template>
+                            <template if:true={showProvideAdditionalButton}>
+                                <button class="btn custom-btn-plain" onclick={openAdditionalInfoModal}>Provide
+                                    Additional Information
+                                </button>
+                            </template>
+                            <template if:true={showReplan}>
+                                <lightning-button label={ReplanRequest} class="btn custom-btn"
+                                    onclick={handleReplanJob}></lightning-button>
+                            </template>
+                            <template if:true={showCancel}>
+                                <lightning-button label={CancelRequest} class="btn custom-btn"
+                                    onclick={handleCancelJob}></lightning-button>
+                            </template>
+                        </div>
+                        <template if:true={wororderNumber}>
+                            <p class="mprn-detail-title">{wororderNumber}</p>
+                        </template>
+                        <template if:true={showdisplayname}>
+                            <p class="mprn-detail-title">{recordDisplayName}</p>
+                        </template>
+                        <template for:each={activeSections} for:item="section">
+                            <div key={section.key}
+                                class="details-column slds-col slds-var-p-vertical_x-small slds-var-p-horizontal_small">
+                                <div
+                                    class="section-header slds-grid slds-grid_align-spread slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                                    <h3 class="mprn-detail-section-title slds-col">{section.label}</h3>
+                                </div>
+
+                                <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
+                                    <div class="details-box slds-p-horizontal_medium slds-grid slds-wrap">
+                                        <template for:each={section.fields} for:item="fld">
+                                            <div key={fld}
+                                                class="mprn-detail-row with-border slds-p-horizontal_medium slds-p-vertical_xx-small slds-grid slds-grid_align-spread slds-size_1-of-2">
+                                                <lightning-output-field class="mprn-detail-label slds-col"
+                                                    field-name={fld}></lightning-output-field>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </lightning-record-view-form>
+                            </div>
+                            <!-- </section>-->
+                        </template>
+                    </div>
+                    <!-- </lightning-card>-->
+                </template>
+                <!-- Lists -->
+                <template if:true={lists}>
+                    <template for:each={lists} for:item="rl">
+                        <section key={rl.id} class="slds-card slds-var-m-around_small custom-related-list-section">
+
+                            <!-- SECTION HEADER: keep visible always -->
+                            <header
+                                class="section-header slds-grid slds-grid_align-spread slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                                <div
+                                    class="section-header__left slds-grid slds-var-p-horizontal_medium slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                    <h2 class="slds-text-heading_small slds-truncate" title={rl.label}>
+                                        {rl.label}
+                                        <template if:true={rl.count}>
+                                            <span class="slds-text-title_caps">({rl.count})</span>
+                                        </template>
+                                    </h2>
+                                </div>
+                                <!-- Removed New button intentionally -->
+                            </header>
+
+                            <!-- TABLE-LIKE AREA -->
+                            <div class="dt-wrapper">
+                                <div class="dt-scroll">
+                                    <!-- Column headers -->
+                                    <template if:true={rl.count}>
+                                        <div class="dt-row dt-row--header" role="row" style={rl.gridTemplate}>
+                                            <!-- Name header (NON-HISTORY ONLY) -->
+                                            <template if:false={rl.specialHistory}>
+                                                <div class="dt-cell dt-cell--header dt-cell--sortable"
+                                                    role="columnheader" tabindex="0" aria-sort={rl.firstColumnAriaSort}
+                                                    data-sort-key="__link__" data-rlid={rl.id} onclick={handleSortClick}
+                                                    onkeydown={handleSortKeydown}>
+                                                    <span class="slds-truncate">Name</span>
+                                                </div>
+                                            </template>
+                                            <!-- Dynamic headers -->
+                                            <template for:each={rl.columns} for:item="col">
+                                                <div key={col.fieldName}
+                                                    class="dt-cell dt-cell--header dt-cell--sortable"
+                                                    role="columnheader" tabindex="0" aria-sort={col.ariaSort}
+                                                    data-sort-key={col.fieldName} data-rlid={rl.id}
+                                                    onclick={handleSortClick} onkeydown={handleSortKeydown}>
+                                                    <span class="slds-truncate">{col.label}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                    <!-- Data rows -->
+                                    <template if:true={rl.count}>
+                                        <template for:each={rl.rows} for:item="row">
+                                            <div key={row.Id} class={row.rowClass} role="row" style={rl.gridTemplate}>
+                                                <!-- Name / Link cell (NON-HISTORY ONLY) -->
+                                                <template if:false={rl.specialHistory}>
+                                                    <div class="dt-cell dt-cell--link" role="cell">
+                                                        <a href={row.recordUrl} class="slds-truncate dt-link"
+                                                            title={row.linkLabel} data-id={row.Id} target={row.target}
+                                                            onclick={handleLinkClick}>
+                                                            {row.linkLabel}
+                                                        </a>
+                                                    </div>
+                                                </template>
+                                                <!-- Value cells -->
+                                                <template for:each={row.cells} for:item="cell">
+                                                    <div key={cell.api} class="dt-cell" role="cell" title={cell.value}>
+                                                        <span class="slds-truncate">{cell.value}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </template>
+                                    <!-- Empty state -->
+                                    <template if:false={rl.count}>
+                                        <div class="dt-empty" role="row" style={rl.gridTemplate}>
+                                            <div class="dt-cell dt-cell--empty" role="cell">
+                                                <span class="slds-truncate">No records</span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </section>
+                    </template>
+                </template>
+                <template if:true={files}>
+                    <section class="slds-card slds-var-m-around_small custom-related-list-section">
+
+                        <!-- SECTION HEADER -->
+                        <header
+                            class="section-header slds-grid slds-grid_align-spread slds-var-p-horizontal_medium slds-var-p-vertical_x-small">
+                            <div
+                                class="section-header__left slds-grid slds-var-p-horizontal_medium slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                <h2 class="slds-text-heading_small slds-truncate" title="Notes & Attachments">
+                                    Notes & Attachments
+                                    <template if:true={files.length}>
+                                        <span class="slds-text-title_caps">({files.length})</span>
+                                    </template>
+                                </h2>
+                            </div>
+                            <!-- No New button -->
+                        </header>
+
+                        <!-- TABLE-LIKE AREA -->
+                        <div class="dt-wrapper">
+                            <div class="dt-scroll">
+
+                                <!-- Column headers -->
+                                <template if:true={files.length}>
+                                    <div class="dt-row dt-row--header" role="row"
+                                        style="grid-template-columns: 3fr 1fr 2fr;">
+                                        <div class="dt-cell dt-cell--header" role="columnheader">
+                                            <span class="slds-truncate">Title</span>
+                                        </div>
+                                        <div class="dt-cell dt-cell--header" role="columnheader">
+                                            <span class="slds-truncate">Type</span>
+                                        </div>
+                                        <div class="dt-cell dt-cell--header" role="columnheader">
+                                            <span class="slds-truncate">Created By</span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Data rows -->
+                                <template for:each={files} for:item="file">
+                                    <div key={file.ContentDocumentId} class="dt-row" role="row"
+                                        style="grid-template-columns: 3fr 1fr 2fr;">
+                                        <div class="dt-cell dt-cell--link" role="cell">
+                                            <a href={file.downloadUrl} target="_blank" class="slds-truncate dt-link"
+                                                title={file.Title}>
+                                                {file.Title}
+                                            </a>
+                                        </div>
+
+                                        <div class="dt-cell" role="cell" title={file.FileType}>
+                                            <span class="slds-truncate">{file.FileType}</span>
+                                        </div>
+
+                                        <div class="dt-cell" role="cell" title={file.CreatedBy}>
+                                            <span class="slds-truncate">{file.CreatedBy}</span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Empty state -->
+                                <template if:false={files.length}>
+                                    <div class="dt-empty" role="row" style="grid-template-columns: 1fr;">
+                                        <div class="dt-cell dt-cell--empty" role="cell">
+                                            <span class="slds-truncate">No records</span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                    </section>
+                </template>
+                <template if:true={showFormModal}>
+                    <section class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container custom-slds-modal-container custom-site-contact-details">
+                            <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+                                <h2 class="custom-modal-title">Provide Site Contact Details</h2>
+                            </header>
+                            <div class="custom-modal-content-container slds-p-around_small">
+                                <lightning-input label="Title" required data-field="title" placeholder="Title"
+                                    value={title} maxlength="15" onchange={handleChange}>
+                                </lightning-input>
+                                <lightning-input label="Name" required data-field="name" placeholder="Enter your name"
+                                    value={nameVal} maxlength="255" onchange={handleChange}>
+                                </lightning-input>
+                                <lightning-input label="Contact Number" required type="tel"
+                                    placeholder="Enter your contact number" data-field="phone" maxlength="11"
+                                    value={phone} onchange={handleChange}>
+                                </lightning-input>
+                                <lightning-textarea label="Access Instructions" required
+                                    placeholder="Enter access instructions" data-field="access" maxlength="255"
+                                    value={access} onchange={handleChange}>
+                                </lightning-textarea>
+                            </div>
+                            <footer
+                                class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                                <lightning-button class="custom-modal-brand-button slds-var-m-horizontal_small"
+                                    label="Submit" onclick={handleSubmit}></lightning-button>
+                                <lightning-button class="custom-modal-base-button" label="Cancel"
+                                    onclick={closeFormModal}></lightning-button>
+
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </template>
+                <!-- Popup -->
+                <template if:true={showPopup}>
+                    <section class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container custom-slds-modal-container">
+                            <header class="custom-modal-header slds-p-horizontal_large slds-p-vertical_x-small">
+                                <h2 class="custom-modal-title">{popupTitle}</h2>
+                            </header>
+                            <div class="custom-modal-content-container slds-p-around_small">
+                                <p class="custom-modal-content slds-col slds-p-around_xx-small">
+                                    {popupMessage}
+                                </p>
+                            </div>
+                            <footer
+                                class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                                <lightning-button label="Ok" class="custom-modal-brand-button"
+                                    onclick={closePopup}></lightning-button>
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_UWRHowdoyouvalidatecontactinfoaddaccessinstructionsanduploadafile" {
+    var NGMCP_UWRHowdoyouvalidatecontactinfoaddaccessinstructionsanduploadafile: string;
+    export default NGMCP_UWRHowdoyouvalidatecontactinfoaddaccessinstructionsanduploadafile;
+}

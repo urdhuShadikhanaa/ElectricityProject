@@ -1,0 +1,26 @@
+<template>
+    <div class="portal-banner-container slds-grid slds-grid_align-center slds-grid_vertical slds-m-top_small">
+        <template if:true={showBanner}>
+            <template for:each={NGMCPAnnouncements} for:item="banner">
+                <template if:true={banner.visible}>
+                    <div key={banner.DeveloperName} class={banner.bannerClass}>
+                        <div class="slds-grid slds-grid_vertical slds-size_1-of-1 slds-col">
+                            <div class="banner-header">
+                                {banner.NGMCP_Header__c}
+                            </div>
+                            <div class="banner-text">
+                                {banner.NGMCP_BannerMessage__c}
+                            </div>
+                        </div>
+                        <div class="slds-col alert-banner-close-section">
+                            <button class="close-icon slds-p-horizontal_medium"
+                                    data-key={banner.DeveloperName}
+                                    onclick={handleAlertClose}>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </template>
+    </div>
+</template>

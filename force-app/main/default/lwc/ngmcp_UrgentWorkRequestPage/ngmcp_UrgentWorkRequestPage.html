@@ -1,0 +1,125 @@
+<template>
+    <div class="container">
+        <h1 class="page-title">Create job request</h1>
+        <p class="page-subtitle">Choose job type and fill out the form in order to submit request</p>
+        <div class="dropdown-container">
+            <select class="dropdown">
+                <option value="">10018006 - EOD</option>
+            </select>
+            <span class="blue-tag">Commercial</span>
+        </div>
+        <!-- Job required -->
+        <section class="section">
+            <h2 class="section-title">Job required</h2>
+            <!-- Request Type -->
+            <p class="field-label">Select request type</p>
+            <div class="radio-grid">
+                <template for:each={requestTypes} for:item="type">
+                    <div key={type.value} class="radio-card" data-group="requestType" data-value={type.value}
+                        onclick={handleCardClick}>
+                        <div class="radio-header">
+                            <input type="radio" name="requestType" value={type.value} />
+                            <label>{type.label}</label>
+                        </div>
+                        <p class="radio-desc">{type.desc}</p>
+                    </div>
+                </template>
+            </div>
+            <!-- Job Type -->
+            <template if:true={showJobType}>
+                <p class="field-label">Select jobtype</p>
+                <div class="radio-grid">
+                    <template for:each={jobTypes} for:item="job">
+                        <div key={job.value} class="radio-card" data-group="jobType" data-value={job.value}
+                            onclick={handleCardClick}>
+                            <div class="radio-header">
+                                <input type="radio" name="jobType" value={job.label} checked={selectedJobType}
+                                    onchange={handleCategorySelect} />
+                                <label>{job.label}</label>
+                            </div>
+                            <p class="radio-desc">{job.description}</p>
+                            <div class="recommend-tag">We recommend this based on the asset details </div>
+                            <!-- <template if:true={job.recommended}>
+                            <div class="recommend-tag">We recommend this based on the asset details </div>
+                        </template> -->
+                        </div>
+                    </template>
+                </div>
+                <p class="help-text">If asset details are incorrect call: <a href="tel:+4412345678">+44 12345678</a>
+                </p>
+            </template>
+            <!-- Start Options -->
+            <template if:true={showAppointment}>
+                <p class="field-label">Select start</p>
+                <div class="radio-grid small">
+                    <template for:each={startOptions} for:item="opt">
+                        <div key={opt.value} class="radio-card short-height" data-group="startOption"
+                            data-value={opt.value} onclick={handleCardClick}>
+                            <div class="radio-header">
+                                <input type="radio" name="startOption" value={opt.value} />
+                                <label>{opt.label}</label>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <div class="date-picker">
+                <label>Select start</label>
+                <input type="datetime-local" />
+            </div>
+        </section>
+
+        <!-- Contact details -->
+        <template if:true={showcontactdetails}>
+
+            <section class="section">
+                <h2 class="section-title">Contact details (on-site)</h2>
+
+                <div class="field">
+                    <label>Title</label>
+                    <select name="title" onchange={handleInputChange}>
+                        <option value="">Choose title</option>
+                        <template for:each={titles} for:item="title">
+                            <option key={title} value={title}>{title}</option>
+                        </template>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Enter name" onchange={handleInputChange} />
+                </div>
+
+                <div class="field">
+                    <label>Contact number</label>
+                    <input type="text" name="contactNumber" placeholder="Enter contact number"
+                        onchange={handleInputChange} />
+                </div>
+
+                <div class="field">
+                    <label>
+                        Meter access instructions <span class="optional">(Optional)</span>
+                    </label>
+                    <textarea name="instructions" placeholder="Share helpful on-site information for the engineer"
+                        onchange={handleInputChange}></textarea>
+                    <p class="char-limit">Max 210 characters left</p>
+                </div>
+            </section>
+
+        </template>
+        <!-- Submit button -->
+        <section class="section">
+            <button class="submit-btn" onclick={handleSubmitUrgentWorkrequest}>Submit Urgent Work Request</button>
+            <button class="submit-btn" onclick={handleCancelClick}>Cancel</button>
+
+            <div class="consent-box">
+                <input type="checkbox" name="consent" onchange={handleInputChange} />
+                <span class="consent-text">
+                    By entering consumer personal data you confirm that consent has been obtained
+                    from the named individual for ...
+                </span>
+            </div>
+
+        </section>
+    </div>
+</template>

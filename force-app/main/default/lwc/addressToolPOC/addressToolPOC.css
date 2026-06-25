@@ -1,0 +1,13 @@
+.verify-link {
+    background: none;
+    border: none;
+    color: #0176d3;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    padding: 0;
+}
+
+.verify-link:hover,
+.verify-link:focus {
+    text-decoration: underline;
+}

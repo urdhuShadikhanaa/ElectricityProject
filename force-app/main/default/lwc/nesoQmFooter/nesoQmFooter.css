@@ -1,0 +1,418 @@
+/* .container {  
+    width: 100%;
+    height: 328px;
+    
+    background-color: #005B56;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    margin-top: -46px;
+} */
+
+.container {
+    width: 110%;
+    height: 328px;
+    background-color: #005B56;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    margin-top: -66px;
+    /* margin-left: -59px; */
+    transform: translateX(-59px);
+}
+/* Default styles for mobile and small screens */
+.footer-container {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+/* Media Queries for larger screen sizes (Desktop and iPad Mini) */
+@media screen and (min-width: 768px) and (max-width: 1024px), /* iPad Mini */
+       screen and (min-width: 1024px) { /* Desktop screens */
+    
+    .footer-container {
+        width: calc(1475px - 10vw);
+        height: 328px;
+    }
+}
+
+.footer-link:not(:last-child) {
+    /* No top margin for smaller screens */
+    position: relative; /* Ensure that the 'top' property works */
+    top: 0;
+}
+
+/* Media Queries for desktop screens */
+@media screen and (min-width: 1024px) {
+    .footer-link:not(:last-child)::after {
+        position: relative;
+        top: 30%;
+    }
+}
+.slds-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Enable wrapping for responsiveness */
+    height: 100%;
+}
+
+.link-style {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link-style:hover{
+    text-decoration: underline;
+}
+
+.link-style:active{
+    text-decoration: underline;
+}
+
+.slds-col {
+    flex: 1;
+    padding: 30px;
+    position: relative;
+    text-align: left;
+    font-size: 14px;
+    color: white;
+    font-weight: 200;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    line-height: 20px;
+}
+.slds-col-footer{
+    flex: 1;
+    padding: 30px;
+    position: relative;
+    text-align: left;
+    font-size: 14px;
+    color: white;
+    font-weight: 200;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    line-height: 20px;
+}
+
+.slds-col:not(:last-child)::after {
+    
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: -2px;
+    width: 1px;
+    height: calc(100% - 60px); /* Adjust height to match the padding */
+    background-color: white;
+    color: white;
+
+}
+
+.heading {
+    font-weight: 500;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 0.05px; /* Adjust space between heading and following text */
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+}
+
+.slds-col span {
+    display: block;
+    margin-bottom: 0.05px; /* Adjust space between text lines */
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping for responsiveness */
+    justify-content: flex-start; /* Align items to the left */
+    transform: translateY(-130px);
+    color: white;
+}
+
+.footer-link {
+    display: flex;
+    
+    margin: 15px; /* Adjust margin for spacing between links */
+    margin-top: -10px;
+    margin-left: -10px;
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    line-height: 24px;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    text-decoration: none;
+    position: relative;
+    padding: 0 10px; /* Adjust padding for space arounfd vertical line */
+}
+
+.footer-link:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 20px; /* Adjust height of the vertical line */
+    background-color: white; /* Color of the vertical line */
+    position: absolute;
+    right: 5px; /* Adjust spacing between the link and the line */
+    top: 20%;
+    transform: translateY(-70%);
+}
+
+.footer-link:hover{
+    text-decoration: underline;
+}
+.footer-link:active{
+    text-decoration: underline;
+}
+
+.social-container {
+    display: flex;
+    transform: translateY(-130px);
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 10px; 
+}
+
+.social-icons {
+    list-style: none;
+    display: flex;
+    margin-top: -60px;
+    margin-left: 15px;
+    gap: 5px;
+}
+
+.menu-item {
+    margin: 0 10px; /* Adjust spacing between icons */
+}
+
+.menu-link-social img {
+    width: 28px; /* Adjust size of social media icons */
+    height: 28px;
+}
+
+.icon__wrapper {
+    margin-left: auto;
+}
+
+.company-logo {
+    width: 101px; 
+    height: 34px;
+    margin-top: -80px;
+    margin-right: 30px;
+}
+
+/* Media Queries for responsiveness */
+
+@media (max-width: 768px) {
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #005B56;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    /* margin-top: 500px; */
+}
+
+.slds-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Enable wrapping for responsiveness */
+    height: 100%;
+}
+
+.link-style {
+    /* color: inherit; */
+    text-decoration: none;
+    color: white;
+}
+
+
+a, a:link:not(.slds-button, .slds-dropdown__item > a), a:visited:not(.slds-button, .slds-dropdown__item > a) {
+    color: #ffffff !important;
+
+}
+
+.slds-col {
+    flex: 1;
+    padding: 15px;
+    position: relative;
+    text-align: left;
+    font-size: 14px;
+    color: white;
+    font-weight: 200;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+}
+
+.slds-col:not(:last-child)::after {
+    
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: -2px;
+    width: 1px;
+    /* height: calc(50% - 50px); */
+    height: 170px;
+    background-color: white;
+    color: white;
+
+}
+
+.heading {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0.05px; /* Adjust space between heading and following text */
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+}
+
+.slds-col span {
+    display: block;
+    margin-bottom: 0.05px; /* Adjust space between text lines */
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping for responsiveness */
+    justify-content: flex-start; /* Align items to the left */
+    margin-left: 8px;
+}
+
+.footer-link {
+    margin: 15px; /* Adjust margin for spacing between links */
+    margin-top: -10px;
+    margin-left: -10px;
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+      font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    text-decoration: none;
+    position: relative;
+    padding: 5px 6px; /* Adjust padding for space around vertical line */
+}
+
+.footer-link:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 20px; /* Adjust height of the vertical line */
+    background-color: white; /* Color of the vertical line */
+    position: absolute;
+    right: 6px; /* Adjust spacing between the link and the line */
+    top: 40%;
+    transform: translateY(-70%);
+}
+    .social-container {
+        flex-direction: column;
+        align-items: flex-start;
+        transform: translateY(-120px);
+    }
+
+    .social-icons {
+        scale: 80%;
+        margin-left: -25px;
+    }
+
+    .company-logo {
+    width: 101px; 
+    height: 34px;
+    scale: 110%;
+    margin-top: -50px;
+    
+    }
+}
+
+
+  @media (max-width: 480px) {
+
+    .container {
+        /* transform: translateY(-0px); */
+        width: auto;
+        height: auto;
+        
+    
+}
+
+    .slds-grid {
+        flex-direction: column; /* Stack columns vertically */
+        align-items: flex-start;
+        line-height: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .slds-col {
+        width: 100%;
+        padding: 15px;
+        line-height: 15px;
+        color: white;
+    }
+
+    .slds-col:not(:last-child)::after {
+    content: none; /* Remove horizontal line */
+
+    }
+
+    .footer-links {
+        display: flex;
+        transform: translateY(-11px);
+        left: -8px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #005B56;
+  
+   
+}
+
+.footer-link {
+    margin: 10px; /* Adjust margin for spacing between links */
+    margin-top: -10px;
+    margin-left: -10px;
+    color: white;
+    text-decoration: none;    
+    padding: 7px ;
+    /* text-decoration: underline;
+    text-underline-offset: 3px; */
+   
+}
+
+.footer-link:not(:last-child)::after {
+     right: 7px;
+           
+}
+
+    .social-container {
+       flex-direction: column;
+        align-items: flex-start;
+        transform: translateY(-13px);
+        background-color: #005B56;
+    }
+
+    .social-icons {
+        scale: 80%;
+        margin-left: -25px;
+        margin-top: -20px;
+    }
+
+    .company-logo {
+    width: 101px; 
+    height: 34px;
+    scale: 90%;
+    margin-top: -50px;
+    transform: translateX(30px);
+    }
+
+    
+   
+}
+
+/* Target only footer links with class link-style */
+a.link-style {
+    color: #ffffff !important;   /* white */
+    text-decoration: none !important; /* optional: remove underline */
+}
+ 
+/* For visited links */
+a.link-style:visited {
+    color: #ffffff !important;
+}
+ 
+/* For hover/focus states */
+a.link-style:hover,
+a.link-style:focus {
+    color: #ffffff !important;
+    text-decoration: underline; /* optional */
+}

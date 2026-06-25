@@ -1,0 +1,17 @@
+<template>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="tab-container">
+                <template for:each={tabs} for:item="tab">
+                    <div key={tab.name} data-tab={tab.name} class={tab.class} onclick={handleTabClick}>
+                        <img src={tab.icon} class="icon" alt={tab.label} />
+                        <span class="label">{tab.label}</span>
+                    </div>
+                </template>
+            </div>
+            <div class="footer">
+                @ National Gas. All rights reserved.
+            </div>
+        </div>
+    </div>
+</template>

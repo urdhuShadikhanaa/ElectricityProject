@@ -1,0 +1,267 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+
+.custom-complaint-subheader-title {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #000;
+}
+/* Error message */
+.ngmcp-text-error {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+.upload-section.custom-contact-field-section {
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.upload-label {
+    min-width: 300px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+    margin: 0.5rem 0;
+}
+
+/*.upload-label::after {
+    content: " *";
+    color: #c23934;
+    font-weight: 500;
+    font-size: 12px;
+} */
+ 
+.upload-box {
+    border: 2px dashed #DADADA;
+    border-radius: 4px;
+    background-color: #fafafa;
+    text-align: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #555;
+    width: 300px;
+    min-height: 15vh;
+}
+
+.upload-box p {
+    margin: 0.25rem 0;
+}
+
+.upload-box.drag-over {
+    background-color: #f0f8f8;
+    border-color: #00857A;
+}
+
+.custom-btn-base {
+    border: 2px solid #00857A;
+    background-color: transparent;
+    color: #00857A;
+    border-radius: 8px;
+}
+.custom-btn-base:hover {
+    background-color: #00857A;
+    color: #fff;
+    cursor: pointer;
+}
+.btn {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 10px 24px;
+    margin: 0 10px;
+}
+.custom-btn {
+    background-color: #00857A;
+    color: #fff;
+    border: 2px solid #00857A;
+    border-radius: 8px;
+}
+
+.custom-btn:hover {
+    background-color: #fff;
+    color: #00857A;
+    border: 2px solid #00857A;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* submit on left, cancel on right */
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cancel-btn {
+    background-color: #fff;
+    color: #00857A;
+    border-radius: 8px;
+}
+.cancel-btn:hover {
+    background-color: #00857A;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button-container lightning-button {
+    margin-right: 10px;
+}
+
+/* Optional: remove margin for last button */
+.button-container lightning-button:last-child {
+    margin-right: 0;
+}
+
+
+.browse-text {
+    color: #00857A;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.file-input {
+    display: none;
+}
+
+
+.file-preview-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.file-preview-item {
+  border: 1px solid #DADADA;
+  border-radius: 4px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fafafa;
+  min-width: 200px;
+    justify-content: center;
+}
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.file-icon {
+  font-size: 28px;
+  
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-weight: 600;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  font-size: 12px;
+  color: #878787;
+
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #c23934;
+  font-size: 16px;
+  cursor: pointer;
+    display: block;
+    align-self: self-start;
+}
+/************** custom modal styles **************/
+/*.custom-modal-brand-button .slds-button.slds-button_neutral {
+    background: #00857a;
+    color: #fff;
+    border-radius: 4px;
+    border: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+.custom-modal-brand-button .slds-button.slds-button_neutral:hover {
+    background: #fff;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}*/
+.custom-modal-title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: #1D1B20;
+    text-align: center;
+}
+.custom-modal-header {
+    border: none;
+	background-color: #fff;
+}
+.custom-modal-footer, 
+.custom-modal-header {
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+}
+.custom-modal-footer,
+.custom-modal-content-container {
+	background-color: #fff;
+}
+.custom-modal-content, 
+.custom-modal-content-bold {	
+    color: #49454F;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0.5px;
+	overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: middle;
+}
+.custom-modal-content-bold {
+    font-weight: 500;
+}
+.custom-modal-content-heading {
+    font-size: 13px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
+.custom-modal-content-container {
+    overflow: hidden;
+    overflow-y: auto;   
+}
+.custom-slds-modal-container {
+    max-width: 95vw;
+    width: 50%;
+}
+.custom-modal-brand-button[disabled], 
+.custom-modal-brand-button:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--dxp-g-neutral-2);
+    cursor: default;
+}

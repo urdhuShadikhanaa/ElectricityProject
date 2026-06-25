@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_UWRHowdoyoubookdifferenttimeslotsstartnowselectdateandtimecompressed" {
+    var NGMCP_UWRHowdoyoubookdifferenttimeslotsstartnowselectdateandtimecompressed: string;
+    export default NGMCP_UWRHowdoyoubookdifferenttimeslotsstartnowselectdateandtimecompressed;
+}

@@ -1,0 +1,61 @@
+<apex:page lightningstylesheets="true" applyBodyTag="false">
+    <apex:slds /> 
+ <div class="banner" align="center">
+     
+  
+<apex:image url="{!$Resource.banner1}"/>
+   
+    <h1>
+        NGM Datasheet Library for Assets on Contract
+     </h1>
+   
+    </div>
+
+    <div class="slds-scope" align="center">
+       <div class="slds-grid ">
+  <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/slamshuts">
+        Slam Shuts</a>
+        </h2><a href="/apex/slamshuts"><apex:image url="{!$Resource.slamshut1}"/></a></span>
+  </div>
+  <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/valves">
+        Valves</a>
+        </h2><a href="/apex/valves"><apex:image url="{!$Resource.valve1}"/></a></span>
+  </div>
+  <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/housing">
+        Housing</a>
+        </h2><a href="/apex/housing"><apex:image url="{!$Resource.Housing1}"/></a></span>
+  </div>
+</div>
+    
+    </div>
+    
+    <div class="slds-scope" align="center">
+       <div class="slds-grid ">
+  <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/Meters">
+        Meters</a>
+        </h2><a href="/apex/Meters"><apex:image url="{!$Resource.meter1}"/></a></span>
+  </div>
+  <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/Filters">
+        Filters</a>
+        </h2><a href="/apex/Filters"><apex:image url="{!$Resource.filter1}"/></a></span>
+  </div>
+             <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/regulators">
+        Regulators</a>
+        </h2><a href="/apex/regulators"><apex:image url="{!$Resource.regulator}"/></a></span>
+  </div>
+  <div class="slds-col ">
+    <span><h2 style="font-size:180%; color:DarkBlue; font-weight:bold"><a href="/apex/reliefs">
+        Reliefs</a>
+        </h2><a href="/apex/reliefs"><apex:image url="{!$Resource.relief1}"/></a></span>
+  </div>
+</div>
+    
+    </div>
+
+</apex:page>

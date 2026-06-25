@@ -1,0 +1,247 @@
+<template>
+    <template if:false={isCreateJobVisible}>
+        <div
+            class="mprn-detail-outer-container slds-grid slds-grid_align-spread slds-grid_vertical slds-var-p-around_medium">
+            <!-- Header -->
+            <div
+                class="header slds-grid_vertical-align-center slds-col slds-grid slds-grid_align-spread slds-var-p-horizontal_medium">
+                <div class="left slds-col slds-grid slds-grid_vertical-align-center">
+                    <span class="mprn-detail-title slds-col">MPRN: {customerDetails.MprnCustomer}</span>
+                    <span
+                        class="mprn-detail-status slds-col slds-var-p-vertical_xx-small slds-var-p-horizontal_small slds-var-m-around_small">{status}</span>
+                </div>
+                <div class="right slds-col">
+                    <button
+                        class="btn deappoint slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small">De-appoint</button>
+                    <button
+                        class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small">Create
+                        query</button>
+                    <button
+                        class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                        onclick={handleCreateJobClick}>Create job</button>
+                </div>
+            </div>
+
+            <!-- Tab Header -->
+            <div class="tab-header slds-col slds-grid slds-var-p-vertical_x-large slds-var-p-horizontal_medium">
+                <div class={overviewClass} onclick={selectOverview}>Overview</div>
+                <div class={requestLogClass} onclick={selectRequestLog}>Request log</div>
+                <div class={workOrderLogClass} onclick={selectWorkOrderLog}>Work order log</div>
+                <div class={amrClass} onclick={selectAMR}>AMR</div>
+            </div>
+
+            <!-- Selected Tab Content -->
+            <template if:true={isOverview}>
+                <div
+                    class="mprn-detail-row-layout slds-col slds-grid slds-grid_align-spread slds-var-p-bottom_medium slds-wrap">
+                    <div class="slds-grid slds-grid_vertical slds-size_6-of-12">
+
+                         <!-- Address Details -->
+                            <div class="details-column slds-col slds-var-p-horizontal_medium">
+                                <div class="section-header slds-grid slds-grid_align-spread">
+                                    <h3 class="mprn-detail-section-title slds-col slds-var-p-vertical_medium">Address details
+                                    </h3>
+                                    <button class="mprn-detail-edit slds-col" onclick={handleEdit}><span
+                                            class="mprn-detail-edit-icon slds-grid slds-var-m-horizontal_x-small"></span>Edit</button>
+                                </div>
+                                <div class="details-box slds-p-horizontal_medium">
+                                    <template if:true={isEditing}>
+                                        <div class="slds-p-vertical_large slds-p-horizontal_medium">
+                                            <div class="form-field">
+                                                <label>Building number</label>
+                                                <input type="text" value={customerDetails.buildingNumber}
+                                                    oninput={handleInputChange} data-field="building" maxlength="40" />
+                                            </div>
+                                            <div class="form-field">
+                                                <label>Building name</label>
+                                                <input type="text" value={customerDetails.buildingName} oninput={handleInputChange}
+                                                    data-field="buildingName" maxlength="40" />
+                                            </div>
+                                            <div class="form-field">
+                                                <label>Street</label>
+                                                <input type="text" value={customerDetails.street} oninput={handleInputChange}
+                                                    data-field="street" maxlength="40" />
+                                            </div>
+                                            <div class="form-field">
+                                                <label>Dependent locality</label>
+                                                <input type="text" value={customerDetails.dependentLocality}
+                                                    oninput={handleInputChange} data-field="dependent" maxlength="40" />
+                                            </div>
+                                            <div class="form-field">
+                                                <label>Postal town</label>
+                                                <input type="text" value={customerDetails.postalTown} oninput={handleInputChange}
+                                                    data-field="town" maxlength="40" />
+                                            </div>
+                                            <div class="form-field">
+                                                <label>Postal code</label>
+                                                <input type="text" value={customerDetails.postCode} oninput={handleInputChange}
+                                                    data-field="postal" maxlength="10" />
+                                            </div>
+                                            <div class="slds-p-vertical_large ">
+                                                <button
+                                                    class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                                                onclick={handleSave}>Save</button>
+                                                <button
+                                                    class="btn deappoint slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                                                    onclick={handleCancel}>Cancel</button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template if:false={isEditing}>
+                                        <div
+                                            class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread">
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                Building number</div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                {customerDetails.buildingNumber}</div>
+                                        </div>
+                                        <div
+                                            class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread">
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                Building name</div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                {customerDetails.buildingName}</div>
+                                        </div>
+                                        <div
+                                            class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread">
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                Street</div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                {customerDetails.street}
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread">
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                Dependent locality</div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                {customerDetails.dependentLocality}</div>
+                                        </div>
+                                        <div
+                                            class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread">
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                Postal town</div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                {customerDetails.postalTown}</div>
+                                        </div>
+                                        <div
+                                            class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread">
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">Postal code</div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">{customerDetails.postCode}
+                                            </div>
+                                        </div>
+
+                                    </template>
+                                    <template if:true={isLoading}>
+                                        <div class="custom-spinner-container">
+                                            <div class="custom-spinner">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template if:true={showSuccessMessage}>
+                                        <div
+                                            class="custom-success-message slds-grid slds-m-around_medium slds-grid_vertical-align-center">
+                                            {messageText}
+                                        </div>
+                                    </template>
+                                    <template if:true={errorMessage}>
+                                        <div
+                                            class="custom-error-message slds-grid slds-m-around_medium slds-grid_vertical-align-center">
+                                            {messageText}
+                                        </div>
+                                    </template>
+
+                                </div>
+                            </div>  
+
+                        <!--  Site Details -->    
+                                <div class="details-column slds-col slds-var-p-horizontal_medium">
+                                    <template if:true={showSiteDetails}>
+                                        <h3 class="mprn-detail-section-title slds-var-p-vertical_medium">Site Details</h3>
+                                        <div class="details-box slds-p-horizontal_medium">
+                                            <template for:each={siteDetails} for:item="item">
+                                                <div class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread"
+                                                    key={item.label}>
+                                                    <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                        {item.label}
+                                                    </div>
+                                                    <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                        {item.value}
+                                                    </div>
+                                                </div>
+                                            </template>
+
+                                        </div>
+
+                                    </template>
+                                </div>
+
+                    </div>
+                    <!--</div>
+                <div class="mprn-detail-row-layout slds-col slds-grid slds-grid_align-spread slds-var-p-bottom_medium">-->
+                    <div class="slds-grid slds-grid_vertical slds-size_6-of-12">
+
+                        <!-- Meter Details -->
+                        <div class="details-column slds-col slds-var-p-horizontal_medium">
+                            <h3 class="mprn-detail-section-title slds-var-p-vertical_medium">Meter details</h3>
+                            <div class="details-box slds-p-horizontal_medium">
+                                <template for:each={displayedAssetDetails} for:item="item">
+                                    <div class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread"
+                                        key={item.label}>
+                                        <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                            {item.label}
+                                        </div>
+                                        <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                            {item.value}
+                                        </div>
+                                    </div>
+                                </template>
+                                <template if:true={hasMoreAssetDetails}>
+                                    <div class="expand-link slds-p-around_medium" onclick={toggleAssetExpand}>
+                                        <span class="link-text">{assetToggleText}</span>
+                                        <span class={assetArrowClass}>&gt;</span>
+                                    </div>
+                                </template>
+
+                            </div>
+                        </div>
+
+                        <!-- Converter Details -->
+                         <div class="details-column slds-col slds-var-p-horizontal_medium">
+                            <template if:true={showConverterDetails}>
+                                <h3 class="mprn-detail-section-title slds-var-p-vertical_medium">Converter Details</h3>
+                                <div class="details-box slds-p-horizontal_medium">
+                                    <template for:each={ConverterDetails} for:item="item">
+                                        <div class="mprn-detail-row with-border slds-p-around_medium slds-grid slds-grid_align-spread"
+                                            key={item.label}>
+                                            <div class="mprn-detail-label slds-col slds-size_5-of-12 slds-text-align_left">
+                                                {item.label}
+                                            </div>
+                                            <div class="mprn-detail-value slds-col slds-size_7-of-12 slds-text-align_right">
+                                                {item.value}
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>        
+                        
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:true={isCreateJobVisible}>
+        <c-dummycreate-job-request-component metadata-record={metaDataWrapper} asset-details={assetDetails}
+            address-details={address} status={status} payment-mechanism={paymentMechanism} post-code={postCode} mprn={customerDetails.MprnCustomer}
+            oncancelcreatejob={handleCancelJob}></c-dummycreate-job-request-component>
+    </template>
+</template>

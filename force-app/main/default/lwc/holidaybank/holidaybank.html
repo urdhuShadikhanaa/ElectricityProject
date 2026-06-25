@@ -1,0 +1,60 @@
+<template>
+  <div class="dp-container">
+
+    <!-- Housing radio (Yes / No) -->
+    <div class="slds-m-bottom_small">
+      <lightning-radio-group
+        name="housing"
+        label="Do you want to have housing?"
+        options={housingOptions}
+        value={housing}
+        type="radio"
+        onchange={handleHousingChange}>
+      </lightning-radio-group>
+    </div>
+    <!-- Input field that toggles calendar -->
+    <div class="input-wrapper">
+      <lightning-input type="text" label="Select Date" value={selectedDateLabel} onclick={toggleCalendar}></lightning-input>
+    </div>
+
+     
+
+
+    <!-- Advisory directly below the selected date field -->
+      <template if:true={showAdvisory}>
+        <div class="advisory slds-m-top_xx-small">
+          Date may be subject to change
+        </div>
+      </template>
+    
+
+    <template if:true={isCalendarOpen}>
+      <div class="calendar-popup">
+        <div class="dp-header">
+          <button class="nav" onclick={handlePrev}>Prev</button>
+          <span class="month-label">{monthLabel}</span>
+          <button class="nav" onclick={handleNext}>Next</button>
+        </div>
+
+        <div class="week-days">
+          <template for:each={weekDays} for:item="wd">
+            <div key={wd} class="wd">{wd}</div>
+          </template>
+        </div>
+
+        <div class="days-grid">
+          <template for:each={calendarDays} for:item="cd">
+            <div key={cd.key}
+                 class={cd.cssClass}
+                 data-date={cd.iso}
+                 onclick={handleSelectDate}
+                 role="button"
+                 tabindex="0">
+              <span class="date-num">{cd.day}</span>
+            </div>
+          </template>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>

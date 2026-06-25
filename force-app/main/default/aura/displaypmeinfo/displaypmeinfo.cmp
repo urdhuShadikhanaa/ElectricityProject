@@ -1,0 +1,29 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller ="getpmearticles" access="global" >
+
+	<aura:attribute name="mydataLst" type="Object"/>
+     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+  <lightning:layout multipleRows="true">  
+    <aura:iteration items="{!v.mydataLst}" var="records" >
+      
+      <lightning:layoutItem padding="around-small" size="6">  
+        <article class="slds-tile">
+              <h3 class="slds-tile__title slds-wrap" title="{!records.Title}">
+                   <a href="{!'/lightning/r/Knowledge__kav/'+ records.Id +'/view'}">{!records.Title}</a></h3>
+                <div class="slds-media__figure">
+      <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+        <img alt="" src="/resource/1663083612000/pme?" title="PME" />
+                    </span></div>
+                <dl class="slds-dl_horizontal">
+                    
+                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                        <p class="slds-wrap">{!records.Summary}</p>
+                    </dd>
+               
+                  
+                </dl>
+          </article>
+        
+       </lightning:layoutItem>
+    </aura:iteration>
+ </lightning:layout>
+</aura:component>

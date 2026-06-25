@@ -1,0 +1,499 @@
+<template>
+    <!-- Main Options -->
+    <div class="radio-card-group">
+        <template for:each={mainOptionsWithClass} for:item="option">
+            <div key={option.value} class={option.className} onclick={handleCardClick}>
+                <input type="radio" name="mainOptions" value={option.value} checked={option.checked} />
+                <div class="radio-card-label">{option.label}</div>
+                <div class="radio-card-help">{option.helpText}</div>
+            </div>
+        </template>
+    </div>
+
+    <!-- Deappointment Section -->
+    <template if:true={isDeappointment}>
+        <h3>Select Deappointment Type</h3>
+        <div class="radio-card-group">
+            <template for:each={deappointmentOptionsWithClass} for:item="option">
+                <div key={option.value} class={option.className} onclick={handleDeCardClick}>
+                    <input type="radio" name="deappointmentTypes" value={option.value} checked={option.checked} />
+                    <div class="radio-card-label">{option.label}</div>
+                    <div class="radio-card-help">{option.helpText}</div>
+                </div>
+            </template>
+        </div>
+
+       
+    <template if:true={showCommonFields}>
+        <div class="two-column">
+            <div class="inline-field">
+                <span class="custom-label">Effective Date:</span>
+                <lightning-input
+                    class="compact-input"
+                    type="date"
+                    value={effectiveDate}
+                    onchange={handleEffectiveDateChange} required message-when-value-missing="Effective Date is required.">
+                </lightning-input>
+            </div>
+            <div class="inline-field">
+                <span class="custom-label">Meter Link Code:</span>
+                <lightning-combobox
+                    class="compact-input"
+                    value={meterLinkCode}
+                    options={meterLinkOptions}
+                    onchange={handleMeterLinkChange} required message-when-value-missing="Meter Link Code is required.">
+                </lightning-combobox>
+            </div>
+        </div>
+    </template>
+
+
+        
+<!-- COS Specific: required only when isCOSDe -->
+  <template if:true={isCOSDe}>
+    <div class="inline-field">
+      <lightning-input
+        class="compact-input"
+        type="text"
+        label="New Supplier Short Code"
+        value={newSupplierShortCode}
+        onchange={handleNewSupplierShortCodeChange}
+        required
+        message-when-value-missing="This field is required."
+      ></lightning-input>
+    </div>
+  </template>
+
+
+        <!-- Submit Button -->
+        <div class="submit-btn">
+            <lightning-button variant="brand" label="Submit Deappointment" onclick={handleSubmitAppointment}></lightning-button>
+        </div>
+    </template>
+
+    <!-- Appointment Section -->
+    <template if:true={isAppointment}>
+        <h3>Select Appointment Type</h3>
+        <div class="radio-card-group">
+            <template for:each={appointmentOptionsWithClass} for:item="option">
+                <div key={option.value} class={option.className} onclick={handleAppCardClick}>
+                    <input type="radio" name="appointmentTypes" value={option.value} checked={option.checked} />
+                    <div class="radio-card-label">{option.label}</div>
+                    <div class="radio-card-help">{option.helpText}</div>
+                </div>
+            </template>
+        </div>
+
+         
+    <template if:true={showCommonFields}>
+        <div class="two-column">
+            <div class="inline-field">
+                <span class="custom-label">Effective Date:</span>
+                <lightning-input
+                    class="compact-input"
+                    type="date"
+                    value={effectiveDate}
+                    onchange={handleEffectiveDateChange} required message-when-value-missing="This field is required.">
+                </lightning-input>
+            </div>
+            <div class="inline-field">
+                <span class="custom-label">Meter Link Code:</span>
+                <lightning-combobox
+                    class="compact-input"
+                    value={meterLinkCode}
+                    options={meterLinkOptions}
+                    onchange={handleMeterLinkChange} required message-when-value-missing="This field is required.">
+                </lightning-combobox>
+            </div>
+        </div>
+    </template>
+
+
+        <!-- FIX Type -->
+       
+<!-- FIX Type -->
+<template if:true={isFIX}>
+  <section>
+    <h3>Address Details</h3>
+    <div class="two-column">
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Building Number"
+          value={addressDetails.buildingNumber}
+          onchange={handleAddrBuildingNumberChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Building Name"
+          value={addressDetails.buildingName}
+          onchange={handleAddrBuildingNameChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Dependent Locality"
+          value={addressDetails.dependentLocality}
+          onchange={handleAddrDependentLocalityChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Street"
+          value={addressDetails.street}
+          onchange={handleAddrStreetChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Postal Town"
+          value={addressDetails.postalTown}
+          onchange={handleAddrPostalTownChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Postal Code"
+          value={addressDetails.postCode}
+          onchange={handleAddrPostalCodeChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+    </div>
+  </section>
+</template>
+
+
+        <!-- FNDAS Type -->
+      
+<!-- FNDAS Type -->
+<template if:true={isFNDAS}>
+
+  <!-- Address Details -->
+  <section>
+    <h3>Address Details</h3>
+    <div class="two-column">
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Building Number"
+          value={addressDetails.buildingNumber}
+          onchange={handleAddrBuildingNumberChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Building Name"
+          value={addressDetails.buildingName}
+          onchange={handleAddrBuildingNameChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Dependent Locality"
+          value={addressDetails.dependentLocality}
+          onchange={handleAddrDependentLocalityChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Street"
+          value={addressDetails.street}
+          onchange={handleAddrStreetChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Postal Town"
+          value={addressDetails.postalTown}
+          onchange={handleAddrPostalTownChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Postal Code"
+          value={addressDetails.postCode}
+          onchange={handleAddrPostalCodeChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+    </div>
+  </section>
+
+    <!-- Asset Details -->
+   
+  <!-- Asset Details -->
+  <section>
+    <h3>Asset Details</h3>
+    <div class="two-column">
+      <div class="inline-field">
+        <lightning-input
+          value="Meter"
+          label="Asset Type"
+          disabled
+          class="compact-input"
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Model"
+          options={modelOptions}
+          value={model}
+          onchange={handleModelChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Year of Manufacture"
+          value={yearManufacture}
+          onchange={handleYearManufactureChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Location Code"
+          options={locationOptions}
+          value={locationCode}
+          onchange={handleLocationCodeChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Asset Status Code"
+          options={statusOptions}
+          value={assetStatusCode}
+          onchange={handleAssetStatusCodeChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Manufacturer"
+          options={manufacturerOptions}
+          value={manufacturer}
+          onchange={handleManufacturerChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-input
+          class="compact-input"
+          type="text"
+          label="Manufacturer Serial No"
+          value={manufacturerSerialNo}
+          onchange={handleManufacturerSerialNoChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-input>
+      </div>
+
+      <div class="inline-field">
+        <lightning-radio-group
+          label="Payment Type"
+          options={paymentOptions}
+          value={paymentType}
+          onchange={handlePaymentTypeChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-radio-group>
+      </div>
+
+      <div class="inline-field full-width">
+        <lightning-textarea
+          class="compact-input"
+          label="Asset Location Notes"
+          value={assetLocationNotes}
+          onchange={handleAssetLocationNotesChange}
+          required
+          message-when-value-missing="This field is required."
+        ></lightning-textarea>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Meter Details -->
+   
+  <!-- Meter Details -->
+  <section>
+    <h3>Meter Details</h3>
+    <div class="two-column">
+      <div class="inline-field">
+        <lightning-combobox
+          label="Meter Type Code"
+          options={meterTypeOptions}
+          value={meterTypeCode}
+          onchange={handleMeterTypeCodeChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Measuring Capacity"
+          options={capacityOptions}
+          value={measuringCapacity}
+          onchange={handleMeasuringCapacityChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Mechanism Code"
+          options={mechanismOptions}
+          value={mechanismCode}
+          onchange={handleMechanismCodeChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Collar Status Code"
+          options={collarOptions}
+          value={collarStatusCode}
+          onchange={handleCollarStatusCodeChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+    </div>
+  </section>
+
+    <!-- Register Details -->
+    
+  <!-- Register Details -->
+  <section>
+    <h3>Register Details</h3>
+    <div class="two-column">
+      <div class="inline-field">
+        <lightning-combobox
+          label="No of Digits"
+          options={digitOptions}
+          value={noOfDigits}
+          onchange={handleNoOfDigitsChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Multiplication Factor"
+          options={factorOptions}
+          value={multiplicationFactor}
+          onchange={handleMultiplicationFactorChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+
+      <div class="inline-field">
+        <lightning-combobox
+          label="Unit of Measure"
+          options={unitOptions}
+          value={unitOfMeasure}
+          onchange={handleUnitOfMeasureChange}
+          required
+          message-when-value-missing="This field is required."
+          class="compact-input"
+        ></lightning-combobox>
+      </div>
+    </div>
+  </section>
+</template>
+
+
+        <!-- Submit Button -->
+        <div class="submit-btn">
+            <lightning-button variant="brand" label="Submit Appointment" onclick={handleSubmitAppointment}></lightning-button>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,81 @@
+<aura:component controller="displaymprnsummary" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens,force:lightningQuickAction" access="global" >
+     <!-- CREATE ATTRIBUTE/VARIABLE-->
+    <aura:attribute name="searchResult" type="List" description="use for store and display list return from server"/>
+    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>
+    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:attribute name="TotalNumberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+    
+    <!-- SHOW LOADING SPINNER--> 
+    <lightning:spinner variant="brand" size="large" aura:id="Id_spinner" class="slds-hide" />
+    
+    <div class="slds-m-around_medium">
+       <!-- SEARCH INPUT AND SEARCH BUTTON--> 
+        <lightning:layout>
+            <lightning:layoutItem size="5" padding="around-small">
+                <lightning:input value="{!v.searchKeyword}"
+                                 required="true"
+                                 placeholder="search MPRNs.."
+                                 aura:id="searchField"
+                                 label="Enter MPRN"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="5" padding="around-small">
+                <lightning:button onclick="{!c.Search}"
+                                  variant="brand"
+                                  label="Search"
+                                  iconName="utility:search"/> 
+            </lightning:layoutItem>
+        </lightning:layout>
+       
+        <!-- TOTAL RECORDS BADGES--> 
+        <div class="slds-m-around_x-small">
+            <lightning:badge label="{!v.TotalNumberOfRecord}" />
+        </div>
+        
+        <!-- ERROR MESSAGE IF NOT RECORDS FOUND--> 
+        <aura:if isTrue="{!v.Message}">
+            <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_error" role="alert">
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">No Records Found...</h2>
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+       
+      
+  <h2 class="slds-p-around_medium" font-weight= "bold" >MPRN Summary</h2>
+  <div class="slds-grid slds-p-around_medium" >
+    <div class="slds-col slds-grow-none flex-col" >
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">Most Recent Job</p>
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">Work Order</p>
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom " >Gas Supplier</p>
+        <p class="slds-p-around_medium slds-text-align_left slds-border_bottom " >Most recent Complaint</p> 
+          <p class="slds-p-around_medium slds-text-align_left slds-border_bottom " >Current MSN</p>
+        <p class="slds-p-around_medium slds-text-align_left slds-border_bottom " >Current Meter Model</p>
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom flex-cell" >Address</p>
+    </div>
+        
+                                     
+                   
+              
+           
+                <!--### display all records of searchResult attribute by aura:iteration ###-->
+                <aura:iteration items="{!v.searchResult}" var="MS" indexVar="count">
+     <div class="slds-col slds-grow-none flex-col">
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">{!MS.Most_Recent_Job__c}</p>
+         <p class="slds-p-around_medium slds-text-align_left slds-border_bottom " >{!MS.Work_Order__r.WorkOrderNumber}</p>
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">{!MS.Gas_Supplier_of_most_recent_job__c}</p>
+         <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">{!MS.text_reference__c}</p>
+          <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">{!MS.Current_MSN__c}</p>
+         <p class="slds-p-around_medium slds-text-align_left slds-border_bottom ">{!MS.Current_Meter_Model__c}</p>
+      <p class="slds-p-around_medium slds-text-align_left slds-border_bottom flex-cell" style="width:200px;overflow-wrap: break-word">{!MS.Address__c}</p>
+    </div>
+     
+                   
+                </aura:iteration>
+       
+        
+         </div>
+    </div>
+    
+</aura:component>

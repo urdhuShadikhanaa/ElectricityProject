@@ -1,0 +1,100 @@
+<template>
+    <div class="custom-complaint-view-container slds-m-around_medium">
+        <!-- <lightning-card title="Complaint Form" class="custom-complaint-form-section">-->
+        
+
+        <div class="custom-complaint-form-section slds-grid slds-grid_vertical">
+            <div class="customer-case-details-section details-column slds-col slds-var-p-vertical_small">    
+                <div class="section-header">
+                    <h3 class="mprn-detail-section-title section-header slds-var-p-horizontal_medium slds-var-p-vertical_x-small slds-grid slds-grid_align-start">
+                        Complaint Form Details</h3>
+                </div>
+                <div class="slds-col slds-grid custom-complaint-query-section details-box slds-p-horizontal_medium slds-grid_align-spread ">
+                    <div class="slds-col slds-size_6-of-12">
+                        <lightning-input label="Case Number" class="custom-lightning-input-element" value={CaseNumber} disabled>
+                        </lightning-input>
+                        <lightning-input label="Status" class="custom-lightning-input-element" value={status} disabled>
+                        </lightning-input>
+                        <lightning-input label="Created Date" class="custom-lightning-input-element" value={createdDateOnly}
+                            disabled>
+                        </lightning-input>
+                        <lightning-input label="Created By" class="custom-lightning-input-element" value={createdByName}
+                            disabled>
+                        </lightning-input>
+                        <!-- DESCRIPTION -->
+                        <lightning-textarea label="Description" class="custom-lightning-input-element" value={description}
+                            disabled>
+                        </lightning-textarea>
+
+                    </div>
+                    <div class="slds-col slds-size_6-of-12">
+                        <!-- CATEGORY -->
+                        <lightning-input label="Category" class="custom-lightning-input-element" value={category} disabled>
+                        </lightning-input>
+                        <!-- SUB CATEGORY -->
+                        <lightning-input label="Sub Category" class="custom-lightning-input-element" value={subCategory}
+                            disabled>
+                        </lightning-input>
+                        <!-- MPRN / Job Number -->
+                        <lightning-input label="MPRN/Job Number" class="custom-lightning-input-element" value={mprn} disabled>
+                        </lightning-input>
+                        <!-- Residence Type -->
+                        <lightning-input label="Commercial/Residential" class="custom-lightning-input-element" value={residence}
+                            disabled>
+                        </lightning-input>
+                        
+                    </div>
+                </div>
+            </div>
+
+        <div class="customer-address-details-section details-column slds-col slds-var-p-vertical_small">    
+            <div class="section-header">
+                <h3 class="mprn-detail-section-title section-header slds-var-p-horizontal_medium slds-var-p-vertical_x-small slds-grid slds-grid_align-start">
+                    Customer Address Details</h3>
+            </div>
+
+            <div
+                class="custom-complaint-address-section details-box slds-p-horizontal_medium slds-grid slds-grid_align-spread slds-col">
+
+                <div class="slds-col slds-size_6-of-12">
+                    <!-- END CUSTOMER DETAILS -->
+                    <lightning-input label="Title" class="custom-lightning-input-element" value={TITLE}
+                        disabled></lightning-input>
+                    <lightning-input label="End Customer Name" class="custom-lightning-input-element"
+                        value={customerName} disabled></lightning-input>
+                    <lightning-input label="End Customer Email Address" class="custom-lightning-input-element"
+                        value={email} disabled></lightning-input>
+                    <lightning-input label="End Customer Phone" class="custom-lightning-input-element" value={phone}
+                        disabled></lightning-input>
+                    <!-- FILES -->
+                    <template if:true={files}>
+                        <lightning-card title="Attachments" class="slds-m-top_medium custom-lightning-input-element">
+                            <template for:each={files} for:item="file">
+                                <p key={file.id} class="slds-p-horizontal_small slds-m-vertical_x-small">
+                                    <a href={file.url} target="_blank">{file.name}.{file.extension}</a>
+                                </p>
+                            </template>
+                        </lightning-card>
+                    </template>
+                </div>
+
+                <div class="slds-col slds-size_6-of-12">
+
+                    <!-- ADDRESS -->
+                    <lightning-input label="House Name/Number/Site Name" class="custom-lightning-input-element"
+                        value={house} disabled></lightning-input>
+                    <lightning-input label="Street" class="custom-lightning-input-element" value={street}
+                        disabled></lightning-input>
+                    <lightning-input label="City / County" class="custom-lightning-input-element" value={city}
+                        disabled></lightning-input>
+                    <lightning-input label="Postcode" class="custom-lightning-input-element" value={postcode}
+                        disabled></lightning-input>
+
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <!--</lightning-card>-->
+    </div>
+</template>

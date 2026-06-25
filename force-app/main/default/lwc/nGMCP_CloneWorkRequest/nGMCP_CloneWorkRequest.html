@@ -1,0 +1,170 @@
+<template>
+    <template if:true={showWorkRequest}>
+        <div class="main-wrapper">
+            <!-- Request Type -->
+            <div class="section-card">
+                <h3 class="custom-page-subheader-title">Select Request Type</h3>
+                <div class="card-group">
+                    <template for:each={uiConfig.requestTypes} for:item="request">
+                        <label key={request.label}
+                            class="card-radio {request.label === selectedRequestType ? 'selected' : ''}"
+                            for={request.label}>
+                            <!-- <div class="custom-radio-card-block">
+                                <div class="custom-card-radio-btn">
+                                    <input type="radio" id={request.label} name="requestType" value={request.label}
+                                        onchange={handleRequestSelect} />
+                                </div>
+                                <div class="custom-card-text-block">
+                                    <span class="card-title">{request.label}</span>
+                                    <p class="card-desc">{request.helpText}</p>
+                                </div>
+                            </div>-->
+                            <div class="radio-header">
+                                <input type="radio" id={request.label} name="requestType" value={request.label}
+                                        onchange={handleRequestSelect} />
+                                <label>{request.label}</label>
+                            </div>
+                            <p class="radio-desc">{request.helpText}</p>
+                        </label>
+                    </template>
+                </div>
+            </div>
+            <!-- Job Type -->
+            <template if:true={selectedRequest}>
+                <div class="section-card">
+                    <h3 class="custom-page-subheader-title">Select Job Type</h3>
+                    <div class="card-group">
+                        <template for:each={selectedRequest.jobTypes} for:item="job">
+                            <label key={job.label} class="card-radio {job.label === selectedJobType ? 'selected' : ''}"
+                                for={job.label}>
+                                <!--<div class="custom-radio-card-block">
+                        <div class="custom-card-radio-btn">
+                            <input type="radio" id={job.label} name="jobType" value={job.label}
+                                   onchange={handleJobSelect} />
+                        </div>
+                        <div class="custom-card-text-block">
+                            <span class="card-title">{job.label}</span>
+                          
+                            <p class="card-desc">{job.description}</p>
+                        </div>
+                    </div>-->
+                    <div class="radio-header">
+                                <input type="radio" id={job.label} name="jobType" value={job.label}
+                                   onchange={handleJobSelect} />
+                                <label>{job.label}</label>
+                            </div>
+                            <p class="radio-desc">{job.description}</p>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <!-- Sub Type -->
+            <template if:true={selectedJob}>
+                <div class="section-card">
+                    <h3 class="custom-page-subheader-title">Select Sub Type</h3>
+                    <div class="card-group">
+                        <template for:each={filteredSubTypes} for:item="sub">
+                            <label key={sub.label}
+                                class="card-radio {sub.label === selectedSubTypeLabel ? 'selected' : ''}"
+                                for={sub.label}>
+                                <!-- <div class="custom-radio-card-block">
+            <div class="custom-card-radio-btn">
+                <input type="radio" id={sub.label} name="subType" value={sub.label}
+                    onchange={handleSubTypeSelect} />
+            </div>
+            <div class="custom-card-text-block">
+                <span class="card-title">{sub.label}</span>
+                <p class="card-desc">{sub.description}</p>
+            </div>
+        </div>-->
+        <div class="radio-header">
+                                <input type="radio" id={sub.label} name="subType" value={sub.label}
+                    onchange={handleSubTypeSelect} />
+                                <label>{sub.label}</label>
+                            </div>
+                            <p class="radio-desc">{sub.description}</p>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <!-- Dynamic Questions -->
+            <template if:true={selectedSubType}>
+                <div class="section-card">
+                    <h3 class="custom-page-subheader-title selected-subtype-suggestion">{selectedSubType.label}</h3>
+                    <template for:each={dynamicQuestions} for:item="q">
+                        <template if:true={q.visible}>
+                            <div key={q.key} class="question custom-question-section">
+                                <!-- Select -->
+                                <template if:true={q.isSelect}>
+                                    <label>{q.label}</label>
+                                    <select data-key={q.key} onchange={handleDynamicChange}>
+                                        <template for:each={q.selectOptions} for:item="opt">
+                                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                        </template>
+                                    </select>
+                                </template>
+
+                                <!-- Number -->
+                                <template if:true={q.isNumber}>
+                                    <label>{q.label}</label>
+                                    <input type="number" data-key={q.key} value={q.value}
+                                        oninput={handleDynamicChange} />
+                                </template>
+
+                                <!-- Radio -->
+                                <template if:true={q.isRadio}>
+                                    <label>{q.label}</label>
+                                    <div class="horizontal-radio">
+                                        <template for:each={q.radioOptions} for:item="opt">
+                                            <label key={opt.value}>
+                                                <input type="radio" name={q.key} value={opt.value} data-key={q.key}
+                                                    onchange={handleDynamicChange}> {opt.label}
+                                            </label>
+                                        </template>
+                                    </div>
+                                </template>
+                                <!-- Text -->
+                                <template if:true={q.isText}>
+                                    <label>{q.label}</label>
+                                    <input type="text" maxlength={q.maxLength} data-key={q.key} value={q.value}
+                                        oninput={handleDynamicChange} class={q.inputClass} />
+                                    <template if:true={q.error}>
+                                        <p class="error-text">{q.error}</p>
+                                    </template>
+                                </template>
+
+                                <!-- File -->
+                                <template if:true={q.isFile}>
+                                    <label>{q.label}</label>
+                                    <lightning-input type="file" label=""
+                                        onchange={handleDynamicChange}></lightning-input>
+                                </template>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+
+            <!-- GT1 Error -->
+            <template if:true={showGt1Error}>
+                <p class="error-message">
+                    This job requires a GT1 to be completed by the network provider and the GT1 survey attached,
+                    therefore it cannot be raised. If you have any further questions please contact 0800 001 4340.
+                </p>
+            </template>
+            <!-- Get Price Button -->
+            <div class="section-card slds-p-vertical_large">
+                <button
+                    class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                    onclick={handleGetPrice}>Show Price for Job</button>
+            </div>
+            <div class="custom-success-message slds-grid slds-m-around_medium slds-grid_vertical-align-center">
+                <template if:true={priceMessageFlag}>
+                    {priceMessage}
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

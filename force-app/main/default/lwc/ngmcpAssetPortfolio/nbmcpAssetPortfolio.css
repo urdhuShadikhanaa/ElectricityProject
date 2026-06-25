@@ -1,0 +1,107 @@
+.container {
+     padding: 1rem;
+     background-color: #f4f6f9;
+     font-family: 'Arial', sans-serif;}
+/* Header */.header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-bottom: 1rem;}
+.left .mprn {
+     font-weight: bold;
+     font-size: 16px;
+     margin-right: 10px;}
+.status {
+     background-color: #0070d2;
+     color: white;
+     padding: 2px 8px;
+     border-radius: 12px;
+     font-size: 12px;}
+.right .btn {
+     margin-left: 0.5rem;}
+.btn {
+     padding: 0.5rem 1rem;
+     border-radius: 4px;
+     font-weight: bold;
+     cursor: pointer;
+     font-size: 14px;
+     border: none;}
+.custom-btn {
+     background-color: #006d6f;
+     color: white;
+     border: none;}
+.deappoint {
+     border: 1px solid #006d6f;
+     background-color: transparent;
+     color: #006d6f;}
+/* Tabs */.tab-header {
+     display: flex;
+     border-bottom: 1px solid lightgray;
+     margin-bottom: 1rem;}
+.tab-header div {
+     margin-right: 1.5rem;
+     padding-bottom: 0.5rem;
+     font-weight: bold;
+     color: gray;
+     cursor: pointer;}
+.tab-header div.active {
+     color: #006d6f;
+     border-bottom: 3px solid #006d6f;}
+/* Overview Layout */.row-layout {
+     display: flex;
+     gap: 2rem;
+     margin-top: 1rem;
+     flex-wrap: wrap;}
+.details-column {
+     flex: 1;
+     min-width: 300px;}
+/* Titles */.section-title {
+     font-weight: bold;
+     font-size: 16px;
+     margin-bottom: 0.5rem;}
+.section-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 0.5rem;}
+/* Box Styling */.details-box {
+     background: white;
+     padding: 1rem;
+     border-radius: 6px;
+     box-shadow: 0 0 5px rgba(0,0,0,0.05);
+     margin-bottom: 1rem;}
+.row {
+     display: flex;
+     justify-content: space-between;
+     padding: 0.5rem 0;}
+.with-border {
+     border-bottom: 1px solid #dcdcdc;}
+.label {
+     font-weight: 500;
+     color: #333;}
+.value {
+     color: #555;}
+/* Edit Icon */.edit-icon {
+     font-size: 16px;
+     background: none;
+     border: none;
+     cursor: pointer;
+     color: #006d6f;
+     padding: 0.25rem 0.5rem;}
+/* Editable Fields */.form-field {
+     display: flex;
+     flex-direction: column;
+     margin-bottom: 0.75rem;
+    }
+.form-field label {
+     margin-bottom: 0.25rem;
+     font-weight: 500;
+     font-size: 14px;
+    }
+
+.form-field input {
+     padding: 0.4rem;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     font-size: 14px;
+    }

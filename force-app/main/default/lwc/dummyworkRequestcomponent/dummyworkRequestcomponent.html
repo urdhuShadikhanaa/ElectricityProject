@@ -1,0 +1,363 @@
+<template>
+
+
+  
+
+  <template if:true={showWorkRequest}>
+
+    <div class="main-wrapper">
+
+      <!-- Request Type -->
+
+      <!--<div class="section-card">
+
+                <h3 class="custom-page-subheader-title">Select Request Type</h3>
+
+                <div class="card-group">
+
+                    <template for:each={uiConfig.requestTypes} for:item="request">
+
+                        <label key={request.label}
+
+                            class="card-radio {request.label === selectedRequestType ? 'selected' : ''}"
+
+                            for={request.label}>
+
+                            
+
+                            <div class="radio-header">
+
+                                <input type="radio" id={request.label} name="requestType" value={request.label}
+
+                                        onchange={handleRequestSelect} />
+
+                                <label>{request.label}</label>
+
+                            </div>
+
+                            <p class="radio-desc">{request.helpText}</p>
+
+                        </label>
+
+                    </template>
+
+                </div>
+
+            </div>-->
+
+      <!-- Job Type -->
+
+      <template if:true={selectedRequest}>
+
+        <div class="section-card">
+
+          <h3 class="custom-page-subheader-title">Select Job Type</h3>
+
+          <div class="card-group">
+
+            <template for:each={selectedRequest.jobTypes} for:item="job">
+
+              <label key={job.label} class="card-radio {job.label === selectedJobType ? 'selected' : ''}"
+                for={job.label}>
+
+                <!--<div class="custom-radio-card-block">
+
+                        <div class="custom-card-radio-btn">
+
+                            <input type="radio" id={job.label} name="jobType" value={job.label}
+
+                                   onchange={handleJobSelect} />
+
+                        </div>
+
+                        <div class="custom-card-text-block">
+
+                            <span class="card-title">{job.label}</span>
+
+                         
+
+                            <p class="card-desc">{job.description}</p>
+
+                        </div>
+
+                    </div>-->
+
+                <div class="radio-header">
+
+                  <input type="radio" id={job.label} name="jobType" value={job.label} onchange={handleJobSelect} disabled={isLocked} />
+
+                  <label>{job.label}</label>
+
+                </div>
+
+                <p class="radio-desc">{job.description}</p>
+
+              </label>
+
+            </template>
+
+          </div>
+
+        </div>
+
+      </template>
+
+      <!-- Sub Type -->
+
+      <template if:true={selectedJob}>
+
+        <div class="section-card">
+
+          <h3 class="custom-page-subheader-title">Select Sub Type</h3>
+
+          <div class="card-group">
+
+            <template for:each={filteredSubTypes} for:item="sub">
+
+              <label key={sub.label} class="card-radio {sub.label === selectedSubTypeLabel ? 'selected' : ''}"
+                for={sub.label}>
+
+                <!-- <div class="custom-radio-card-block">
+
+            <div class="custom-card-radio-btn">
+
+                <input type="radio" id={sub.label} name="subType" value={sub.label}
+
+                    onchange={handleSubTypeSelect} />
+
+            </div>
+
+            <div class="custom-card-text-block">
+
+                <span class="card-title">{sub.label}</span>
+
+                <p class="card-desc">{sub.description}</p>
+
+            </div>
+
+        </div>-->
+
+                <div class="radio-header">
+
+                  <input type="radio" id={sub.label} name="subType" value={sub.label} onchange={handleSubTypeSelect} disabled={isLocked}/>
+
+                  <label>{sub.label}</label>
+
+                </div>
+
+                <p class="radio-desc">{sub.description}</p>
+
+              </label>
+
+            </template>
+
+          </div>
+
+
+          
+
+        </div>
+
+      </template>
+      <template if:true={showMeterErrorMessage}>
+        <p class="ngmcp-text-error"> {errorMessage}</p>
+      </template>
+
+      <!-- Dynamic Questions -->
+      <template if:true={selectedSubType}>
+        <div class="section-card">
+          <h3 class="custom-page-subheader-title selected-subtype-suggestion">
+            {selectedSubType.label}
+          </h3>
+
+          <template for:each={dynamicQuestions} for:item="q">
+            <template if:true={q.visible}>
+              <div key={q.key} class="question custom-question-section">
+
+               
+
+                <!-- LABEL (with asterisk for required) -->
+
+                <template if:false={q.isInfo}>
+                <label class="question-label" for={q.key}>
+                  {q.label}
+                  <template if:true={q.required}>
+                    <span class="req">*</span>
+                  </template>
+                </label>
+                </template>
+
+                
+
+
+                <!-- SELECT -->
+          
+                
+<template if:true={q.isSelect}>
+  <select id={q.key} data-key={q.key} class={q.inputClass} onchange={handleDynamicChange} disabled={q.disabled}>
+    <template for:each={q.selectOptions} for:item="opt">
+      <option key={opt.value} value={opt.value} selected={opt.selected}>    
+        {opt.label}
+      </option>
+    </template>
+  </select>
+
+  <template if:true={q.error}>
+    <p class="ngmcp-text-error">{q.error}</p>
+  </template>
+</template>
+
+
+                <!-- NUMBER -->
+                <template if:true={q.isNumber}>
+                  <input type="number" id={q.key} data-key={q.key} value={q.value} class={q.inputClass}
+                    oninput={handleDynamicChange} disabled={q.disabled} />
+                  <template if:true={q.error}>
+                    <p class="ngmcp-text-error">{q.error}</p>
+                  </template>
+                </template>
+
+                <!-- RADIO -->
+                <template if:true={q.isRadio}>
+                  <div class="horizontal-radio">
+                    <template for:each={q.radioOptions} for:item="opt">
+                      <label key={opt.value}>
+                        <input type="radio" name={q.key} value={opt.value} data-key={q.key} checked={opt.checked}
+                          onchange={handleDynamicChange} disabled={q.disabled}/>
+                        {opt.label}
+                      </label>
+                    </template>
+                  </div>
+                  <template if:true={q.error}>
+                    <p class="ngmcp-text-error">{q.error}</p>
+                  </template>
+                </template>
+
+                <!-- TEXT -->
+                <template if:true={q.isText}>
+                  <input type="text" id={q.key} maxlength={q.maxLength} data-key={q.key} value={q.value}
+                    class={q.inputClass} oninput={handleDynamicChange} 
+readonly={q.readOnly}
+       disabled={q.disabled}
+       onkeypress={handleKeyPress}
+/>
+                  <template if:true={q.error}>
+                    <p class="ngmcp-text-error">{q.error}</p>
+                  </template>
+                </template>
+
+                <!-- TEXTAREA -->
+                <template if:true={q.isTextarea}>
+                  <textarea id={q.key} rows={q.rows} maxlength={q.maxLength} data-key={q.key} class={q.inputClass}
+                    oninput={handleDynamicChange} disabled={q.disabled}>{q.value}</textarea>
+                  <template if:true={q.error}>
+                    <p class="ngmcp-text-error">{q.error}</p>
+                  </template>
+                </template>
+
+                <!-- DATE -->
+                <template if:true={q.isDate}>
+                  <input type="date" id={q.key} data-key={q.key} value={q.value} class={q.inputClass}
+                    onchange={handleDynamicChange} disabled={q.disabled}/>
+                  <template if:true={q.error}>
+                    <p class="ngmcp-text-error">{q.error}</p>
+                  </template>
+                </template>
+
+
+
+<!-- INFO (red highlighted message) -->
+<template if:true={q.isInfo}>
+  <p class="ngmcp-text-danger">
+    {q.label} </p>
+    </template>         
+
+
+                
+
+                <!-- FILE -->
+                <template if:true={q.isFile}>
+                  <!-- <lightning-input type="file" label="" data-key={q.key} class={q.inputClass}
+                    onchange={handleDynamicChange}></lightning-input> -->
+                        <div class="upload-section custom-contact-field-section">
+                            <label class="upload-label"></label>
+                            <div class="upload-box" ondragover={handleDragOver} ondragleave={handleDragLeave} ondrop={handleFileDrop}>
+                              <p>Drag & drop files here</p>
+                             
+                              <input  label="" data-key={q.key} type="file" multiple accept=".csv, image/*" class={q.inputClass} onchange={handleDynamicChange} disabled={q.disabled} />
+                            </div>
+                            <!--  Show upload errors -->
+                            <!-- <template if:true={fileError}>
+                              <p class="error-text">{fileError}</p>
+                            </template> -->
+                             <template if:true={q.error}>
+                              <p class="ngmcp-text-error">{q.error}</p>
+                            </template>
+                            
+                            <!--  Thumbnails / file list -->
+                            <template if:true={uploadedFiles.length}>
+                              <div class="file-preview-list">
+                                <template for:each={uploadedFiles} for:item="file">
+                                  <div key={file.name} class="file-preview-item">
+                                    <template if:true={file.isImage}>
+                                      <img src={file.previewUrl} alt={file.name} class="thumbnail" />
+                                    </template>
+                                    <template if:false={file.isImage}>
+                                      <div class="file-icon">📄</div>
+                                    </template>
+                                    <div class="file-info">
+                                      <span class="file-name">{file.name}</span>
+                                      <span class="file-size">({file.sizeDisplay})</span>
+                                    </div>
+                                    <button class="delete-btn" data-name={file.name} onclick={handleFileDelete} disabled={isLocked}>
+                                      ✕
+                                    </button>
+                                  </div>
+                                </template>
+                              </div>
+                            </template>
+                          </div>
+                </template>
+
+              </div>
+            </template>
+          </template>
+        </div>
+      </template>
+
+
+      <!-- GT1 Error -->
+
+
+
+      <!-- Get Price Button -->
+      <template if:true={priceButtonFlag}>
+
+        
+
+        <div class="section-card slds-p-vertical_large">
+          <button
+            class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+            onclick={handleGetPrice} disabled={disableGetPrice}>Show Price for Job
+          </button>
+        </div>
+
+      </template>
+
+
+
+      <div class="custom-success-message slds-grid slds-m-around_medium slds-grid_vertical-align-center">
+
+        <template if:true={priceMessageFlag}>
+
+          {priceMessage}
+
+        </template>
+
+      </div>
+
+    </div>
+
+  </template>
+
+</template>

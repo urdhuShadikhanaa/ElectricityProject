@@ -1,0 +1,31 @@
+<template>
+    <div class="login-container">
+        <h1>Welcome to Our Community</h1>
+        <lightning-input 
+            type="email" 
+            label="Email" 
+            value={email}
+            onchange={handleInputChange}
+            data-id="email">
+        </lightning-input>
+        <lightning-input 
+            type="password" 
+            label="Password" 
+            value={password}
+            onchange={handleInputChange}
+            data-id="password">
+        </lightning-input>
+        <lightning-button 
+            label="Login" 
+            variant="brand" 
+            onclick={handleLogin}>
+        </lightning-button>
+        <div class="additional-links">
+            <a href="/ForgotPassword">Forgot Password?</a> |
+            <a href="/SelfRegister">Sign Up</a>
+        </div>
+        <template if:true={error}>
+            <div class="error-message">{error}</div>
+        </template>
+    </div>
+</template>

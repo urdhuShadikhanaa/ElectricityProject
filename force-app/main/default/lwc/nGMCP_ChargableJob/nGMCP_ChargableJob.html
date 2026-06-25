@@ -1,0 +1,96 @@
+<template>
+<lightning-card title="CWR Form">
+<div class="slds-p-around_medium">
+<template if:true={loading}>
+<lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+</template>
+<template if:false={loading}>
+<form class="cwr-form">
+<template for:each={questions} for:item="q">
+<div key={q.apiName} class="slds-m-bottom_medium">
+<label class="slds-form-element__label">
+               {q.label}
+<template if:true={q.required}>
+                 *
+</template>
+</label>
+<!-- Text -->
+<template if:true={q.isText}>
+<lightning-input data-api={q.apiName}
+                                value={q.answerValue}
+                                onchange={handleChange}
+                                required={q.required}>
+</lightning-input>
+</template>
+<!-- Long Text -->
+<template if:true={q.isLongText}>
+<lightning-textarea data-api={q.apiName}
+                                   value={q.answerValue}
+                                   onchange={handleChange}
+                                   required={q.required}>
+</lightning-textarea>
+</template>
+<!-- Number -->
+<template if:true={q.isNumber}>
+<lightning-input type="number"
+                                data-api={q.apiName}
+                                value={q.answerValue}
+                                onchange={handleChange}
+                                required={q.required}>
+</lightning-input>
+</template>
+<!-- Date -->
+<template if:true={q.isDate}>
+<lightning-input type="date"
+                                data-api={q.apiName}
+                                value={q.answerValue}
+                                onchange={handleChange}
+                                required={q.required}>
+</lightning-input>
+</template>
+<!-- Checkbox -->
+<template if:true={q.isCheckbox}>
+<lightning-input type="checkbox"
+                                data-api={q.apiName}
+                                checked={q.answerValue}
+                                onchange={handleChange}>
+</lightning-input>
+</template>
+<!-- Picklist -->
+<template for:each={questions} for:item="q">
+<div key={q.developerName}>
+<template iif:true={q.isPicklist>
+<lightning-combobox
+               label={q.label}
+               options={q.options}
+               value={q.selectedValue}
+               onchange={handleChange}>
+</lightning-combobox>
+</template>
+</div>
+</template>
+</div>
+</template>
+<div class="slds-grid slds-grid_align-end slds-m-top_medium">
+<lightning-button label="Fetch Price" onclick={handleFetchPrice} variant="neutral"></lightning-button>
+<lightning-button label="Submit" onclick={handleSubmit} variant="brand" class="slds-m-left_small"></lightning-button>
+</div>
+</form>
+<!-- Price display -->
+<template if:true={prices.length}>
+<div class="slds-m-top_medium">
+<h3>Price(s)</h3>
+<template for:each={prices} for:item="p">
+<div key={p.productCode} class="price-row slds-p-vertical_x-small">
+<strong>{p.productCode}</strong> : {p.price}
+<template if:true={p.region}>
+                 ({p.region})
+</template>
+</div>
+</template>
+</div>
+</template>
+</template>
+</div>
+</lightning-card>
+</template>

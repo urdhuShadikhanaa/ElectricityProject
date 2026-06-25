@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="MPRN Entry">
+        <div class="slds-m-around_medium">
+            <lightning-input
+               type="text"
+               label="Enter MPRN"
+               value={NGMCP_mprn}
+               onchange={NGMCP_handleChange}
+               oninput={NGMCP_handleinput}
+               message-when-bad-input="Invalid MPRN"
+               message-when-value-missing="MPRN is required">
+            </lightning-input>
+            <template if:true={NGMCP_errorMessage}>
+                <div class="slds-text-color_error slds-m-top_small">
+                    <lightning-formatted-text value={NGMCP_errorMessage}></lightning-formatted-text>
+                </div>
+            </template>
+            <lightning-button label="Submit" onclick={NGMCP_handleSubmit} disabled={NGMCP_isDisabled}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

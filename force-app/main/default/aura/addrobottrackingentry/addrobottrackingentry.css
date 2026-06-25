@@ -1,0 +1,30 @@
+.THIS {
+ 
+   
+}
+.THIS.slds{
+    font-weight: bold;
+   background-color: #e6f7ff ;  
+ border-style: outset;  
+padding: 1.2em;
+
+}
+.THIS .slds-input{
+    background-color: #F5F5F5;
+}
+.THIS.slds h1{
+   text-decoration: underline;
+  text-align: center;  
+font-size: 1.8em;
+}
+.THIS.slds h2{
+font-size: 1.4em;
+    text-align: center;
+}
+
+.THIS .slds-input.has-error, .THIS .slds-select.has-error {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(194, 57, 52);
+    box-shadow: rgb(194, 57, 52) 0 0 0 1px inset;
+    background-clip: padding-box;
+  }

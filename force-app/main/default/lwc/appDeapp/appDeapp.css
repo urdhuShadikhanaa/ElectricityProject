@@ -1,0 +1,234 @@
+/* ===== Radio Card Group (AMR style) ===== */
+.radio-card-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.radio-card {
+    border: 2px solid #d0d0d0;
+    border-radius: 8px;
+    padding: 14px;
+    width: 100%;
+    min-height: 140px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* left-align text like AMR */
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.radio-card:hover {
+    border-color: #00857A;
+}
+
+.radio-card.selected {
+    border: 2px solid #00857A;
+    box-shadow: 0 0 0 2px rgba(0,121,107,0.1);
+    font-weight: 600;
+}
+
+.radio-card input[type="radio"] {
+    display: none;
+}
+
+.radio-card-label {
+    font-size: 16px; /* AMR title size */
+    font-weight: 500;
+    color: #1D1B20;
+}
+
+.radio-card-help {
+    font-size: 14px; /* AMR description size */
+    color: #625B71;
+}
+
+/* ===== Field Layout (AMR style) ===== */
+.custom-question-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.custom-question-section > label {
+    width: 350px; /* AMR label width */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input:not([type="radio"]), select {
+    width: 50%;
+    max-width: 300px;
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+}
+
+/* ===== Required Asterisk ===== */
+.req {
+    color: #b00020;
+    margin-left: 4px;
+    font-weight: 700;
+}
+
+/* ===== Upload Section (AMR style) ===== */
+.upload-section {
+    margin-top: 1rem;
+}
+
+.upload-label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.upload-box {
+    width: 50%;
+    max-width: 400px;
+    border: 2px dashed #dadada;
+    border-radius: 6px;
+    background-color: #dadada;
+    text-align: center;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.upload-box.drag-over {
+    background-color: #f0f8f8;
+    border-color: #00857A;
+}
+
+.browse-text {
+    color: #00857A;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-preview-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.file-preview-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fafafa;
+}
+
+.file-icon {
+    font-size: 20px;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name {
+    font-weight: 600;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-size {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #c00;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* Wrap each label + input in a flex container */
+.inline-field {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* space between label and input    gap: 12px; /* space between label and input */
+    margin-bottom: 12px;
+}
+
+
+/* Inline row: label on the left, field on the right */
+.inline-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;          /* space between label and field */
+  margin-bottom: 12px;
+  flex-wrap: nowrap;  /* keep label+input on one line */
+}
+
+/* Label column */
+.inline-field > label {
+  min-width: 220px;   /* adjust as needed to align your columns */
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Field column (half width) — applies to Lightning & native fields */
+.inline-field lightning-input,
+.inline-field lightning-textarea,
+.inline-field lightning-combobox,
+.inline-field lightning-radio-group,
+.inline-field input,
+.inline-field select,
+.inline-field textarea {
+  width: 50%;         /* half of the available row */
+  max-width: 300px;   /* cap to keep the form compact */
+}
+
+/* Optional: two columns per section (left + right stacks) */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 16px 24px;                 /* row  gap: 16px 24px;                 /* row/column gap */
+}
+
+/* Label styling */
+.inline-field label {
+    min-width: 220px; /* adjust based on your design */
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Input box styling */
+.inline-field lightning-input,
+.inline-field lightning-combobox,
+.inline-field input,
+
+
+/* ===== Section Title ===== */
+.section-title {
+    font-size: 24px; /* AMR style */
+    font-weight: 600;
+    color: #00857A;
+    margin-bottom: 12px;
+}

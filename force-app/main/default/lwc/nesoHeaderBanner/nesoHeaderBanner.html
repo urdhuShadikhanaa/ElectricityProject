@@ -1,0 +1,38 @@
+<!--
+ * @description       : DXP-9641 "NESO Component: Header"
+ * @author            : Vivek Kumar
+ * @last modified on  : 09-07-2024
+ * @last modified by  : Varun Reddy
+ * Modifications Log
+ * Ver    Date        Author        Modification
+ * 1.0    30-04-2024  Vivek Kumar   Initial Version
+-->
+<template>
+    <div class="landing-page">
+        <div class="logo-container">
+            <img src={companyLogo} alt="Company Logo" class="company-logo" />
+        </div>
+        <div class="mobile-logo">
+                <img src={MobileNESOLogo} alt="Home" class="company-logo-mobile">
+            </div>
+        <div class="button-container">
+            <div class="search-container">
+                <span class={searchLabelClass} onclick={handleSearchLabelClick}>Search</span>
+             <input type="text" class="search-input" placeholder="Search"
+       value={searchText} oninput={handleSearchInput} onblur={handleSearchBlur} onkeydown={handleSearchKeyDown} />
+
+                <img src={clearIcon} alt="x" class="clear-icon" onclick={clearSearchText} style={clearButtonStyle}/>
+                <img src={searchIcon} alt="Search" class="search-icon" onclick={redirectToSearchUrl} />
+            </div>
+            <!--<span class="new-portal" onclick={redirectToDataPortalUrl}>Data Portal</span>
+            <img src={NESO_DataPortal} alt="Data Portal" class="data-portal-button" onclick={handleButtonClick} />-->
+        </div>
+        <div class={popupClass}>
+            <div class="popup-content">            
+                <div class="links">
+                    <a class="signin-link" onclick={redirectToSignIn}>Sign In / Register</a>
+                </div>     
+            </div>
+        </div>
+    </div>
+</template>

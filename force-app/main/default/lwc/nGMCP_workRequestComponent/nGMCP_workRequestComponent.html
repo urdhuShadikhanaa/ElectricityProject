@@ -1,0 +1,291 @@
+<template>
+  <template if:true={showWorkRequest}>
+    <div class="main-wrapper custom-work-request-container">
+
+      <!-- Job Type -->
+      <template if:true={selectedRequest}>
+        <div class="section-card">
+          <h3 class="custom-page-subheader-title">Select Job Type</h3>
+          <div class="card-group">
+            <template for:each={selectedRequest.jobTypes} for:item="job">
+              <label key={job.label} class="card-radio" for={job.label}>
+                <div class="radio-header">
+                  <input type="radio" id={job.label} name="jobType" value={job.label} onchange={handleJobSelect}
+                    disabled={isLocked} />
+                  <label>{job.label}</label>
+                </div>
+                <p class="radio-desc">{job.description}</p>
+                <template if:true={job.isChecked}>
+                  <div class="recommend-tag">Selected</div>
+                </template>
+              </label>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <!-- Sub Type -->
+      <template if:true={selectedJob}>
+        <div class="section-card">
+          <h3 class="custom-page-subheader-title">Select Sub Type</h3>
+          <div class="card-group">
+            <template for:each={filteredSubTypes} for:item="sub">
+              <label key={sub.label} class="card-radio" for={sub.label}>
+                <div class="radio-header">
+                  <input type="radio" id={sub.label} name="subType" value={sub.label} onchange={handleSubTypeSelect}
+                    disabled={isLocked} />
+                  <label>{sub.label}</label>
+                </div>
+                <p class="radio-desc">{sub.description}</p>
+                <template if:true={sub.isSelected}>
+                  <div class="recommend-tag">Selected</div>
+                </template>
+              </label>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <template if:true={showMeterErrorMessage}>
+        <p class="ngmcp-text-error">{errorMessage}</p>
+      </template>
+
+      <!-- Dynamic Questions -->
+      <template if:true={selectedSubType}>
+        <div class="section-card">
+          <h3 class="custom-page-subheader-title selected-subtype-suggestion">
+            {selectedSubType.label}
+          </h3>
+
+          <div class="custom-section-card-block slds-grid slds-grid_align-spread">
+            <div class="slds-col slds-size_8-of-12">
+              <template for:each={dynamicQuestions} for:item="q">
+                <template if:true={q.visible}>
+                  <div key={q.key} class="question custom-question-section">
+
+                    <template if:false={q.isInfo}>
+                      <label class="question-label" for={q.key}>
+                        {q.label}
+                        <template if:true={q.required}>
+                          <span class="req">*</span>
+                        </template>
+                      </label>
+                    </template>
+
+                    <template if:true={q.isSelect}>
+                      <select id={q.key} data-key={q.key} class={q.inputClass} onchange={handleDynamicChange}
+                        disabled={q.disabled}>
+                        <template for:each={q.selectOptions} for:item="opt">
+                          <option key={opt.value} value={opt.value} selected={opt.selected}>
+                            {opt.label}
+                          </option>
+                        </template>
+                      </select>
+                      <template if:true={q.error}>
+                        <p class="ngmcp-text-error">{q.error}</p>
+                      </template>
+                    </template>
+
+                    <template if:true={q.isNumber}>
+                      <input type="number" id={q.key} data-key={q.key} value={q.value} class={q.inputClass}
+                        oninput={handleDynamicChange} disabled={q.disabled} />
+                      <template if:true={q.error}>
+                        <p class="ngmcp-text-error">{q.error}</p>
+                      </template>
+                    </template>
+                    <template if:true={q.isRadio}>
+                      <div class="horizontal-radio custom-horizontal-radio-input">
+                        <template for:each={q.radioOptions} for:item="opt">
+                          <label key={opt.value}>
+                            <input type="radio" name={q.key} value={opt.value} data-key={q.key} checked={opt.checked}
+                              onchange={handleDynamicChange} disabled={q.disabled} />
+                            {opt.label}
+                          </label>
+                        </template>
+                      </div>
+                      <template if:true={q.error}>
+                        <p class="ngmcp-text-error">{q.error}</p>
+                      </template>
+                    </template>
+
+                    <template if:true={q.isText}>
+                      <input type="text" id={q.key} maxlength={q.maxLength} data-key={q.key} value={q.value}
+                        class={q.inputClass} oninput={handleDynamicChange} readonly={q.readOnly} disabled={q.disabled}
+                        onkeypress={handleKeyPress} />
+                      <template if:true={q.error}>
+                        <p class="ngmcp-text-error">{q.error}</p>
+                      </template>
+                    </template>
+
+                    <template if:true={q.isTextarea}>
+                      <textarea id={q.key} rows={q.rows} maxlength={q.maxLength} data-key={q.key} class={q.inputClass}
+                        oninput={handleDynamicChange} disabled={q.disabled}>{q.value}</textarea>
+                      <template if:true={q.error}>
+                        <p class="ngmcp-text-error">{q.error}</p>
+                      </template>
+                    </template>
+
+                    <template if:true={q.isDate}>
+                      <input type="date" id={q.key} data-key={q.key} value={q.value} class={q.inputClass}
+                        onchange={handleDynamicChange} disabled={q.disabled} />
+                      <template if:true={q.error}>
+                        <p class="ngmcp-text-error">{q.error}</p>
+                      </template>
+                    </template>
+
+                    <template if:true={q.isInfo}>
+                      <p class="ngmcp-text-danger">{q.label}</p>
+                    </template>
+
+                    <template if:true={q.isFile}>
+                       <template if:true={fileError}>
+                          <p class="error-text">{fileError}</p>
+                        </template>
+                      <div class="upload-section custom-contact-field-section">
+                       <div class="upload-box"
+     data-key={q.key}
+     ondragover={handleDragOver} 
+     ondragleave={handleDragLeave}
+     ondrop={handleFileDrop}>
+                          <p>Drag & drop files here</p>
+                          <input type="file" data-key={q.key} multiple accept=".csv, image/*" class={q.inputClass}
+                            onchange={handleDynamicChange} disabled={q.disabled} />
+                        </div>
+
+                        <template if:true={q.error}>
+                          <p class="ngmcp-text-error">{q.error}</p>
+                        </template>
+                        <!--  GT1 mandatory message -->
+                        <!--  GT1-specific inline validation message (dynamic) -->
+                        <template if:true={q.isGt1File}>
+                          <!-- Shows when GT1 content rules fail (expired date / kWh mismatch / both) -->
+                          <template if:true={gt1InlineVisible}>
+                            <p class="ngmcp-text-error slds-text-heading_small slds-m-top_xx-small">
+                              {gt1InlineMsg}
+                            </p>
+                          </template>
+                        </template>
+
+                        <template if:true={q.files}>
+                          <div class="file-preview-list">
+                            <template for:each={q.files} for:item="file">
+                              <div key={file.name} class="file-preview-item">
+
+                                <template if:true={file.isImage}>
+                                  <div class="thumb">
+                                    <img src={file.previewUrl} alt={file.name} class="thumbnail" />
+                                    <button class="delete-btn" data-name={file.name} data-key={q.key} title="Remove"
+                                      onclick={handleFileDelete} disabled={isLocked}>✕</button>
+                                  </div>
+                                </template>
+
+                                <template if:false={file.isImage}>
+                                  <div class="file-icon">📄</div>
+                                </template>
+                                <div class="file-info">
+                                  <span class="file-name">{file.name}</span>
+                                  <span class="file-size">({file.sizeDisplay})</span>
+                                </div>
+                                <button class="delete-btn" data-name={file.name} data-key={q.key}
+                                  onclick={handleFileDelete} disabled={isLocked}>✕</button>
+                              </div>
+                            </template>
+                          </div>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+              </template>
+            </div>
+
+
+            <template if:true={isTableVisible}>
+              <div class="custom-question-guidance-block slds-col slds-size_4-of-12 slds-m-left_small">
+                <!--<h3 class="slds-text-title_bold slds-m-bottom_small"></h3>-->
+
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered custom-guidance-table">
+                  <thead>
+                    <tr>
+                      <th>Outlet Pressure (Mbar)</th>
+                      <th>Expected peak hourly load (kWh)</th>
+                      <th>Meter Model</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <template for:each={guidanceRowsWithClass} for:item="row" for:index="idx">
+                      <tr key={row.kwh}>
+                        <td>{row.outletMin}</td>
+                        <td>{row.kwh}</td>
+                        <td>{row.model}</td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+
+              </div>
+            </template>
+
+
+
+          </div>
+
+        </div>
+      </template>
+      <template if:true={priceButtonFlag}>
+        <!-- Hide the button only when the selected subtype is one of the two -->
+        <template if:false={isNonPricedOtherVisit}>
+          <div class="section-card slds-p-vertical_large">
+            <button
+              class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+              onclick={handleGetPrice} disabled={disableGetPrice}>
+              Show Price for Job
+            </button>
+          </div>
+        </template>
+      </template>
+      <div class="custom-success-message slds-m-around_medium">
+
+        <template if:true={priceMessageFlag}>
+
+          <template if:true={mainJobMessage}>
+            <p>{mainJobMessage}</p>
+          </template>
+
+          <template if:true={additionalMessage}>
+            <p>{additionalMessage}</p>
+          </template>
+
+          <template if:true={priceMessage}>
+            <p><strong>{priceMessage}</strong></p>
+          </template>
+          <template if:true={vatMessage}>
+            <p><span style="font-size:12px">{vatMessage}</span></p>
+          </template>
+        </template>
+      </div>
+
+    </div>
+  </template>
+  <template if:true={isModel}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container custom-slds-modal-container">
+        <!-- Header -->
+        <header class="custom-modal-header slds-p-around_large">
+          <h2 class="custom-modal-title"></h2>
+        </header>
+        <!-- Body -->
+        <div class="custom-modal-content-container slds-p-around_large">
+          <div class="custom-modal-content slds-col slds-p-around_xx-small">{duplicateMessage}
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="custom-modal-footer slds-grid slds-grid_align-end slds-p-around_large">
+          <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button"
+            disabled={isDisabled} onclick={handleDeselectsubtype}> Ok </button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

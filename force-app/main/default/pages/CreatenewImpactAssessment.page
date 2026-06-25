@@ -1,0 +1,21 @@
+<apex:page standardcontroller="MP10_Impact_Assessment__c"  tabStyle="MP10_Impact_Assessment__c" showheader="true" sidebar="true" lightningStylesheets="true" >
+ <apex:includeLightning />
+ <apex:slds />
+<apex:includeScript value="/lightning/lightning.out.js" />
+ <div id="ia">
+ <script>
+        $Lightning.use("c:createnewIA1", function() {
+            $Lightning.createComponent(
+                "c:createnewIA",
+                {},
+                "ia",
+                function(cmp) {
+                    console.log("IA created!");
+                    console.log(cmp);
+                });
+            });
+    </script>
+    
+    </div>
+
+</apex:page>

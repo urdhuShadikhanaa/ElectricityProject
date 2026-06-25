@@ -1,0 +1,80 @@
+<!-- <template>
+        <div class="dashboard-container">
+            <div class="dashboard-wrapper">
+                <div class="left-column">
+                    <div class="card">
+                        <c-ngmcp-welcome-greeting></c-ngmcp-welcome-greeting>
+                    </div>
+                    <div class="card">
+                        <c-ngmcp-m-p-r-n-global-search></c-ngmcp-m-p-r-n-global-search>
+                    </div>
+                    <div class="card">
+                        <c-ngmcp-get-started></c-ngmcp-get-started>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <div class="card">
+                        <c-ngmcp-in-need-of-attention></c-ngmcp-in-need-of-attention>
+                    </div>
+                    <div class="card">
+                        <c-ngmcp-upcoming-site-visit></c-ngmcp-upcoming-site-visit>
+                    </div>
+                </div>
+            </div>
+        </div>
+</template> -->
+
+<template>
+    <div class="dashboard-container slds-grid slds-p-around_medium">
+        <template if:true={showContainerFlag}>
+            <div class="dashboard-wrapper">
+                <!-- LEFT SIDE: single white card -->
+                <div class="left-column card">
+                    <!-- <c-ngmcp-welcome-greeting></c-ngmcp-welcome-greeting> -->
+                    <div
+                        class="welcome-greeting-container slds-p-around_medium slds-grid slds-grid_align-center slds-grid_vertical">
+                        <div class="slds-col slds-grid slds-grid_align-center">
+                            <h2 class="custom-greeting"><span class="custom-greeting-message">{greeting},&nbsp;</span>
+                                <span class="custom-greeting-name">{userName}</span>
+                            </h2>
+                        </div>
+                        <div class="slds-col slds-grid slds-grid_align-center slds-p-vertical_x-small">
+                            <p class="custom-greeting-datetime">{currentDateTime}</p>
+                        </div>
+                    </div>
+                    <c-ngmcp-m-p-r-n-global-search onresponse={handleResponse}></c-ngmcp-m-p-r-n-global-search>
+                    <!--<c-ngmcp-get-started></c-ngmcp-get-started>-->
+                    <div class="custom-sitevisit-container slds-p-horizontal_medium">
+                        <c-ngmcp-in-need-of-attention report-key="INPROGRESS_WO"
+                            onneedattention={handleAttentionclass}></c-ngmcp-in-need-of-attention>
+                    </div>
+                </div>
+                <!-- RIGHT SIDE: two separate white cards -->
+                <div class="right-column">
+                    <div class="custom-workorder-container">
+                        <c-ngmcp-in-need-of-attention report-key="ADDINFO_WO"
+                            onneedattention={handleAttentionclass}></c-ngmcp-in-need-of-attention>
+                    </div>
+                    <div class="custom-enquiry-container">
+                        <c-ngmcp-in-need-of-attention report-key="ADDINFO_ENQ"
+                            onneedattention={handleAttentionclass}></c-ngmcp-in-need-of-attention>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:false={showContainerFlag}>
+            <template if:true={showViewRequest}>
+                <c-n-g-m-c-p-_view-request-component filters={filters}
+                    parent-flag={parentFlag}></c-n-g-m-c-p-_view-request-component>
+            </template>
+            <template if:true={workOrderFlag}>
+                <c-n-g-m-c-p_dynamic-request-pages record-id={workId} record-type-name={recordtype}
+                    pdfdownload={pdfdownload} homecontainer-flag=true></c-n-g-m-c-p_dynamic-request-pages>
+            </template>
+        </template>
+    </div>
+    <!-- <div class="custom-enquiry-container">
+        <c-ngmcp-reports-container></c-ngmcp-reports-container>
+    </div> -->
+
+</template>

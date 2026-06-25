@@ -1,0 +1,8 @@
+<apex:page readOnly="true" standardController="Account" 
+           lightningStylesheets="true" applyHtmlTag="true" applyBodyTag="true">
+<style>
+    body {
+        background-color: {! IF(account.I_C_Supplier__c && account.Domestic_Supplier__c,"#FFB25B",IF(account.I_C_Supplier__c,"#0072CE",IF(account.Domestic_Supplier__c,"#3CE12D","#F53C32")))};
+    }
+</style>
+</apex:page>

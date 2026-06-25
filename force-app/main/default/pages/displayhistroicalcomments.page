@@ -1,0 +1,9 @@
+<!-- This page is related to CRM -->
+
+<apex:page standardController="Account" lightningStylesheets="true">
+ <h3> Hello {!$User.FirstName}!</h3>
+  <h2> Advocacy Comment History </h2>
+
+    <apex:outputText value="{!account.CRM_Historical_Advocacy_Comments__c}" ></apex:outputText>
+ 
+</apex:page>

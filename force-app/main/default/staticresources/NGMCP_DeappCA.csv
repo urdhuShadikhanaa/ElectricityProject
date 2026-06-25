@@ -1,0 +1,4 @@
+MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,New MAM Code,Market sector code
+1234,ABC,DEAPP,CA,23-05-2026,GTM,I
+5678,DEF,DEAPP,CA,24-05-2026,GTM,D
+9012,ABC,DEAPP,CA,25-05-2026,GTM,D

@@ -1,0 +1,28 @@
+.breadcrumbs-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1265px;
+    height: 80px;
+    padding: 1px 32px 4px 32px;
+    border-bottom: 1px solid #DADADA;
+    background-color: #fff;
+    margin-left: 247px; /* so it doesn't overlap sidebar */
+    box-sizing: border-box;
+}
+
+.breadcrumbs-left {
+    font-size: 16px;
+    color: #333;
+}
+
+.breadcrumbs-right {
+    display: flex;
+    gap: 20px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}

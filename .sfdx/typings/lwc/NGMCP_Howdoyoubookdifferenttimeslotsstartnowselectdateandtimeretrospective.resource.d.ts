@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_Howdoyoubookdifferenttimeslotsstartnowselectdateandtimeretrospective" {
+    var NGMCP_Howdoyoubookdifferenttimeslotsstartnowselectdateandtimeretrospective: string;
+    export default NGMCP_Howdoyoubookdifferenttimeslotsstartnowselectdateandtimeretrospective;
+}

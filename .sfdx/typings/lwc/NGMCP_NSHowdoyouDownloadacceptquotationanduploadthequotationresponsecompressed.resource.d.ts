@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_NSHowdoyouDownloadacceptquotationanduploadthequotationresponsecompressed" {
+    var NGMCP_NSHowdoyouDownloadacceptquotationanduploadthequotationresponsecompressed: string;
+    export default NGMCP_NSHowdoyouDownloadacceptquotationanduploadthequotationresponsecompressed;
+}

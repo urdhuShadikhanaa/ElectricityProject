@@ -1,0 +1,53 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	 <body>
+        <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/apex/Importdatabycsv">Import Stock Items By CSV</a></h4>
+                <br></br><a href="/apex/Importdatabycsv">
+                <img src="/resource/stockapp1a?" class="img-fluid" alt="Image 1"/></a>
+	</div>
+        </div><br></br>
+         <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/flow/runtime.apexp?flowDevName=NGM_Asset_Order_Form">NGM Asset Order Form</a></h4>
+                <br></br><a href="/flow/runtime.apexp?flowDevName=NGM_Asset_Order_Form">
+                <img src="/resource/stockapp2a?" class="img-fluid" alt="Image 2" /></a>
+	</div>
+        </div><br></br>
+           <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/c/sapcodeapp.app">View all SAP Code Items</a></h4>
+                <br></br><a href="/c/sapcodeapp.app">
+                <img src="/resource/stockapp3a?" class="img-fluid" alt="Image 3" /></a>
+	</div>
+        </div><br></br>
+         <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/lightning/o/Non_Meter_Items__c/list?filterName=00B2o00000As0EIEAZ">View List of all items on contract</a></h4>
+                <br></br><a href="/lightning/o/Non_Meter_Items__c/list?filterName=00B2o00000As0EIEAZ">
+                <img src="/resource/stockapp4a?" class="img-fluid" alt="Image 4" /></a>
+	</div>
+        </div><br></br>
+         <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/lightning/o/Meter_Models__c/list?filterName=00B2o00000AskEuEAJ">View Full List of Rotary and Turbine Meter Types</a></h4>
+                <br></br><a href="/lightning/o/Meter_Models__c/list?filterName=00B2o00000AskEuEAJ">
+                <img src="/resource/vertellusresized?" class="img-fluid" alt="Image 5" /></a>
+	</div>
+        </div><br></br>
+          <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/apex/Datasheets">View datasheets for on contract items</a></h4>
+                <br></br><a href="/apex/Datasheets">
+                <img src="/resource/regulator?" class="img-fluid" alt="Image 5" /></a>
+	</div>
+        </div><br></br>
+                   <div class="card"  align ="center">
+            <div class="card-header">
+                <h4><a href="/c/FlangeSpecifications.app">View all flange specifications by class</a></h4>
+                <br></br><a href="/c/FlangeSpecifications.app">
+                <img src="/resource/flanges?" class="img-fluid" alt="Image 5" /></a>
+	</div>
+        </div><br></br>
+ </body>
+</aura:component>

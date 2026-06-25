@@ -1,0 +1,27 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+    background: #fff;
+}
+
+.welcome-greeting-container .custom-greeting {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+}
+.custom-greeting .custom-greeting-message {
+    color: #000;
+}
+
+.custom-greeting .custom-greeting-name {
+    color: #004C9D;
+    text-transform: capitalize;
+}
+
+.custom-greeting-datetime {
+    color: #878787;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+}

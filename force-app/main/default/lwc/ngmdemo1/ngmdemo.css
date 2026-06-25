@@ -1,0 +1,21 @@
+/* Left Side Container */
+.left-side-container {
+    width: 584px;
+    height: 776px;
+    margin-top: 288px;
+    margin-left: 279px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Right Side Address Section */
+.right-side-address {
+    width: 584px;
+    height: 280px;
+    margin-top: 288px;
+    margin-left: 896px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

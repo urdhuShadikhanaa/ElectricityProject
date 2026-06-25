@@ -1,0 +1,106 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-outer-wrapper {
+    background-color: #F6F6F6;
+}
+.login-form-input .input-container {
+    height: 45px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+}
+.custom-title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    text-align: center;
+}
+.login-container button {
+    border-radius: 8px;
+    font-size: 14px;
+}
+.login-form-input a.login-button-link-color {
+    color: #00857a;
+    text-decoration: underline;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    line-height: 16px;
+}
+.login-form-input a.login-button-link-color:hover {
+    color: #004C9D;
+}
+.custom-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: 0.1px;
+}
+.custom-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 24px;
+}
+.custom-subtitle .read-more-link {
+    color: #00857a;
+}
+.custom-subtitle .read-more-link:hover {
+    color: #004C9D;
+}
+.custom-login-button {
+    background: #00857a;
+    color: #fff;
+    border-radius: 8px;
+    border: 2px solid #00857a;
+}
+.custom-login-button:hover {
+    background: #fff;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+/*.custom-login-button {
+    border: 2px solid #00857a;
+    color: #00857a;
+    background: #fff;
+}*/
+.custom-login-sso-link:hover {
+    text-decoration: none;
+}
+/*.custom-login-button:hover {
+    background: #00857a;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}*/
+.custom-line-with-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 5px 0;
+}
+.custom-line-with-text::before,
+.custom-line-with-text::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #878787;
+}
+.custom-line-with-text span {
+  padding: 0 10px;
+  font-weight: 500;
+  color: #575756;
+}
+.banner-img {
+    object-fit: fill;
+}
+.background {
+    background-image: url('/resource/National_Gas_Login_Banner_Img5');
+    background-size: cover;
+    background-position: center;
+}
+.login-container .custom-slds-card-section {
+    background: rgba(255, 255, 255, 0.7);
+}

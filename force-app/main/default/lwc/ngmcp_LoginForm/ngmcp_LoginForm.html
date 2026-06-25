@@ -1,0 +1,119 @@
+<template>
+    <template if:false={showVerification}>
+        <div class="login-outer-wrapper slds-grid slds-grid_align-spread background">
+            
+            <div class="login-container slds-grid slds-grid_vertical slds-size_2-of-4">
+                
+                <div class="slds-grid slds-grid_align-center slds-col">
+                    
+
+                    <div class="slds-card custom-slds-card-section">
+
+                        <div class="slds-card__body custom-slds-card-body slds-card__body_inner">
+                        
+                            
+                        <h2 class="custom-title slds-m-top_small">Let's log in!</h2><br/>
+                        <!--<p class="custom-subtitle slds-m-around_medium">Don’t have an account yet?
+                            <a href="" class="read-more-link" target="_self"> Read more here</a></p>  -->
+                        
+                        <div class="slds-m-horizontal_medium">
+                            
+                            <c-n-g-m-c-p_-passwordless></c-n-g-m-c-p_-passwordless>
+                            
+                            <!-- <div class="login-form-input slds-grid slds-grid_align-end">
+                                <a href={rPasswordURL} class="forgot-password login-button-link-color" target="_self">Forgot
+                                    password?</a>
+                            </div> -->
+                            <div class="login-form-input slds-grid slds-grid_align-end">
+                                <a href={rPasswordURL}
+                                class="forgot-password login-button-link-color"
+                                target="_self">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <div class="custom-line-with-text slds-grid slds-grid_align-center slds-size_3-of-3">
+                                <span>or</span>
+                            </div>
+
+                            <div class="slds-grid slds-grid_align-center slds-m-vertical_large">
+                                <a href={ssoURL} class="slds-grid slds-size_full custom-login-sso-link" target="_self">
+                                    <button class="custom-login-button slds-button slds-p-around_x-small slds-grid_align-center slds-size_full">Login
+                                        as National Gas User</button>
+                                </a>
+                            </div>  
+
+                            <!-- <div class="login-form-input">
+                                <label class="custom-label" for="username">Username</label>
+                                <input type='text' class="slds-size_3-of-3 slds-m-bottom_medium slds-m-top_x-small input-container"
+                                    onchange={handleIdentifier} value={email}></input>
+                            </div>
+                            <div class="login-form-input">
+                                <label class="custom-label" for="password">Password</label>
+                                <input type='password' class="slds-size_3-of-3 slds-m-bottom_medium slds-m-top_x-small input-container"
+                                    onchange={handlePasswordChange}></input>
+                            </div>
+                             -->
+                            
+                            <!-- <div class="slds-grid slds-grid_align-center">
+                                <button
+                                    class="custom-login-button slds-m-vertical_large slds-size_3-of-3 slds-button slds-p-around_x-small slds-grid_align-center"
+                                    onclick={handleSendOtp}>Login</button>
+                            </div> -->
+                            <template if:true={showErrorMessage}>
+                                <div class="error-message">
+                                    <p>{errorMessage}</p>
+                                </div>
+                            </template>
+                            
+                        </div>
+                
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+     <template if:true={otpPage}>
+        <div class="otp-card">
+        <div class="otpVerifyText">Verify OTP</div>
+
+        <div class="form-group">
+            <lightning-input 
+                label="Enter OTP" 
+                name="otp" 
+                type="text"
+                max = 6 
+                value={otp} 
+                onchange={handleOtpChange}>
+            </lightning-input>
+        </div>
+
+        <template if:true={showErrorMessage}>
+            <div class="error-message">
+                <p>{errorMessage}</p>
+            </div>
+        </template>
+        
+        <div class="resend-container">
+            <lightning-button 
+                variant="base" 
+                label="Resend OTP" 
+                title="Resend OTP" 
+                onclick={handleSendOtp}>
+            </lightning-button>
+        </div>
+
+        <button class="verify-otp-button" onclick={handleVerifyOtp} disabled={disableVerifyButton}>
+            Verify
+        </button>
+    </div>
+
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+            <button class="back-button" onclick={backButton}>Back</button>
+        </lightning-layout-item>
+    </lightning-layout>
+    </template>
+</template>

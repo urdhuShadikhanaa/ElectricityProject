@@ -1,0 +1,494 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f6f9;
+}
+
+/* Layout */
+.container {
+  padding: 15px;
+  background: #f5f7f9;
+  border-radius: 8px;
+  width:100%;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* Chips */
+.chip {
+  border: 2px solid #00857A;
+  border-radius: 28px;
+  padding: 6px 12px;
+  background: #fff;
+}
+
+.chip-input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  min-width: 220px;
+  background: transparent;
+}
+.detail-wrapper {
+    margin-top: 12px;   
+}
+.chip select.chip-input {
+  min-width: 220px;
+}
+
+.or {
+  color: #7a7a7a;
+  font-weight: 600;
+}
+ 
+
+/* Table */
+.table-wrapper {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #DADADA;
+  overflow: auto;
+  max-height: 420px; /* mimic scroll area */
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #DADADA;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background: #f9fbfc;
+  z-index: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.th-btn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: #f7fbfc;
+}
+
+/* Status colors */
+.status-completed {
+  color: #0c7d35;
+  font-weight: 600;
+}
+.status-inprogress {
+  color: #354f9d;
+  font-weight: 600;
+}
+.status-default {
+  color: #555;
+}
+
+/* Row action button */
+.row-action {
+  border: 1px solid #cfd6de;
+  background: #fff;
+  border-radius: 4px;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+}
+.row-action:hover {
+  background: #f1f5f9;
+}
+
+/* Pagination */
+.pagination {
+  margin: 1rem;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.page-btn {
+    background-color: #00857A;
+    color: #fff;
+    border: 2px solid #00857A;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 7px 24px;
+}
+.page-btn:hover {
+    background-color: #fff;
+    color: #00857A;
+}
+.page-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.page-info {
+  color: #555;
+}
+
+
+/* ------------------------------ */
+/* Div-based grid (alternative to table) */
+/* ------------------------------ */
+.grid {
+  display: grid;
+  /* 9 columns: match header order */
+  grid-template-columns:
+    minmax(160px, 1.2fr)  /* Name */
+    minmax(140px, 1fr)    /* Record Type */
+    minmax(100px, 0.8fr)  /* MPRN */
+    minmax(120px, 0.9fr)  /* Job Code */
+    minmax(120px, 0.9fr)  /* Job Sub Code */
+    minmax(120px, 0.9fr)  /* Supplier Code */
+    minmax(120px, 0.9fr)  /* Status */
+    minmax(140px, 0.9fr)  /* Created Date */
+    48px;                 
+  row-gap: 0;
+  border: 1px solid #e3e5e8;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 420px;
+  background: #fff;
+}
+
+.grid-header {
+  position: sticky;
+  top: 0;
+  background: #f9fbfc;
+  border-bottom: 1px solid #DADADA;
+  z-index: 1;
+}
+
+.grid-row {
+  display: contents; /* each cell participates in parent grid columns */
+  background: #fff;
+}
+
+.grid-cell,
+div[role="cell"] {
+  padding: 10px 12px;
+  border-bottom: 1px solid #DADADA;
+  font-size: 14px;
+  align-self: center;
+}
+
+.grid .th-btn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.grid .empty {
+  background: #fff;
+}
+
+.actions-col {
+  text-align: center;
+}
+
+/* Responsive: stack rows as cards on mobile */
+@media (max-width: 720px) {
+  .grid {
+    display: block; /* switch to stacked cards */
+  }
+  .grid-header { display: none; }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    border-bottom: 1px solid #DADADA;
+    padding: 8px;
+  }
+  .grid-cell {
+    display: flex;
+    justify-content: space-between;
+  }
+  .actions-col {
+    justify-content: flex-end;
+  }
+}
+
+/* Container that scrolls */
+.grid {
+  /* IMPORTANT: don't make the parent a grid */
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 500px;
+  background: none;
+}
+
+/* Use the SAME template for header and rows */
+.grid-header,
+.grid-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 
+    minmax(150px, 1fr) /* Name */ 
+    minmax(180px, 1fr) /* Status */ 
+    minmax(120px, 1fr) /* MPRN Number */ 
+    minmax(120px, 1fr) /* Job Category */ 
+    minmax(80px, 1fr); /* Supplier Code */ 
+    gap: 0;
+}
+
+/* Use this template only for Other Additional Reports table */
+.custom-additional-info-table .grid-header,
+.custom-additional-info-table .grid-row {
+  display: grid;
+    align-items: center;
+    grid-template-columns:
+    minmax(130px, 1fr) /* Name */ 
+    minmax(120px, 1fr) /* Status */ 
+    minmax(120px, 1fr) /* MPRN Number */ 
+    minmax(150px, 1fr) /* Job Category */ 
+    minmax(120px, 1fr) /* Sub Category */ 
+    minmax(80px, 1fr); /* Supplier Code */ 
+    gap: 0;
+}
+
+/* Use this template only for User Reports table */
+.custom-user-details-table .grid-header,
+.custom-user-details-table .grid-row {
+  display: grid;
+    align-items: center;
+    grid-template-columns: 
+    minmax(120px, 1fr) /* First Name */ 
+    minmax(120px, 1fr) /* Last Name */ 
+    minmax(270px, 1fr) /* User Id */ 
+    minmax(330px, 1fr) /* Email */ 
+    minmax(235px, 1fr) /* Supplier Code */ 
+    minmax(180px, 1fr) /* Supplier Group */ 
+    minmax(125px, 1fr) /* Profile */ 
+    minmax(70px, 1fr) /* Is Active */ 
+    minmax(110px, 1fr); /* Last Login date */ 
+    gap: 0;
+}
+
+/* Use this template only for Main(First) Reports table */
+.custom-reports-main-table .grid-header,
+.custom-reports-main-table .grid-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 
+    minmax(100%, 1fr); /* Reports Name */ 
+    gap: 0;
+}
+.custom-reports-main-table .grid-header .grid-cell,
+.custom-reports-main-table .grid-row .grid-cell,
+.custom-reports-main-table .grid-row div[role="cell"] {
+  text-align: left;
+  padding: 10px 16px;
+}
+
+/* Use this template only for Work Orders Reports table */
+.custom-workorder-reports-table .grid-header,
+.custom-workorder-reports-table .grid-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 
+    minmax(130px, 1fr) /* Requesr Number */ 
+    minmax(100px, 1fr) /* SR Number */ 
+    minmax(160px, 1fr) /* Quotation Status */ 
+    minmax(100px, 1fr) /* MPRN */ 
+    minmax(110px, 1fr) /* Job Category */ 
+    minmax(130px, 1fr) /* Sub Category */ 
+    minmax(110px, 1fr) /* Supplier Code */ 
+    minmax(200px, 1fr) /* Created On */ 
+    minmax(250px, 1fr) /* Building Name */ 
+    minmax(130px, 1fr) /* Building Number */ 
+    minmax(230px, 1fr) /* Street */ 
+    minmax(145px, 1fr) /* Dependent Locality */ 
+    minmax(150px, 1fr) /* Town */ 
+    minmax(100px, 1fr) /* PostCode */ 
+    minmax(130px, 1fr) /* Customer Name */ 
+    minmax(135px, 1fr); /* Customer Number */ 
+    gap: 0;
+}
+
+/* Use this template only for Work Orders Reports table */
+.custom-enquiry-reports-table .grid-header,
+.custom-enquiry-reports-table .grid-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 
+    minmax(110px, 1fr) /* Name */ 
+    minmax(130px, 1fr) /* Service Request */ 
+    minmax(225px, 1fr) /* Status */ 
+    minmax(110px, 1fr) /* MPRN */ 
+    minmax(120px, 1fr) /* Supplier Code */ 
+    minmax(130px, 1fr) /* Enquiry Type */ 
+    minmax(130px, 1fr) /* Enquiry Category */ 
+    minmax(110px, 1fr) /* Reason Code */ 
+    minmax(200px, 1fr) /* Building Name */ 
+    minmax(125px, 1fr) /* Building Number */ 
+    minmax(230px, 1fr) /* Street */ 
+    minmax(150px, 1fr) /* Dependent Locality */ 
+    minmax(110px, 1fr) /* Town */ 
+    minmax(150px, 1fr) /* PostCode */ 
+    minmax(200px, 1fr) /* Customer Name */ 
+    minmax(135px, 1fr); /* Customer Number */ 
+    gap: 0;
+}
+
+/* Use this template only for Appoint DeAppoint Requests Reports table */
+.custom-appoint-requests-table .grid-header,
+.custom-appoint-requests-table .grid-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 
+    minmax(120px, 1fr) /* Name */ 
+    minmax(130px, 1fr) /* MPRN */ 
+    minmax(120px, 1fr) /* Supplier Code */ 
+    minmax(130px, 1fr) /* Status */ 
+    minmax(130px, 1fr) /* Reason Code */ 
+    minmax(130px, 1fr) /* Type Code */ 
+    minmax(130px, 1fr) /* Created Date */ 
+    minmax(130px, 1fr) /* From Date */ 
+    minmax(130px, 1fr); /* To Date */ 
+    gap: 0;
+}
+
+/* Sticky header stays above rows */
+.grid-header {
+  position: sticky;
+    top: 0;
+    background: #00857A;
+    border-bottom: 1px solid #DADADA;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.grid-cell,
+div[role="cell"] {
+  padding: 10px 5px;
+  border-right: 1px solid #DADADA;
+  font-size: 14px;
+  align-self: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  min-height: 42px;
+}
+
+/* Header cell look */
+.grid-header .grid-cell {
+  font-weight: 600;
+  color: #fff;
+  padding: 10px 5px;
+  text-align: center;
+}
+
+.th-btn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+/* Row hover */
+.grid-row:hover .grid-cell {
+  background: none;
+    cursor: unset;
+}
+
+/* Links in rows */
+.grid-row .grid-cell a {
+  color: #004C9D;
+}
+
+/* Actions column */
+.actions-col {
+  text-align: center;
+}
+.row-action {
+  border: 1px solid #cfd6de;
+  background: #fff;
+  border-radius: 4px;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+}
+.row-action:hover {
+  background: #f1f5f9;
+}
+
+/* Status colors */
+.status-completed {
+  color: #0c7d35;
+  font-weight: 600;
+}
+.status-inprogress {
+  color: #354f9d;
+  font-weight: 600;
+}
+.status-default {
+  color: #555;
+}
+
+/* Empty row spans all columns */
+.grid .empty .grid-cell {
+  grid-column: 1 / -1;
+}
+
+/* Responsive: stack rows on mobile */
+@media (max-width: 720px) {
+  .grid-header { display: none; } /* hide sticky header on small screens */
+  .grid-row {
+    grid-template-columns: 1fr; /* stack cells */
+    gap: 6px;
+    border-bottom: 1px solid #DADADA;
+    padding: 8px;
+  }
+  .grid-cell {
+    display: flex;
+    justify-content: space-between;
+  }
+  .actions-col {
+    justify-content: flex-end;
+  }
+}
+
+.custom-reports-main-title {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0;
+    color: #00857A;
+    padding: 0.5rem 1rem;
+}
+.container.custom-workorder-reports-table,
+.container.custom-user-details-table,
+.container.custom-enquiry-reports-table {
+    max-width: 82vw;
+    overflow: auto;
+}
+.container.custom-workorder-reports-table .grid,
+.container.custom-user-details-table .grid,
+.container.custom-enquiry-reports-table .grid {
+    display: inline-block;
+}

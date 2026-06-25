@@ -1,0 +1,74 @@
+<template>
+  <div class="asset-portfolio-container">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <ul>
+        <li class={homeClass} onclick={handleHomeClick}>Home</li>
+
+        <li class={requestClass} onclick={toggleRequestMenu}>Request</li>
+        <template if:true={isRequestExpanded}>
+          <ul class="submenu">
+            <li class={createRequestClass} onclick={handleCreateRequest}>Create Request</li>
+            <li class={viewRequestClass} onclick={handleViewRequests}>View All Requests</li>
+          </ul>
+        </template>
+
+        <li class={reportsClass} onclick={handleReportsClick}>Reports</li>
+        <li class={userClass} onclick={handleUserClick}>User Management</li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="header-bar">
+        <div class="breadcrumbs">Home / MPRN: 10010806</div>
+        <div class="icons">
+          <lightning-icon icon-name="utility:notification" size="small"></lightning-icon>
+          <lightning-icon icon-name="utility:user" size="small"></lightning-icon>
+        </div>
+      </header>
+
+      <section class="mprn-section">
+        <div class="mprn-header">
+          <h2>MPRN: 10010806 - EOD <span class="tag">Commercial</span></h2>
+          <div class="button-group">
+            <lightning-button label="De-appoint"></lightning-button>
+            <lightning-button label="Create query"></lightning-button>
+            <lightning-button label="Create job"></lightning-button>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <div class="asset-details">
+            <h3>Asset details</h3>
+            <table>
+              <tr><td>Installation date</td><td>1997-05-12</td></tr>
+              <tr><td>Appointed date</td><td>2011-04-01</td></tr>
+              <tr><td>Location description</td><td>32 - Meterbox</td></tr>
+              <tr><td>Asset type</td><td>Meter</td></tr>
+              <tr><td>Meter type</td><td>Diaphragm Synthetic</td></tr>
+              <tr><td>Meter model</td><td>U6 R5</td></tr>
+              <tr><td>Manufacturer</td><td>Schlumberger Industries</td></tr>
+              <tr><td>Year of manufacture</td><td>1997</td></tr>
+              <tr><td>Manufacturing serial number</td><td>01140415</td></tr>
+              <tr><td>Number of dials</td><td>4</td></tr>
+              <tr><td>Payment mechanism</td><td>CR</td></tr>
+              <tr><td>Conversion factor</td><td>1.02264</td></tr>
+            </table>
+          </div>
+
+          <div class="address-details">
+            <h3>Address details</h3>
+            <table>
+              <tr><td>Building name / number</td><td>N/A</td></tr>
+              <tr><td>Dependent locality</td><td>1997</td></tr>
+              <tr><td>Postal town</td><td>Aberdeen</td></tr>
+              <tr><td>Postal code</td><td>AB24 5QB</td></tr>
+              <tr><td>Street</td><td>Golf Road</td></tr>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>

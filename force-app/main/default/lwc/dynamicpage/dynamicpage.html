@@ -1,0 +1,54 @@
+<template>
+    <!-- Loading -->
+    <template if:true={loading}>
+        <div class="slds-p-around_medium">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <!-- Error -->
+    <template if:true={error}>
+        <div class="slds-p-around_medium">
+            <div class="slds-notify_alert slds-theme_error" role="alert">
+                <span class="slds-assistive-text">Error</span>
+                <h2 class="slds-text-color_error">{errorMessage}</h2>
+            </div>
+        </div>
+    </template>
+
+    <!-- Ready -->
+    <template if:true={ready}>
+        <lightning-card title={title} icon-name="utility:settings">
+            <div class="slds-p-around_medium">
+
+                <template if:true={recordDisplayName}>
+                    <p class="slds-text-title_caps slds-m-bottom_small">{recordDisplayName}</p>
+                </template>
+
+                <!-- Sections -->
+                <template for:each={activeSections} for:item="section">
+                    <section key={section.key} class="slds-m-bottom_large">
+                        <h3 class="slds-text-title_bold slds-m-bottom_small">{section.label}</h3>
+
+                        <lightning-record-view-form record-id={recordId} object-api-name={objectApiName}>
+                            <div class="slds-grid slds-wrap">
+                                <template for:each={section.fields} for:item="fld">
+                                    <div key={fld} class="slds-size_1-of-1 slds-large-size_1-of-2 slds-p-right_small slds-m-bottom_small">
+                                        <lightning-output-field field-name={fld}></lightning-output-field>
+                                    </div>
+                                </template>
+                            </div>
+                        </lightning-record-view-form>
+                    </section>
+                </template>
+
+                <!-- Fallback -->
+                <template if:true={showNoConfig}>
+                    <div class="slds-text-color_error slds-m-top_small">
+                        No section configuration found for Record Type <strong>{activeRecordTypeDevName}</strong>.
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </template>
+</template>

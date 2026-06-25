@@ -1,0 +1,244 @@
+<apex:page >
+ <table style="height: 643px; width: 412px; border-style: solid; border-color: blue; background-color: cream; margin-left: auto; margin-right: auto;" border="1px" width="412" cellpadding="2px">
+<tbody>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 400px;" colspan="4"><strong>NGM Revised Pricing Matrix</strong></td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">07.09.2021</td>
+<td style="height: 18px; width: 292.604px;" colspan="3">&nbsp;</td>
+</tr>
+<tr style="height: 36px;">
+<td style="height: 36px; width: 99.3958px;">&nbsp;</td>
+<td style="height: 36px; width: 90.6146px;">Cabinet Price</td>
+<td style="height: 36px; width: 95.2604px;">Standard Delivery *</td>
+<td style="height: 36px; width: 90.7292px;">Cabinet Price</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC2FS</td>
+<td style="height: 18px; width: 90.6146px;">&pound;209</td>
+<td style="height: 18px; width: 95.2604px;">&pound;17.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;226</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC2WM</td>
+<td style="height: 18px; width: 90.6146px;">&pound;181</td>
+<td style="height: 18px; width: 95.2604px;">&pound;17.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;198</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC2 MULTI</td>
+<td style="height: 18px; width: 90.6146px;">&pound;209</td>
+<td style="height: 18px; width: 95.2604px;">&pound;17.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;226</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC3</td>
+<td style="height: 18px; width: 90.6146px;">&pound;238</td>
+<td style="height: 18px; width: 95.2604px;">&pound;17.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;255</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC4</td>
+<td style="height: 18px; width: 90.6146px;">&pound;359</td>
+<td style="height: 18px; width: 95.2604px;">&pound;48.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;407</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC4+</td>
+<td style="height: 18px; width: 90.6146px;">&pound;468</td>
+<td style="height: 18px; width: 95.2604px;">&pound;48.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;516</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC5</td>
+<td style="height: 18px; width: 90.6146px;">&pound;557</td>
+<td style="height: 18px; width: 95.2604px;">&pound;60.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;617</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC6</td>
+<td style="height: 18px; width: 90.6146px;">&pound;643</td>
+<td style="height: 18px; width: 95.2604px;">&pound;72.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;715</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC7</td>
+<td style="height: 18px; width: 90.6146px;">&pound;874</td>
+<td style="height: 18px; width: 95.2604px;">&pound;72.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;946</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 99.3958px;">GC7+</td>
+<td style="height: 18px; width: 90.6146px;">&pound;1,029</td>
+<td style="height: 18px; width: 95.2604px;">&pound;72.00</td>
+<td style="height: 18px; width: 90.7292px;">&pound;1,101</td>
+</tr>
+<tr style="height: 16px;">
+<td style="height: 16px; width: 99.3958px;">GC8</td>
+<td style="height: 16px; width: 90.6146px;">&pound;2,022</td>
+<td style="height: 16px; width: 95.2604px;">&pound;155.00</td>
+<td style="height: 16px; width: 90.7292px;">&pound;2,177</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 400px;" colspan="4">&nbsp;</td>
+</tr>
+<tr style="height: 36px;">
+<td style="height: 36px; width: 400px;" colspan="4">* Built in delivery based on Zone 1 - see below</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 400px;" colspan="4">&nbsp;</td>
+</tr>
+<tr style="height: 54px;">
+<td style="height: 54px; width: 400px;" colspan="4">Zone 1 &ndash; North East, North West, Northern, West Midlands, East Midlands, East Anglia, Wales, South West, South East, Southern</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 198.01px;" colspan="2">Zone 2 &ndash; London</td>
+<td style="height: 18px; width: 193.99px;" colspan="2" rowspan="3">&nbsp;</td>
+</tr>
+<tr style="height: 36px;">
+<td style="height: 36px; width: 198.01px;" colspan="2">Zone 3 &ndash; South Scotland</td>
+</tr>
+<tr style="height: 18px;">
+<td style="height: 18px; width: 198.01px;" colspan="2">Zone 4 &ndash; North London</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&nbsp;</strong></p>
+<table style="height: auto; width: auto; border-style: solid; border-color: blue; margin-left: auto; margin-right: auto;" border="1px" width="auto" cellpadding="2px">
+<tbody>
+<tr>
+<td style="width: 325px;" colspan="3"><strong>Extra Over Delivery Costs (Separate line item on order)</strong></td>
+</tr>
+<tr>
+<td style="width: 104.333px;">Zone 2</td>
+<td style="width: 104.333px;">Zone 3</td>
+<td style="width: 104.333px;">Zone 4</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;2.00</td>
+<td style="width: 104.333px;">&pound;16.00</td>
+<td style="width: 104.333px;">&pound;36.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;2.00</td>
+<td style="width: 104.333px;">&pound;16.00</td>
+<td style="width: 104.333px;">&pound;36.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;2.00</td>
+<td style="width: 104.333px;">&pound;16.00</td>
+<td style="width: 104.333px;">&pound;36.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;2.00</td>
+<td style="width: 104.333px;">&pound;16.00</td>
+<td style="width: 104.333px;">&pound;36.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;9.00</td>
+<td style="width: 104.333px;">&pound;15.00</td>
+<td style="width: 104.333px;">&pound;40.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;10.00</td>
+<td style="width: 104.333px;">&pound;14.00</td>
+<td style="width: 104.333px;">&pound;39.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;13.00</td>
+<td style="width: 104.333px;">&pound;14.00</td>
+<td style="width: 104.333px;">&pound;39.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;15.00</td>
+<td style="width: 104.333px;">&pound;17.00</td>
+<td style="width: 104.333px;">&pound;47.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;15.00</td>
+<td style="width: 104.333px;">&pound;17.00</td>
+<td style="width: 104.333px;">&pound;47.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;15.00</td>
+<td style="width: 104.333px;">&pound;17.00</td>
+<td style="width: 104.333px;">&pound;47.00</td>
+</tr>
+<tr>
+<td style="width: 104.333px;">&pound;33.00</td>
+<td style="width: 104.333px;">&pound;35.00</td>
+<td style="width: 104.333px;">&pound;91.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&nbsp;</strong></p>
+<table style="height: 314px; width: 362px; border-style: solid; border-color: blue; margin-left: auto; margin-right: auto;" border="1px" width="362" cellpadding="2px">
+<tbody>
+<tr>
+<td style="width: 350px;" colspan="3"><strong>Delivery Zone (Actual Prices)</strong></td>
+</tr>
+<tr>
+<td style="width: 111.333px;">Zone 2</td>
+<td style="width: 111.333px;">Zone 3</td>
+<td style="width: 111.333px;">Zone 4</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;19.00</td>
+<td style="width: 111.333px;">&pound;33.00</td>
+<td style="width: 111.333px;">&pound;53.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;19.00</td>
+<td style="width: 111.333px;">&pound;33.00</td>
+<td style="width: 111.333px;">&pound;53.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;19.00</td>
+<td style="width: 111.333px;">&pound;33.00</td>
+<td style="width: 111.333px;">&pound;53.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;19.00</td>
+<td style="width: 111.333px;">&pound;33.00</td>
+<td style="width: 111.333px;">&pound;53.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;57.00</td>
+<td style="width: 111.333px;">&pound;63.00</td>
+<td style="width: 111.333px;">&pound;88.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;58.00</td>
+<td style="width: 111.333px;">&pound;62.00</td>
+<td style="width: 111.333px;">&pound;87.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;73.00</td>
+<td style="width: 111.333px;">&pound;74.00</td>
+<td style="width: 111.333px;">&pound;99.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;87.00</td>
+<td style="width: 111.333px;">&pound;89.00</td>
+<td style="width: 111.333px;">&pound;119.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;87.00</td>
+<td style="width: 111.333px;">&pound;89.00</td>
+<td style="width: 111.333px;">&pound;119.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;87.00</td>
+<td style="width: 111.333px;">&pound;89.00</td>
+<td style="width: 111.333px;">&pound;119.00</td>
+</tr>
+<tr>
+<td style="width: 111.333px;">&pound;188.00</td>
+<td style="width: 111.333px;">&pound;190.00</td>
+<td style="width: 111.333px;">&pound;246.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&nbsp;</strong></p>
+</apex:page>

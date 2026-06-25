@@ -1,0 +1,631 @@
+<template>
+  <div class="container custom-thirdparty-request-container">
+    <!--<div class="dropdown-container">
+      <div class="dropdown-box">
+        <span class="dropdown-text">{mprnCustomer}</span>
+        <span class="blue-tag">{status}</span>
+        <span class="down-arrow"></span>
+      </div>
+    </div>-->
+    <div class="custom-create-request-header slds-col">
+      <span class="create-request-header-title">MPRN: {mprnCustomer}</span>
+      <span class="create-request-header-status">{status}</span>
+    </div>
+    <div class="custom-create-request-header slds-col">
+      <template if:true={shouldMaskData}>
+        <span class="tab-header slds-col" style="margin-top: 0.75rem;">
+          {mprnErrorMessage}
+        </span>
+      </template>
+    </div>
+    <template if:true={isLoading}>
+      <div class="custom-spinner-container">
+        <div class="custom-spinner">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </template>
+
+    <div class="slds-grid slds-grid_align-spread slds-wrap slds-var-p-vertical_large">
+      <div class="slds-grid slds-grid_vertical slds-size_6-of-12">
+        <!-- ADDRESS DETAILS -->
+
+        <div class="section-header">
+          <h3 class="section-title">Address Details</h3>
+          <template if:true={uwrEditFlag}>
+            <template if:false={shouldMaskData}>
+              <button class="mprn-detail-edit slds-col" onclick={handleEdit}><span
+                  class="mprn-detail-edit-icon slds-grid slds-var-m-horizontal_x-small"></span>Edit</button>
+            </template>
+          </template>
+        </div>
+        <div class="section">
+          <template if:false={isEditingAddress}>
+            <template for:each={displayedAddressDetails} for:item="item">
+              <div key={item.label} class="detail-row">
+                <span class="label">{item.label}</span>
+                <span class="value">{item.value}</span>
+              </div>
+            </template>
+          </template>
+          <template if:true={isEditingAddress}>
+            <template for:each={editableAddressBuffer} for:item="item">
+              <div key={item.key} class="slds-p-horizontal_medium">
+                <div class="form-field">
+                  <label>{item.label}</label>
+                  <div class="custom-input-element-section">
+                    <input type="text" value={item.value} data-field={item.apiName} maxlength={item.maxLength}
+                      oninput={handleInputAddressChange} />
+                  </div>
+                </div>
+              </div>
+            </template>
+            <div class="slds-p-vertical_small">
+              <button
+                class="btn custom-btn slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                onclick={handleSave}>Save</button>
+              <template if:false={shouldMaskData}>
+                <button
+                  class="btn deappoint slds-var-p-vertical_x-small slds-var-p-horizontal_large slds-var-m-around_xx-small"
+                  onclick={handleCancel}>Cancel</button>
+              </template>
+            </div>
+          </template>
+          <template if:true={showSuccessMessage}>
+            <div class="custom-success-message slds-grid slds-m-around_medium slds-grid_vertical-align-center">
+              {messageText}
+            </div>
+          </template>
+          <template if:true={errorMessage}>
+            <div class="custom-error-message slds-grid slds-m-around_medium slds-grid_vertical-align-center">
+              {messageText}
+            </div>
+          </template>
+          <!-- <template if:true={hasMoreAddressDetails}><div class="expand-link" onclick={toggleAddressExpand}><span class="link-text">{addressToggleText}</span><span class={addressArrowClass}>&gt;</span></div></template> -->
+        </div>
+      </div>
+
+      <div class="slds-grid slds-grid_vertical slds-size_6-of-12">
+        <!-- ASSET DETAILS -->
+
+        <div class="section-header slds-m-right_none">
+          <h3 class="section-title">Asset Details</h3>
+        </div>
+        <div class="section slds-m-right_none">
+
+          <template for:each={displayedAssetDetails} for:item="item">
+            <div key={item.label} class="detail-row {item.rowclass}">
+              <span class="label">{item.label}</span>
+              <template if:true={item.shouldMask}>
+                <span class="masked-black">{item.value}</span>
+              </template>
+              <template if:false={item.shouldMask}>
+                {item.value}
+              </template>
+            </div>
+          </template>
+          <template if:true={hasMoreAssetDetails}>
+            <div class="expand-link" onclick={toggleAssetExpand}>
+              <span class="link-text">{assetToggleText}</span>
+              <span class={assetArrowClass}>></span>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job required -->
+    <section class="section-job">
+      <!--<h2 class="section-title custom-job-section-title">Job required</h2>-->
+      <!-- Request Type -->
+      <!--<p class="field-label">Select request type</p>
+      <div class="radio-grid">
+        <template for:each={requestTypes} for:item="type">
+          <div key={type.value} class={type.className} data-value={type.value} onclick={handleCardClick}>
+            <div class="radio-header">
+              <input type="radio" name="requestType" value={type.value} checked={type.isChecked} data-value={type.value} onclick={handleCardClick} />
+              <label>{type.label}</label>
+            </div>
+            <p class="radio-desc">{type.desc}</p>
+          </div>
+        </template>
+      </div> -->
+
+      <!-- Your tiles (shown until Work request selected) -->
+      <template if:false={showWorkRequestChild}>
+        <p class="field-label custom-type-section-label">Select Request Type</p>
+
+        <div class="radio-grid">
+          <template iterator:rt={requestTypes}>
+            <template if:false={rt.value.isHidden}>
+              <div key={rt.value.value} class={rt.value.className} data-value={rt.value.value}
+                onclick={handleCardClick}>
+                <div class="radio-header">
+                  <input type="radio" name="requestType" value={rt.value.value} checked={rt.value.isChecked}
+                    data-value={rt.value.value} onclick={handleCardClick} disabled={isRequestTypeLocked} />
+                  <label>{rt.value.label}</label>
+                </div>
+                <p class="radio-desc">{rt.value.desc}</p>
+                <template if:true={rt.value.isChecked}>
+                  <div class="recommend-tag">Selected</div>
+                </template>
+              </div>
+            </template>
+          </template>
+        </div>
+
+        <template if:true={validationErrors.requestType}>
+          <p class="error-text">{validationErrors.requestType}</p>
+        </template>
+      </template>
+      <template if:true={enquiryFlag}>
+        <c-n-g-m-c-p_-enquiry-details metadata-record={metadataRecord} asset-details={assetDetailsRows}
+          converter-details={converterDetails} converter-serial-no={converterSerialNo}
+          oncancelcreatejob={handleCancelClick} address-details={addressDetails} mprn={mprnCustomer} status={status}
+          createrequest-flag={createrequestFlag} selected-main-queryvalue={queryvalue}
+          editable-address-buffer={editableAddressBuffer} ngm-user={isNGMUser}
+          appointmentflag={appointmentFlag}></c-n-g-m-c-p_-enquiry-details>
+      </template>
+      <template if:true={techEnquiryFlag}>
+        <c-n-g-m-c-p_-enquiry-details metadata-record={metadataRecord} asset-details={assetDetailsRows}
+          converter-details={converterDetails} converter-serial-no={converterSerialNo}
+          oncancelcreatejob={handleCancelClick} address-details={addressDetails} mprn={mprnCustomer} status={status}
+          createrequest-flag={createrequestFlag} selected-main-queryvalue={queryvalue}
+          editable-address-buffer={editableAddressBuffer} haszoo2={hasz002}></c-n-g-m-c-p_-enquiry-details>
+      </template>
+      <template if:true={workRequestFlag}>
+        <c-n-g-m-c-p_work-request-component selected-request-type={selectedRequestType} status={status} mprn={mprn}
+          payment-mechanism={paymentMechanism} meter-size={meterSize} pressuretier={pressuretier}
+          pressuretier-brand={pressuretierBrand} onstatereponse={handleStateResponse} haszoo2={hasz002}
+          mprn-input={mprnCustomer}>
+        </c-n-g-m-c-p_work-request-component>
+      </template>
+      <template if:true={deappointmentFlag}>
+        <c-n-g-m-c-p_-appoint-deappoint metadata-record={metadataRecord} asset-details={assetDetails}
+          address-details={addressDetails} mprn={mprn} appointment-flag={isAllowDeappointment}
+          oncancelcreatejob={handleCancelClick}></c-n-g-m-c-p_-appoint-deappoint>
+      </template>
+      <template if:true={amrFlag}>
+        <c-n-g-m-c-p_-amr-component metadata-record={metadataRecord} asset-details={assetDetails}
+          address-details={addressDetails} mprn={mprnCustomer}
+          oncancelcreatejob={handleCancelClick}></c-n-g-m-c-p_-amr-component>
+      </template>
+
+
+      <!-- Job Type -->
+      <template if:true={showJobType}>
+        <p class="field-label custom-type-section-label">Select Job Type</p>
+        <div class="radio-grid">
+          <template for:each={jobTypes} for:item="job">
+            <div key={job.value} class={job.className} data-value={job.value} onclick={handleCategorySelect}>
+              <div class="radio-header">
+                <input type="radio" name="jobType" data-value={job.value} checked={job.isChecked}
+                  onclick={handleCategorySelect} />
+                <label>{job.label}</label>
+              </div>
+              <p class="radio-desc">{job.description}</p>
+              <div class="recommend-tag">We recommend this based on the asset details </div>
+
+              <template if:true={showServicePartnerStatus}>
+                <div class="service-partner-status">
+                  <div class="status-box" style={statusBoxStyle}></div>
+                  <!--<p class="status-text">{servicePartnerStatus}</p>-->
+                </div>
+                <template if:true={showWarningMsg}>
+                  <p class="warning-text">{warningMessage}</p>
+                </template>
+              </template>
+            </div>
+          </template>
+
+          <template if:true={showWindOnOption}>
+            <!--<label class="radio-card">
+              <input type="radio" name="jobType" value="windon" onchange={handleCategorySelect} />
+              <div class="radio-header">
+                <label>Wind On</label>
+              </div>
+              <div class="radio-desc">
+                <p>To attend a pre-payment meter and Wind on emergency credit.</p>
+              </div>
+            </label>-->
+            <label class="radio-card">
+              <div class="radio-header">
+                <!-- <input type="radio" name="jobType" value="windon" onchange={handleCategorySelect} /> -->
+                <input type="radio" name="jobType" value="windon" onchange={handleCategorySelect}
+                  checked={isWindOnSelected} />
+                <label>Wind On</label>
+              </div>
+              <p class="radio-desc">To attend a pre-payment meter and Wind on emergency credit.</p>
+              <template if:true={isWindOnSelected}>
+                <div class="recommend-tag">Selected</div>
+              </template>
+            </label>
+          </template>
+
+          <template if:true={showServicePartnerStatus}>
+            <div class="service-partner-section">
+              <div class={servicePartnerBoxClass}></div>
+              <p class="service-partner-text">{servicePartnerMessage}</p>
+            </div>
+          </template>
+        </div>
+        <template if:true={validationErrors.jobType}>
+          <p class="error-text">{validationErrors.jobType}</p>
+        </template>
+        <p class="help-text">If asset details are incorrect call: <a href="tel:+0800 001 4340">0800 001 4340</a>
+        </p>
+      </template>
+      <template if:true={windonQuestionFlag}>
+        <!-- <div class="question">
+          <p class="question-title">Please confirm who requested Wind On?</p>
+
+          <div class="radio-grid">
+            <label class="radio-card">
+              <input type="radio" name="windOnRequester" value="customer" checked={isCustomerSelected}
+                onchange={handleRequesterChange} />
+              <div class="radio-content">
+
+                <span class="radio-value">Customer</span>
+              </div>
+            </label>
+
+            <label class="radio-card">
+              <input type="radio" name="windOnRequester" value="supplier" checked={isSupplierSelected}
+                onchange={handleRequesterChange} />
+              <div class="radio-content">
+
+                <span class="radio-value">Supplier</span>
+              </div>
+            </label>
+          </div>
+           <template if:true={windOnRequesterError}>
+            <p class="error-text">
+              This field is required.
+            </p>
+          </template>
+        </div> -->
+        <div key={windOnQuestionKey} class="question custom-question-section">
+          <label class="question-label"> <span class="required">*</span>Please confirm who requested Wind On?</label>
+          <div class="horizontal-radio">
+            <label>
+              <input type="radio" name="windOnRequester" value="customer" checked={isCustomerSelected}
+                onchange={handleRequesterChange} />
+              Customer
+            </label>
+            <label>
+              <input type="radio" name="windOnRequester" value="supplier" checked={isSupplierSelected}
+                onchange={handleRequesterChange} />
+              Supplier
+            </label>
+          </div>
+          <template if:true={windOnRequesterError}>
+            <p class="error-text">
+              This field is required.
+            </p>
+          </template>
+        </div>
+      </template>
+      <!-- Start Options -->
+      <template if:true={showAppointment}>
+        <p class="field-label custom-type-section-label">Select Start</p>
+        <div class="radio-grid small">
+          <template for:each={visibleStartOptions} for:item="opt">
+            <div key={opt.value} class={opt.className} data-group="startOption" data-value={opt.value}
+              onclick={handleCardClick}>
+              <div class="radio-header">
+                <input type="radio" name="startOption" value={opt.value} checked={opt.isChecked} />
+                <label>{opt.label}</label>
+              </div>
+
+              <!-- render description from JS -->
+              <p class="radio-desc">{opt.description}</p>
+              <template if:true={opt.isChecked}>
+                <div class="recommend-tag">Selected</div>
+              </template>
+            </div>
+          </template>
+        </div>
+
+        <template if:true={validationErrors.startOption}>
+          <p class="error-text">{validationErrors.startOption}</p>
+        </template>
+        <template if:true={validationErrors.startNow}>
+          <p class="error-text">{validationErrors.startNow}</p>
+        </template>
+      </template>
+
+
+      <!--  Retrospective: Only past date -->
+      <template if:true={showRestro}>
+        <div class="custom-datepicker-input-section">
+          <div class="appointment-input custom-datepicker-component-section">
+            <c-ngmcp-date-picker-with-holidays mode="past" ondateselected={handleDateChange}
+              cwrdescription={cwrdescription} work-request-flag={workRequestFlag}></c-ngmcp-date-picker-with-holidays>
+
+            <template if:true={validationErrors.appointmentDate}>
+              <p class="error-text">{validationErrors.appointmentDate}</p>
+            </template>
+          </div>
+
+          <div class=" appointment-slot appointment-input custom-timeslot-section">
+            <template if:true={appointmentOptions}>
+              <lightning-combobox name="appointmentSlot" label="Select Appointment slot" value={selectedSlot}
+                options={appointmentOptions} onchange={handleSlotChange} class=""
+                placeholder="Choose timeslot"></lightning-combobox>
+            </template>
+            <template if:true={validationErrors.appointmentSlot}>
+              <p class="error-text">{validationErrors.appointmentSlot}</p>
+            </template>
+          </div>
+        </div>
+      </template>
+      <template if:true={ismicrobusinesscwr}>
+        <div class="microbusiness-container">
+          <label class="microbusiness-label" for="microbusiness-group">
+            Microbusiness<span class="required">*</span>
+          </label>
+          <div id="microbusiness-group" class="microbusiness-radio-group" onchange={handleMicrobusinessChange}
+            aria-invalid={microbusinessInvalid} aria-describedby="microbusiness-error">
+            <label>
+              <input type="radio" name="microbusiness" value="Yes" required />
+              YES
+            </label>
+            <label>
+              <input type="radio" name="microbusiness" value="No" required />
+              NO
+            </label>
+          </div>
+
+          <!-- Error message -->
+          <div id="microbusiness-error" class={microbusinessErrorClass} role="alert">
+            {microbusinessErrorMessage}
+          </div>
+        </div>
+      </template>
+      <template if:true={faultReason}>
+        <div class="field custom-contact-field-section fault-reason-row">
+          <label>Please Enter Fault Reason</label>
+          <div class="custom-instruction-textarea-block">
+            <textarea name="faultReason" class="instructions-textarea" value={faultReasonValue}
+              oninput={handleInstructionInput}>
+            </textarea>
+            <p class={charLimitClass}>{remainingfaultCharsLabel}</p>
+            <template if:true={validationErrors.faultReason}>
+              <p class="error-text">{validationErrors.faultReason}</p>
+            </template>
+          </div>
+        </div>
+      </template>
+      <!-- Pick date/time: Only future dates -->
+      <template if:true={showAppointmentFields}>
+        <div class="custom-datepicker-input-section">
+          <div class="appointment-input custom-datepicker-component-section">
+            <c-ngmcp-date-picker-with-holidays mode="future" ondateselected={handleDateChange}
+              cwrdescription={cwrdescription} work-request-flag={workRequestFlag} market-sector-code={ngme_industry}
+              working-day-offset={wRSLA}></c-ngmcp-date-picker-with-holidays>
+
+            <template if:true={validationErrors.appointmentDate}>
+              <p class="error-text">{validationErrors.appointmentDate}</p>
+            </template>
+          </div>
+
+          <div class=" appointment-slot appointment-input custom-timeslot-section">
+            <template if:true={appointmentOptions}>
+              <lightning-combobox name="appointmentSlot" label="Select Appointment slot" value={selectedSlot}
+                options={appointmentOptions} onchange={handleSlotChange} class=""
+                placeholder="Choose timeslot"></lightning-combobox>
+            </template>
+            <template if:true={validationErrors.appointmentSlot}>
+              <p class="error-text">{validationErrors.appointmentSlot}</p>
+            </template>
+          </div>
+        </div>
+      </template>
+
+    </section>
+    <!-- Contact details -->
+    <template if:true={showcontactdetails}>
+      <section class="section custom-contact-details-section">
+        <h2 class="section-title">Contact details (on-site)</h2>
+
+        <div class="slds-grid">
+          <!-- Section 1 -->
+          <div class="slds-col slds-size_1-of-2">
+            <div class="field custom-contact-field-section">
+              <label>Title<span class="required">*</span></label>
+              <select name="title" onchange={handleInputChange}>
+                <option value="">Choose title</option>
+                <template for:each={titles} for:item="title">
+                  <option key={title} value={title}>{title}</option>
+                </template>
+              </select>
+              <template if:true={validationErrors.title}>
+                <div class="custom-error-container">
+                  <p class="error-text">{validationErrors.title}</p>
+                </div>
+              </template>
+            </div>
+            <div class="field custom-contact-field-section">
+              <label>Name<span class="required">*</span></label>
+              <input type="text" name="name" placeholder="Enter name" onchange={handleInputChange} />
+            </div>
+            <template if:true={validationErrors.name}>
+              <p class="error-text">{validationErrors.name}</p>
+            </template>
+
+            <template if:false={profile}>
+  <div class="field custom-contact-field-section">
+    <label>Request On Behalf Of(Optional)<span class="required"></span></label>
+    <input type="text"
+           name="requestOnBehalfOf"
+           placeholder="Enter request on behalf of"
+           value={requestOnBehalfOf}
+           onchange={handleRequestOnBehalfChange} />
+  </div>
+
+  
+</template>
+
+            <div class="field custom-contact-field-section">
+              <label> Meter access instructions <span class="optional">(Optional)</span></label>
+              <!-- oninput handles typing & paste; maxlength provides a native cap for most browsers -->
+              <div class="custom-instruction-textarea-block">
+                <textarea name="instructions" placeholder="Share helpful on-site information for the engineer"
+                  maxlength={maxInstructionLength} value={contactDetails.instructions} oninput={handleInstructionInput}
+                  class="instructions-textarea"></textarea>
+                <!-- remaining chars line; class changes to show red when fewer than 10 left -->
+                <p class={charLimitClass}>{remainingCharsLabel}</p>
+                <template if:true={validationErrors.instructions}>
+                  <p class="error-text">{validationErrors.instructions}</p>
+                </template>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Section 2 -->
+          <div class="slds-col slds-size_1-of-2">
+            <div class="field custom-contact-field-section">
+              <label>Email Address<span class="optional">(Optional)</span> </label>
+              <input type="text" name="emailAddress" placeholder="Enter Email Address"
+                value={contactDetails.emailAddress} onchange={handleInputChange} />
+            </div>
+
+            <!--<template if:true={validationErrors.emailAddress}>
+                <p class="error-text">{validationErrors.emailAddress}</p>
+              </template>-->
+
+            <div class="field custom-contact-field-section">
+              <label>Contact number<span class="required">*</span></label>
+              <input type="text" name="contactNumber" placeholder="Enter contact number"
+                value={contactDetails.contactNumber} onchange={handleInputChange} />
+            </div>
+            <template if:true={validationErrors.contactNumber}>
+              <p class="error-text">{validationErrors.contactNumber}</p>
+            </template>
+
+            <div class="upload-section custom-contact-field-section">
+              <label class="upload-label">Upload Photos (Optional)</label>
+              <div class="upload-box" ondragover={handleDragOver} ondragleave={handleDragLeave} ondrop={handleFileDrop}>
+                <p>Drag & drop files here</p>
+                <p>
+                  <span class="browse-text" onclick={handleBrowseClick}>Select photos from device</span>
+                </p>
+                <input type="file" multiple accept=".csv, image/*" class="file-input" onchange={handleFileChange} />
+              </div>
+              <!--  Show upload errors -->
+              <template if:true={fileError}>
+                <p class="error-text">{fileError}</p>
+              </template>
+              <!--  Thumbnails / file list -->
+              <template if:true={uploadedFiles.length}>
+                <div class="file-preview-list">
+                  <template for:each={uploadedFiles} for:item="file">
+                    <div key={file.name} class="file-preview-item">
+                      <template if:true={file.isImage}>
+                        <img src={file.previewUrl} alt={file.name} class="thumbnail" />
+                      </template>
+                      <template if:false={file.isImage}>
+                        <div class="file-icon">📄</div>
+                      </template>
+                      <div class="file-info">
+                        <span class="file-name">{file.name}</span>
+                        <span class="file-size">({file.sizeDisplay})</span>
+                      </div>
+                      <button class="delete-btn" data-name={file.name} onclick={handleFileDelete}>
+                        ✕
+                      </button>
+                    </div>
+                  </template>
+                </div>
+              </template>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </template>
+    <!-- Submit button -->
+    <template if:true={showsubmitSection}>
+      <section class="section-btn">
+        <div class="consent-box">
+          <!-- <input type="checkbox" name="consent" onchange={handleInputChange} /> -->
+          <input type="checkbox" name="consent" checked={contactDetails.consent} onchange={handleInputChange} />
+          <span class="consent-text"> Please tick here to confirm that consent has been obtained from the named
+            individual
+            for their personal data to be passed to third parties, for the purposes of performing the specified works,
+            by
+            means of a suitable Data Privacy Notice and explicit consent agreement.</span>
+        </div>
+        <template if:true={validationErrors.consent}>
+          <p class="error-text">{validationErrors.consent}</p>
+        </template>
+        <template if:true={showCautionMessage}>
+          <div class="warning-message"> Service Partner seems to be busy, please book cautiously. </div>
+        </template>
+        <template if:true={serviceProviderError}>
+          <div class="error-text">
+            <p class="error-text">{serviceProviderErrorMessage}</p>
+          </div>
+        </template>
+        <button class="btn custom-btn" onclick={handleSubmitUrgentWorkrequest}>Submit Request</button>
+        <button class="btn custom-btn-base" onclick={handleCancelClick}>Cancel</button>
+      </section>
+    </template>
+  </div>
+  <template if:true={isModel}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container custom-slds-modal-container">
+        <!-- Header -->
+        <header class="custom-modal-header slds-p-around_large">
+          <h2 class="custom-modal-title">{requestHeader}</h2>
+        </header>
+        <template if:true={startNowFlag}>
+          <!-- Body -->
+          <div class="custom-modal-content-container slds-p-around_large">
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{successMessage} <span
+                class="custom-modal-content-bold">{submittedDate} at {ngme_time}</span>
+            </div>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{serviceTicketid} <span
+                class="custom-modal-content-bold">{srNumber}</span>
+            </div>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{engineerVisitMessage}
+            </div>
+          </div>
+        </template>
+        <template if:false={falseServiceNowFlg}>
+          <!-- Body -->
+          <div class="custom-modal-content-container slds-p-around_large">
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{successMessage} <span
+                class="custom-modal-content-bold">{submittedDate}</span>
+            </div>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{serviceTicketid} <span
+                class="custom-modal-content-bold">{srNumber}</span>
+            </div>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{engineerVisitMessage}
+            </div>
+          </div>
+        </template>
+        <template if:true={duplicateMessage}>
+          <div class="custom-modal-content-container slds-p-around_large">
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{duplicateMessage}
+            </div>
+          </div>
+        </template>
+        <!-- Footer -->
+        <footer class="custom-modal-footer slds-grid slds-grid_align-end slds-p-around_large">
+          <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button"
+            disabled={isDisabled} onclick={handleCancelClick}> Ok </button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

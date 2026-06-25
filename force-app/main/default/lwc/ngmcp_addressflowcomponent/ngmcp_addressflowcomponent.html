@@ -1,0 +1,35 @@
+<template>
+    <template if:false={verifyFlag}>
+        <button type="button" class="verify-link" onclick={handleVerifyClick}>
+            Verify Address
+        </button>
+    </template>
+        <pw_avfc-address-verification-flow-base-component
+            use-status
+            countries="GB"
+            origin="GB"
+            main-label="Address"
+            search-label="Search by postcode or address"
+            manual-button-label=""
+            verify-button-label="Verify Address"
+            onaddresschange={handleAddressChange}>
+        </pw_avfc-address-verification-flow-base-component>
+
+    <template if:true={hasOutput}>
+        <div class="output-panel">
+            <p class="output-title">Selected Address</p>
+            <p><strong>Street:</strong> {selectedAddress.street}</p>
+            <template if:true={selectedAddress.street2}>
+                <p><strong>Street 2:</strong> {selectedAddress.street2}</p>
+            </template>
+            <p><strong>City:</strong> {selectedAddress.city}</p>
+            <p><strong>State:</strong> {selectedAddress.state}</p>
+            <p><strong>Postcode:</strong> {selectedAddress.postalcode}</p>
+            <p><strong>Country:</strong> {selectedAddress.country}</p>
+            <template if:true={selectedAddress.county}>
+                <p><strong>County:</strong> {selectedAddress.county}</p>
+            </template>
+            <p><strong>Status:</strong> {selectedAddress.status}</p>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,80 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+
+.get-started-outer-container {
+    background: #fff;
+}
+.get-started-block-header-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #575756;
+}
+.get-started-block {
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+}
+.get-started-block-title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #000000;
+    vertical-align: middle;
+}
+
+.get-started-block-description {
+    color: #575756;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+}
+
+.get-started-block-link {
+    color: #00857A;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    vertical-align: middle;
+}
+.get-started-close-section {
+    color: #4A4459;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    vertical-align: middle;
+ }
+
+ /************ Close Icon Styles **********/
+ .get-started-close-section .close-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.close-icon::before,
+.close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 2px;
+  background-color: #333;
+  transform-origin: center;
+  transition: background-color 0.2s ease;
+}
+
+/* Create the X shape */
+.close-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}

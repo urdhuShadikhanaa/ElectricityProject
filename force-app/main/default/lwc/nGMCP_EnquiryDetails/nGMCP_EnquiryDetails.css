@@ -1,0 +1,925 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+    background: #f4f6f9;
+}
+.card-group {
+   /*display: flex;
+    flex-wrap: wrap;
+    gap: 15px;*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.card-content {
+  text-align: left;
+}
+
+.section-card {
+    padding: 0.25rem;
+    padding-left: 0;
+}
+
+.card-desc {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #625B71;
+}
+
+.card-radio input[type="radio"]:checked + .card-content {
+  border: 2px solid #00857A;
+}
+
+.card-radio {
+    margin-left: 0;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #d0d0d0;
+    gap: 8px;
+    background: #fff;
+    flex-direction: column;
+}
+.card-radio.short-height{
+  min-height: 55px;
+}
+
+.card-radio:hover {
+    border-color: #00857A;
+}
+
+.card-radio.selected {
+    border: 2px solid #00857A;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+    font-weight: 600;
+}
+
+.card-radio input[type="radio"] {
+    accent-color: #00857A;
+}
+
+.card-radio.selected input[type="radio"]:checked {
+    accent-color: #00857A;
+}
+.card-radio.selected .card-title,
+.card-radio.selected .card-desc {
+    font-weight: 600;
+}
+
+.card-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-title {
+   font-weight: 500;        
+   font-size: 16px;
+   line-height: 24px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;          
+    color: #1D1B20;
+}
+
+.form-group textarea {
+    min-height: 15vh;
+    width: 100%;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+}
+.form-group input,
+.form-group select {
+    width: 300px;
+    height: 40px;
+    border: 2px solid #DADADA;
+     border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+     letter-spacing: 0.1px;
+    line-height: normal;
+    padding: 0.5rem;
+}
+.section-card.custom-additional-info-section {
+    padding: 1rem;
+}
+.consent-section {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    display: block; /* Ensure it doesn't use flex */
+    text-align: left; /* Align content to left */
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* space between items */
+    flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.appointment-fields {
+    display: flex;
+    flex-direction: column; /* stack date and timeslot vertically */
+    gap: 0.5rem;
+}
+
+.consent-label {
+    display: inline-flex; /* Keep checkbox and text together */
+    align-items: center;
+    justify-content: flex-start; /* Align to left */
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    width: 100%; /* Full width */
+}
+
+.consent-label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 10px 24px;
+    margin: 0 15px;
+}
+
+.btn-primary {
+    background-color: #007a5e;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #007a5e;
+    color: #fff;
+}
+
+.horizontal-radio {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if too many options */
+}
+.horizontal-radio label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Question block */
+.custom-question-section {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Space between label and radio buttons */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    margin-bottom: 1rem;
+}
+
+/* ✅ Make radio buttons inline */
+.custom-question-section input[type="radio"] {
+    display: inline-block;
+    height: auto;
+    width: auto;
+}
+
+.question lightning-radio-group {
+    display: inline-flex; /* Horizontal layout for LWC radio group */
+    gap: 16px; /* Space between Yes and No */
+    align-items: center;
+}
+
+.custom-question-section > label {
+    margin: 0.5rem 0;
+    width: 350px;
+}
+
+.horizontal-radio {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if too many options */
+}
+.horizontal-radio label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/*lightning-input {
+    width: 50%; 
+}*/
+
+.custom-question-section input,
+.custom-question-section select {
+    height: 40px;
+    border: 2px solid #DADADA;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 400;
+     color: #000;
+     letter-spacing: 0.1px;
+    padding: 0.5rem;
+    line-height: normal;
+    width: 300px;
+}
+
+.char-limit-note {
+    font-size: 12px;
+    font-weight: 400;
+    color: #c23934;
+}
+.custom-question-section  .custom-additional-info-input {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+}
+
+/* Error message */
+.ngmcp-text-error {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+.question {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+.question select,
+.question input[type="number"],
+.question lightning-input {
+    flex: 1;
+}
+.custom-datepicker-input-section .appointment-slot.custom-timeslot-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.form-group.custom-datepicker-component-section .datepicker-container {
+    display: flex;
+    justify-content: space-between;
+}
+.custom-datepicker-input-section {
+    margin: 1rem 0;
+}
+/************** custom button styles **************/
+.custom-btn {
+     background-color: #00857A;
+     color: #fff;
+     border: 2px solid #00857A;
+     border-radius: 8px;
+}
+.custom-btn:hover {
+     background-color: #fff;
+     color: #00857A;
+     cursor: pointer;
+}
+.custom-btn-base {
+     border: 2px solid #00857A;
+     background-color: transparent;
+     color: #00857A;
+     border-radius: 8px;
+}
+.custom-btn-base:hover {
+     background-color: #00857A;
+     color: #fff;
+     cursor: pointer;
+}
+
+/****************. Custom Styles *******************/
+.custom-page-header-title {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+
+.custom-radio-card-block {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.custom-card-text-block {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0 0.75rem;
+}
+.selected-subtype-suggestion {
+    font-size: 14px;
+    padding-bottom: 1rem;
+    color: #111;
+    font-weight: 400;
+}
+
+.readonly-style {
+    background-color: #f4f4f4; /* Light gray background */
+    color: #555; /* Slightly dim text */
+    cursor: not-allowed; /* Show disabled cursor */
+    pointer-events: none; /* Prevent typing or clicking */
+}
+
+.radio-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.radio-header input[type="radio"] {
+  accent-color: #00857A;
+  cursor: pointer;
+  transform: scale(1.1); /* slightly larger radio circle */
+}
+
+.radio-header label {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.radio-desc {
+  color: #555;
+  font-size: 13.5px;
+  margin-left: 26px;
+  margin-top: 6px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.radio-desc {
+    margin-top: 4px;  
+}
+
+.recommend-tag {
+    font-size: 12px;
+    background: #009688;
+    color: #fff;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 0 0 6px 6px;
+    margin-top: auto;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+.radio-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #111;
+}
+.custom-success-message {
+     color: #00857A;
+     font-weight: 500;
+     font-size: 14px;
+     letter-spacing: 0.4px;
+}
+
+/****************. Custom Styles - Business Feedback ************/
+
+.section-card .custom-page-subheader-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    color: #00857A;
+    padding: 0.5rem 0;
+}
+
+/************** custom modal styles **************/
+.custom-modal-brand-button {
+    background: #00857a;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #00857a;
+    font-size: 14px;
+    cursor: pointer;
+}
+.custom-modal-brand-button:hover {
+    background: #fff;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-modal-base-button {
+    color: #00857a; 
+    font-size: 14px;
+    cursor: pointer;
+}
+.custom-modal-base-button:hover {
+    background: #00857a;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-modal-title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: #1D1B20;
+    text-align: center;
+}
+/*.custom-modal-container {
+	
+}*/
+.custom-modal-header {
+    border: none;
+	background-color: #fff;
+}
+.custom-modal-footer, 
+.custom-modal-header {
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+}
+.custom-modal-footer,
+.custom-modal-content-container {
+	background-color: #fff;
+}
+.custom-modal-content, 
+.custom-modal-content-bold {	
+    color: #49454F;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0.5px;
+	overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: middle;
+}
+.custom-modal-content-bold {
+    font-weight: 500;
+}
+.custom-modal-content-heading {
+    font-size: 13px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
+.custom-modal-content-container {
+    overflow: hidden;
+    overflow-y: auto;   
+}
+.custom-slds-modal-container {
+    max-width: 95vw;
+    width: 50%;
+}
+.custom-modal-brand-button[disabled], 
+.custom-modal-brand-button:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--dxp-g-neutral-2);
+    cursor: default;
+}
+
+/* Full-page overlay to center the spinner */
+.custom-spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6); /* Optional overlay */
+  z-index: 9999;
+}
+
+/* Dotted spinner container */
+.custom-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+/* Individual dots */
+.custom-spinner span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #0070d2; /* Salesforce blue */
+  border-radius: 50%;
+  animation: dot-spin 1.2s linear infinite;
+}
+
+/* Position dots in a circle */
+.custom-spinner span:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, 0); animation-delay: 0s; }
+.custom-spinner span:nth-child(2) { top: 14%; left: 85%; transform: translate(-50%, -50%); animation-delay: 0.15s; }
+.custom-spinner span:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); animation-delay: 0.3s; }
+.custom-spinner span:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); animation-delay: 0.45s; }
+.custom-spinner span:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); animation-delay: 0.6s; }
+.custom-spinner span:nth-child(6) { top: 85%; left: 14%; transform: translate(-50%, -50%); animation-delay: 0.75s; }
+.custom-spinner span:nth-child(7) { top: 50%; left: 0%; transform: translate(0, -50%); animation-delay: 0.9s; }
+.custom-spinner span:nth-child(8) { top: 14%; left: 14%; transform: translate(-50%, -50%); animation-delay: 1.05s; }
+
+/* Animation for pulsing effect */
+@keyframes dot-spin {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+
+
+
+/* Larger heading */
+.contact-title { font-weight: 600; margin: 0 0 0.75rem; }
+.contact-title--large { font-size: 1.125rem; /* ~18px */ font-weight: 700; }
+
+/* Error + counter */
+.error-text { color: var(--lwc-colorTextError, #c23934); margin-top: 0.25rem; }
+.char-limit { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+.char-limit.warning { color: #c23934; }
+
+/* Upload area */
+.upload-title  { font-weight: 600; margin: 1rem 0 0.5rem; }
+.drop-zone {
+  border: 2px dashed #DADADA;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  color: #626f7a;
+  background: #fafafa;
+  margin-bottom: 0.25rem;  /* keeps link close like your reference */
+}
+.drop-zone.drag-over {
+  border-color: #00857A;
+  background: #f2fbfb;
+  color: #00857A;
+}
+.drop-zone-inner { display: flex; flex-direction: column; gap: 0.4rem; }
+
+/* Teal link under the box */
+.browse-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: #00857A;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.browse-link:hover { color: #00857A; }
+
+/* Upload area — dash border #DADADA; white-ish background */
+
+.upload-title { font-size: 14px; color: #333; margin-bottom: 6px; }
+
+.upload-box {
+    border: 2px dashed #DADADA;
+    border-radius: 4px;
+    background-color: #fafafa;
+    text-align: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #555;
+    width: 300px;
+    min-height: 15vh;         /* wide enough */
+}
+.upload-box.drag-over {
+  background-color: #f0f8f8;
+  border-color: #00857A;
+}
+
+.browse-text button {
+  color: #00857A;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0.25rem 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.file-input { display: none; }
+
+.file-preview-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.file-preview-item {
+  border: 1px solid #DADADA;
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fafafa;
+    min-width: 200px;
+    justify-content: center;
+}
+.file-icon { 
+    font-size: 28px; 
+}
+.file-info { 
+    display: flex; 
+    flex-direction: column;
+}
+.file-name { 
+    font-weight: 600; 
+    max-width: 150px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.file-size { 
+    font-size: 0.8rem; 
+    color: #555; 
+}
+.spinner-message {   
+    margin-top: 12px;
+    text-align: center;
+}
+
+.custom-contact-field-section input, 
+.custom-contact-field-section textarea, 
+.custom-contact-field-section select,
+.appointment-slot.custom-timeslot-section select {
+    width: 300px;
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.1px;
+    line-height: normal;
+    padding: 0.5rem;
+}
+
+.custom-contact-field-section textarea {
+    min-height: 15vh;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.custom-contact-details-section .custom-contact-field-section {
+    display: flex;
+  flex-direction: column;   /* ⬅️ stack label above the control */
+  align-items: stretch;
+  row-gap: 4px;             /* small gap between label and control */
+  margin-bottom: 8px;       /* keep rows tight but readable */
+  flex-wrap: nowrap;        /* no need to wrap now that we stack */
+}
+.custom-job-section-title,
+.custom-contact-details-section .section-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #333;
+}
+.custom-contact-details-section .section-title,
+.section-card .custom-page-subheader-title {
+    padding: 0.5rem 0;
+}
+.custom-contact-details-section.section {
+    margin: 0;
+    padding: 1rem;
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #c00;
+    font-size: 13px;
+    cursor: pointer;
+    display: block;
+    align-self: self-start;
+}
+
+/*************************** Custom Styles - 15.01.26. ***************************/
+.consent-box {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    gap: 6px;
+    padding-bottom: 10px; /* adds space after the content inside the box */
+}
+
+.consent-text {
+    font-size: 12px;
+    color: #333;
+}
+.section,
+.section-job, 
+.section-btn {
+    border: 1px solid #DADADA;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    margin-left: 0;
+}
+.required {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+.custom-selected-entry-suggestion {
+    font-size: 16px;
+    padding-bottom: 1rem;
+    color: #111;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/********************** Custom Styles - 27.01.26. *************************/
+.custom-datepicker-input-section {
+    display: inline-block;
+}
+.appointment-input {
+    margin-top: 1rem;
+}
+.custom-datepicker-input-section .appointment-slot.custom-timeslot-section label.slds-form-element__label { 
+    min-width: 300px;
+}
+
+/***** Appointment Date row alignment (match Timeslot) – 09 Feb *****/
+
+/* Put label + star, input, and error in ONE row like Timeslot */
+.appointment-row.custom-datepicker-component-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;              /* spacing between columns */
+  margin: 1rem 0 0.5rem;  /* similar vertical rhythm to your Timeslot row */
+}
+
+/* Make the Appointment Date label column same width as Timeslot's label */
+.appointment-row .apptdate-label,
+.custom-datepicker-input-section .appointment-slot.custom-timeslot-section label.slds-form-element__label {
+  /* Timeslot label already has min-width: 300px in your CSS;
+     we mirror that so both labels align perfectly. */
+  min-width: 300px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 6px;        /* space between label text and asterisk */
+}
+
+/* Ensure the red asterisk looks like your other required markers */
+.req-inline {
+  color: #c23934;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Input column grows like the Timeslot <select> */
+.appointment-row .apptdate-input {
+  flex: 1 1 auto;
+  min-width: 280px;       /* prevent early wrap on narrow screens; tweak if needed */
+}
+
+/* Keep the lightning-input width visually similar to Timeslot select */
+.appointment-row .apptdate-input lightning-input,
+.appointment-row .apptdate-input .slds-input {
+  max-width: 300px;       /* match your .form-group select/input width = 300px */
+  width: 300px;
+  height: 40px;           /* height parity with Timeslot select */
+}
+
+/* Inline error aligned on the same row to the right (like Timeslot) */
+.appointment-row .inline-error {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  color: var(--lwc-colorTextError, #c23934);
+  font-size: 0.875rem;
+  margin-left: 8px;
+}
+
+/* If your child date picker renders block-level elements, keep them inline */
+.appointment-row .apptdate-input c-ngmcp-date-picker-with-holidays {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Remove unintended top margin in the date row container if any */
+.appointment-input.custom-datepicker-component-section {
+  margin-top: 0; /* you had .appointment-input { margin-top: 1rem; } – zero it for this row */
+}
+
+.upload-label {
+    display: block;
+    margin-bottom: 12px;   /* adds one clean line space */
+}
+
+/* ================================
+   Contact details — tighter spacing
+   (affects ONLY the Contact details section)
+   ================================ */
+
+/* 1) Reduce left/right padding of the two columns */
+/*.custom-contact-details-section .slds-col {
+  padding-left: 0.5rem;  
+  padding-right: 0.5rem;
+}*/
+
+/* 2) Shrink the gap between label and field control */
+.custom-contact-details-section .custom-lightning-input-element
+  .slds-form-element__label {
+  margin-right: 0;          /* no horizontal gap needed now */
+  margin-bottom: 4px;       /* small space under the label */
+  white-space: normal;      /* allow wrap if label is long */
+}
+
+/* 3) Remove any extra left padding applied to the control wrapper */
+.custom-contact-details-section .custom-lightning-input-element
+  .slds-form-element__control {
+  padding-left: 0;         /* default SLDS sometimes adds left indent */
+}
+
+/* 4) Reduce vertical space between stacked rows within the section */
+.custom-contact-details-section .field {
+  margin-bottom: 8px;      /* was larger; smaller keeps more on one screen */
+}
+
+/* Reduce default bottom margin of lightning-form elements */
+.tight-fields lightning-input,
+.tight-fields lightning-combobox {
+  margin-bottom: 0.25rem !important; /* default ~0.75rem; reduce as needed */
+}
+ 
+/* Optional: reduce label-to-input gap */
+.tight-fields .slds-form-element__label {
+  margin-bottom: 0.1rem !important;
+}
+
+/* Hide SLDS default leading asterisk ONLY inside our contact-field wrappers */
+:host .contact-field .slds-form-element__label .slds-required {
+  display: none !important;
+}
+
+/* ---- Contact label: match screenshot (14px Roboto, #555555, margin 8px) ---- */
+:host .contact-label {
+  display: inline-flex;
+  margin: 0 0 0.5rem 0;            /* bottom 8px like your screenshot */
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 600;                /* semi-bold to match the screenshot’s weight */
+  line-height: 1.4;
+  color: #555555;   
+  align-items: center;  
+  min-width:200px;             /* matches the inspector value */
+}
+
+.custom-contact-details-section .tight-fields .custom-contact-field-section > div {
+    display: flex;
+}
+
+
+/* 2) Add a little space BEFORE the second label in each column
+      (i.e., before "Name ..." on the left and "Email Address ..." on the right) */
+:host .custom-contact-field-section + .custom-contact-field-section .contact-label {
+  margin-top: 0.5rem;        /* ≈ 8px; increase to 0.75rem (12px) if you want a bit more */
+}
+
+/* Keep vertical rhythm between stacked label + input consistent */
+:host .custom-contact-field-section {
+  margin-bottom: 0.75rem;          /* ~12px; tune to your exact spacing */
+}
+
+
+
+/* If your inputs need same width feel in both columns */
+:host .custom-lightning-input-element {
+  width: 100%;
+}
+
+/* If earlier you added any ::after asterisk rule, remove/comment it:
+:host .contact-field.required .contact-label::after { content: " *"; }
+*/

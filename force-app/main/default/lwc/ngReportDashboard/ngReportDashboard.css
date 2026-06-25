@@ -1,0 +1,28 @@
+.charts-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chart-wrapper {
+    width: 400px;
+    height: 400px;
+}
+
+.pie-chart-wrapper {
+    width: 300px;
+    height: 300px;
+}
+
+/* .bar-chart1{
+    margin-top: -205px;
+    margin-left: -219px;
+} */
+
+/* .bar-chart,
+.pie-chart {
+    width: 100% !important;
+    height: 100% !important;
+} */

@@ -1,0 +1,23 @@
+<template>
+    <div class="main-container">
+    <!-- LEFT SIDE VERTICAL MENU -->
+    <div class="sidebar">
+        <div class="menu-item">Home</div>
+
+        <div class="menu-item request-section" onclick={toggleRequests}>
+            <span>Requests</span>
+            <span class="arrow">{requestsArrow}</span>
+        </div>
+
+        <template if:true={requestsExpanded}>
+            <div class="sub-menu">
+                <div class="sub-item" onclick={handleMenuClick} data-menu="createRequest">Create request</div>
+                <div class="sub-item" onclick={handleMenuClick} data-menu="viewAllRequests">View all requests</div>
+            </div>
+        </template>
+
+        <div class="menu-item">Reports</div>
+        <div class="menu-item">User management</div>
+    </div>
+    </div>
+</template>

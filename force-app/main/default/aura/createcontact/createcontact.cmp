@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,lightning:availableForFlowScreens,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<lightning:notificationsLibrary aura:id="notifLib" />
+    <lightning:recordEditForm objectApiName="Contact" 
+    onsubmit="{!c.handleSuccess}"                      
+                           >
+        <lightning:messages />
+        <h2> If no contact exists, please create here...</h2>
+        <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning:inputField fieldName="FirstName"/>
+                </div>
+             <div class="slds-col slds-size_1-of-3">
+                    <lightning:inputField fieldName="LastName"/>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning:inputField fieldName="AccountId"/>
+  </div>
+                
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning:inputField fieldName="Email"/>
+                    </div>
+             <div class="slds-col slds-size_1-of-3">
+                    <lightning:inputField fieldName="Phone"/>
+                    </div>
+            </div>
+        <div class="slds-col slds-size_2-of-3">
+                    <lightning:inputField fieldName="CRM_Method_of_Creation__c" value="Created on a call"/>
+                    </div>
+            
+       
+        <lightning:button class="slds-m-top_medium" type="Submit" label="Add" /> 
+    </lightning:recordEditForm>
+</aura:component>

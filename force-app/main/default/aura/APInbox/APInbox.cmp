@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	    <div class="slds-section slds-is-open animate" aura:id="inbox">
+        <!--section header-->
+        <h2 class="slds-section__title">
+            <button aria-controls="InboxList" class="slds-button slds-section__title-action" onclick="{!c.toggleSection}" data-auraId="inbox">
+                <lightning:icon iconName="utility:switch"
+                                size="x-small"
+                                class="slds-section__title-action-icon slds-button__icon_left"
+                                alternativeText="button icon"
+                                />
+                <span class="slds-truncate" title="Inbox">Inbox</span>
+            </button>
+        </h2>
+        <!--section body-->
+        <div class="slds-section__content" id="InboxList">
+           <lightning:listView aura:id="listViewAP"
+    objectApiName="AP_Email__c"
+    listName="Inbox"
+    rows="50"
+    showSearchBar="true"
+    showActionBar="false"
+    enableInlineEdit="true"
+    showRowLevelActions="true"
+/>
+            
+        </div>
+    </div>
+</aura:component>

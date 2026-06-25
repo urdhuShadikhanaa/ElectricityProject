@@ -1,0 +1,247 @@
+<!--  This VF page is related to CRM Application 
+02/01/2024 : Updated by Surya (Remediation Project)
+Description: updated Short code, work order fields and finance fileds are hiding from Complaint page -->
+
+<apex:page lightningstylesheets="true" Controller="complaintcontroller" showHeader="true">
+
+ <style type="text/css">
+        .longText { width: 100%; }
+        .owner { width: 50%; }
+    </style>
+    
+<apex:sectionHeader title="Complaint Details" />
+<apex:form >
+
+<apex:pageBlock id="Editcase" mode="Edit">
+<apex:pageMessages />
+
+<apex:pageBlockSection columns="2" title="SLA" collapsible="true">
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="SLA to Acknowledge (in business hours"/>
+<apex:inputField value="{!Case.CRM_SLA_to_Acknowledge__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="SOS Days"/>
+<apex:inputField value="{!Case.Age_of_case_number__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="SLA to set Interim"/>
+
+<apex:inputField value="{!Case.CRM_SLA_to_Set_Interim__c}"/>
+
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Resolved First Time"/>
+<apex:inputField value="{!Case.CRM_Resolved_First_Time__c}"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+<apex:pageBlockSection columns="1" >
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Owner"/>
+<apex:inputField styleClass="owner" value="{!Case.OwnerId}"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageBlockSection columns="2" title="Info" collapsible="true" >
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Reference number"/>
+<apex:inputField value="{!Case.CRM_Case_Reference_Number_HyperLink__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Is Maximum Priority"/>
+<apex:inputField value="{!Case.Is_Maximum_Priority__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Complaint Headline"/>
+<apex:inputField value="{!Case.CRM_Complaint_Subject__c}" required="true" />
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Account Name"/>
+<apex:inputField value="{!Case.AccountId}" required="true"/>  
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Short Code"/>
+<apex:inputField value="{!Case.Account.Supplier_ID__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Work Order"/>
+<apex:inputField value="{!Case.CRM_Work_order__c}"/>
+</apex:pageBlockSectionItem> 
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Complaint Sub-Header"/>
+<apex:inputField value="{!Case.CRM_Other_Complaint_Subject__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Account Number"/>
+<apex:inputField value="{!Case.CRM_Account_Number__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="MPRN"/>
+<apex:inputField value="{!Case.CRM_MPRN__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Origin of Issue"/>
+<apex:inputField value="{!Case.CRM_Origin_of_Issue__c}" required="true"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Related Job Number"/>
+<apex:inputField value="{!Case.CRM_Related_Job_Number__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Area"/>
+<apex:inputField value="{!Case.CRM_Area__c}" required="true"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Status"/>
+<apex:inputField value="{!Case.Status}" />
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Investigating With"/>
+<apex:inputField value="{!Case.CRM_Investigation_Type__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Commercial or Residential"/>
+<apex:inputField value="{!Case.CRM_Commercial_Residential__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+  <apex:outputLabel value="Complaint is Valid / Invalid"/>
+<apex:inputField value="{!Case.CRM_Complaint_is_Valid_Invalid__c}" required="true"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageBlockSection columns="1" title="Description" collapsible="true">
+<apex:pageBlockSectionItem >
+<apex:InputTextArea id="desc" label="Description" 
+   styleClass="longText"   
+      value="{!Case.Description}" rows="20" />
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+   <apex:pageBlockSection columns="2" title="Investigation" collapsible="true">
+
+   <apex:pageBlockSectionItem >
+<apex:outputLabel value="Interim Sent"/>
+<apex:inputField value="{!Case.CRM_Interim_Sent__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Investigation Date"/>
+<apex:inputField value="{!Case.CRM_Investigation_Date__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Site visit required?"/>
+<apex:inputField value="{!Case.CRM_Site_Visit_Required__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Goodwill Required?"/>
+<apex:inputField value="{!Case.CRM_Goodwill_Required__c}"/>
+</apex:pageBlockSectionItem>
+
+   <apex:pageBlockSectionItem >
+<apex:outputLabel value="Date Site Visit Planned"/>
+<apex:inputField value="{!Case.Date_site_visit_planned__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Goodwill Value"/>
+<apex:inputField value="{!Case.CRM_Goodwill_Value__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Date Service Provider Asked to Provide a written Response"/>
+<apex:inputField value="{!Case.Date_SP_asked_to_provide_a_response__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Date Site Visit Attended"/>
+<apex:inputField value="{!Case.Date_site_visit_attended__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Date SP provided written response"/>
+<apex:inputField value="{!Case.CRM_ServicePartner_replied_within_2_days__c}"/>
+</apex:pageBlockSectionItem>
+        <!--  
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Finance Acceptance?"/>
+<apex:inputField value="{!Case.Good_Will_Cheque_Sent__c}"/>
+</apex:pageBlockSectionItem>  --> 
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Date Sent to Finance"/>
+<apex:inputField value="{!Case.Date_Sent_to_Finance__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Goodwill Recuperated"/>
+<apex:inputField value="{!Case.CRM_Goodwill_Recuperated__c}"/>
+</apex:pageBlockSectionItem>
+   <!--    
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Date Returned from finance"/>             
+<apex:inputField value="{!Case.Finance_Acceptance_Date__c}"/>
+</apex:pageBlockSectionItem>              --> 
+   
+        </apex:pageBlockSection>
+       
+<apex:pageBlockSection title="Resolution Information" columns="2"  collapsible="true">
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Closure Reason"/>
+<apex:inputField value="{!Case.Closure_Reason__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Agent Actions"/>
+<apex:inputField value="{!Case.Agent_Actions__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Closure Reason (Other)"/>
+<apex:inputField value="{!Case.Other_Code_Reason_please_state__c}"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Resolution Description" columns="1"  collapsible="true">
+<apex:pageBlockSectionItem >
+<apex:inputTextarea id="res" label="Resolution Description" styleClass="longText"
+     
+      value="{!Case.CRM_Resolution_Description__c}" rows="8"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageblockSection>
+
+
+   <apex:pageBlockSection columns="2" title="End Consumer Details" collapsible="true">
+
+   <apex:pageBlockSectionItem >
+<apex:outputLabel value="House Name / Number / Site Name"/>
+<apex:inputField value="{!Case.CRM_House_Name_Number_Site_Name__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="End Consumer Title"/>
+<apex:inputField value="{!Case.CRM_End_Consumer_Title__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Street"/>
+<apex:inputField value="{!Case.CRM_Street__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="End Consumer Name"/>
+<apex:inputField value="{!Case.CRM_End_Consumer_Name__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="City / County"/>
+<apex:inputField value="{!Case.CRM_City_County__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="End Consumer Contact Number"/>
+<apex:inputField value="{!Case.CRM_End_Consumer_Contact_Number__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Post Code"/>
+<apex:inputField value="{!Case.CRM_Post_code__c}"/>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="End Consumer Email Address"/>
+<apex:inputField value="{!Case.CRM_End_Consumer_Email_Address__c}"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageBlockButtons >
+      
+<apex:commandButton value="Save and Update" action="{!save}" rendered="true"/> 
+<!--<apex:commandLink value= "Save and Update" action ="{!Save}" reRender="{!Caseid}"/> -->   
+
+</apex:PageBlockButtons>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

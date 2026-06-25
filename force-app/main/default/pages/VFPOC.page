@@ -1,0 +1,11 @@
+<apex:page controller="FeedPOC">
+    <apex:pageBlock title="Latest News Feed">
+        <apex:repeat value="{!feeds}" var="f">
+            <div style="margin:10px; padding:10px; border-bottom:1px solid #ccc;">
+                <h3><a href="{!f.link}" target="_blank">{!f.title}</a></h3>
+                <p><i>{!f.pubDate}</i></p>
+                <p>{!f.description}</p>
+            </div>
+        </apex:repeat>
+    </apex:pageBlock>
+</apex:page>

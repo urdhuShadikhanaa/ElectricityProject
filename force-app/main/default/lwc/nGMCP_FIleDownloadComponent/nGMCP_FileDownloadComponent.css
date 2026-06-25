@@ -1,0 +1,13 @@
+/* Optional: make the row a bit tighter */
+
+.slim-row {
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+
+/* If you still see big gaps, remove any default padding/margins around the row */
+.slim-row > .slds-col {
+  /* Already reduced via slds-p-horizontal_xx-small, but you can force it too: */
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}

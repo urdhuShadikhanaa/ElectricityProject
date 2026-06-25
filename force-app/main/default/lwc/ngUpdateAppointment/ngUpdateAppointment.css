@@ -1,0 +1,26 @@
+.container{
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.box1{
+    border: 1px solid #ccc;
+    padding:1rem;
+    border-radius: 8px;
+    background-color: rgb(115, 212, 199);
+}
+.box{
+    border: 1px solid #ccc;
+    padding:1rem;
+    border-radius: 8px;
+    background-color: rgb(107, 189, 189);
+}
+h2,h3{
+    margin: 0 0 0.5rem;
+}
+.item{
+    margin-bottom: 1rem;
+}

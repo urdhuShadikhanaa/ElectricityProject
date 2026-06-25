@@ -1,0 +1,52 @@
+<template>
+<lightning-card title="Contact Details">
+<!-- Title -->
+<lightning-combobox
+           name="title"
+           label="Title"
+           value={title}
+           options={titleOptions}
+           onchange={handleTitleChange}
+           required>
+</lightning-combobox>
+<!-- Contact Name -->
+    <lightning-input
+        name="contactName"
+        label="Contact Name"
+        maxlength="40"
+        required
+        value={contactName}
+        onchange={handleChange}
+        pattern="[a-zA-Z\s]+"
+        message-when-pattern-mismatch="Please enter only alphabets.">
+    </lightning-input>
+<!-- Phone -->
+<lightning-input
+           name="phone"
+           label="Phone Number"
+           type="tel"
+           required
+           value={phone}
+           onchange={handlePhoneChange}
+           message-when-bad-input="Please validate the Phone Number Provided">
+</lightning-input>
+<!-- Email -->
+<lightning-input
+           name="email"
+           label="Email"
+           maxlength="40"
+           type="email"
+           value={email}
+           onchange={handleEmailChange}>
+</lightning-input>
+<!-- Access Instructions -->
+<lightning-textarea
+           name="accessInstructions"
+           label="Access Instructions"
+           maxlength="210"
+           value={accessInstructions}
+           onchange={handleAccessChange}>
+</lightning-textarea>
+<lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+</lightning-card>
+</template>

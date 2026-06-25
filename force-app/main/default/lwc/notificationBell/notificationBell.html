@@ -1,0 +1,50 @@
+<!-- <template>
+    <div class="bell-container">
+        <div class="bell-icon" onclick={togglePopup}>
+            <img src={bellIconUrl} alt="Notifications" class="icon" />
+            <template if:true={unreadCount}>
+                <span class="badge">{unreadCount}</span>
+            </template>
+        </div>
+        <template if:true={showPopup}>
+            <div class="notif-popup">
+                <template if:true={notifications.length}>
+                    <template for:each={notifications} for:item="n">
+                        <div key={n.Id} class="notif-item">
+                            <p class="message">{n.Message__c}</p>
+                            <a class="link" href={n.appointmentUrl}>View Status</a>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={notifications.length}>
+                    <p class="empty">No notifications</p>
+                </template>
+            </div>
+        </template>
+    </div>
+</template> -->
+<template>
+    <div class="bell-container">
+        <div class="bell-icon" onclick={togglePopup}>
+            <img src={bellIconUrl} alt="Notifications" class="icon" />
+            <template if:true={unreadCount}>
+                <span class="badge">{unreadCount}</span>
+            </template>
+        </div>
+        <template if:true={showPopup}>
+            <div class="notif-popup">
+                <template if:true={notifications.length}>
+                    <template for:each={notifications} for:item="n">
+                        <div key={n.Id} class="notif-item">
+                            <p class="message">{n.Message__c}</p>
+                            <a class="link" href={n.appointmentUrl}>View Status</a>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={notifications.length}>
+                    <p class="empty">No notifications</p>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

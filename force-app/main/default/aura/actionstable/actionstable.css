@@ -1,0 +1,57 @@
+.THIS {
+
+}
+
+.THIS .Green svg {
+    fill: green;    
+}
+.THIS .Red svg {
+    fill: red;    
+}
+.THIS .null svg {
+    fill: orange;    
+}
+.THIS .hello thead th span{
+background-color :  #002966;
+    color : white;  
+    font-size: 20px;
+text-shadow: 0.5px 0.5px;
+
+}
+.THIS .hello td {
+    background-color :  #e6ffff;
+    color : #000000;
+     border: 0.5px solid #002966;
+  padding: 8px;
+  
+
+}
+.THIS .hello tr {
+    background-color :  #e6ffff;
+    color : #000000;
+    border: 0.5px solid #002966;
+  padding: 8px;
+  
+}
+.THIS .hello tbody {
+  font-weight:bold;
+  
+}
+.THIS .hello td:hover::after{
+    content: "";
+    position: absolute;
+    background-color: rgba(0,0,0,0.075);
+    left: 0;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+.THIS .hello tr:hover::after{
+    content: "";
+    position: absolute;
+    background-color: rgba(0,0,0,0.075);
+    left: 0;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}

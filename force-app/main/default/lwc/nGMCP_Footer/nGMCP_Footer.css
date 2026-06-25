@@ -1,0 +1,72 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ngmcp-footer-container {
+    background-color: #00857A;
+}
+
+.ngmcp-footer-container a.footer-text,
+button.custom-complaint-btn,
+.ngmcp-sub-footer-block .menu-item .ng-website-link-text, 
+.ngmcp-sub-footer-block .menu-item .ng-website-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+footer.ngmcp-footer-container a:hover,
+button.custom-complaint-btn:hover,
+.ngmcp-sub-footer-block .menu-item .ng-website-link:hover,
+.sub-footer .sub-footer-text .ngmcp-footer-call-link:hover  {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
+}
+
+.sub-footer .sub-footer-text,
+.sub-footer .sub-footer-text .ngmcp-footer-call-link {
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    vertical-align: middle;
+}
+.footer-header-title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+.ngmcp-sub-footer-block .menu-item .ng-website-link {
+    font-weight: 700;
+}
+.ngmcp-sub-footer-block .menu-item .ng-website-link-text {
+    color: #DADADA;
+}
+.ngmcp-footer-call-section {
+    border: 1px solid #fff;
+}
+
+.custom-complaint-btn {
+    background: none;
+    border: 0;
+}
+.custom-complaint-btn-section {
+    align-content: center;
+    text-align: middle;
+}
+.footer-logo-section img.logo {
+    width: 150px;
+    margin: 0;
+    margin-right: 1rem;
+    cursor: pointer;
+}

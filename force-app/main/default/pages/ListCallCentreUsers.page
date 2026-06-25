@@ -1,0 +1,22 @@
+<apex:page lightningStylesheets="true" controller="getlivecscusers">
+<apex:form >
+        
+  <apex:pageBlock id="csc" title="Live Call Centre Users">
+  <apex:pageBlockTable value="{!List}" var="a">
+   <apex:column >
+    <apex:facet name="header"> Name</apex:facet>
+    <apex:outputText value="{!a.Name}"/>
+   </apex:column>
+   <apex:column >
+  
+    <apex:outputText value="{!a.Availability_Status__c}"/>
+   </apex:column>
+   <apex:column >
+    
+    <apex:outputText value="{!a.Visual_Availiability__c}" escape="false" />
+   </apex:column>
+  </apex:pageBlockTable>
+</apex:pageBlock>
+<apex:actionPoller reRender="csc" interval="5"/>
+</apex:form>
+</apex:page>

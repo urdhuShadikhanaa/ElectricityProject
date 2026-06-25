@@ -1,0 +1,122 @@
+<template>
+  <!-- ====== Page header ====== -->
+  <div class="custom-page-header-title">Type of Job</div>
+
+  <!-- ====== Type radio card (AMR) ====== -->
+  <section aria-label="Type of Job">
+    <div class="card-group">
+      <label class={typeCardClassAMR}>
+        <input
+          type="radio"
+          name="requestType"
+          value="AMR"
+          onchange={handleTypeSelect}
+        />
+        <div class="card-content">
+          <div class="card-title">AMR</div>
+          <div class="card-desc">Automated Meter Reading</div>
+        </div>
+      </label>
+    </div>
+  </section>
+
+  <!-- ====== Subtypes ====== -->
+  <template if:true={selectedType}>
+    <div class="custom-page-subheader-title">Select Sub Type</div>
+    <section aria-label="Subtype">
+      <div class="card-group">
+        <template for:each={subTypesWithClass} for:item="sub">
+          <label key={sub.id} class={sub.cssClass}>
+            <input
+              type="radio"
+              name="subType"
+              value={sub.label}
+              onchange={handleSubTypeSelect}
+            />
+            <div class="card-content">
+              <div class="card-title">{sub.label}</div>
+              <div class="card-desc">{sub.description}</div>
+            </div>
+          </label>
+        </template>
+      </div>
+    </section>
+  </template>
+
+  <!-- ====== Questions ====== -->
+  <template if:true={selectedSubType}>
+    <div class="selected-subtype-suggestion">{selectedSubType.label}</div>
+
+    <!-- No submit and no error/info blocks -->
+    <form class="question-form">
+      <template for:each={dynamicQuestions} for:item="q">
+        <div key={q.key} class="custom-question-section" style={q.visibleStyle}>
+          <!-- Label -->
+          <label for={q.key}>
+            {q.label}
+            <template if:true={q.required}>
+              <span class="req">*</span>
+            </template>
+          </label>
+
+          <!-- SELECT -->
+          <template if:true={q.isSelect}>
+            <select data-key={q.key} onchange={handleDynamicChange}>
+              <template for:each={q.selectOptions} for:item="opt">
+                <option
+                  key={opt.value}
+                  value={opt.value}
+                  selected={opt.selected}
+                >
+                  {opt.label}
+                </option>
+              </template>
+            </select>
+          </template>
+
+          <!-- RADIO -->
+          <template if:true={q.isRadio}>
+            <div class="horizontal-radio">
+              <template for:each={q.radioOptions} for:item="opt">
+                <label key={opt.value}>
+                  <input
+                    type="radio"
+                    name={q.key}
+                    data-key={q.key}
+                    value={opt.value}
+                    checked={opt.checked}
+                    onchange={handleDynamicChange}
+                  />
+                  {opt.label}
+                </label>
+              </template>
+            </div>
+          </template>
+
+          <!-- TEXT -->
+          <template if:true={q.isText}>
+            <input
+              type="text"
+              id={q.key}
+              data-key={q.key}
+              value={q.value}
+              maxlength={q.maxLength}
+              onchange={handleDynamicChange}
+            />
+          </template>
+
+          <!-- NUMBER (if any used later) -->
+          <template if:true={q.isNumber}>
+            <input
+              type="number"
+              id={q.key}
+              data-key={q.key}
+              value={q.value}
+              onchange={handleDynamicChange}
+            />
+          </template>
+        </div>
+      </template>
+    </form>
+  </template>
+</template>

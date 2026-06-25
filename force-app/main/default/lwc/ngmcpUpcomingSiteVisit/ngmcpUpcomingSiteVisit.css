@@ -1,0 +1,32 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+.usv-outer-container {
+    background: #fff;
+}
+.usv-custom-header {
+    border-bottom: 1px solid #878787;
+} 
+.usv-custom-header .usv-custom-header-title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color: #878787;
+}
+.usv-details-block {
+    border-bottom: 0.75px solid #DADADA;
+}
+.usv-detail {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    color: #878787;
+}
+
+.usv-detail .usv-request-type {
+    font-size: 12px;
+    color: #000;
+}

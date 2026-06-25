@@ -1,0 +1,24 @@
+<template>
+        <div class="container custom-thirdparty-urent-container">
+            <h1 class="page-title">Create Request</h1>
+            <!--<p class="page-subtitle">Choose job type and fill out the form in order to submit request</p>-->
+            <c-n-g-m-c-p_-third-party-global-search lwc:ref="globalSearch"  onsupplierchange={handleSupplierChange} onmprnfound={handleMprnFound} onmprnnotfound={handleMprnNotFound} onshortcodechange={handleshortcodechange}>
+            </c-n-g-m-c-p_-third-party-global-search>
+        </div>
+       
+    <!-- If MPRN found -->
+    <template if:true={showCreateJob}>
+        <c-n-g-m-c-p_-third-party-create-job-request metadata-record={metaDataWrapper} asset-details={assetDetails} converter-assets ={converterAssets}
+            address-details={address} status={status} payment-mechanism={paymentMechanism} post-code={postCode} pressuretier ={pressuretier}
+            mprn={mprn} mprn-customer ={mprnCustomer} pressuretier-brand={pressuretierBrand} oncancelcreatejob={handleCancelJob} hasz002={hasz002} radio-card-flag = {appointmentFlag} 
+            msn ={msn} location ={mprn} siteid = {siteid} locationsid = {locationsid} assetlocation ={location} is-allow-deappointment={isDeappointAllowed} pald-customer={paldCustomerFlag} wrapper-rec={wrapperRec}>
+        </c-n-g-m-c-p_-third-party-create-job-request>
+    </template>
+
+    <!-- If MPRN NOT found -->
+    <template if:true={showEditableJob}>
+        <c-n-g-m-c-p_-third-party-editable-job-request oncheckshortcode={handleShortCodeValidation}  has-existing-address={address} metadata-record={metaDataWrapper} 
+        mprn ={mprn} short-code ={searchCode} oncancelcreatejob={handleCancelJob} thirdpartyfound={thirdpartyfound}  mprn-customer ={mprnCustomer} wrapper-rec={wrapperRec}>
+        </c-n-g-m-c-p_-third-party-editable-job-request>
+    </template>
+</template>

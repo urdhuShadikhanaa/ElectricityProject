@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Contact Details" icon-name="standard:contact">
+        <div class="slds-p-around_medium">
+            <!-- Name -->
+            <lightning-input
+                label="Name"
+                name="name"
+                value={contact.name}
+                maxlength="150"
+                onchange={handleInputChange}
+                required>
+            </lightning-input>
+
+            <!-- Contact Number -->
+            <lightning-input
+                label="Contact Number"
+                name="contactNumber"
+                type="tel"
+                value={contact.contactNumber}
+                maxlength="10"
+                onchange={handleInputChange}
+                required>
+            </lightning-input>
+
+            <!-- Email Address -->
+            <lightning-input
+                label="Email Address"
+                name="email"
+                type="email"
+                value={contact.email}
+                maxlength="254"
+                onchange={handleInputChange}
+                required>
+            </lightning-input>
+
+            <!-- Save Button -->
+            <lightning-button
+                variant="brand"
+                label="Save"
+                onclick={handleSave}
+                class="slds-m-top_medium">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

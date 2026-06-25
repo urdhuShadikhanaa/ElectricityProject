@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Asset / Address" icon-name="standard:asset">
+        <div class="slds-grid slds-wrap component-body">
+            <!-- LEFT: static asset details -->
+            <div class="slds-col slds-size_1-of-2 left-col">
+                <section class="slds-box slds-theme_shade">
+                    <h3 class="slds-text-heading_small">Asset details</h3>
+                    <template if:true={assetData}>
+                        <p><b>MPRN:</b> {assetData.fields.MPRN__c.value}</p>
+                        <p><b>Installation date:</b> {assetData.fields.Installation_Date__c.value}</p>
+                        <p><b>Appointed date:</b> {assetData.fields.Appointed_Date__c.value}</p>
+                        <p><b>Location:</b> {assetData.fields.Location_Description__c.value}</p>
+                        <p><b>Meter Type:</b> {assetData.fields.Meter_Type__c.value}</p>
+                        <p><b>Manufacturer:</b> {assetData.fields.Manufacturer__c.value}</p>
+                    </template>
+                    <template if:false={assetData}>
+                        <p>Loading asset...</p>
+                    </template>
+                </section>
+            </div>
+
+            <!-- RIGHT: editable address form -->
+            <div class="slds-col slds-size_1-of-2 right-col">
+                <section class="slds-box slds-theme_default">
+                    <h3 class="slds-text-heading_small">Address (editable)</h3>
+
+                    <lightning-input name="buildingName" label="Building name / number"
+                                     value={buildingName} onchange={handleInputChange}></lightning-input>
+
+                    <lightning-input name="dependentLocally" label="Dependent locally"
+                                     value={dependentLocally} onchange={handleInputChange}></lightning-input>
+
+                    <lightning-input name="postalTown" label="Postal town"
+                                     value={postalTown} onchange={handleInputChange}></lightning-input>
+
+                    <lightning-input name="postalCode" label="Postal code"
+                                     value={postalCode} onchange={handleInputChange}></lightning-input>
+
+                    <lightning-input name="street" label="Street"
+                                     value={street} onchange={handleInputChange}></lightning-input>
+
+                    <div class="slds-m-top_small slds-text-align_right">
+                        <lightning-button label="Save" variant="brand" onclick={handleSave} disabled={saving}></lightning-button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </lightning-card>
+</template>

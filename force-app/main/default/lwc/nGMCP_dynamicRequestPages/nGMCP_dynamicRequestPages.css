@@ -1,0 +1,404 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+    background: #f5f6f9;
+}
+.custom-dynamic-page-container * {
+    font-family: 'Roboto', sans-serif;
+}
+/* ===== Section header (label + count only) ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-header__left { display: flex; align-items: center; }
+
+/* ===== Table wrapper ===== */
+.dt-wrapper {
+  border: 1px solid var(--slds-g-color-border-base-4, #dddbda);
+  border-radius: 0 0 .25rem .25rem;
+  overflow: hidden;
+}
+.dt-scroll { overflow-x: auto; position: relative; }
+
+/* ===== Rows (CSS Grid) ===== */
+.dt-row {
+  display: grid; /* grid-template-columns is applied inline via rl.gridTemplate */
+  align-items: center;
+  min-height: 38px; /* compact density */
+  margin: 0 1rem;
+}
+.dt-row--header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  border-bottom: 1px solid #DADADA;
+}
+.dt-row--data {
+  border-bottom: 1px solid #DADADA;
+}
+.dt-row.dt-row--data:last-of-type {
+    border-bottom: 0;
+}
+.dt-row--even { background: #fff; }
+.dt-row--odd  { background: #fff; }
+.dt-row--data:hover { background: none; }
+
+/* ===== Empty-state row under header ===== */
+.dt-row--empty {
+  background: #fff;
+    border-bottom: 1px solid #DADADA;
+    line-height: 21px;
+    min-height: 38px;
+    align-content: center;
+}
+.dt-cell--empty-message {
+  color: var(--slds-g-color-text-weak, #878787);
+}
+
+/* ===== Cells ===== */
+.dt-cell {
+    padding: 0.25rem 1rem;
+  min-width: 0;
+    font-size: 14px;
+    line-height: 21px;
+    min-height: 38px;
+}
+.dt-cell.dt-cell--empty {
+    padding: 0.25rem 2rem;
+}
+.dt-row .dt-cell:last-child { border-right: none; }
+
+.dt-cell--header {
+  font-weight: 600;
+  color: #1B1D20;
+  display: flex;
+  align-items: center;
+}
+.dt-cell--sortable { cursor: pointer; }
+
+/* Link styling — dotted underline like datatable */
+.dt-cell--link .dt-link {
+  color: var(--sds-c-link-text-color, #0176D3);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+.dt-cell--link .dt-link:hover,
+.dt-cell--link .dt-link:focus {
+  text-decoration-style: solid;
+}
+
+/* Truncation */
+.slds-truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*.section-header {
+    background: #00857A;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}*/
+/* Error message */
+.ngmcp-text-error {
+    color: #c23934;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+/************** Custom Modal Styles -Dynamic Request Pages **************/
+.custom-dynamic-page-container .custom-modal-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: #00857A;
+    text-align: center;
+}
+.custom-dynamic-page-container .custom-modal-header {
+    border: none;
+	background-color: #fff;
+}
+.custom-dynamic-page-container .custom-modal-footer, 
+.custom-dynamic-page-container .custom-modal-header {
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+}
+.custom-dynamic-page-container .custom-modal-footer,
+.custom-dynamic-page-container .custom-modal-content-container {
+	background-color: #fff;
+}
+.custom-dynamic-page-container .custom-modal-content {	
+    color: #1B1D20;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: middle;
+}
+.custom-dynamic-page-container .custom-modal-content-heading {
+    font-size: 13px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
+.custom-dynamic-page-container .custom-modal-content-container {
+    display: flex;
+    flex-direction: column; 
+}
+.custom-dynamic-page-container .custom-slds-modal-container {
+    max-width: 95vw;
+    width: 35%;
+}
+.custom-text-content-center {
+    display: flex;
+    justify-content: center;
+}
+.custom-slds-modal-containerforquotaion {  
+    max-width: 70%; /* Allow modal to grow but not exceed viewport */
+    width: auto; /* Let width adjust based on content */
+    min-width: 30rem; /* Keep a reasonable minimum */
+}
+
+.slds-modal__content {
+    overflow-x: auto; /* Enable horizontal scroll if content is too wide */
+    word-break: break-word; /* Break long words */
+    white-space: normal; /* Wrap text */
+}
+
+.custom-dynamic-page-container .custom-completion-details-container .custom-modal-content-container {
+    max-width: 500px;
+    overflow: auto;
+}
+.custom-dynamic-page-container .custom-completion-title,
+.custom-completion-header-title {
+    color: #00857A;
+    background-color: transparent;
+}
+.custom-dynamic-page-container .custom-modal-content-container .slds-table--bordered, 
+.custom-dynamic-page-container .custom-modal-content-container .slds-table_bordered {
+    border-top: 0;
+}
+.custom-dynamic-page-container .custom-completion-details-container.custom-slds-modal-container {
+    max-width: 95vw;
+    width: 70%;
+}
+.custom-dynamic-page-container .custom-completion-details-container.custom-slds-modal-container .custom-modal-content-container {
+    max-width: none;
+}
+.custom-dynamic-page-container .custom-slds-modal-containerforquotaion .custom-modal-title.custom-quotation-title {
+    color: #00857A;
+}
+
+/*************************. Custom Styles - Upload Box. ****************************/
+
+.upload-box {
+    border: 2px dashed #DADADA;
+    border-radius: 4px;
+    background-color: #fafafa;
+    text-align: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #555;
+    width: 300px;
+    min-height: 15vh;         /* wide enough */
+}
+.upload-box.drag-over {
+  background-color: #f0f8f8;
+  border-color: #00857A;
+}
+
+.browse-text {
+  color: #00857A;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0.25rem 0;
+    font-family: 'Roboto', sans-serif;
+}
+.browse-text:hover {
+    text-decoration: none;
+}
+
+.file-input { display: none; }
+
+.file-preview-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.file-preview-item {
+  border: 1px solid #DADADA;
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fafafa;
+    min-width: 200px;
+    justify-content: center;
+}
+.file-icon { 
+    font-size: 28px; 
+}
+.thumbnail {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.file-info { 
+    display: flex; 
+    flex-direction: column;
+}
+.file-name { 
+    font-weight: 600; 
+    max-width: 150px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.file-size { 
+    font-size: 14px; 
+    color: #555; 
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #c00;
+    font-size: 13px;
+    cursor: pointer;
+    display: block;
+    align-self: self-start;
+}
+
+/* Full-page overlay to center the spinner */
+.custom-spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6); /* Optional overlay */
+  z-index: 9999;
+}
+
+/* Dotted spinner container */
+.custom-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+/* Individual dots */
+.custom-spinner span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #0070d2; /* Salesforce blue */
+  border-radius: 50%;
+  animation: dot-spin 1.2s linear infinite;
+}
+
+/* Position dots in a circle */
+.custom-spinner span:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, 0); animation-delay: 0s; }
+.custom-spinner span:nth-child(2) { top: 14%; left: 85%; transform: translate(-50%, -50%); animation-delay: 0.15s; }
+.custom-spinner span:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); animation-delay: 0.3s; }
+.custom-spinner span:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); animation-delay: 0.45s; }
+.custom-spinner span:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); animation-delay: 0.6s; }
+.custom-spinner span:nth-child(6) { top: 85%; left: 14%; transform: translate(-50%, -50%); animation-delay: 0.75s; }
+.custom-spinner span:nth-child(7) { top: 50%; left: 0%; transform: translate(0, -50%); animation-delay: 0.9s; }
+.custom-spinner span:nth-child(8) { top: 14%; left: 14%; transform: translate(-50%, -50%); animation-delay: 1.05s; }
+
+/* Animation for pulsing effect */
+@keyframes dot-spin {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column {
+    background: #fff;
+    margin: 1rem 0;
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    box-shadow: 3px 1px 3px 2px rgba(0, 0, 0, 0.1);
+}
+/* Job Details — CSS-only Dev UI match (overrides global main.css within this component) */
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-row,
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-row.with-border {
+    border-bottom: 1px solid #DADADA;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #fff;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-row .mprn-detail-label {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-bottom: none;
+    box-shadow: none;
+    text-decoration: none;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-row .mprn-detail-label span.slds-form-element__label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    color: #101828;
+    overflow-wrap: break-word;
+    font-family: 'Roboto', sans-serif;
+    width: 48%;
+    text-align: left;
+    flex-grow: 0;
+    flex: none;
+    display: inline-flex;
+    max-width: none;
+    border: none;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-row .mprn-detail-label .slds-form-element__control {
+    color: #475467;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    overflow-wrap: break-word;
+    width: 52%;
+    text-align: right;
+    display: inline-flex;
+    padding: 0;
+    border: none;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box .mprn-detail-row .mprn-detail-label .slds-form-element {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 0;
+    border: none;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box div.mprn-detail-row:last-of-type,
+.custom-dynamic-page-container .custom-dynamic-content-section .details-column .details-box div.mprn-detail-row:nth-last-child(2) {
+    border-bottom: 0;
+}

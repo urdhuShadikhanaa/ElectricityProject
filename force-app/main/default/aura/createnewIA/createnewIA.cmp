@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride" access="global" >
+    <aura:handler  name="init" value="{!this}" action="{!c.init}" input="{!this.slds-form-element}"/>
+	<div class ="form" style=" column-count: 1; background-color:white;  width: 800px;">
+     
+    <lightning:flow  aura:id="flowData"/>  </div>
+</aura:component>

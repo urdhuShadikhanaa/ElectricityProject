@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_UWRHowdoyouraiseanurgentworkrequestonaNonNGMMetercompressed" {
+    var NGMCP_UWRHowdoyouraiseanurgentworkrequestonaNonNGMMetercompressed: string;
+    export default NGMCP_UWRHowdoyouraiseanurgentworkrequestonaNonNGMMetercompressed;
+}

@@ -1,0 +1,72 @@
+<template>
+    <div class="section">
+        <h2>Select Request Type</h2>
+        <template for:each={uiConfig.requestTypes} for:item="request">
+            <div key={request.label} class="card">
+                <input type="radio" name="requestType" value={request.label} onclick={handleRequestSelect}>
+                <label>{request.label}</label>
+                <p>{request.helpText}</p>
+            </div>
+        </template>
+    </div>
+
+    <template if:true={selectedRequest}>
+        <div class="section">
+            <h2>Select Job Type</h2>
+            <template for:each={selectedRequest.jobTypes} for:item="job">
+                <div key={job.label} class="card">
+                    <input type="radio" name="jobType" value={job.label} onclick={handleJobSelect}>
+                    <label>{job.label}</label>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <template if:true={selectedJob}>
+        <div class="section">
+            <h2>Select Sub Type</h2>
+            <template for:each={selectedRequest.subTypes} for:item="sub">
+                <div key={sub.label} class="card">
+                    <input type="radio" name="subType" value={sub.label} onclick={handleSubTypeSelect}>
+                    <label>{sub.label}</label>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <template if:true={selectedSubType}>
+        <div class="section">
+            <h2>{selectedSubType.label}</h2>
+            <template for:each={selectedSubType.questions} for:item="question">
+                <div key={question.label} class="question">
+                    <label>{question.label}</label>
+                    
+                    <!-- Dropdown -->
+                    <template if:true={question.typeDropdown}>
+                        <select onchange={handleAnswerChange} data-label={question.label}>
+                            <template for:each={question.options} for:item="opt">
+                                <option key={opt}>{opt}</option>
+                            </template>
+                        </select>
+                    </template>
+
+                    <!-- Number Input -->
+                    <template if:true={question.typeNumber}>
+                        <input type="number" maxlength={question.maxLength} value={question.default} onchange={handleAnswerChange} data-label={question.label}> {question.unit}
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <template if:true={meterSuggestions.length}>
+        <div class="section">
+            <h3>Suggested Meter Sizes</h3>
+            <select>
+                <template for:each={meterSuggestions} for:item="option">
+                    <option key={option}>{option}</option>
+                </template>
+            </select>
+        </div>
+    </template>
+</template>

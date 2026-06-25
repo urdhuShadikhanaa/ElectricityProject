@@ -1,0 +1,700 @@
+<template>
+  <div class="enquiry-details-outer-container">
+      <div class="main-wrapper">
+        <!-- Job Required Section -->
+        
+<template if:true={createrequestFlag}>
+    <div class="section-card">
+        <h3 class="custom-page-subheader-title">Select Query Type</h3>
+        <div class="card-group">
+            <template for:each={mainQueryOptions} for:item="option">
+                <label key={option.value} class="card-radio">
+                    <div class="radio-header">
+                        <input type="radio" name="mainQuery" value={option.value} checked={option.isChecked}
+                            onchange={handleMainQueryChange} />
+                        <label>{option.label}</label>
+                    </div>
+                    <p class="radio-desc">{option.description}</p>
+                </label>
+            </template>
+        </div>
+    </div>
+</template>
+<template if:true={isLoading}>
+      <div class="custom-spinner-container">
+        <div class="custom-spinner">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </template>
+
+        <!-- Data Query Section -->
+        <template if:true={showDateQuerySection}>
+          <div class="section-card">
+            <h3 class="custom-page-subheader-title">Enquiry Reason Code</h3>
+            <div class="card-group">
+              <template for:each={dateQueryReasons} for:item="reason">
+                <label key={reason.value} class="card-radio">
+                <div class="radio-header">
+                    <input type="radio" name="enquiryReason" value={reason.value} checked={reason.isChecked} onchange={handleReasonChange}/>   
+                    <label>{reason.label}</label>
+                  </div>
+                  <p class="radio-desc">{reason.description}</p>
+                  <template if:true={reason.isSelected}>
+                    <div class="recommend-tag">Selected</div>
+                  </template>
+
+                </label>
+              </template>
+
+              
+<!-- 🔻 red inline error (toggle by JS) -->
+<div class="error-text" data-error-for="enquiryReason" hidden>
+  Please select an Enquiry Reason Code.
+</div>
+
+            </div>
+          </div>
+        </template>
+
+        <!-- Asset Data Enquiry Category -->
+        <template if:true={showAssetDataOptions}>
+          <div class="section-card">
+            <h3 class="custom-page-subheader-title">Enquiry Category</h3>
+            <div class="card-group">
+              <template for:each={assetDataReasons} for:item="assetReason">
+                <label key={assetReason.value} class="card-radio">
+                <div class="radio-header">
+                    <input type="radio" name="assetReason" value={assetReason.value} checked={assetReason.isChecked} onchange={handleAssetReasonChange}/>    
+                    <label>{assetReason.label}</label>
+                  </div>
+                  <p class="radio-desc">{assetReason.description}</p>
+                  <template if:true={assetReason.isSelected}>
+                    <div class="recommend-tag">Selected</div>
+                  </template>
+                </label>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <!-- Technical Query Section -->
+        <template if:true={showTechnicalQuerySection}>
+          <div class="section-card">
+            <h3 class="custom-page-subheader-title">Select Asset Type</h3>
+            <div class="card-group">
+              <template for:each={assetTypeOptions} for:item="type">
+                <label key={type.value} class="card-radio">
+                  <!--div class="custom-radio-card-block">
+                      <div class="custom-card-radio-btn">
+                        <input type="radio" name="assetType" value={type.value} checked={type.isChecked} onchange={handleAssetTypeChange}/>        
+                      </div>
+                      <div class="custom-card-text-block">
+                        <span class="card-title">{type.label}</span>
+                      </div>
+                      <p class="radio-desc">{type.description}</p>
+                  </div-->
+                  <div class="radio-header">
+                    <input type="radio" name="assetType" value={type.value} checked={type.isChecked} onchange={handleAssetTypeChange}/>    
+                    <label>{type.label}</label>
+                  </div>
+                  <p class="radio-desc">{type.description}</p>
+                   <template if:true={type.isSelected}>
+                      <div class="recommend-tag">Selected</div>
+                    </template>
+                </label>
+              </template>
+
+              
+<!-- 🔻 red inline error (toggle by JS) -->
+<div class="error-text" data-error-for="assetType" hidden>
+  Please select an Asset Type.
+</div>
+
+            </div>
+          </div>
+
+          <!-- Meter Issues -->
+          <template if:true={isMeterSelected}>
+            <div class="section-card">
+              <h3 class="custom-page-subheader-title">Meter Issue Type</h3>
+              <div class="card-group">
+                <template for:each={meterIssues} for:item="issue">
+                  <label key={issue.value} class="card-radio">
+                    <!--div class="custom-radio-card-block">
+                      <div class="custom-card-radio-btn">
+                        <input type="radio" name="meterIssue" value={issue.value} onchange={handleAssetIssueChange}/>       
+                      </div>
+                      <div class="custom-card-text-block">
+                        <span class="card-title">{issue.label}</span>
+                      </div>
+                      <p class="radio-desc">{issue.description}</p>
+                  </div-->
+                   <div class="radio-header">
+                    <input type="radio" name="meterIssue" value={issue.value} onchange={handleAssetIssueChange}/>    
+                    <label>{issue.label}</label>
+                  </div>
+                  <p class="radio-desc">{issue.description}</p>
+                  <template if:true={issue.isSelected}>
+                    <div class="recommend-tag">Selected</div>
+                  </template>
+                  </label>
+                </template>
+              </div>
+            </div>
+          </template>
+
+          <!-- Converter Issues -->
+          <template if:true={isConverterSelected}>
+            <div class="section-card">
+              <h3 class="custom-page-subheader-title">Converter Issue Type</h3>
+              <div class="card-group">
+                <template for:each={converterIssues} for:item="issue">
+                  <label key={issue.value} class="card-radio">
+                    <!--div class="custom-radio-card-block">
+                      <div class="custom-card-radio-btn">
+                        <input type="radio" name="converterIssue" value={issue.value} onchange={handleAssetIssueChange}/>     
+                      </div>
+                      <div class="custom-card-text-block">
+                        <span class="card-title">{issue.label}</span>
+                      </div>
+                      <p class="radio-desc">{issue.description}</p>
+                   </div-->
+                   <div class="radio-header">
+                    <input type="radio" name="converterIssue" value={issue.value} onchange={handleAssetIssueChange}/>    
+                    <label>{issue.label}</label>
+                  </div>
+                  <p class="radio-desc">{issue.description}</p>
+                   <template if:true={issue.isSelected}>
+                    <div class="recommend-tag">Selected</div>
+                  </template>
+                  </label>
+                </template>
+              </div>
+            </div>
+          </template>
+        </template>
+
+        <!-- Form Section -->
+        <template if:true={showEnquiryForm}>
+          <div class="section section-card custom-additional-info-section">
+            
+<h3 class="custom-page-subheader-title selected-subtype-suggestion" hidden={hideInstructionTitle}>
+  Sample Enquiry Instruction
+</h3>
+
+            <p class="selected-subtype-suggestion custom-selected-entry-suggestion">{instructionText}</p>
+
+           
+
+            <!-- Dynamic Fields -->
+            <template for:each={dynamicFields} for:item="field">
+              <div class="form-group custom-question-section" key={field.label}>
+    <label>{field.label}  <span class="required">*</span> </label>
+               
+    <!-- INPUT AREA -->
+    
+<!-- INPUT AREA -->
+
+
+<!-- INPUT AREA -->
+
+<!-- ===== Missing Removal → Removal Date ===== -->
+<template if:true={ismrv}>
+  <template if:true={field.isremovaldate}>
+    <c-ngmcp-appoint-demolition
+      key={removalKey}                       
+      label="Removal Date"
+      name="removalDate"
+      value={formData.removalDateIso}
+      mindate={computedMinDateForRemoval}
+      allowpast
+      ondateselected={handleMissingDateSelected}
+      class="compact-input">
+    </c-ngmcp-appoint-demolition>
+  </template>
+
+  <template if:false={field.isremovaldate}>
+    <!-- Other MRV fields remain plain inputs -->
+    <input
+      type="text"
+      class="text-input"
+      data-field={field.label}
+      data-required="true"
+      placeholder={field.placeholder}
+      oninput={handlePlainTyping}  
+      onchange={handleInputChange} />
+  </template>
+</template>
+
+<!-- ===== Missing Exchange → Exchange Date ===== -->
+<template if:true={isdum1}>
+  <template if:true={field.isexchangedate}>
+    <c-ngmcp-appoint-demolition
+      key={exchangeKey}                       
+      label="Exchange Date"
+      name="exchangeDate"
+      value={formData.exchangeDateIso}
+      mindate={computedMinDateForExchange}
+      allowpast
+      ondateselected={handleMissingDateSelected}
+      class="compact-input">
+    </c-ngmcp-appoint-demolition>
+  </template>
+
+  <template if:false={field.isexchangedate}>
+    <input
+      type="text"
+      class="text-input"
+      data-field={field.label}
+      data-required="true"
+      placeholder={field.placeholder}
+      oninput={handlePlainTyping}
+      onchange={handleInputChange} />
+  </template>
+</template>
+
+    
+<!-- ===== DUM5 (Meter Status Enquiry) → Customer Status Date ===== -->
+<template if:true={isdum5}>
+  <template if:true={field.iscuststatusdate}>
+    <c-ngmcp-appoint-demolition
+      key={dum5Key}
+      label="Customer Status Date"
+      name="customerStatusDate"
+      value={formData.custStatusDateIso}
+      mindate={computedMinDateForDum5}
+      allowpast
+      ondateselected={handleDum5DateSelected}
+      class="compact-input">
+    </c-ngmcp-appoint-demolition>
+  </template>
+
+  <template if:false={field.iscuststatusdate}>
+    <input
+      type="text"
+      class="text-input"
+      data-field={field.label}
+      data-required="true"
+      placeholder={field.placeholder}
+      oninput={handlePlainTyping}
+      onchange={handleInputChange} />
+  </template>
+</template>
+
+<!-- ===== REP (Replicate MPRN Enquiry) → Meter Removal Date ===== -->
+<template if:true={isrep}>
+  <template if:true={field.ismeterremovaldate}>
+    <c-ngmcp-appoint-demolition
+      key={repKey}
+      label="Meter Removal Date"
+      name="meterRemovalDate"
+      value={formData.meterRemovalDateIso}
+      mindate={computedMinDateForRep}
+      allowpast
+      ondateselected={handleRepDateSelected}
+      class="compact-input">
+    </c-ngmcp-appoint-demolition>
+  </template>
+
+  <template if:false={field.ismeterremovaldate}>
+    <input
+      type="text"
+      class="text-input"
+      data-field={field.label}
+      data-required="true"
+      placeholder={field.placeholder}
+      oninput={handlePlainTyping}
+      onchange={handleInputChange} />
+  </template>
+</template>
+
+<!-- ===== FOU (Found Meter Enquiry) → Installation Date ===== -->
+<template if:true={isfou}>
+  <template if:true={field.isinstallationdate}>
+    <c-ngmcp-appoint-demolition
+      key={fouKey}
+      label="Installation Date"
+      name="installationDate"
+      value={formData.installationDateIso}
+      mindate={computedMinDateForFou}
+      allowpast
+      ondateselected={handleFouDateSelected}
+      class="compact-input">
+    </c-ngmcp-appoint-demolition>
+  </template>
+
+  <template if:false={field.isinstallationdate}>
+    <input
+      type="text"
+      class="text-input"
+      data-field={field.label}
+      data-required="true"
+      placeholder={field.placeholder}
+      oninput={handlePlainTyping}
+      onchange={handleInputChange} />
+  </template>
+</template>
+
+
+<!-- ===== All other cases ===== -->
+<template if:false={ismrv}>
+  <template if:false={isdum1}>
+    <template if:false={isdum5}>
+      <template if:false={isrep}>
+        <template if:false={isfou}>
+    <input
+      type="text"
+      class="text-input"
+      data-field={field.label}
+      data-required="true"
+      placeholder={field.placeholder}
+      oninput={handlePlainTyping}
+      onchange={handleInputChange} />
+  </template>
+</template>
+</template>
+</template>
+</template>
+
+<!-- Error placeholder stays (works everywhere) -->
+    <div class="error-text" data-error-for={field.label} hidden>
+      This field is required.
+    </div>
+
+              </div>
+            </template>
+
+          
+          
+<!-- Additional Information -->
+<div class="form-group custom-question-section">
+  <label class="custom-additional-info-label">Additional Information</label>
+  <div class="custom-additional-info-input">
+    <textarea
+      rows="4"
+      data-field="additionalInfo"
+      oninput={handleInputChange}
+      maxlength={computedAdditionalInfoMax}
+    >{formData.additionalInfo}</textarea>
+
+    <!-- Optional: live remaining counter (visible only when capped) -->
+    <p class="char-limit-note">
+      {additionalInfoRemainingLabel}
+    </p>
+
+    <!-- Inline error line (hide/show from JS) -->
+    <div class="error-text" data-error-for="additionalInfo" hidden>
+      Maximum 1000 characters allowed.
+    </div>
+  </div>
+</div>
+
+
+              <!-- Additional Questions for Technical Query -->
+            <template if:true={showTechnicalQuerySection}>
+              <div class="section-card">
+
+        <!-- Question 1 -->
+    <div class="custom-question-section">
+              <label class="question-label">Do you want the engineer to visit site on a specific date after 5 working days? <span class="required">*</span></label>
+        <div class="horizontal-radio">
+          <label>
+            <input type="radio" name="visitSite" value="Yes" onchange={handleInputChange}/> Yes
+          </label>
+          <label>
+            <input type="radio" name="visitSite" value="No" onchange={handleInputChange}/> No
+          </label>
+        </div>
+
+        
+<div class="error-text" data-error-for="visitSite" hidden>
+        This field is required.
+      </div>
+
+    </div>
+
+    <!-- Appointment fields -->
+<template if:true={showAppointmentFields}>
+<div class="custom-datepicker-input-section">
+  <!-- Appointment Date (Holiday-aware date picker component) -->
+         <div class="appointment-input custom-datepicker-component-section" > 
+         <!--<label>Select Appointment Date</label>-->
+
+        
+         
+            <!-- Child LWC -->
+            <c-ngmcp-date-picker-with-holidays required = "true" 
+              ondateselected={handleDateSelected}> 
+            </c-ngmcp-date-picker-with-holidays>
+
+            <!-- ▼ Required asterisk shown only when this field is mandatory -->
+      <template if:true={showApptDateAsterisk}>
+        <span class="req req-inline" data-ref="appointmentDateAsterisk">*</span>
+      </template>
+
+
+          </div>
+
+          <!-- ▼ Inline error for Appointment Date (mirrors Timeslot placement) -->
+    
+<div class="error-text" data-error-for="appointmentDate" hidden>
+  This field is required.
+</div>
+
+
+         <div class="appointment-slot appointment-input custom-timeslot-section">
+            <label class="slds-form-element__label">Select Appointment Timeslot <span class="req">*</span></label>
+            <select class="text-input" data-field="appointmentTimeslot" onchange={handleAppointmentTimeslotChange}>
+                <option value="">--Select--</option>
+                <option value="08:00-13:00">08:00-13:00</option>
+                <option value="12:00-20:00">12:00-20:00 </option>
+                <option value="08:00-17:00">08:00-17:00</option>
+            </select>
+
+            
+<div class="error-text" data-error-for="appointmentTimeslot" hidden>
+    This field is required.
+  </div>
+
+        </div>
+    </div>
+    </template>
+
+                <!-- Question 4 -->
+                <div class="custom-question-section">
+                  <label class="question-label">Please advise if site requires Risk Assessments and Method Statements ahead of the site visit <span class="required">*</span></label>
+                  <div class="horizontal-radio">
+                    <label>
+                      <input type="radio" name="riskAssessment" value="Yes" onchange={handleInputChange}/> Yes
+                    </label>
+                    <label>
+                      <input type="radio" name="riskAssessment" value="No" onchange={handleInputChange}/> No
+                    </label>
+                  </div>
+
+                  
+<div class="error-text" data-error-for="riskAssessment" hidden>
+        This field is required.
+      </div>
+
+                </div>
+              </div>
+            </template>
+
+          </div>
+        </template>
+<!-- Contact details (on-site) -->
+<template if:true={showContactDetailsSection}>
+            <section class="section-job custom-contact-details-section">
+
+    <h2 class="section-title">Contact details (on-site)</h2>
+              <div class="slds-grid"> 
+                    <!-- Section 1 --> 
+                    <div class="slds-col slds-size_1-of-2">
+
+   <div class="field custom-contact-field-section">
+
+      <!-- Title* -->
+      <lightning-combobox
+        name="title"
+        label="Title"
+        class="custom-lightning-input-element custom-slds-required"
+        placeholder="Choose title"
+        value={contactDetails.title}
+        options={titleOptions}
+        onchange={handleTitleChange}
+        required>
+      </lightning-combobox>
+      <template if:true={validationErrors.title}>
+        <div class="error-text">{validationErrors.title}</div>
+      </template>
+                            </div>
+
+                            <div class="field custom-contact-field-section">
+      <!-- Name* -->
+      <lightning-input
+        type="text"
+        name="name"
+        class="custom-lightning-input-element custom-slds-required"
+        label="Name"
+        placeholder="Enter name"
+        value={contactDetails.name}
+        onchange={handleContactInputChange}
+        required>
+      </lightning-input>
+      <template if:true={validationErrors.name}>
+        <div class="error-text">{validationErrors.name}</div>
+      </template>
+                            </div>
+                        </div>
+
+
+                <!-- Section 2 --> 
+                    <div class="slds-col slds-size_1-of-2">
+
+                          <div class="field custom-contact-field-section">
+      <!-- Contact number* -->
+      <lightning-input
+        type="tel"
+        name="contactNumber"
+        label="Contact number"
+        class="custom-lightning-input-element custom-slds-required"
+        placeholder="Enter contact number"
+        value={contactDetails.contactNumber}
+        maxlength="11"
+        onchange={handleContactInputChange}
+        required>
+      </lightning-input>
+      <template if:true={validationErrors.contactNumber}>
+        <div class="error-text">{validationErrors.contactNumber}</div>
+      </template>
+                          </div>
+
+                          <div class="field custom-contact-field-section">
+      <!-- Email (Optional) -->
+      <lightning-input
+        type="email"
+        name="emailAddress"
+        class="custom-lightning-input-element"
+        label="Email Address (Optional)"
+        placeholder="Enter Email Address"
+        value={contactDetails.emailAddress}
+        onchange={handleContactInputChange}>
+      </lightning-input>
+
+                        </div>
+
+    <!-- Upload Photos (Optional): half width -->
+     
+                        <div class="upload-section custom-contact-field-section">
+                          <label class="upload-label">Upload Photos</label>
+
+      <div class="upload-box"
+           ondragover={handleDragOver}
+           ondragleave={handleDragLeave}
+           ondrop={handleFileDrop}>
+        
+          <p>Drag & drop files here</p>
+          <!-- Teal button below the dashed box -->
+            <lightning-button
+              class="browse-text custom-lightning-input-btn"
+              variant="base"
+              label="Select photos from device"
+              onclick={handleBrowseClick}>
+            </lightning-button>
+
+            <!-- Hidden native input -->
+            <input
+              class="file-input slds-hide custom-lightning-input-element"
+              type="file"
+              accept="image/*"
+              multiple
+              onchange={handleFileChange}/>
+                  
+      </div>
+
+      <!-- Error -->
+      <template if:true={fileError}>
+        <div class="error-text">{fileError}</div>
+      </template>
+
+                
+<!-- ✅ New: mandatory message RIGHT BELOW the upload area -->
+    <template if:true={showUploadError}>
+      <div class="slds-form-element__help slds-text-color_error slds-m-top_xx-small">
+        Files are mandatory to submit query
+      </div>
+    </template>
+                
+
+      <!-- File list -->
+       <div class="file-preview-list">
+          <template for:each={uploadedFiles} for:item="file">
+            <div key={file.name} class="file-preview-item">
+              <div class="file-icon" role="img" aria-label="file">📄</div>
+              <div class="file-info">
+                  <span class="file-name">{file.name}</span>
+                  <span class="file-size">{file.sizeDisplay}</span>
+              </div>
+              
+              <button class="delete-btn"
+                      data-name={file.name}
+                      onclick={handleFileDelete}
+                      title="Remove">✕</button>
+            </div>
+          </template>
+        </div>
+                            </div>
+                        </div> 
+              </div>
+  </section>
+</template>
+
+        <section class="section-btn">
+        <div class="consent-box">
+        <!-- <input type="checkbox" name="consent" onchange={handleInputChange} /> -->
+        <input type="checkbox" name="consent" checked={consent} onchange={handleConsentInputChange} />
+        <span class="consent-text"> Please tick here to confirm that consent has been obtained from the named individual
+          for their personal data to be passed to third parties, for the purposes of performing the specified works, by
+          means of a suitable Data Privacy Notice and explicit consent agreement.</span>
+        </div>
+        <template if:true={consentMessageFlag}>
+            <p class="error-text">{consentMessage}</p>
+        </template>
+
+          <template if:true={FileUploadmessageFlag}>
+              <p class="error-text">{FileUploadmessage}</p>
+          </template>
+        <!-- Buttons -->
+         
+            <button
+                  class="btn custom-btn"
+                  onclick={handleSubmit}>Submit Request</button>
+            <button
+                  class="btn custom-btn-base"
+                  onclick={handleCancel}>Cancel</button>
+        
+      </section>  
+      </div>
+  </div>
+  <template if:true={isModal}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container custom-slds-modal-container">
+        <!-- Header -->
+        <header class="custom-modal-header slds-p-around_large">
+          <h2 class="custom-modal-title">{requestHeader}</h2>
+        </header>
+  
+          <!-- Body -->
+          <div class="custom-modal-content-container slds-p-around_large">
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{successMessage} <span
+                class="custom-modal-content-bold">{submittedDate}</span>
+            </div>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{serviceTicketid} <span
+                class="custom-modal-content-bold">{srNumber}</span>
+            </div>
+            <template if:true={engineerVisitMessageFlag}>
+              <div class="custom-modal-content slds-col slds-p-around_xx-small">{engineerVisitMessage}
+              </div>
+            </template>
+            <div class="custom-modal-content slds-col slds-p-around_xx-small">{investigationMessage}
+            </div>
+          </div>
+        <!-- Footer -->
+        <footer class="custom-modal-footer slds-grid slds-grid_align-end slds-p-around_large">
+          <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_large custom-modal-brand-button"
+            disabled={isDisabled} onclick={handleCancelClick}> Ok </button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

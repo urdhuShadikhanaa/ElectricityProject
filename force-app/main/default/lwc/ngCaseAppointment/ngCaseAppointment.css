@@ -1,0 +1,68 @@
+:host {
+	display: block;
+	background: #333;
+	/* dark background */
+	color: #eee;
+	/* light text */
+	padding: 1rem;
+	font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+    width: 315px;
+}
+
+.up-appointment{
+    background-color: #006d6f;
+    width: 315px;
+    /* margin-left: -16px; */
+    height: 32px;
+    /* margin-bottom: 5px; */
+    padding: 30px;
+    margin: -16px;
+}
+.header-title {
+	background: #009688;
+	/* teal header */
+	color: white;
+	padding: 0.75rem;
+	font-size: 1.2rem;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.section {
+	margin-bottom: 2rem;
+}
+
+.section-title {
+	color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: -11px;
+	font-family: Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, -apple-system, sans-serif;
+
+}
+
+table.updates-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 0.5rem;
+	font-size: 12px;
+}
+
+th,
+td {
+	padding: 0.75rem;
+	border-bottom: 1px solid #555;
+	font-size: 12px;
+}
+
+th {
+	/* background: #00796b; */
+	/* darker teal */
+	color: white;
+	text-align: left;
+	font-size: 12px;
+}
+
+tr:nth-child(even) {
+	background: #2c2c2c;
+}

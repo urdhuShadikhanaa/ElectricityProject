@@ -1,0 +1,66 @@
+<template>
+    <div class="custom-outer-container">
+        <div class="custom-inner-container section-header">
+            <h2 class="headertitle">{headerTitle}</h2>
+         </div>
+        <template if:true={isLoading}>
+          <div class="spinner">Loading...</div>
+      </template>
+   
+      <template if:false={isLoading}>
+              <!-- ===== GRID HEADER ===== -->
+              <div class="grid grid-header">
+                  <template for:each={columns} for:item="col">
+                      <div key={col.key} class="grid-cell header-cell">
+                          {col.label}
+                      </div>
+                  </template>
+              </div>
+              <!-- ===== GRID BODY ===== -->
+               <template if:true={hasRows}>
+               <div class="grid grid-body">
+              <template for:each={rows} for:item="row">
+                  <div key={row.recordId} class="grid-row">
+
+                      <template for:each={row.cells} for:item="cell">
+                          <div key={cell.key} class="grid-cell">
+
+                              <!-- LINK CELL -->
+                              <template if:true={cell.isLink}>
+                                  <a
+                                      data-id={cell.recordId}
+                                      onclick={openRecord}>
+                                      {cell.value}
+                                  </a>
+                              </template>
+
+                              <!-- TEXT CELL -->
+                              <template if:false={cell.isLink}>
+                                  <span>
+                                      {cell.value}
+                                  </span>
+                              </template>
+                          </div>
+                      </template>
+                  </div>
+              </template>
+          </div>
+          </template>
+        <!-- ================= EMPTY STATE ================= -->
+        <template if:false={hasRows}>
+            <div class="grid empty">
+                    No records found. 
+            </div>
+        </template>
+        </template>
+     <!-- Pagination -->
+         <div class="pagination">
+                <div class="slds-col">           
+                <button class="page-btn slds-m-horizontal_small" onclick={exportToCSV} disabled={isExportDisabled}>Export</button>
+                </div>
+            <button class="page-btn" onclick={prevPage} disabled={isPrevDisabled}>Prev</button>
+            <span class="page-info">Page {page} of {totalPages}</span>
+            <button class="page-btn" onclick={nextPage} disabled={isNextDisabled}>Next</button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,4 @@
+MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,Building Number,Building Name,Dependant Locality,Street,Postal Town,Postal Code,Manufacturer,Meter Model,Year of manufacture ,Manufacturer serial number,Payment Type,Meter type,Location code,No. of digit,Multiplication factor,Market sector code
+1234,ABC,APPNT,FNDAS,23-05-2026,1234,sfass,dDD,dgee,wr,ABC 123,ACTARIS,241S,1990,143131S,Credit,Turbine,12,12,1,I
+5678,DEF,APPNT,FNDAS,24-05-2026,1234,sfass,dDD,dgee,wr,ABC 124,ACTARIS,A32131,2000,13d,Pre Payment,Turbine,23,3,2,D
+9012,ABC,APPNT,FNDAS,25-05-2026,1234,sfass,dDD,dgee,wr,ABC 125,ACTARIS,MS32,1997,213,Credit,Turbine,34,13,1,D

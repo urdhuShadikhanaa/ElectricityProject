@@ -1,0 +1,351 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.file-list {
+    list-style: none;
+    padding-left: 0;
+    background: #fff;
+}
+ 
+.file-item {
+    margin: 8px 0;
+}
+ 
+.file-item a {
+    color: #0176d3;
+    text-decoration: none;
+    font-weight: 500;
+}
+ 
+.file-item a:hover {
+    text-decoration: underline;
+}
+ 
+.meta {
+    color: #555;
+    font-size: 12px;
+    margin-left: 6px;
+}
+ 
+.no-files {
+    padding: 12px;
+    color: #666;
+}
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f6f9;
+}
+
+/* Layout */
+.custom-outer-container {
+  padding: 15px;
+  background: #f5f7f9;
+  border-radius: 8px;
+  width:100%;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+
+/* Table */
+.table-wrapper {
+  background: #fff;
+  border-radius: 8px;
+  border: none;
+  overflow: auto;
+  max-height: 420px; /* mimic scroll area */
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef0f2;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background: #f9fbfc;
+  z-index: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.th-btn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: #f7fbfc;
+}
+
+
+/* Row action button */
+.row-action {
+  border: 1px solid #cfd6de;
+  background: #fff;
+  border-radius: 4px;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+}
+.row-action:hover {
+  background: #f1f5f9;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.page-btn {
+    background-color: #00857A;
+    color: #fff;
+    border: 2px solid #00857A;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 7px 15px;
+}
+.page-btn:hover {
+    background-color: #fff;
+    color: #00857A;
+}
+.page-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.page-info {
+  color: #666;
+}
+
+.section-header {
+    background: #00857A;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.headertitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #fff;
+}
+
+
+/* ------------------------------ */
+/* Div-based grid (alternative to table) */
+/* ------------------------------ */
+.grid {
+  /*display: grid;*/
+  /* 9 columns: match header order */
+  /*grid-template-columns: multiple columns */
+  row-gap: 0;
+  border: 1px solid #e3e5e8;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 420px;
+  background: #fff;
+}
+
+.grid-header {
+  position: sticky;
+  top: 0;
+  background: #f9fbfc;
+  border-bottom: 1px solid #eef0f2;
+  z-index: 1;
+}
+
+.grid-row {
+  display: contents; /* each cell participates in parent grid columns */
+  background: #fff;
+}
+
+.grid-cell {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef0f2;
+  font-size: 14px;
+  align-self: center;
+}
+
+.grid .th-btn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.grid .empty {
+  background: #fff;
+}
+
+.actions-col {
+  text-align: center;
+}
+
+/* Responsive: stack rows as cards on mobile */
+@media (max-width: 720px) {
+  .grid {
+    display: block; /* switch to stacked cards */
+  }
+  .grid-header { display: none; }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    border-bottom: 1px solid #eef0f2;
+    padding: 8px;
+  }
+  .grid-cell {
+    display: flex;
+    justify-content: space-between;
+  }
+  .actions-col {
+    justify-content: flex-end;
+  }
+}
+
+/* Container that scrolls */
+.grid {
+  /* IMPORTANT: don't make the parent a grid */
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 420px;
+  background: none;
+}
+
+/* Use the SAME template for header and rows */
+/*.grid-header,
+.grid-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: multiple columns */
+/*}*/
+
+/* Sticky header stays above rows */
+.grid-header {
+  position: sticky;
+    top: 0;
+    background: #00857A;
+    border-bottom: 1px solid #DADADA;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.grid-cell {
+  padding: 10px;
+  border-right: 1px solid #DADADA;
+  font-size: 14px;
+  align-self: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+/* Header cell look */
+.grid-header .grid-cell {
+  font-weight: 600;
+  color: #fff;
+  padding: 0 5px;
+  text-align: center;
+}
+
+.th-btn {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+/* Row hover */
+.grid-row:hover .grid-cell {
+  background: none;
+    cursor: unset;
+}
+
+/* Links in rows */
+.grid-row .grid-cell a {
+  color: #004C9D;
+}
+
+/* Actions column */
+.actions-col {
+  text-align: center;
+}
+.row-action {
+  border: 1px solid #cfd6de;
+  background: #fff;
+  border-radius: 4px;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+}
+.row-action:hover {
+  background: #f1f5f9;
+}
+
+/* Status colors */
+.status-completed {
+  color: #0c7d35;
+  font-weight: 600;
+}
+.status-inprogress {
+  color: #354f9d;
+  font-weight: 600;
+}
+.status-default {
+  color: #555;
+}
+
+/* Empty row spans all columns */
+.grid .empty .grid-cell {
+  grid-column: 1 / -1;
+}
+
+/* Responsive: stack rows on mobile */
+@media (max-width: 720px) {
+  .grid-header { display: none; } /* hide sticky header on small screens */
+  .grid-row {
+    grid-template-columns: 1fr; /* stack cells */
+    gap: 6px;
+    border-bottom: 1px solid #eef0f2;
+    padding: 8px;
+  }
+  .grid-cell {
+    display: flex;
+    justify-content: space-between;
+  }
+  .actions-col {
+    justify-content: flex-end;
+  }
+}

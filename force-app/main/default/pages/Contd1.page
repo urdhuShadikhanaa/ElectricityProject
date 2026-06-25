@@ -1,0 +1,81 @@
+<apex:page lightningStylesheets="true" standardController="MP10__c" 
+   tabstyle="MP10__c" sidebar="false">
+
+   <apex:form > 
+   <apex:pageBlock title=""  >
+   <apex:pageMessages />
+   <apex:pageBlockButtons >
+      <apex:commandButton value="Save" action="{!save}"/>
+      
+   </apex:pageBlockButtons>
+  <apex:pageBlockTable value="{!MP10__c}" var="a" cellPadding="4"  rows="1" >
+      <apex:column >
+      <apex:inputField value="{!a.TopicB27__c}"/>
+     
+      </apex:column>
+    <apex:column >
+         <apex:inputField value="{!a.CommentB27__c}"/>
+      </apex:column>
+     <apex:column >
+         <apex:inputField value="{!a.Approver_CommentsB27__c}"/>
+     </apex:column>
+       <apex:column >
+         <apex:inputField value="{!a.Cat_B27__c}"/>
+        </apex:column>
+      <apex:column >
+         <apex:inputField value="{!a.Designer_ResponseB27__c}"/>
+       </apex:column>
+       <apex:column >
+         <apex:inputField value="{!a.Approver_Assessment_and_statusB27__c}"/>
+      </apex:column>
+      <apex:column width="100%" rendered="true"/>
+   </apex:pageBlockTable>
+ <apex:pageBlockTable value="{!MP10__c}" var="a" cellPadding="4"  rows="1" >
+     <apex:column >
+      <apex:inputField value="{!a.TopicB28__c}"/>
+     
+      </apex:column>
+        <apex:column >
+         <apex:inputField value="{!a.CommentB28__c}"/>
+      </apex:column>
+           <apex:column >
+         <apex:inputField value="{!a.Approver_CommentsB28__c}"/>
+     </apex:column>
+         <apex:column >
+         <apex:inputField value="{!a.Cat_B28__c}"/>
+        </apex:column>
+           <apex:column >
+         <apex:inputField value="{!a.Designer_ResponseB28__c}"/>
+       </apex:column>
+         <apex:column >
+         <apex:inputField value="{!a.Approver_Assessment_and_statusB28__c}"/>
+      </apex:column>
+       <apex:column width="100%" rendered="true"/>
+   </apex:pageBlockTable>
+    <apex:pageBlockTable value="{!MP10__c}" var="a" cellPadding="4"  rows="1" >
+       <apex:column >
+      <apex:inputField value="{!a.TopicB29__c}"/>
+     
+      </apex:column>
+       <apex:column >
+         <apex:inputField value="{!a.CommentB29__c}"/>
+      </apex:column>
+        <apex:column >
+         <apex:inputField value="{!a.Approver_CommentsB29__c}"/>
+     </apex:column>
+        <apex:column >
+         <apex:inputField value="{!a.Cat_B29__c}"/>
+        </apex:column>
+       <apex:column >
+         <apex:inputField value="{!a.Designer_ResponseB29__c}"/>
+       </apex:column>
+         <apex:column >
+         <apex:inputField value="{!a.Approver_Assessment_and_statusB29__c}"/>
+      </apex:column>
+     <apex:column width="100%" rendered="true"/>  
+   </apex:pageBlockTable>
+ 
+  
+   </apex:pageBlock>
+   </apex:form>
+</apex:page>

@@ -1,0 +1,27 @@
+<template>
+    <div class ="container">
+        <div class="box1">
+            <h2>UPDATE & APPOINTMENTS</h2>
+        </div>
+        <div class ="box middle-box">
+            <h3>LATEST UPDATES</h3>
+            <template for:each={latestUpdates} for:item="update">
+                <div key={update.id} class ="item">
+                  <p><strong>Case Name: {update.CRM_Amalgam_subject__c}</strong></p>
+                  <p><strong>Status: {update.Status}</strong></p>
+                  <p><strong>Booking Time: {update.Automation_Date_Time__c}</strong></p>
+                </div>
+            </template>
+        </div>
+        <div class ="box bottom-box">
+            <h3>UPCOMING APPOINTMENTS </h3>
+            <template for:each={appointments} for:item="appt">
+                <div key={appt.id} class ="item">
+                  <p><strong>Case Name: {update.CRM_Amalgam_subject__c}</strong></p>
+                  <p><strong>Site: {update.CRM_House_Name_Number_Site_Name__c}</strong></p>
+                  <p><strong>Time: {update.Automation_Date_Time__c}</strong></p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

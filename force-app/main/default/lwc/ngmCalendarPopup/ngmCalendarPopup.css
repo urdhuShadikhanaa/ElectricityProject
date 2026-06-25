@@ -1,0 +1,29 @@
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 1rem;
+}
+
+.normal-day {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.holiday {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    cursor: not-allowed;
+}
+
+.weekend {
+    background: #e0e0e0;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: not-allowed;
+}

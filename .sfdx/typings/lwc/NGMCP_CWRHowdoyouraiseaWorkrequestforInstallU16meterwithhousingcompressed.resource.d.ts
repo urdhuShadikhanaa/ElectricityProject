@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_CWRHowdoyouraiseaWorkrequestforInstallU16meterwithhousingcompressed" {
+    var NGMCP_CWRHowdoyouraiseaWorkrequestforInstallU16meterwithhousingcompressed: string;
+    export default NGMCP_CWRHowdoyouraiseaWorkrequestforInstallU16meterwithhousingcompressed;
+}

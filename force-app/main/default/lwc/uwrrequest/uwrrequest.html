@@ -1,0 +1,52 @@
+<template>
+    <div class="uwr-appointment-outer-container">
+        <lightning-card class="compact-card custom-lightning-card-block">
+            <div class="slds-p-horizontal_small slds-p-vertical_x-small">
+                <!-- Status Selector (Decorator-style toggle) -->
+                <!-- <div class="status-toggle slds-m-bottom_small" role="group" aria-label="Select status">
+                    <div class="slds-button-group">
+                        <lightning-button
+                            label="Commercial"
+                            variant={commercialBtnVariant}
+                            onclick={setCommercial}>
+                        </lightning-button>
+                        <lightning-button
+                            label="Residential"
+                            variant={residentialBtnVariant}
+                            onclick={setResidential}>
+                        </lightning-button>
+                    </div>
+                </div> -->
+                <!-- Start Immediately Button -->
+                <div class="custom-lightning-input-block slds-m-top_small">
+                    <lightning-button label="Start Immediately" onclick={handleStartImmediate} variant={startImmediateVariant}></lightning-button>
+                </div>
+
+                <!-- Appointment Date Button -->
+                <div class="custom-lightning-input-block slds-m-top_small">
+                    <lightning-button label="Appointment Date" onclick={handleAppointmentDate} variant={appointmentDateVariant}></lightning-button>
+                </div>
+
+                <!-- Date Field Below Appointment Button -->
+                <div class="custom-lightning-input-block slds-m-top_x-small">
+                    <lightning-input
+                        type="date"
+                        value={selectedDate}
+                        onchange={handleDateChange}
+                        disabled={isImmediate}
+                        class="compact-date"
+                        label=" ">
+                    </lightning-input>
+                </div>
+
+                
+            
+
+                <!-- Error Message -->
+                <template if:true={errorMessage}>
+                    <div class="ngmcp-text-error slds-p-top_x-small">{errorMessage}</div>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+</template>

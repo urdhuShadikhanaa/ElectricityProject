@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="MPRN: 10010806 - EOD">
+        <div class="slds-p-around_medium">
+            <!-- Header Buttons -->
+            <div class="slds-align_absolute-center slds-m-bottom_medium">
+                <lightning-button label="De-appoint" variant="neutral"></lightning-button>
+                <lightning-button label="Create Query" class="slds-m-left_small"></lightning-button>
+                <lightning-button label="Create Job" class="slds-m-left_small"></lightning-button>
+            </div>
+
+            <!-- Tabs -->
+            <lightning-tabset>
+                <lightning-tab label="Overview">
+                    <div class="slds-grid slds-wrap slds-p-around_small">
+                        <!-- Left Column -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-record-form
+                                record-id={recordId}
+                                object-api-name="NGM_AssetDetails__c"
+                                fields={assetFields}
+                                columns="1"
+                                mode="readonly">
+                            </lightning-record-form>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-record-edit-form
+                                record-id={recordId}
+                                object-api-name="NGM_AssetDetails__c"
+                                onsuccess={handleSuccess}>
+                                <lightning-messages></lightning-messages>
+                                <lightning-input-field field-name="BuildingNumber__c"></lightning-input-field>
+                                <lightning-input-field field-name="Dependent_Locally__c"></lightning-input-field>
+                                <lightning-input-field field-name="Postal_Town__c"></lightning-input-field>
+                                <lightning-input-field field-name="Postal_Code__c"></lightning-input-field>
+                                <lightning-input-field field-name="Street__c"></lightning-input-field>
+                                <div class="slds-m-top_small">
+                                    <lightning-button type="submit" label="Save Address" variant="brand"></lightning-button>
+                                </div>
+                            </lightning-record-edit-form>
+                        </div>
+                    </div>
+                </lightning-tab>
+
+                <lightning-tab label="Request Log">
+                    <p class="slds-p-around_small">Request Log Details Coming Soon...</p>
+                </lightning-tab>
+
+                <lightning-tab label="AMR">
+                    <p class="slds-p-around_small">AMR Information Coming Soon...</p>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+    </lightning-card>
+</template>

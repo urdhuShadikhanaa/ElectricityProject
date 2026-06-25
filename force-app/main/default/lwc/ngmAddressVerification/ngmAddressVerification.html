@@ -1,0 +1,22 @@
+<template>
+    <div class="ngm-address-verification">
+        <template if:false={autoStart}>
+            <button type="button" class="verify-link" onclick={handleVerifyClick}>
+                Search by postcode or address
+            </button>
+        </template>
+
+        <template if:true={showSearch}>
+            <pw_avfc-address-verification-flow-base-component
+                use-status
+                countries="GB"
+                origin="GB"
+                main-label="Address"
+                search-label="Search by postcode or address"
+                manual-button-label="Enter Manually"
+                verify-button-label="Verify Address"
+                onaddresschange={handleAddressChange}>
+            </pw_avfc-address-verification-flow-base-component>
+        </template>
+    </div>
+</template>

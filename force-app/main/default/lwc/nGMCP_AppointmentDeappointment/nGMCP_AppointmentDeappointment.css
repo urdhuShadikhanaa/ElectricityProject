@@ -1,0 +1,588 @@
+/* Container styling */
+:host {
+    font-family: 'Roboto', sans-serif;
+}
+
+.custom-appoint-deappoint-container * {
+    font-family: 'Roboto', sans-serif;
+}
+.container {
+    background-color: #f5f6f9;
+    padding: 20px 10px;
+    font-family: 'Roboto', sans-serif;
+    color: #111;
+}
+
+.radio-card-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 20px; /* Adds space above headings */
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Cards layout */
+.radio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+.radio-card {
+  background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    gap: 8px;
+    flex-direction: column;
+    color: #333;
+    display: inline-flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 140px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+.radio-card.selected {
+  border: 2px solid #00857A;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+  font-weight: 600;
+}
+.radio-grid.small {
+    gap: 10px;
+}
+
+.radio-card.short-height{
+  min-height: 55px;
+}
+
+.radio-card:hover {
+    border-color: #00857A;
+}
+
+.radio-card.selected {
+    border: 2px solid #00857A;
+}
+
+.radio-card input[type="radio"] {
+    accent-color: #00857A;
+}
+
+.radio-card.selected input[type="radio"]:checked {
+    accent-color: #00857A;
+}
+
+.radio-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio-header input[type="radio"] {
+  accent-color: #00857A;
+  cursor: pointer;
+  transform: scale(1.1); /* slightly larger radio circle */
+}
+
+.radio-header label {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+}
+.radio-desc {
+  color: #555;
+  font-size: 13.5px;
+  margin-left: 26px;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.recommend-tag {
+    font-size: 12px;
+    background: #009688;
+    color: #fff;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 0 0 6px 6px;
+    margin-top: auto;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+/* Two-column layout */
+.two-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.inline-field {
+    display: flex;
+    align-items: center;
+    width: 48%; /* Two columns */
+    margin-bottom: 8px;
+}
+
+.custom-label {
+    width: 130px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+lightning-combobox .slds-select {
+    height: 26px !important;
+    font-size: 0.8rem !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 12px 0;
+    color: #006d6f;
+}
+
+/************** custom modal styles **************/
+.custom-modal-brand-button {
+    background: #00857a;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #00857a;
+    font-size: 14px;
+    cursor: pointer;
+}
+.custom-modal-brand-button:hover {
+    background: #fff;
+    color: #00857a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-modal-base-button {
+    color: #00857a; 
+    font-size: 14px;
+    cursor: pointer;
+}
+.custom-modal-base-button:hover {
+    background: #00857a;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.custom-modal-title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: #1D1B20;
+    text-align: center;
+}
+/*.custom-modal-container {
+	
+}*/
+.custom-modal-header {
+    border: none;
+	background-color: #fff;
+}
+.custom-modal-footer, 
+.custom-modal-header {
+    border-bottom: 1px solid #DADADA;
+    border-top: 1px solid #DADADA;
+}
+.custom-modal-footer,
+.custom-modal-content-container {
+	background-color: #fff;
+}
+.custom-modal-content, 
+.custom-modal-content-bold {	
+    color: #49454F;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: 0.5px;
+	overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: middle;
+}
+.custom-modal-content-bold {
+    font-weight: 500;
+}
+.custom-modal-content-heading {
+    font-size: 13px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
+.custom-modal-content-container {
+    overflow: hidden;
+    overflow-y: auto;   
+}
+.custom-slds-modal-container {
+    max-width: 95vw;
+    width: 50%;
+}
+.custom-modal-brand-button[disabled], 
+.custom-modal-brand-button:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--dxp-g-neutral-2);
+    cursor: default;
+}
+
+/* Full-page overlay to center the spinner */
+.custom-spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6); /* Optional overlay */
+  z-index: 9999;
+}
+
+/* Dotted spinner container */
+.custom-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+/* Individual dots */
+.custom-spinner span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #0070d2; /* Salesforce blue */
+  border-radius: 50%;
+  animation: dot-spin 1.2s linear infinite;
+}
+
+/* Position dots in a circle */
+.custom-spinner span:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, 0); animation-delay: 0s; }
+.custom-spinner span:nth-child(2) { top: 14%; left: 85%; transform: translate(-50%, -50%); animation-delay: 0.15s; }
+.custom-spinner span:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); animation-delay: 0.3s; }
+.custom-spinner span:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); animation-delay: 0.45s; }
+.custom-spinner span:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); animation-delay: 0.6s; }
+.custom-spinner span:nth-child(6) { top: 85%; left: 14%; transform: translate(-50%, -50%); animation-delay: 0.75s; }
+.custom-spinner span:nth-child(7) { top: 50%; left: 0%; transform: translate(0, -50%); animation-delay: 0.9s; }
+.custom-spinner span:nth-child(8) { top: 14%; left: 14%; transform: translate(-50%, -50%); animation-delay: 1.05s; }
+
+/* Animation for pulsing effect */
+@keyframes dot-spin {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Larger heading */
+.contact-title { font-weight: 600; margin: 0 0 0.75rem; }
+.contact-title--large { font-size: 1.125rem; /* ~18px */ font-weight: 700; }
+
+/* Half-width containers */
+.contact-half,
+.upload-half {
+  max-width: 420px;   /* adjust 380–440 to match your page grid */
+  width: 100%;
+}
+
+/* Error + counter */
+.error-text { 
+    color: var(--lwc-colorTextError, #c23934); 
+    margin-top: 0.25rem; 
+}
+.char-limit { 
+    font-size: 12px; 
+    color: #c23934; 
+}
+.char-limit.warning { 
+    color: #c23934; 
+}
+
+/* Upload area */
+.upload-title  { font-weight: 600; margin: 1rem 0 0.5rem; }
+.drop-zone {
+  border: 2px dashed #DADADA;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  color: #626f7a;
+  background: #fafafa;
+  margin-bottom: 0.25rem;  /* keeps link close like your reference */
+}
+.drop-zone.drag-over {
+  border-color: #00857A;
+  background: #f2fbfb;
+  color: #00857A;
+}
+.drop-zone-inner { display: flex; flex-direction: column; gap: 0.4rem; }
+
+/* Teal link under the box */
+.browse-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: #1f7a7a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.browse-link:hover { color: #145f5f; }
+
+/* Upload area — dash border #DADADA; white-ish background */
+.upload-section { margin-top: 1rem; }
+.upload-title { font-size: 14px; color: #333; margin-bottom: 6px; }
+
+.upload-box {
+    border: 2px dashed #DADADA;
+    border-radius: 4px;
+    background-color: #fafafa;
+    text-align: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #555;
+    width: 300px;
+    min-height: 20vh;         /* wide enough */
+}
+.upload-box.drag-over {
+  background-color: #f0f8f8;
+  border-color: #00857A;
+}
+
+.browse-text button {
+  color: #00857A;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0.25rem 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.file-input { display: none; }
+
+.file-preview-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.file-preview-item {
+  border: 1px solid #DADADA;
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fafafa;
+    min-width: 200px;
+    justify-content: center;
+}
+.file-icon { 
+    font-size: 28px; 
+}
+.file-info { 
+    display: flex; 
+    flex-direction: column;
+}
+.file-name { 
+    font-weight: 600; 
+    max-width: 150px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.file-size { 
+    font-size: 0.8rem; 
+    color: #555; 
+}
+.spinner-message {   
+    margin-top: 12px;
+    text-align: center;
+}
+.custom-job-section-title,
+.custom-contact-details-section .section-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #333;
+}
+.custom-contact-details-section .section-title,
+.section-card .custom-page-subheader-title {
+    padding: 0.5rem 0;
+}
+.custom-contact-details-section.section {
+    margin: 0;
+    padding: 1rem 0rem;
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #c23934;
+    font-size: 13px;
+    cursor: pointer;
+    display: block;
+    align-self: self-start;
+}
+
+/*******************. Custom Styles - 14.01.26.  ***********************/
+.custom-type-section-label,
+.section-card .custom-page-subheader-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 0.5rem 0;
+    color: #00857A;
+}
+.btn {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    vertical-align: middle;
+    padding: 10px 24px;
+    margin: 0 15px;
+} 
+
+.custom-btn-base {
+    border: 2px solid #00857A;
+    background-color: transparent;
+    color: #00857A;
+    border-radius: 8px;
+}
+.custom-btn-base:hover {
+    background-color: #00857A;
+    color: #fff;
+    cursor: pointer;
+}
+
+.custom-btn {
+    background-color: #00857A;
+    color: #fff;
+    border: 2px solid #00857A;
+    border-radius: 8px;
+    margin-left: 0;
+}
+
+.custom-btn:hover {
+    background-color: #fff;
+    color: #00857A;
+    border: 2px solid #00857A;
+    cursor: pointer;
+}
+.consent-box {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    gap: 6px;
+    padding-bottom: 10px; /* adds space after the content inside the box */
+}
+
+.consent-box input[type="checkbox"]{
+    margin-top: 3px;
+}
+
+.consent-text {
+    font-size: 12px;
+    color: #333;
+}
+.section-btn {
+    background-color: #fff;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+}
+.custom-contact-field-section input, 
+.custom-contact-field-section textarea, 
+.custom-contact-field-section select {
+    width: 300px;
+    height: 40px;
+    border: 2px solid #DADADA;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.1px;
+    padding: 0.5rem;
+    line-height: normal;
+}
+
+.custom-contact-field-section textarea {
+    min-height: 20vh;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.custom-contact-details-section .custom-contact-field-section {
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.custom-contact-field-section label {
+    margin: 0.5rem 0;
+    width: 250px;
+}
+.required {
+    color: #c23934;
+    margin-right: 4px;
+    font-weight: bold;
+}
+.custom-appoint-deappoint-container .custom-contact-field-section .compact-input {
+    width: 300px;
+    margin-bottom: 0;
+}
+
+/************************. Custom Styles - 19.01.26. *******************************/
+
+.custom-question-section {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Space between label and radio buttons */
+    margin-bottom: 1rem;
+    flex-wrap: nowrap; /* Allow wrapping if needed */
+}
+.custom-datepicker-input-section .custom-contact-field-section.custom-question-section {
+    gap: 0px;
+}
+/********************** Custom Styles - 21.01.26. *************************/
+
+.custom-datepicker-input-section {
+    display: inline-block;
+}
+.appointment-input {
+    margin-top: 1rem;
+}
+.custom-appoint-deappoint-container .custom-contact-field-section.custom-question-section {
+    gap: 0px;
+}
+.appointment-slot.appointment-input.custom-timeslot-section .custom-contact-field-section.custom-question-section label,
+.custom-appointment-outer-container .custom-datepicker-input-section .appointment-input.custom-datepicker-component-section label {
+    min-width: 300px;
+}
+.custom-appointment-outer-container .custom-datepicker-input-section .appointment-input.custom-datepicker-component-section {
+    display: flex;
+}

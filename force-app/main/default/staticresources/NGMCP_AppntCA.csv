@@ -1,0 +1,4 @@
+MPRN,Supplier short code,Request Type,Appointment Type,Effective Date,Building Number,Building Name,Dependant Locality,Street,Postal Town,Postal Code,Market sector code
+1234,ABC,APPNT,CA,23-05-2026,1234,sfass,dDD,dgee,wr,ABC 123,I
+5678,DEF,APPNT,CA,24-05-2026,1234,sfass,dDD,dgee,wr,ABC 124,D
+9012,ABC,APPNT,CA,25-05-2026,1234,sfass,dDD,dgee,wr,ABC 125,D

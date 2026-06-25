@@ -1,0 +1,277 @@
+<template>
+    <div class="custom-usermgmt-container">
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Saving..." size="medium">
+            </lightning-spinner>
+        </template>
+        <div class="custom-inner-container section-header">
+            <h2 class="headertitle">User Management</h2>
+        </div>
+        <div class="custom-input-form-wrapper">
+            <div class="custom-inner-container question custom-question-section">
+                <p class="question-label">Please confirm which action you want to take?</p>
+                <lightning-radio-group name="action" class="custom-radiogroup-lightning-input" label="" options={actionOptions} value={action} type="radio"
+                    onchange={handleActionChange} required>
+                </lightning-radio-group>
+
+                <!-- <label><input class="custom-radio-input" type="radio" name="action" value="Create"
+                        onchange={handleActionChange} required /> Create</label>
+                <label><input class="custom-radio-input" type="radio" name="action" value="Deactivate"
+                        onchange={handleActionChange} />
+                    Deactivate</label>
+                <label><input class="custom-radio-input" type="radio" name="action" value="Change"
+                        onchange={handleActionChange} required /> Change</label> -->
+            </div>
+            <template if:true={showQ2}>
+                <div class="custom-inner-container question custom-question-section">
+                    <p class="question-label">Please confirm if you want to do this for single or bulk?</p>
+                    <!-- <label><input class="custom-radio-input" type="radio" name="mode" value="Single"
+                            onchange={handleModeChange} /> Single</label>
+                    <label><input class="custom-radio-input" type="radio" name="mode" value="Bulk"
+                            onchange={handleModeChange} /> Bulk</label> -->
+                    <lightning-radio-group name="mode" label="" class="custom-radiogroup-lightning-input" options={modeOptions} value={mode} type="radio"
+                        onchange={handleModeChange} required>
+                    </lightning-radio-group>
+
+                </div>
+            </template>
+            <section lwc-4sqniq9s5o1="" class="custom-user-details-section">
+                <template if:true={showCreate}>
+                    <div class="custom-usermgmt-create-section">
+                                <div class="custom-lightning-input-element custom-slds-required">
+                                    <!-- <label class="custom-user-form-label">First Name</label> -->
+                                    <lightning-input label="First Name" data-field="firstName" placeholder="First Name" required value={formData.firstName}
+                                        onchange={handleChange}>
+                                    </lightning-input>
+                                </div>
+                                <div class="custom-lightning-input-element custom-slds-required">
+                                    <!-- <label class="custom-user-form-label">Last Name</label> -->
+                                    <lightning-input label="Last Name" data-field="lastName" placeholder="Last Name" required value={formData.lastName}
+                                        onchange={handleChange}>
+                                    </lightning-input>
+                                    <!-- <input class="custom-user-form-input" type="text" placeholder="Last Name" data-field="lastName"
+                                        onchange={handleChange} required /> -->
+                                </div>
+                                <div class="custom-lightning-input-element custom-slds-required">
+                                    <lightning-input type="email" label="Email" data-field="email" placeholder="Email" required value={formData.email}
+                                        onchange={handleChange}>
+                                    </lightning-input>
+                                    <!-- <label class="custom-user-form-label">Email</label>
+                                    <input class="custom-user-form-input" type="email" placeholder="Email" data-field="email"
+                                        onchange={handleChange} required /> -->
+                                </div>
+                                <div class="custom-lightning-input-element custom-slds-required">
+                                    <!-- <label class="custom-user-form-label">Role</label> -->
+                                    <lightning-combobox name="role" data-field="role" label="Role" placeholder="Select Role"
+                                        value={role} options={roleOptions} required onchange={handleChange}
+                                        class="custom-user-form-select">
+                                    </lightning-combobox>
+                                    <!-- <select class="custom-user-form-select" data-field="role" onchange={handleChange} required>
+                                        <option value="">Select Role</option>
+                                        <option value="Agent">Agent</option> -->
+                                    <!-- <option value="User">User</option> -->
+                                    <!-- <option value="Manager">Manager</option> -->
+                                    <!-- </select> -->
+                                </div>
+                                <!-- Supplier Group (CRM Only) -->
+                                <template if:true={isCrmUser}>
+
+                                    <div class="custom-slds-required custom-lightning-select-input custom-supplier-group-input">
+                                        <label class="custom-user-form-label">Supplier Group</label>
+                                        <lightning-combobox class="custom-user-form-select" options={supplierGroupOptions}
+                                            value={supplierGroup} placeholder="— Select Supplier Group —" required
+                                            onchange={handleSupplierGroupChange}>
+                                        </lightning-combobox>
+                                    </div>
+
+                                </template>
+
+                                <!-- Supplier Codes (Multi-Select) -->
+                                <div class="field custom-contact-field-section dual-listbox-wrapper custom-slds-required">
+                                    <label class="custom-user-form-label">Supplier Codes</label>
+                                    <lightning-dual-listbox source-label="Available" selected-label="Selected"
+                                        options={supplierCodeOptions} value={selectedSupplierCodes}
+                                        onchange={handleSupplierCodeMultiChange} class="custom-user-form-input" required>
+                                    </lightning-dual-listbox>
+                                </div>
+
+                    </div>
+                </template>
+                <template if:true={showDeactivate}>
+                    <div class="custom-lightning-input-element custom-slds-required">
+                        <lightning-input label="Username" data-field="userName" placeholder="Username" required value={formData.userName}
+                            onchange={handleChange}>
+                        </lightning-input>
+                        <!-- <label class="custom-user-form-label">Username</label>
+                        <input class="custom-user-form-input" type="text" placeholder="Username" data-field="userName"
+                            onchange={handleChange} /> -->
+                    </div>
+                </template>
+                <template if:true={showReactivate}>
+                    <div class="custom-lightning-input-element custom-slds-required">
+                        <lightning-input label="Username" data-field="userName" placeholder="Username" required value={formData.userName}
+                            onchange={handleChange}>
+                        </lightning-input>
+                        <!-- <label class="custom-user-form-label">Username</label>
+                                        <input class="custom-user-form-input" type="text" placeholder="Username" data-field="userName"
+                                            onchange={handleChange} /> -->
+                    </div>
+                </template>
+                <template if:true={showChange}>
+                    <div class="custom-usermgmt-change-section">
+                            <div class="custom-change-username-search">
+                                <!-- Username -->
+                                <div class="custom-lightning-input-element custom-slds-required">
+                                    <lightning-input label="Username" data-field="userName" placeholder="Username" required value={formData.userName}
+                                        onchange={handleChange}>
+                                    </lightning-input>
+                                    <!-- <label class="custom-user-form-label">Username</label>
+                                    <input class="custom-user-form-input" type="text" placeholder="Username" data-field="userName"
+                                        onchange={handleChange} required /> -->
+                                </div>
+                                <template if:true={isCrmUser}>
+                                    <div class="custom-username-search-btn">
+                                        <!--<lightning-button label="Search" class="custom-modal-brand-button" onclick={handleSearch}>
+                                        </lightning-button>-->
+                                        <button class="custom-user-search-btn slds-button" onclick={handleSearch}>
+                                            <img src={homepageAssets} alt="Search Username" class="mprn-search-img" />
+                                        </button>
+                                    </div>
+                                </template>
+                            </div>
+                            <!-- Role -->
+                            <div class="custom-lightning-input-element custom-slds-required">
+                                <lightning-combobox name="role" data-field="role" label="Role" placeholder="Select Role"
+                                    value={role} options={roleOptions} onchange={handleChange} required
+                                    class="custom-user-form-select">
+                                </lightning-combobox>
+                                <!-- <label class="custom-user-form-label">Role</label>
+                                <select class="custom-user-form-select" data-field="role" onchange={handleChange}>
+                                    <option value="">Select Role</option>
+                                    <option value="Agent">Agent</option>
+                                    <option value="Manager">Manager</option>
+                                </select> -->
+                            </div>
+                            <template if:true={isCrmUser}>
+                                <div class="custom-slds-required custom-lightning-select-input custom-supplier-group-input">
+                                    <label class="custom-user-form-label">Supplier Group</label>
+                                    <lightning-combobox class="custom-user-form-select" options={supplierGroupOptions}
+                                        value={supplierGroup} placeholder="— Select Supplier Group —"
+                                        onchange={handleSupplierGroupChange} disabled={isReadOnly}>
+                                    </lightning-combobox>
+                                </div>
+                            </template>
+                            <!-- Supplier Codes -->
+                            <div class="field custom-contact-field-section dual-listbox-wrapper custom-slds-required">
+                                <label class="custom-user-form-label">Supplier Codes</label>
+                                <lightning-dual-listbox source-label="Available" selected-label="Selected"
+                                    options={supplierCodeOptions} value={selectedSupplierCodes}
+                                    onchange={handleSupplierCodeMultiChange} required class="custom-user-form-input">
+                                </lightning-dual-listbox>
+                            </div>
+                   </div> 
+                </template>
+                <template if:true={showModal}>
+                    <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container custom-slds-modal-container">
+                            <!-- HEADER -->
+                            <header class="custom-modal-header slds-p-around_small">
+                                <h2 class="custom-modal-title">
+                                    {modalTitle}
+                                </h2>
+                            </header>
+                            <!-- BODY -->
+                            <div class="custom-modal-content-container slds-p-around_small">
+                                <p
+                                    class="custom-modal-content custom-text-content-center slds-col slds-p-around_xx-small">
+                                    {modalMessage}</p>
+                            </div>
+                            <!-- FOOTER -->
+                            <footer
+                                class="custom-modal-footer slds-grid slds-grid_align-end slds-p-horizontal_large slds-p-vertical_xx-small">
+                                <lightning-button label="Ok" class="custom-modal-brand-button" onclick={closeModal}>
+                                </lightning-button>
+                            </footer>
+                        </div>
+                    </section>
+                    <!-- Backdrop -->
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </template>
+
+                 <!-- HTML anchor that forces download when clicked -->
+                <template if:true={downloadmessage}>
+                    <div class="custom-sample-template-section">
+                            <div class="sample-message">
+                                <!-- <b>Sample Query Description :</b> -->
+                                <lightning-formatted-text class="custom-lightning-input-element"
+                                    value={downloadmessage}></lightning-formatted-text>
+                            </div>
+                            <template if:true={downloadLink}>
+                                <div class="download-section">
+                                    <!-- download attribute forces browser to save as file -->
+                                    <a class="download-link" href={downloadLink} download>
+                                        {downloadlabel}
+                                    </a>
+                                </div>
+                            </template>
+                    </div>
+                </template>
+
+                <template if:true={showBulk}>
+                    <div class="upload-section custom-contact-field-section">
+                        <label class="upload-label">Upload File(s) </label>
+                        <div class="upload-box" ondragover={handleDragOver} ondragleave={handleDragLeave} ondrop={handleFileDrop}>
+                            <p>Drag & drop files here</p>
+                            <p>
+                                <span class="browse-text" onclick={handleBrowseClick}>Select File(s) from device</span>
+                            </p>
+                            <input type="file" multiple accept=".csv, image/*" class="file-input" onchange={handleFileChange} />
+                        </div>
+                        <!--  Show upload errors -->
+                        <template if:true={fileError}>
+                            <p class="error-text">{fileError}</p>
+                        </template>
+                        <!--  Thumbnails / file list -->
+                        <template if:true={uploadedFiles.length}>
+                            <div class="file-preview-list">
+                                <template for:each={uploadedFiles} for:item="file">
+                                    <div key={file.name} class="file-preview-item">
+                                        <template if:true={file.isImage}>
+                                            <img src={file.previewUrl} alt={file.name} class="thumbnail" />
+                                        </template>
+                                        <template if:false={file.isImage}>
+                                            <div class="file-icon">📄</div>
+                                        </template>
+                                        <div class="file-info">
+                                            <span class="file-name">{file.name}</span>
+                                            <span class="file-size">({file.sizeDisplay})</span>
+                                        </div>
+                                        <button class="delete-btn" data-name={file.name} onclick={handleFileDelete}>
+                                            ✕
+                                        </button>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+               
+                <div class="custom-terms-conditions-section slds-grid slds-align_absolute-left">
+                    <!-- Checkbox -->
+                    <lightning-input type="checkbox" variant="label-hidden" onchange={handleConsentChange} required>
+                    </lightning-input>
+                    <!-- Text -->
+                    <span class="consent-text">
+                        I agree to the
+                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer" class="terms-link"> Terms &
+                            Conditions </a>
+                    </span>
+                </div>
+            </section>
+            <div class="custom-btn-section">
+                <button class="custom-brand-button" onclick={handleSubmit}>Submit</button>
+            </div>
+        </div>
+    </div>
+</template>

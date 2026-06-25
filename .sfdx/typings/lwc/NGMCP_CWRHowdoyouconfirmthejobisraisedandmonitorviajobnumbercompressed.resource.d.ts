@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_CWRHowdoyouconfirmthejobisraisedandmonitorviajobnumbercompressed" {
+    var NGMCP_CWRHowdoyouconfirmthejobisraisedandmonitorviajobnumbercompressed: string;
+    export default NGMCP_CWRHowdoyouconfirmthejobisraisedandmonitorviajobnumbercompressed;
+}

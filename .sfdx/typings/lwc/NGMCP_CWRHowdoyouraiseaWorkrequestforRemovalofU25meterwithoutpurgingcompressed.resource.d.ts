@@ -1,0 +1,4 @@
+declare module "@salesforce/resourceUrl/NGMCP_CWRHowdoyouraiseaWorkrequestforRemovalofU25meterwithoutpurgingcompressed" {
+    var NGMCP_CWRHowdoyouraiseaWorkrequestforRemovalofU25meterwithoutpurgingcompressed: string;
+    export default NGMCP_CWRHowdoyouraiseaWorkrequestforRemovalofU25meterwithoutpurgingcompressed;
+}
